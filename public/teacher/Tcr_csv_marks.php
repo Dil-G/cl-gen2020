@@ -21,6 +21,7 @@
     <link type="text/css" rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/register2.css " type="text/css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="../js/errors.js"></script>
 </head>
 
 <body name=top>
@@ -36,15 +37,14 @@
                     <div class="container">
 
                         <label for="fname"> Subject Name</label>
-                        <input type="text" id="SName" name="SubjectName" placeholder="Type the Subject Name.." required>
+                        <input type="text" id="SName" name="SubjectName" placeholder="Type the Subject Name.." pattern="[a-zA-Z]+" required>
 
                         <label for="fname"> Subject ID</label>
                         <input type="text" id="SID" name="SubjectID" placeholder="Type the Subject ID.." required>
+                                                                                
+						<label for="id"><b>Teacher ID</b></label>
+						<input type="text"  id="username" name="id" value = <?php  echo  $_SESSION['userID']?> readonly>
 
-                        <label for="fname">Teacher ID</label>
-                        <input type="text" id="TID" name="TeacherID" placeholder="Type Teacher ID.." required>
-                    
-                        
 
                     <label for="filename">Click on the "Choose File" button to upload a CSV file:</label>
                     <input type="file" placeholder="Add Your File" id="myFile" name="filename" required>
