@@ -10,7 +10,18 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 
   $userID = $_SESSION['userID'];
   include ('../../src/dashboard.php');
+  
 ?>
+<?php
+ 
+ $dataPoints = array( 
+   array("label"=>"Industrial", "y"=>51.7),
+   array("label"=>"Transportation", "y"=>264.6),
+   array("label"=>"Residential", "y"=>13.9),
+   array("label"=>"Commercial", "y"=>7.8)
+ )
+  
+ ?>
 
   <!DOCTYPE html>
   <html lang="en">
@@ -21,6 +32,33 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="../js/jquery-1.9.1.min.js"></script>
     <script src="../js/nav.js"></script>
+    <script>
+window.onload = function() {
+ 
+ 
+var chart = new CanvasJS.Chart("chartContainer", {
+	theme: "light2",
+	animationEnabled: true,
+	title: {
+		text: "World Energy Consumption by Sector - 2012"
+	},
+	data: [{
+		type: "pie",
+		indexLabel: "{y}",
+		yValueFormatString: "#,##0.00\"%\"",
+		indexLabelPlacement: "inside",
+		indexLabelFontColor: "#36454F",
+		indexLabelFontSize: 18,
+		indexLabelFontWeight: "bolder",
+		showInLegend: true,
+		legendText: "{label}",
+		dataPoints: <?php echo json_encode($userData, JSON_NUMERIC_CHECK); ?>
+	}]
+});
+chart.render();
+ 
+}
+</script>
     <link type="text/css" rel="stylesheet" href="../css/main.css">
     <link type="text/css" rel="stylesheet" href="../css/dashboard.css">
     <title>Admin Dashboard</title>
@@ -78,6 +116,18 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
         </tr>
       </table>
  
+      <table class="statis two">
+        <tr>
+         
+       
+          <td>
+            <div class="box ">
+            <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+            </div>
+          </td>
+        </tr>
+      </table>
 
       <table class="statis two">
         <tr>
@@ -124,7 +174,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
         </tr>
       </table>
 
-
+      
   </body>
 
   </html>
