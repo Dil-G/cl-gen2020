@@ -21,6 +21,16 @@
 		<title>Societies</title>
 		<script src="../js/jquery-1.9.1.min.js"></script>
 		<script src="../js/nav.js"></script>
+<script>
+$(document).ready(function(){
+  $("#Inputs").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#Table tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
 		<link rel="stylesheet" href="../css/view.css " type="text/css">
 		<link type="text/css" rel="stylesheet" href="../css/main.css">
 		<link type="text/css" rel="stylesheet" href="../css/register.css">
@@ -32,10 +42,10 @@
 		<div class="content">
 
 			<h1 style="color: #6a7480;">SOCIETIES</h1>
-			<form class="search" action="action_page.php">
-				<input type="text" placeholder="Search.." name="search">
-				<button type="submit">Search</button>
-			</form>
+			<form class="search" action="register_stu.html">
+		<input type="text" id="Inputs" placeholder="Search.." name="search">
+		<button type="submit">Search</button>
+		</form>
 			<br>
 			<br>
 			<br>
@@ -64,7 +74,7 @@
 					while ($row = mysqli_fetch_assoc($result)) {
 
 					?>
-
+<tbody id="Table">
 						<tr>
 							<td><?php echo $row['societyID'] ?></td>
 							<td><?php echo $row['societyName'] ?></td>
@@ -78,7 +88,7 @@
 						</tr>
 
 
-
+</tbody>
 
 					<?php
 					}

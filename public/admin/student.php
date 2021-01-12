@@ -21,6 +21,16 @@
 <title>Students User List</title>
 <script src="../js/jquery-1.9.1.min.js"></script>
 <script src="../js/nav.js"></script>
+<script>
+$(document).ready(function(){
+  $("#Inputs").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#Table tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
 <link rel="stylesheet" href="../css/view.css " type="text/css">
 <link type="text/css" rel="stylesheet" href="../css/main.css">
 <link type="text/css" rel="stylesheet" href="../css/users.css">
@@ -34,7 +44,7 @@
     
 	<h1>Students List</h1>
 	<form class="search" action="register_stu.html">
-		<input type="text" placeholder="Search.." name="search">
+		<input type="text" ID="Inputs" placeholder="Search.." name="search">
 		<button type="submit">Search</button>
 		</form>
 
@@ -70,12 +80,15 @@
 				<?php
 					while($row=mysqli_fetch_assoc($student_result2)){
 					?>
+					<tbody id="Table">
 				<tr>
+					
 					<td><?php echo $row['userID'] ?></td>
 					<td><?php echo $row['username'] ?></td>
 					
 					<?php echo "<td><a class='btn editbtn' href = o_addStudentDetails.php?userID=".$row['userID']." > Add </a> </td>"?>
 				</tr>
+					</tbody>
 				<?php
 					}
 					?>
@@ -101,12 +114,14 @@
 				<?php
 					while($row=mysqli_fetch_assoc($student_result3)){
 					?>
+					<tbody id="Table">
 				<tr>
 					<td><?php echo $row['admissionNo'] ?></td>
 					<td><?php $name = $row['fName'] ." ". $row['mName'] ." ". $row['lName'] ; echo $name; ?></td>
 					<?php echo "<td><a class='btn editbtn' href = SProfile.php?userID=".$row['admissionNo']." > update </a> </td>"?>
 					<?php echo "<td><a class='btn dltbtn' href = # > Deactivate </a> </td>";?>
 				</tr>
+					</tbody>
 				<?php
 					}
 					?>

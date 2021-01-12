@@ -10,7 +10,7 @@ table{
 tr:nth-child(odd){
 	background:#ebecf0;
 }
-tr:first-child{
+th{
 	background:#a9a9a9;
 }
 

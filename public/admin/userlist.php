@@ -26,6 +26,16 @@
 <link type="text/css" rel="stylesheet" href="../css/main.css">
 <link type="text/css" rel="stylesheet" href="../css/users.css">
 <link type="text/css" rel="stylesheet" href="../css/tabs.css">
+<script>
+$(document).ready(function(){
+  $("#Inputs").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#Table tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
 </head>
 <body>
 
@@ -35,7 +45,7 @@
 		<h1 style="font-size: 40px;"> User List</h1>
 
 		<form class="search" action="register_stu.html">
-		<input type="text" placeholder="Search.." name="search">
+		<input type="text" id="Inputs" placeholder="Search.." name="search">
 		<button type="submit">Search</button>
 		</form>
 		<br>
@@ -79,6 +89,7 @@
                 <?php
 		while($row=mysqli_fetch_assoc($user_res1)){
 			?>
+			<tbody id="Table">
                 <tr>
                     <td><?php echo $row['userID'] ?></td>
                     <td><?php echo $row['username'] ?></td>
@@ -88,6 +99,7 @@
                 <?php
 			}
 		?>
+			</tbody>
 				</table>
 				</div>
 		</div>
@@ -116,6 +128,7 @@
                 <?php
 		while($row=mysqli_fetch_assoc($user_res2)){
 			?>
+			<tbody id="Table">
                 <tr>
                     <td><?php echo $row['userID'] ?></td>
                     <td><?php echo $row['username'] ?></td>
@@ -125,6 +138,7 @@
                 <?php
 			}
 		?>
+			</tbody>
 				</table>
 				</div>
 		</div>

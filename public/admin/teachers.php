@@ -22,6 +22,16 @@
 <title>Teachers User List</title>
 <script src="../js/jquery-1.9.1.min.js"></script>
 <script src="../js/nav.js"></script>
+<script>
+$(document).ready(function(){
+  $("#Inputs").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#Table tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
 <link rel="stylesheet" href="../css/view.css " type="text/css">
 <link type="text/css" rel="stylesheet" href="../css/main.css">
 <link type="text/css" rel="stylesheet" href="../css/users.css">
@@ -35,7 +45,7 @@
     
 	<h1>Teachers List</h1>
 	<form class="search" action="register_stu.html">
-		<input type="text" placeholder="Search.." name="search">
+		<input type="text" id="Inputs" placeholder="Search.." name="search">
 		<button type="submit">Search</button>
 		</form>
 
@@ -71,6 +81,7 @@
 				<?php
 					while($row=mysqli_fetch_assoc($teacher_result1)){
 					?>
+					<tbody id="Table">
 				<tr>
 					<td><?php echo $row['userID'] ?></td>
 					<td><?php echo $row['username'] ?></td>
@@ -80,6 +91,7 @@
 				<?php
 					}
 					?>
+					</tbody>
 			</table>
 		</div>
 	</div>
@@ -102,6 +114,7 @@
 				<?php
 					while($row=mysqli_fetch_assoc($teacher_result2)){
 					?>
+					<tbody id="Table">
 				<tr>
 					<td><?php echo $row['teacherID'] ?></td>
 					<td><?php $name = $row['fName'] ." ".  $row['lName'] ; echo $name; ?></td>
@@ -111,6 +124,7 @@
 				<?php
 					}
 					?>
+					</tbody>
 			</table>
 		</div>
 	</div>

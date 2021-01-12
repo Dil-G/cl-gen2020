@@ -29,6 +29,16 @@
       <script src="../js/jquery-1.9.1.min.js"></script>
       <script src="../js/pop.js"></script>
       <script src="../js/nav.js"></script>
+<script>
+$(document).ready(function(){
+  $("#Inputs").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#Table tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
    </head>
 
    <body>
@@ -37,6 +47,10 @@
       <div class="content">
 
          <h1 style="font-size: 36px;">Duty List</h1>
+         <form class="search" action="register_stu.html">
+		<input type="text" id="Inputs" placeholder="Search.." name="search">
+		<button type="submit">Search</button>
+		</form>
          <?php if (isset($_GET['error'])) { ?>
             <div id="error"><?php echo $_GET['error']; ?></div>
          <?php } ?>
@@ -71,6 +85,7 @@
                      <th>Duty ID</th>
                      <th>Duty</th>
                   </tr>
+                  <tbody id="Table">
                   <?php
                   while ($row = mysqli_fetch_assoc($result)) {
                   ?>
@@ -81,6 +96,7 @@
                   <?php
                   }
                   ?>
+                  </tbody>
                </table>
             </div>
          </div>
@@ -94,6 +110,7 @@
                      <th>Duty Assigned</th>
                      <th>Edit </th>
                   </tr>
+                  <tbody id="Table">
                   <?php
                   $officerID = "0";
                   while ($row = mysqli_fetch_assoc($result1)) {
@@ -124,6 +141,7 @@
                   <?php
                   }
                   ?>
+                  </tbody>
                </table>
             </div>
          </div>
