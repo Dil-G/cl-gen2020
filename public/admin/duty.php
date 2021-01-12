@@ -10,51 +10,51 @@
 		else{
 
          $userID = $_SESSION['userID'];
-?> 
+?>
 
-   <!DOCTYPE html>
+<!DOCTYPE html>
 
-   <head>
-      <?php
+<head>
+    <?php
       include_once '../../config/conn.php';
       ?>
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>Duty List</title>
-      <link rel="stylesheet" href="../css/view.css " type="text/css">
-      <link type="text/css" rel="stylesheet" href="../css/main.css">
-      <link type="text/css" rel="stylesheet" href="../css/tabs.css">
-      <link type="text/css" rel="stylesheet" href="../css/users.css">
-      <link type="text/css" rel="stylesheet" href="../css/buttons.css">
-      <link type="text/css" rel="stylesheet" href="../css/messages.css">
-      <script src="../js/jquery-1.9.1.min.js"></script>
-      <script src="../js/pop.js"></script>
-      <script src="../js/nav.js"></script>
-<script>
-$(document).ready(function(){
-  $("#Inputs").on("keyup", function() {
-    var value = $(this).val().toLowerCase();
-    $("#Table tr").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Duty List</title>
+    <link rel="stylesheet" href="../css/view.css " type="text/css">
+    <link type="text/css" rel="stylesheet" href="../css/main.css">
+    <link type="text/css" rel="stylesheet" href="../css/tabs.css">
+    <link type="text/css" rel="stylesheet" href="../css/users.css">
+    <link type="text/css" rel="stylesheet" href="../css/buttons.css">
+    <link type="text/css" rel="stylesheet" href="../css/messages.css">
+    <script src="../js/jquery-1.9.1.min.js"></script>
+    <script src="../js/pop.js"></script>
+    <script src="../js/nav.js"></script>
+    <script>
+    $(document).ready(function() {
+        $("#Inputs").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#Table tr").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
     });
-  });
-});
-</script>
-   </head>
+    </script>
+</head>
 
-   <body>
-      <div id="nav2"></div>
+<body>
+    <div id="nav2"></div>
 
-      <div class="content">
+    <div class="content">
 
-         <h1 style="font-size: 36px;">Duty List</h1>
-         <form class="search" action="register_stu.html">
-		<input type="text" id="Inputs" placeholder="Search.." name="search">
-		<button type="submit">Search</button>
-		</form>
-         <?php if (isset($_GET['error'])) { ?>
-            <div id="error"><?php echo $_GET['error']; ?></div>
-         <?php } ?>
-         <?php
+        <h1 style="font-size: 36px;">Duty List</h1>
+        <form class="search" action="register_stu.html">
+            <input type="text" id="Inputs" placeholder="Search.." name="search">
+            <button type="submit">Search</button>
+        </form>
+        <?php if (isset($_GET['error'])) { ?>
+        <div id="error"><?php echo $_GET['error']; ?></div>
+        <?php } ?>
+        <?php
          //echo "test";
 
          $sql = "SELECT * FROM duty";
@@ -66,52 +66,52 @@ $(document).ready(function(){
 
          ?>
 
-         <div class="btn-box">
+        <div class="btn-box">
             <button id="button1" onclick="Assigned()">Assigned Officers</button>
             <button id="button2" onclick="duties()">Duties</button>
-         </div>
+        </div>
 
-         <br>
-         <br>
-         <div id="page2" class="page">
+        <br>
+        <br>
+        <div id="page2" class="page">
 
             <div class="card">
-               <form>
-                  <button class="editbtn" type="submit" formaction="add_duty.php">Add Duty</button>
-               </form>
-               <hr>
-               <table>
-                  <tr>
-                     <th>Duty ID</th>
-                     <th>Duty</th>
-                  </tr>
-                  <tbody id="Table">
-                  <?php
+                <form>
+                    <button class="editbtn" type="submit" formaction="add_duty.php">Add Duty</button>
+                </form>
+                <hr>
+                <table>
+                    <tr>
+                        <th>Duty ID</th>
+                        <th>Duty</th>
+                    </tr>
+                    <tbody id="Table">
+                        <?php
                   while ($row = mysqli_fetch_assoc($result)) {
                   ?>
-                     <tr>
-                        <td><?php echo $row['dutyID'] ?></td>
-                        <td><?php echo $row['duty'] ?></td>
-                     </tr>
-                  <?php
+                        <tr>
+                            <td><?php echo $row['dutyID'] ?></td>
+                            <td><?php echo $row['duty'] ?></td>
+                        </tr>
+                        <?php
                   }
                   ?>
-                  </tbody>
-               </table>
+                    </tbody>
+                </table>
             </div>
-         </div>
-         <div id="page1" class="page">
+        </div>
+        <div id="page1" class="page">
             <div class="card">
-               <hr>
-               <table>
-                  <tr>
-                     <th>User ID</th>
-                     <th>Name</th>
-                     <th>Duty Assigned</th>
-                     <th>Edit </th>
-                  </tr>
-                  <tbody id="Table">
-                  <?php
+                <hr>
+                <table>
+                    <tr>
+                        <th>User ID</th>
+                        <th>Name</th>
+                        <th>Duty Assigned</th>
+                        <th>Edit </th>
+                    </tr>
+                    <tbody id="Table">
+                        <?php
                   $officerID = "0";
                   while ($row = mysqli_fetch_assoc($result1)) {
                   ?>
@@ -119,14 +119,15 @@ $(document).ready(function(){
                            if($newID == $officerID){
                               continue;
                            }else{
-                              ?> <tr><td><?php echo $newID;
+                              ?> <tr>
+                            <td><?php echo $newID;
                               $sql2 = "SELECT * FROM office where officerID = '$newID' ";
                         $result2 = $conn->query($sql2);
                         $row2 = mysqli_fetch_assoc($result2);?></td>
-                        <td><?php echo ($row2['fName']." ".$row2['lName']);
+                            <td><?php echo ($row2['fName']." ".$row2['lName']);
                            }?></td>
-                        <td>
-                        <?php 
+                            <td>
+                                <?php 
                         $officerID = $row['officerID']; 
                         //echo $officerID;
                         $sql3 = "SELECT * FROM officerduties where officerID = '$officerID' ";
@@ -135,62 +136,62 @@ $(document).ready(function(){
                         while ($row3 = mysqli_fetch_assoc($result3)) {
                          echo nl2br($row3['dutyID']. "\t");
                         }?>
-                        </td>
-                        <?php echo "<td><a class='btn editbtn' href = edit_duty.php?userID=" . $row['officerID'] . " > update </a> </td>" ?>
-                     </tr>
-                  <?php
+                            </td>
+                            <?php echo "<td><a class='btn editbtn' href = edit_duty.php?userID=" . $row['officerID'] . " > update </a> </td>" ?>
+                        </tr>
+                        <?php
                   }
                   ?>
-                  </tbody>
-               </table>
+                    </tbody>
+                </table>
             </div>
-         </div>
-      </div>
-      </div>
-      <script>
-         var page1 = document.getElementById("page1");
-         var page2 = document.getElementById("page2");
-         var button1 = document.getElementById("button1");
-         var button2 = document.getElementById("button2");
+        </div>
+    </div>
+    </div>
+    <script>
+    var page1 = document.getElementById("page1");
+    var page2 = document.getElementById("page2");
+    var button1 = document.getElementById("button1");
+    var button2 = document.getElementById("button2");
 
-         let url = window.location.href;
-         if (url == window.location.href) {
-            page1.style.display = "block";
-            page2.style.display = "none";
-            button1.style.color = "#000";
-            button2.style.color = "#008080";
+    let url = window.location.href;
+    if (url == window.location.href) {
+        page1.style.display = "block";
+        page2.style.display = "none";
+        button1.style.color = "#000";
+        button2.style.color = "#008080";
 
-         } else if (url == "http://localhost/CL-GEN/public/admin/duty.php?error=Error%20in%20entering%20data") {
-            page1.style.display = "block";
-            page2.style.display = "none";
-            button1.style.color = "#008080";
-            button2.style.color = "#000";
+    } else if (url == "http://localhost/CL-GEN/public/admin/duty.php?error=Error%20in%20entering%20data") {
+        page1.style.display = "block";
+        page2.style.display = "none";
+        button1.style.color = "#008080";
+        button2.style.color = "#000";
 
-         } else if (url == "http://localhost/CL-GEN/public/admin/duty.php?error=Duty%20already%20Assigned") {
-            page1.style.display = "block";
-            page2.style.display = "none";
-            button1.style.color = "#008080";
-            button2.style.color = "#000";
+    } else if (url == "http://localhost/CL-GEN/public/admin/duty.php?error=Duty%20already%20Assigned") {
+        page1.style.display = "block";
+        page2.style.display = "none";
+        button1.style.color = "#008080";
+        button2.style.color = "#000";
 
-         }
+    }
 
-         function duties() {
-            page2.style.display = "block";
-            page1.style.display = "none";
-            button1.style.color = "#008080";
-            button2.style.color = "#000";
+    function duties() {
+        page2.style.display = "block";
+        page1.style.display = "none";
+        button1.style.color = "#008080";
+        button2.style.color = "#000";
 
-         }
+    }
 
-         function Assigned() {
-            page2.style.display = "none";
-            page1.style.display = "block";
-            button1.style.color = "#000";
-            button2.style.color = "#008080";
-         }
-      </script>
-   </body>
+    function Assigned() {
+        page2.style.display = "none";
+        page1.style.display = "block";
+        button1.style.color = "#000";
+        button2.style.color = "#008080";
+    }
+    </script>
+</body>
 
-   </html>
+</html>
 
 <?php } ?>
