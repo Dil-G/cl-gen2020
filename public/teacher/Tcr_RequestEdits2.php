@@ -44,12 +44,12 @@
 
         <div class="container">
 
-            <h1 style="color:#6a7480;">Add News</h1>
+            
 
             <form action="../../src/request2.php" method="POST" enctype="multipart/form-data">
                 <hr>
 
-                <h3 align="center">Request Edit Form</h3>
+                <h1 style="color:#6a7480;">Request Edit Form</h1>
                 <label for="id">ID Number</label>
                     <input type="text"  name="id" value = <?php  echo  $_SESSION['userID']?> readonly>
 
