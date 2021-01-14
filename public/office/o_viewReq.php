@@ -50,42 +50,24 @@
             <table>
                 <tr>
                     <th>Request ID</th>
-                    <th>Student ID</th>
-                    <th>Student Name</th>
-                    <th>Student email</th>
-                    <th>View Request</th>
-                    <th>Delete Request</th>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Request</th>
+                    <th>Image</th>
+                    <th>Request Date</th>
+                    <th>Request Time</th>
 
 
                 </tr>
                 <tr>
-                    <td>Req1234</td>
-                    <td>S1234</td>
+                    <td>1</td>
+                    <td>TC2000001</td>
                     <td>A.B.C. Student</td>
-                    <td>Student@gmail.com</td>
-                    <td>
-
-                        <button id="character-btn" class="btn editbtn">View Request</button>
-                        <div id="character-form" class="model">
-                            <div class="modal-content">
-                                <span class="close1">&times;</span>
-                                <h2>Request Form</h2>
-                                <form>
-                                    <hr>
-                                    <label for="userID"><b>Student Admission Number</b></label>
-                                    <input type="text" value="ST2000001" name="id">
-
-                                    <label for="reason"><b>Reason for request</b></label>
-                                    <textarea id="w3review" name="w3review" rows="4" cols="50">March. Districts of Colombo, Gampaha and Kalutara - which have been identified as high risk areas - were given an eight-hour break on 24 March. Since then, Kandy and Jaffna Districts have been added to the high risk area list. And, last week, the authorities identified the Ratnapura and Pelmadulla areas as high risk as well. Authorities are working hard to control the situation, but the curfew will remain in place, at least for the time being. Until this year, nothing prevented Avurudu celebrations and festivities from going ahead - floods, droughts, other pandemics, disasters, tsunami, a 30-year war, and the list goes on.</textarea>
-                                    <br>
-
-                                    <button type="submit" class="registerbtn">Back</button>
-                                    <hr>
-                                </form>
-                            </div>
-                        </div>
-
-                    </td>
+                    <td>vgbghghgh</td>
+                    <td>1.jpg</td>
+                    <td>12</td>
+                    <td>1</td>
+                    <td> 
                     <td><button class="btn dltbtn" type="submit">Delete</button></td>
                 </tr>
             </table>
