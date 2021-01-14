@@ -74,7 +74,7 @@ include_once '../../config/conn.php';
                     <td><?php echo $row['examID']?></td>
                     <td><?php echo $row['examYear']?></td>
                     <td><?php echo $row['examName']?></td>
-                    <?php echo "<td><a class='btn editbtn' href = o_scolCsv.php?userID=".$row['examID']." > Add  Results </a> </td>"?>
+                    <?php echo "<td><a class='btn editbtn' href = o_scolCsv.php?examID=".$row['examID']." > Add  Results </a> </td>"?>
                     <td>
                         <form><button class="btn viewbtn" type="submit" formaction="o_schol.php">View Results</button>
                         </form>
