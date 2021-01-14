@@ -25,11 +25,11 @@ if (isset($_POST['add_request'])){
             }
         }else{
             $error = "News not added.";
-            header('Location: ../public/teacher/editRequest.php.php?error='.$error);
+            header('Location: ../public/student/editRequest.php.php?error='.$error);
         }
   
     }else{
-        header('Location: ../public/teacher/editRequest.php?error='.$error);
+        header('Location: ../public/student/editRequest.php?error='.$error);
     }
 
 $conn->close();
