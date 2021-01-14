@@ -27,53 +27,107 @@
     <link type="text/css" rel="stylesheet" href="../css/pop.css">
 </head>
 <body>
+<?php
+
+				require_once '../../config/conn.php';
+
+				$sql = "SELECT * FROM Request ORDER BY requestID DESC";
+
+				$res= mysqli_query($conn,$sql);
+
+				if($res){
+				//echo "Sucessfull";
+				}
+				else{
+				echo"failed";	
+				}
+
+?>
+
+
+
+
+
     <div id="officeNav"></div>
-
-    </div>
     <div class="content">
+        <br>
+        <?php if (isset($_GET['message'])){?>
+        <div id="message"><?php echo $_GET['message']; ?></div>
+        <?php } ?>
 
-        <h1 style="color:#6a7480;">Requests List</h1>
-        <form class="search" action="of_addStudentDetails.html">
+        <?php if (isset($_GET['error'])){?>
+        <div id="error"><?php echo $_GET['error']; ?></div>
+        <?php } ?>
+
+        <h1> Request List</h1>
+        <br>
+        <form class="search">
             <input type="text" placeholder="Search.." name="search">
             <button type="submit">Search</button>
         </form>
 
-        <br>
-        <br>
-        <br>
-        <div class="card">
 
+        <br>
+
+
+        <br>
+        <br>
+
+
+        <div class="card">
+           
+            
             <br>
             <br>
+
 
             <hr>
+
             <table>
                 <tr>
                     <th>Request ID</th>
                     <th>ID</th>
                     <th>Name</th>
                     <th>Request</th>
-                    <th>Image</th>
-                    <th>Request Date</th>
-                    <th>Request Time</th>
-
+                    <th>Proof</th>
+                    <th>Date</th>
+                    <th>Time</th>
 
                 </tr>
+                <?php
+		while($row=mysqli_fetch_assoc($res)){
+			?>
                 <tr>
-                    <td>1</td>
-                    <td>TC2000001</td>
-                    <td>A.B.C. Student</td>
-                    <td>vgbghghgh</td>
-                    <td>1.jpg</td>
-                    <td>12</td>
-                    <td>1</td>
-                    <td> 
-                    <td><button class="btn dltbtn" type="submit">Delete</button></td>
+                    <td><?php echo $row['requestID'] ?></td>
+                    <td><?php echo $row['id'] ?></td>
+                    <td><?php echo $row['name'] ?></td>
+                    <td><?php echo $row['request'] ?></td>
+                    <td><?php echo $row['image'] ?></td>
+                    <td><?php echo $row['requestDate'] ?></td>
+                    <td><?php echo $row['requestTime'] ?></td>
+                    <td>
+                        <?php 
+						if($row['image']==TRUE){ ?>
+                        <div class="news-image"><?php echo "<img src='../../images/".$row['image']."' >"; ?></div>
+                        <?php }else{
+							echo "No Image..";
+						} ?>
+                    </td>
+                    
+                    <td><button
+                            class="dltbtn"><?php echo "<a href = ../../src/delete_news.php?newsID='".$row['newsID']."' > Delete </a> "?></button>
+                    </td>
+
                 </tr>
+                <?php
+			}
+		?>
             </table>
         </div>
-    </div>
 
+
+
+    </div>
     <script>
     var form1 = document.getElementById("character-form");
 
@@ -99,8 +153,22 @@
         }
     }
     </script>
+
+
 </body>
 
 </html>
 
 <?php }} ?>
+
+
+
+
+
+
+
+
+
+
+
+
