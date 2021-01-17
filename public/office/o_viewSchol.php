@@ -36,7 +36,7 @@ include_once '../../config/conn.php';
 
     <div class="content">
         <br>
-        <h1 style="color: #6a7480;">Grade 5 Scholarship Examination Results</h1>
+        <h1 style="color: #6a7480;">Grade 5 Scholarship Examination Year</h1>
         <form class="search" action="register_stu.html">
             <input type="text" placeholder="Search.." name="search">
             <button type="submit">Search</button>
@@ -109,9 +109,11 @@ include_once '../../config/conn.php';
     <script>
     var form1 = document.getElementById("addExamForm");
     var addExam = document.getElementById("addExamBtn");
+    
     addExam.onclick = function() {
         form1.style.display = "block";
     }
+
     </script>
 </body>
 
