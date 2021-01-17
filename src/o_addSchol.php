@@ -10,10 +10,12 @@
 
 
         $examYear = $_POST['scholExamYear'];
-        $examName = $_POST['examName'];
-
+       
         $prefix = "G5SE/";
         $examID = $prefix . $examYear ;
+
+        $prefixName = "Grade 5 Scholarship Examination ";
+        $examName = $prefixName.$examYear;
 
         $sql = "INSERT INTO addScholExam (examID, examYear, examName) VALUES ('$examID','$examYear','$examName');";
         
