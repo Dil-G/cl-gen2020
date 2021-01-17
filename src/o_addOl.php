@@ -15,6 +15,9 @@
         $prefix = "GCEOL/";
         $examID = $prefix . $examYear ;
 
+        $prefixName = "G.C.E. O/L Examination - ";
+        $examName = $prefixName.$examYear;
+
         $sql = "INSERT INTO addolexam (examID, examYear, examName) VALUES ('$examID','$examYear','$examName');";
 
         if($conn->query($sql)===TRUE){

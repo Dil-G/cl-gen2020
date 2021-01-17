@@ -43,11 +43,11 @@
                 <label for="examID"><b>Exam ID</b></label>
                 <input type="text" value="ALS123" name="examID" readonly>
 
-                <label for="olExamYear"><b>Enter Exam Year</b></label>
-                <input type="text" value="2016" name="olExamYear" readonly>
+                <label for="alExamYear"><b>Enter Exam Year</b></label>
+                <input type="text" value="2016" name="alExamYear" readonly>
 
-                <label for="olexamName"><b>Exam Name</b></label>
-                <input type="text" value="G.C.E. A/L Examination - 2016" name="olexamName" readonly>
+                <label for="alExamName"><b>Exam Name</b></label>
+                <input type="text" value="G.C.E. A/L Examination - 2016" name="alExamName" readonly>
 
                 <label for="myFile"><b>Enter CSV File</b></label>
                 <input type="file" id="myFile" name="filename" class="nextpgbtn" required></br>
