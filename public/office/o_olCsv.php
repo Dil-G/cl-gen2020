@@ -35,13 +35,13 @@
                 <hr>
 
                 <label for="examID"><b>Exam ID</b></label>
-                <input type="text" value="G5S123" name="examID" readonly>
+                <input type="text" value="<?php if (isset ($_GET['examID'])){echo $_GET['examID'];}?>" name="examID" readonly>
 
                 <label for="olExamYear"><b>Enter Exam Year</b></label>
-                <input type="text" value="2016" name="olExamYear" readonly>
+                <input type="text" value="<?php if (isset ($_GET['scholExamYear'])){echo $_GET['scholExamYear'];}?>" name="olExamYear" readonly>
 
                 <label for="olexamName"><b>Exam Name</b></label>
-                <input type="text" value="G.C.E. O/L Examination - 2016" name="olexamName" readonly>
+                <input type="text" value="<?php if (isset ($_GET['examName'])){echo $_GET['scholExamYear'];}?>" name="olexamName" readonly>
 
 
                 <label for="myFile"><b>Enter CSV File</b></label>

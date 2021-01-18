@@ -31,17 +31,14 @@
 
         require_once '../../config/conn.php';
 
-        $sql = "SELECT * FROM addscholexam where examID='".$_GET['examID']."'";
+        $sql = "SELECT * FROM addscholexam WHERE examID='".$_GET['examID']."'";
 
         $res= mysqli_query($conn,$sql);
         $row=mysqli_fetch_array($res);
 
-        $examID = $row['examID'];
-        $charID = substr($examID,0);
-       // $pID = "PR" . $charID;
+        $stuID = $row['examID'];
 
         if($res){
-        //echo "Sucessfull";
         }
         else{
         echo"failed";	
@@ -54,14 +51,14 @@
                 <h1>Add Grade 5 Scholarship Exam Results</h1>
                 <hr>
 
-                <label for="examID"><b>Exam ID</b></label>
-                <input type="text" value= "<?php if (isset ($_GET['examID'])){echo $_GET['examID'];}?>" name="examID" readonly>
+                <label for="scholExamID"><b>Exam ID</b></label>
+                <input type="text" value= "<?php if (isset ($_GET['examID'])){echo $_POST['examID'];}?>" name="scholExamxamID" readonly>
 
                 <label for="scholExamYear"><b>Enter Exam Year</b></label>
-                <input type="text" name="scholExamYear" value= "<?php if (isset ($_GET['scholExamYear'])){echo $_GET['scholExamYear'];}?>" name="scholExamYear" readonly>
+                <input type="text" name="scholExamYear" value= "" name="scholExamYear" readonly>
 
                 <label for="examName"><b>Exam Name</b></label>
-                <input type="text" name="examName" value= "<?php if (isset ($_GET['examName'])){echo $_GET['scholExamYear'];}?>" name="ExamName" readonly>
+                <input type="text" name="examName" value= "" name="ExamName" readonly>
 
                 <label for="myFile"><b>Enter CSV File</b></label>
                 <input type="file" id="myFile" name="filename" class="nextpgbtn" required></br>
