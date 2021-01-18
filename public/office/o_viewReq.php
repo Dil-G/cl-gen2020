@@ -27,71 +27,107 @@
     <link type="text/css" rel="stylesheet" href="../css/pop.css">
 </head>
 <body>
+<?php
+
+				require_once '../../config/conn.php';
+
+				$sql = "SELECT * FROM Request ORDER BY requestID DESC";
+
+				$res= mysqli_query($conn,$sql);
+
+				if($res){
+				//echo "Sucessfull";
+				}
+				else{
+				echo"failed";	
+				}
+
+?>
+
+
+
+
+
     <div id="officeNav"></div>
-
-    </div>
     <div class="content">
+        <br>
+        <?php if (isset($_GET['message'])){?>
+        <div id="message"><?php echo $_GET['message']; ?></div>
+        <?php } ?>
 
-        <h1 style="color:#6a7480;">Requests List</h1>
-        <form class="search" action="of_addStudentDetails.html">
+        <?php if (isset($_GET['error'])){?>
+        <div id="error"><?php echo $_GET['error']; ?></div>
+        <?php } ?>
+
+        <h1> Request List</h1>
+        <br>
+        <form class="search">
             <input type="text" placeholder="Search.." name="search">
             <button type="submit">Search</button>
         </form>
 
-        <br>
-        <br>
-        <br>
-        <div class="card">
 
+        <br>
+
+
+        <br>
+        <br>
+
+
+        <div class="card">
+           
+            
             <br>
             <br>
+
 
             <hr>
+
             <table>
                 <tr>
                     <th>Request ID</th>
-                    <th>Student ID</th>
-                    <th>Student Name</th>
-                    <th>Student email</th>
-                    <th>View Request</th>
-                    <th>Delete Request</th>
-
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Request</th>
+                    <th>Proof</th>
+                    <th>Date</th>
+                    <th>Time</th>
 
                 </tr>
+                <?php
+		while($row=mysqli_fetch_assoc($res)){
+			?>
                 <tr>
-                    <td>Req1234</td>
-                    <td>S1234</td>
-                    <td>A.B.C. Student</td>
-                    <td>Student@gmail.com</td>
+                    <td><?php echo $row['requestID'] ?></td>
+                    <td><?php echo $row['id'] ?></td>
+                    <td><?php echo $row['name'] ?></td>
+                    <td><?php echo $row['request'] ?></td>
+                    <td><?php echo $row['image'] ?></td>
+                    <td><?php echo $row['requestDate'] ?></td>
+                    <td><?php echo $row['requestTime'] ?></td>
                     <td>
-
-                        <button id="character-btn" class="btn editbtn">View Request</button>
-                        <div id="character-form" class="model">
-                            <div class="modal-content">
-                                <span class="close1">&times;</span>
-                                <h2>Request Form</h2>
-                                <form>
-                                    <hr>
-                                    <label for="userID"><b>Student Admission Number</b></label>
-                                    <input type="text" value="ST2000001" name="id">
-
-                                    <label for="reason"><b>Reason for request</b></label>
-                                    <textarea id="w3review" name="w3review" rows="4" cols="50">March. Districts of Colombo, Gampaha and Kalutara - which have been identified as high risk areas - were given an eight-hour break on 24 March. Since then, Kandy and Jaffna Districts have been added to the high risk area list. And, last week, the authorities identified the Ratnapura and Pelmadulla areas as high risk as well. Authorities are working hard to control the situation, but the curfew will remain in place, at least for the time being. Until this year, nothing prevented Avurudu celebrations and festivities from going ahead - floods, droughts, other pandemics, disasters, tsunami, a 30-year war, and the list goes on.</textarea>
-                                    <br>
-
-                                    <button type="submit" class="registerbtn">Back</button>
-                                    <hr>
-                                </form>
-                            </div>
-                        </div>
-
+                        <?php 
+						if($row['image']==TRUE){ ?>
+                        <div class="news-image"><?php echo "<img src='../../images/".$row['image']."' >"; ?></div>
+                        <?php }else{
+							echo "No Image..";
+						} ?>
                     </td>
-                    <td><button class="btn dltbtn" type="submit">Delete</button></td>
+                    
+                    <td><button
+                            class="dltbtn"><?php echo "<a href = ../../src/delete_news.php?newsID='".$row['newsID']."' > Delete </a> "?></button>
+                    </td>
+
                 </tr>
+                <?php
+			}
+		?>
             </table>
         </div>
-    </div>
 
+
+
+    </div>
     <script>
     var form1 = document.getElementById("character-form");
 
@@ -117,8 +153,22 @@
         }
     }
     </script>
+
+
 </body>
 
 </html>
 
 <?php }} ?>
+
+
+
+
+
+
+
+
+
+
+
+

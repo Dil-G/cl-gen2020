@@ -30,29 +30,49 @@
 <body>
     <div id="nav3"></div>
 
-    <div class=content>
+    <div class="content">
+        <?php if (isset($_GET['message'])){?>
+        <div id="message"><?php echo $_GET['message']; ?></div>
+        <?php } ?>
+
+        <?php if (isset($_GET['error'])){?>
+        <div id="error"><?php echo $_GET['error']; ?></div>
+        <?php } ?>
+
+
         <div class="container">
-            <form action="../php/register.php" method="POST">
-                <h3 align="center">Request Edit Form</h3>
-              
 
-                    <label for="fname">ID Number</label>
-                    <input type="text" id="iNumber" name="IDNumber" placeholder="Type the ID number here" required>
+          
 
-                    <label for="fname">Name</label>
-                    <input type="text" id="name" name="Name" placeholder="Type the name here" required>
+            <form action="../../src/request3.php" method="POST" enctype="multipart/form-data">
+                <hr>
 
-                    <label for="Request"><b>Request</b></label>
-                    <textarea rows="5" cols="5" name="inquiery" placeholder="Enter the text" required></textarea>
 
+            
                 
-                <label for="filename"><b>Upload a proof if available</b></label>
-                <input type="file" id="myFile" name="filename" required></br>
-                </br>
-                </br>
-                <button type="submit" class="registerbtn" Tcr_RequestEdits3.php">Save</button>
-               
+            <h1 style="color:#6a7480;">Request Edit Form</h1>
+
+                    <label for="id">ID Number</label>
+                    <input type="text"  name="id" value = <?php  echo  $_SESSION['userID']?> readonly>
+
+                    <label for="name">Name</label>
+                    <input type="text" name="name" placeholder="Type the name here" required>
+
+                    <label for="request"><b>Request</b></label>
+                    <textarea id="request" name="request" rows="4" placeholder="News" cols="50" required></textarea>
+                    
+                    <label for="image"><b>Upload a proof</b></label>
+                    <input type="hidden" name="size" value="1000000" required>
+
+                <div>
+                    <input type="file" name="image" id="image" />
+                </div>
+                <br>
+                <button type="submit" class="registerbtn" id="add_news" name="add_request">Submit</button>
                 <a href="Tcr_dashboard3.php" class="cancel-btn">Cancel</a>
+                
+                
+            </form>
             </form>
         </div>
     </div>

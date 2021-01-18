@@ -8,18 +8,15 @@
 
     if(isset($_POST['savebtn'])){
 
-        $read= "SELECT * FROM addAlExam where examID='".$_POST['examID']."'";
-        $res= mysqli_query($conn,$sql);
-        if($res != 0){
-            $error = "Duplicate records";
-                        header('Location: ../public/office/o_viewAl.php?error='.$error);
-        }else{
 
         $examYear = $_POST['alExamYear'];
         $examName = $_POST['alExamName'];
 
         $prefix = "GCEAL/";
         $examID = $prefix . $examYear ;
+
+        $prefixName = "G.C.E. A/L Examination - ";
+        $examName = $prefixName.$examYear;
 
         $sql = "INSERT INTO addAlExam (examID, examYear, examName) VALUES ('$examID','$examYear','$examName');";
         
@@ -31,7 +28,7 @@
             
             echo "Error : " . $sql . "<br>" . $conn->error;
          }
-        }
+        
     }
     $conn->close();
 ?>

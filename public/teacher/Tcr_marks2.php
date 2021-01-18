@@ -9,6 +9,7 @@
      }else if(($_SESSION['userType'] == 'teacher') && ($_SESSION['teacherType'] == 'both')){
 
          $userID = $_SESSION['userID'];
+         include('../../src/view_marks.php');
 ?>
 
 <!DOCTYPE html>
@@ -32,7 +33,7 @@
 
         <div id="nav3"></div>
         <div class="content">
-            <h2>CLASS A-MARKS</h2>
+        <h2 style="color: #6a7480;">CLASS B-MARKS</h2>
             <div class="card">
                 <hr>
                 <form class="search" action="Tcr_marks2.php">
@@ -40,61 +41,60 @@
                     <br>
                     <table>
                         <tr>
-                            <th>Admission Number</th>
+                        <th>Admission Number</th>
                             <th>Student Name</th>
-                            <th>Subject 1</th>
-                            <th>Subject 2</th>
-                            <th>Subject 3</th>
-                            <th>Subject 4</th>
-                            <th>Subject 5</th>
-                            <th>Subject 6</th>
-                            <th>Group Subject 1</th>
-                            <th>Group Subject 2</th>
-                            <th>Group Subject 3</th>
+                            <th>Sinhala</th>
+                            <th>English</th>
+                            <th>Buddhism</th>
+                            <th>Maths</th>
+                            <th>Science</th>
+                            <th>History</th>
+                            <th>Group 01</th>
+                            <th>Group 02</th>
+                            <th>Group 03</th>
                             <th>Total</th>
                         </tr>
-                        <tr>
-                            <td>ST200001</td>
-                            <td>Medani</td>
-                            <td>76</td>
-                            <td>76</td>
-                            <td>76</td>
-                            <td>76</td>
-                            <td>76</td>
-                            <td>76</td>
-                            <td>76</td>
-                            <td>76</td>
-                            <td>76</td>
-                            <td>678</td>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>St200002</td>
-                            <td>Medani</td>
-                            <td>76</td>
-                            <td>76</td>
-                            <td>76</td>
-                            <td>76</td>
-                            <td>76</td>
-                            <td>76</td>
-                            <td>76</td>
-                            <td>76</td>
-                            <td>76</td>
-                            <td>865</td>
+                                  
+                  
+                    <?php
+				while($row=mysqli_fetch_assoc($result)){
 
-                        </tr>
-                    </table>
+			
+                    ?>
+      
+      <tr>
+        <td><?php echo $row['admissionNumber'] ?></td>
+				<td><?php echo $row['studentName'] ?></td>
+                <td><?php echo $row['sinhala'] ?></td>
+                <td><?php echo $row['english'] ?></td>
+                <td><?php echo $row['buddhism'] ?></td>
+                <td><?php echo $row['maths'] ?></td>
+                <td><?php echo $row['science'] ?></td>
+                <td><?php echo $row['history'] ?></td>
+                <td><?php echo $row['group01'] ?></td>
+                <td><?php echo $row['group02'] ?></td>
+                <td><?php echo $row['group03'] ?></td>
+				
+				
+				
+        </tr>
+               
+        <?php
+    }
+    
+  
+    ?>
+     </table>
             </div>
+            <br>
+            <br>
 
-            <br>
-            <br>
             <form class="search" action="Tcr_position2.php">
                 <button type="submit" formaction="Tcr_position2.php">Calculate the position and average</button>
                 <br>
                 <button type="submit" formaction="Tcr_class2.php">Cancel</button>
-                <!-- <hr>
-                <h2 align="center" ><a href="Tcr_class2.php">Cancel</a></h2> -->
             </form>
+
     </body>
 
 </html>

@@ -2,15 +2,15 @@
      session_start();
      require_once '../../config/conn.php';
 
-
      if(!isset($_SESSION['userType']) && !isset($_SESSION['userID'])){
          $error = "Please Login!";
          header('Location: ../common/loginFile.php?error='.$error);
         }else if($_SESSION['userType'] != 'teacher'){
             header('Location: ../common/error.html');
-     }else if(($_SESSION['userType'] == 'teacher') && ($_SESSION['teacherType'] == 'classTcr')){
+     }else if(($_SESSION['userType'] == 'teacher') && ($_SESSION['teacherType'] == 'TcrinCharge')){
 
          $userID = $_SESSION['userID'];
+
          $query1 = "SELECT * FROM teacher WHERE teacherID = '$userID' ";
         
          $result1 = mysqli_query($conn, $query1);  
@@ -28,12 +28,13 @@
          $email = $row1["email"];
 
 ?>
+
 <!DOCTYPE html>
 <html>
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Profile 2</title>
+    <title> Profile 1</title>
     <script src="../js/jquery-1.9.1.min.js"></script>
     <script src="../js/nav.js"></script>
     <link rel="stylesheet" href="../css/register2.css " type="text/css">
@@ -45,15 +46,17 @@
 <body name=top>
 
     <body>
-        <div id="nav1"></div>
+
+
+        <div id="nav"></div>
+
+
         <div class="content">
             <div class="feed">
+
                 <div class="container">
 
-
-              
-                    
-                    <h2><b>User Information</b></h2>
+                <h2><b>User Information</b></h2>
                     <hr>
                     <div class="card">
                         <form>

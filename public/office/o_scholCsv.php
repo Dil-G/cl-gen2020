@@ -54,16 +54,25 @@
                 <label for="scholExamID"><b>Exam ID</b></label>
                 <input type="text" value= "<?php if (isset ($_GET['examID'])){echo $_POST['examID'];}?>" name="scholExamxamID" readonly>
 
+<<<<<<< HEAD
                 <label for="scholExamYear"><b>Enter Exam Year</b></label>
                 <input type="text" name="scholExamYear" value= "" name="scholExamYear" readonly>
 
                 <label for="examName"><b>Exam Name</b></label>
                 <input type="text" name="examName" value= "" name="ExamName" readonly>
+=======
+                
+                <label for="examYear"><b>Enter Exam Year</b></label>
+                <input type="text" value="<?php echo $_POST["examYear"] ?>" name="examYear" readonly>
+
+                <label for="examName"><b>Exam Name</b></label>
+                <input type="text" value= "<?php if (isset ($_GET['examID'])){echo $_GET['examName'];}?>" name="examName" readonly>
+>>>>>>> 8abfa1c7813ccd8f39e6978d020b01157935e6a7
 
                 <label for="myFile"><b>Enter CSV File</b></label>
-                <input type="file" id="myFile" name="filename" class="nextpgbtn" required></br>
+                <input type="file" id="myFile" name="fileName" class="nextpgbtn" required></br>
 
-                <button type="submit" class="registerbtn">Save</button>
+                <button type="submit" class="registerbtn" name="savebtn">Save</button>
                 <a href="o_viewSchol.php" class="cancel-btn">Cancel</a>
 
 

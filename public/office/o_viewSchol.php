@@ -20,14 +20,23 @@ include_once '../../config/conn.php';
 ?>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Grade Scholarship Results</title>
+<<<<<<< HEAD
     <link type="text/css" rel="stylesheet" href="../css/pop.css">
     <link rel="stylesheet" href="../css/view.css " type="text/css">
     <link type="text/css" rel="stylesheet" href="../css/users.css">
     <link type="text/css" rel="stylesheet" href="../css/main.css">
     <link type="text/css" rel="stylesheet" href="../css/register.css">
+=======
+>>>>>>> 8abfa1c7813ccd8f39e6978d020b01157935e6a7
     <script src="../js/jquery-1.9.1.min.js"></script>
     <script src="../js/pop.js"></script>
     <script src="../js/nav.js"></script>
+    <link type="text/css" rel="stylesheet" href="../css/pop.css">
+    <link rel="stylesheet" href="../css/view.css " type="text/css">
+    <link type="text/css" rel="stylesheet" href="../css/users.css">
+    <link type="text/css" rel="stylesheet" href="../css/main.css">
+    <link type="text/css" rel="stylesheet" href="../css/register.css">
+    
 </head>
 
 <body>
@@ -35,7 +44,7 @@ include_once '../../config/conn.php';
 
     <div class="content">
         <br>
-        <h1 style="color: #6a7480;">Grade 5 Scholarship Examination Results</h1>
+        <h1 style="color: #6a7480;">Grade 5 Scholarship Examination Year</h1>
         <form class="search" action="register_stu.html">
             <input type="text" placeholder="Search.." name="search">
             <button type="submit">Search</button>
@@ -48,6 +57,7 @@ include_once '../../config/conn.php';
         <div class="card">
             <div>
                 <button id="addExamBtn" class="btn editbtn" type="submit" formaction="o_addSchol.php">Add
+<<<<<<< HEAD
                     </form> Exam</button>
                 <div id="addExamForm" class="model">
                     <div class="modal-content container">
@@ -56,6 +66,15 @@ include_once '../../config/conn.php';
                             <h1 style="color: #6a7480;">Add Grade 5 Scholarship Exam Results</h1>
                             <br>
                             <hr style="margin-left: 2%;">
+=======
+                    Exam</button>
+                <div id="addExamForm" class="model">
+                    <div class="modal-content container">
+                        <form action="../../src/o_addschol.php" method="POST">
+                           <br>
+                            <h1 style="color: #6a7480;">Add Grade 5 Scholarship Exam Results</h1>
+                            <br><hr style="margin-left: 2%;">
+>>>>>>> 8abfa1c7813ccd8f39e6978d020b01157935e6a7
                             <label for="scholExamYear"><b>Enter Exam Year</b></label>
                             <input type="text" placeholder="Enter Exam Year" name="scholExamYear" required>
                             <button type="submit" class="registerbtn" name="savebtn">Save</button>
@@ -88,13 +107,11 @@ include_once '../../config/conn.php';
                     while($row=mysqli_fetch_assoc($result)){
                     ?>
                 <tr>
+
                     <td><?php echo $row['examID']?></td>
                     <td><?php echo $row['examYear']?></td>
                     <td><?php echo $row['examName']?></td>
-                    <td>
-                        <form><button class="btn editbtn" type="submit" formaction="o_scholCsv.php">Add Results</button>
-                        </form>
-                    </td>
+                    <?php echo "<td><a class='btn editbtn' href = o_scholCsv.php?examID=".$row['examID']." > Add  Results </a> </td>"?>
                     <td>
                         <form><button class="btn viewbtn" type="submit" formaction="o_schol.php">View Results</button>
                         </form>
@@ -111,9 +128,17 @@ include_once '../../config/conn.php';
     <script>
     var form1 = document.getElementById("addExamForm");
     var addExam = document.getElementById("addExamBtn");
+<<<<<<< HEAD
     addExam.onclick = function() {
         form1.style.display = "block";
     }
+=======
+    
+    addExam.onclick = function() {
+        form1.style.display = "block";
+    }
+
+>>>>>>> 8abfa1c7813ccd8f39e6978d020b01157935e6a7
     </script>
 </body>
 

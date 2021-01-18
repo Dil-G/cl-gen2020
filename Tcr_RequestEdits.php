@@ -6,19 +6,19 @@
          header('Location: ../common/loginFile.php?error='.$error);
         }else if($_SESSION['userType'] != 'teacher'){
             header('Location: ../common/error.html');
-     }else if(($_SESSION['userType'] == 'teacher') && ($_SESSION['teacherType'] == 'TcrinCharge')){
+     }else if(($_SESSION['userType'] == 'teacher') && ($_SESSION['teacherType'] == 'classTcr')){
 
          $userID = $_SESSION['userID'];
 ?>
+
 
 <!DOCTYPE html>
 <html>
 
 <head>
-    <title>Request Edits 2</title>
+    <title>Request Edits 1</title>
     <script src="../js/jquery-1.9.1.min.js"></script>
     <script src="../js/nav.js"></script>
-    <link rel="stylesheet" href="../css/view.css " type="text/css">
     <link type="text/css" rel="stylesheet" href="../css/main.css">
     <link type="text/css" rel="stylesheet" href="../css/register.css">
     <link type="text/css" rel="stylesheet" href="../css/register2.css">
@@ -28,11 +28,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
-<body name=top>
+<body>
 
-    <body>
-        <div id="nav"></div>
-        <div class="content">
+    <div id="nav1"></div>
+
+    
+    <div class="content">
         <?php if (isset($_GET['message'])){?>
         <div id="message"><?php echo $_GET['message']; ?></div>
         <?php } ?>
@@ -44,13 +45,16 @@
 
         <div class="container">
 
-            
+            <h1 style="color:#6a7480;">Add News</h1>
 
-            <form action="../../src/request2.php" method="POST" enctype="multipart/form-data">
+            <form action="../../src/request1.php" method="POST" enctype="multipart/form-data">
                 <hr>
 
-                <h1 style="color:#6a7480;">Request Edit Form</h1>
-                <label for="id">ID Number</label>
+
+            
+                <h3 align="center">Request Edit Form</h3>
+
+                    <label for="id">ID Number</label>
                     <input type="text"  name="id" value = <?php  echo  $_SESSION['userID']?> readonly>
 
                     <label for="name">Name</label>
@@ -67,16 +71,16 @@
                 </div>
                 <br>
                 <button type="submit" class="registerbtn" id="add_news" name="add_request">Submit</button>
-                <a href="Tcr_dashboard2.php" class="cancel-btn">Cancel</a>
+                <a href="Tcr_dashboard1.php" class="cancel-btn">Cancel</a>
                 
                 
             </form>
          
         </div>
     </div>
-    </body>
+</body>
 
 </html>
 <?php 
-     }
+	 }
 ?>
