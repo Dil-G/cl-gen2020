@@ -50,19 +50,19 @@ include_once '../../config/conn.php';
 
         <div class="card">
             <div>
-                <button id="addExamBtn" class="btn" type="submit" formaction="o_addSchol.php">Add
+                <button id="addExamBtn" class="btn" type="submit" formaction="o_addAl.php">Add
                     Exam</button>
                 <div id="addExamForm" class="model">
                     <div class="modal-content container">
-                        <form action="../../src/o_addschol.php" method="POST">
+                        <form action="../../src/o_addAl.php" method="POST">
                             <br>
                             <h1 style="color: #6a7480;">Add A/L Examination Year</h1>
                             <br>
                             <hr style="margin-left: 2%;">
-                            <label for="scholExamYear"><b>Enter Exam Year</b></label>
-                            <input type="text" placeholder="Enter Exam Year" name="scholExamYear" required>
+                            <label for="alExamYear"><b>Enter Exam Year</b></label>
+                            <input type="text" placeholder="Enter Exam Year" name="alExamYear" required>
                             <button type="submit" class="registerbtn" name="savebtn">Save</button>
-                            <a href="o_viewSchol.php" class="cancel-btn">Cancel</a>
+                            <a href="o_viewAl.php" class="cancel-btn">Cancel</a>
 
                         </form>
                     </div>

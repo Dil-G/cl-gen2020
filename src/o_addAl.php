@@ -15,6 +15,9 @@
         $prefix = "GCEAL/";
         $examID = $prefix . $examYear ;
 
+        $prefixName = "G.C.E. A/L Examination - ";
+        $examName = $prefixName.$examYear;
+
         $sql = "INSERT INTO addAlExam (examID, examYear, examName) VALUES ('$examID','$examYear','$examName');";
         
         if($conn->query($sql)===TRUE){
