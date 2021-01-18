@@ -11,11 +11,14 @@ include_once '../config/conn.php';
 
     if(isset($_POST['savebtn'])){
 
-        $examID = $_POST['examID'];
-        $examYear = $_POST['scholExamYear'];
-        $examName = $_POST['examName']; 
         $scholCsv = $_FILES['fileName']['name'];
         $target = "../images/examResults".basename($scholCsv);
+
+        $prefix = "G5SE/";
+        $examID = $prefix . $examYear ;
+
+        $prefixName = "Grade 5 Scholarship Examination - ";
+        $examName = $prefixName . $examYear ;
 
         $sql = "INSERT INTO schol_RSheet (examID, examYear, examName, scholCsv) VALUES
         ('$examID', '$examYear', '$examName', '$scholCsv')";
@@ -42,32 +45,7 @@ include_once '../config/conn.php';
 
 
 
-  /* if(isset($_POST['savebtn'])){
-
-        $read= "SELECT * FROM addScholExam where examID='".$_POST['examID']."'";
-        $res= mysqli_query($conn,$sql);
-        if($res != 0){
-            $error = "Duplicate records";
-            header('Location: ../public/office/o_viewSchol.php?error='.$error);
-        }else{
-
-        $examYear = $_POST['scholExamYear'];
-        $examName = $_POST['examName'];
-
-        $prefix = "G5SE/";
-        $examID = $prefix . $examYear ;
-
-        $sql = "INSERT INTO addScholExam (examID, examYear, examName) VALUES ('$examID','$examYear','$examName');";
-        
-        if($conn->query($sql)===TRUE){
-            echo '<script language = "javascript">';
-            echo 'alert("Details Added");';
-            header('Location: ../public/office/o_viewSchol.php');
-        }else{
-            
-            echo "Error : " . $sql . "<br>" . $conn->error;
-         }
-        }
-    } */
+    //--------------------------
+ 
     $conn->close();
 ?>
