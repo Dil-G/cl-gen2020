@@ -64,9 +64,9 @@
                 <input type="text" name="examName" value= "<?php if (isset ($_GET['examName'])){echo $_GET['scholExamYear'];}?>" name="ExamName" readonly>
 
                 <label for="myFile"><b>Enter CSV File</b></label>
-                <input type="file" id="myFile" name="filename" class="nextpgbtn" required></br>
+                <input type="file" id="myFile" name="fileName" class="nextpgbtn" required></br>
 
-                <button type="submit" class="registerbtn">Save</button>
+                <button type="submit" class="registerbtn" name="savebtn">Save</button>
                 <a href="o_viewSchol.php" class="cancel-btn">Cancel</a>
 
 
