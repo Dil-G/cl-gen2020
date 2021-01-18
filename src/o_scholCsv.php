@@ -43,9 +43,6 @@ include_once '../config/conn.php';
         header('Location: ../public/office/o_scholCsv.php?error='.$error);
     }
 
-
-
-    //--------------------------
  
     $conn->close();
 ?>
