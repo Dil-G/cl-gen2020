@@ -57,11 +57,12 @@
                 <label for="examID"><b>Exam ID</b></label>
                 <input type="text" value= "<?php if (isset ($_GET['examID'])){echo $_GET['examID'];}?>" name="examID" readonly>
 
-                <label for="scholExamYear"><b>Enter Exam Year</b></label>
-                <input type="text" name="scholExamYear" value= "<?php if (isset ($_GET['scholExamYear'])){echo $_GET['scholExamYear'];}?>" name="scholExamYear" readonly>
+                
+                <label for="examYear"><b>Enter Exam Year</b></label>
+                <input type="text" value="<?php echo $_POST["examYear"] ?>" name="examYear" readonly>
 
                 <label for="examName"><b>Exam Name</b></label>
-                <input type="text" name="examName" value= "<?php if (isset ($_GET['examName'])){echo $_GET['scholExamYear'];}?>" name="ExamName" readonly>
+                <input type="text" value= "<?php if (isset ($_GET['examID'])){echo $_GET['examName'];}?>" name="examName" readonly>
 
                 <label for="myFile"><b>Enter CSV File</b></label>
                 <input type="file" id="myFile" name="fileName" class="nextpgbtn" required></br>
