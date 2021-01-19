@@ -55,7 +55,6 @@
 
                 <label for="scholExamID"><b>Exam ID</b></label>
                 <input type="text" value= "<?php if (isset ($_GET['examID'])){echo $_POST['examID'];}?>" name="scholExamxamID" readonly>
-
                 
                 <label for="examYear"><b>Enter Exam Year</b></label>
                 <input type="text" value="<?php if (isset ($_GET['examYear'])){echo $_GET['examYear'];}?>" name="examYear" readonly>
