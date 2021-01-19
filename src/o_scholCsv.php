@@ -11,14 +11,11 @@ include_once '../config/conn.php';
 
     if(isset($_POST['savebtn'])){
 
+        $examID = $_POST['scholExamID'];
+        $examYear = $_POST['examYear'];
+        $examName = $_POST['examName']; 
         $scholCsv = $_FILES['fileName']['name'];
         $target = "../images/examResults".basename($scholCsv);
-
-        $prefix = "G5SE/";
-        $examID = $prefix . $examYear ;
-
-        $prefixName = "Grade 5 Scholarship Examination - ";
-        $examName = $prefixName . $examYear ;
 
         $sql = "INSERT INTO schol_RSheet (examID, examYear, examName, scholCsv) VALUES
         ('$examID', '$examYear', '$examName', '$scholCsv')";
@@ -43,6 +40,9 @@ include_once '../config/conn.php';
         header('Location: ../public/office/o_scholCsv.php?error='.$error);
     }
 
+
+
+    //--------------------------
  
     $conn->close();
 ?>

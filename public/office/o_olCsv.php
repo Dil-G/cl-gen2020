@@ -10,6 +10,8 @@
       $dutyID = $_SESSION['dutyID'];
 
       if (in_array("d2", $dutyID)) {
+
+        
 	?>
 
 <!DOCTYPE html>
@@ -35,7 +37,7 @@
                 <hr>
 
                 <label for="examID"><b>Exam ID</b></label>
-                <input type="text" value="<?php if (isset ($_GET['examID'])){echo $_GET['examID'];}?>" name="examID" readonly>
+                <input type="text" id="username" name="id" value="<?php  echo  $_POST['examID']?>" name="examID" readonly>
 
                 <label for="olExamYear"><b>Enter Exam Year</b></label>
                 <input type="text" value="<?php if (isset ($_GET['scholExamYear'])){echo $_GET['scholExamYear'];}?>" name="olExamYear" readonly>

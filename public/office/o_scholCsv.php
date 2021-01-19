@@ -31,12 +31,14 @@
 
         require_once '../../config/conn.php';
 
-        $sql = "SELECT * FROM addscholexam WHERE examID='".$_GET['examID']."'";
+        $sql = "SELECT * FROM addScholExam WHERE examID='".$_GET['examID']."'";
 
         $res= mysqli_query($conn,$sql);
         $row=mysqli_fetch_array($res);
 
-        $stuID = $row['examID'];
+        $examID = $row['examID'];
+        $charID = substr($examID,0);
+
 
         if($res){
         }
@@ -56,7 +58,7 @@
 
                 
                 <label for="examYear"><b>Enter Exam Year</b></label>
-                <input type="text" value="<?php echo $_POST["examYear"] ?>" name="examYear" readonly>
+                <input type="text" value="<?php if (isset ($_GET['examYear'])){echo $_GET['examYear'];}?>" name="examYear" readonly>
 
                 <label for="examName"><b>Exam Name</b></label>
                 <input type="text" value= "<?php if (isset ($_GET['examID'])){echo $_GET['examName'];}?>" name="examName" readonly>

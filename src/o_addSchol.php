@@ -22,7 +22,7 @@
         if($conn->query($sql)===TRUE){
             echo '<script language = "javascript">';
             echo 'alert("Details Added");';
-            header('Location: ../public/office/o_viewAl.php');
+            header('Location: ../public/office/o_viewSchol.php');
         }else{
             
             echo "Error : " . $sql . "<br>" . $conn->error;
