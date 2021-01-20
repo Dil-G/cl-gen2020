@@ -29,38 +29,38 @@
     <div id="officeNav"></div>
     <?php
 
-        require_once '../../config/conn.php';
+				require_once '../../config/conn.php';
 
-        $sql = "SELECT * FROM addScholExam WHERE examID='".$_GET['examID']."'";
+				$sql = "SELECT * FROM addscholexam where examID='".$_GET['examID']."'";
 
-        $res= mysqli_query($conn,$sql);
-        $row=mysqli_fetch_array($res);
+                $res= mysqli_query($conn,$sql);
+                $row=mysqli_fetch_array($res);
+                
+             //   $examID = $row['examID'];
+              //  $examYear = $row['examYear'];
+               // $examName = $row['examName'];
 
-        $examID = $row['examID'];
-        $charID = substr($examID,0);
-
-
-        if($res){
-        }
-        else{
-        echo"failed";	
-        }
-    ?>
-
+				if($res){
+				//echo "Sucessfull";
+				}
+				else{
+				echo"failed";	
+				}
+?>
     <div class="content">
         <div class="container" style="margin-left:250px;">
             <form action="../../src/o_scholCsv.php" method="POST">
                 <h1>Add Grade 5 Scholarship Exam Results</h1>
                 <hr>
 
-                <label for="scholExamID"><b>Exam ID</b></label>
-                <input type="text" value= "<?php if (isset ($_GET['examID'])){echo $_POST['examID'];}?>" name="scholExamxamID" readonly>
+                <label for="examID"><b>Exam ID</b></label>
+                <input type="text" value= "<?php echo $row['examID']?>" required>
                 
                 <label for="examYear"><b>Enter Exam Year</b></label>
                 <input type="text" value="<?php if (isset ($_GET['examYear'])){echo $_GET['examYear'];}?>" name="examYear" readonly>
 
                 <label for="examName"><b>Exam Name</b></label>
-                <input type="text" value= "<?php if (isset ($_GET['examID'])){echo $_GET['examName'];}?>" name="examName" readonly>
+                <input type="text" value= "<?php if (isset ($_GET['examName'])){echo $_GET['examName'];}?>" name="examName" readonly>
 
                 <label for="myFile"><b>Enter CSV File</b></label>
                 <input type="file" id="myFile" name="fileName" class="nextpgbtn" required></br>
