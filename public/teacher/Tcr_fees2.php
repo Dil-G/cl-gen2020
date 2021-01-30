@@ -20,9 +20,11 @@
     <title>Fees and Fines 2</title>
     <script src="../js/jquery-1.9.1.min.js"></script>
     <script src="../js/nav.js"></script>
-    <link rel="stylesheet" href="../css/register2.css " type="text/css">
-    <link type="text/css" rel="stylesheet" href="../css/main.css">
-    <link type="text/css" rel="stylesheet" href="../css/view.css">
+	<script src="../js/errors.js"></script>
+    <link rel="stylesheet" href="../css/view.css " type="text/css">
+<link type="text/css" rel="stylesheet" href="../css/main.css">
+<link type="text/css" rel="stylesheet" href="../css/register.css">
+<link rel="stylesheet" href="../css/messages.css " type="text/css">
 
 </head>
 
@@ -32,101 +34,80 @@
 
         <div id="nav1"></div>
 
-        <div class="container">
-            <div class="content">
-                <h2 style="color: #6a7480;">Last Payment History</h2>
-                <div class="card">
-                    <hr>
-                    <table>
-                        <tr>
-                            <th>Fee Type</th>
-                            <th>Amount</th>
-                            <th>Month</th>
-                            <th>Date</th>
-                            <th>Status</th>
-                        </tr>
+        <div class="content">
+		
+			
+			
+		
+  
+				<div class="container">
+					<h2><b>Fees and Fines</b></h2>
+					
+					<form action="../../src/add_fees.php" method="POST">
+					
+						<hr>
 
-                        <tr>
-                            <td>School</td>
-                            <td>500</td>
-                            <td>January</td>
-                            <td>10</td>
-                            <td>Paid</td>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>School</td>
-                            <td>500</td>
-                            <td>February</td>
-                            <td>10</td>
-                            <td>Paid</td>
-
-                        </tr>
-                    </table>
-                </div>
-
-                <h2 style="color: #6a7480;">Due Payment</h2>
-                <div class="card">
+						
 
 
-                    <hr>
-                    <table>
-                        <tr>
-                            <th>Fee Type</th>
-                            <th>Amount</th>
-                            <th>Month</th>
-                            <th>Date</th>
-                        </tr>
+						<label for="feesid"><b>Teacher ID</b></label>
+						<!--<input type="text"  name="Sname" id="sportname" onblur="return validatesportsname(sportname.value)" required> -->
+						<input type="text"  name="FID" value = <?php  echo  $_SESSION['userID']?> readonly>
+						
+						<label for="SID"><b>Student ID</b></label>
+						<input type="text"  id="username" name="SID" onblur="validateUsername(username.value)"  required>
 
-                        <tr>
-                            <td>School</td>
-                            <td>500</td>
-                            <td>January</td>
-                            <td>10</td>
-                            </td>
-                        </tr>
+                        <label for="TID"><b>Student Name</b></label>
+						<input type="text"  id="username" name="Sname" pattern="['a-z''A-Z' ]+$" required>
 
-                        <tr>
-                            <td>School</td>
-                            <td>500</td>
-                            <td>February</td>
-                            <td>10</td>
-                        </tr>
-                    </table>
-                </div>
-                <form action="/action_page.php">
-                    <h2 style="color: #6a7480;">Add Payment</h2>
+                       <!-- <label for="TID"><b>Fee Type</b></label>
+						<input type="text"  id="username" name="Ftype"  required> -->
 
-                    <div class="card">
-                        <hr>
-                        <div class="container">
-                            <label for="fname">Fee Type</label>
-                            <input type="text" id="iqID" name="InquierID" placeholder="Type Inquier ID.." required>
+						<label><b>Fee Type:</b></label>
+					<br></br>
+					<label> <input type="radio" name="Ftype" value="School" required> School</label>
+					<label> <input type="radio" name="Ftype" value="Examination" required>Examination</label>
+					<label><input type="radio" name="Ftype" value="Library" required>Library</label>
 
-                            <label for="fname">Amount</label>
-                            <input type="text" id="iqID" name="InquierID" placeholder="Type Inquier ID.." required>
 
-                            <label for="fname">Month</label>
-                            <input type="text" id="iqID" name="InquierID" placeholder="Type Inquier ID.." required>
+					<br></br>
+					<br>
+                         
+                        <label for="TID"><b>Amount</b></label>
+						<input type="text"  id="username" name="amount" pattern="[0-9]{3,4}"required>
 
-                            <label for="fname">Date</label>
-                            <input type="text" id="iqID" name="InquierID" placeholder="Type Inquier ID.." required>
+                      <!--  <label for="TID"><b>Status</b></label>
+						<input type="text"  id="username" name="Stats"  required> -->
 
-                            <a href="#"><button type="submit" class="searchbtn" formaction="Tcr_fees3.php">add</button>
+						
+						<label><b>Status:</b></label>
+					<br></br>
+					<label> <input type="radio" name="Stats" value="Paid" required>Paid</label>
+					<label> <input type="radio" name="Stats" value="Not Paid" required>Not Paid</label>
+					
 
-                                <h1> </h1>
-                                <h2 align="center"><a href="Tcr_fees1.php">Cancel</a></h2>
 
-                        </div>
 
-                </form>
-                <hr>
-                <hr>
-    </body>
+					
+						
+						
+						<hr>
+					
+					
+						<div>
+							<button type="submit" class="registerbtn" name="regbtn">Save</button>
+							
+							<a href="Tcr_fees1.php" class="cancel-btn">Cancel</a>
 
+                    	</div>
+					</form>
+					
+				</div>
+				
+			</div>
+		
+		
+</body>
 </html>
 
-<?php 
-     }
-?>
+	 <?php } ?>
