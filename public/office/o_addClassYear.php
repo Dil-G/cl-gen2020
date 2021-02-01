@@ -19,6 +19,7 @@
 
     <?php
 include_once '../../config/conn.php';
+//include_once '../src/addClass.php';
 ?>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -26,6 +27,7 @@ include_once '../../config/conn.php';
     <link rel="stylesheet" href="../css/view.css " type="text/css">
     <link type="text/css" rel="stylesheet" href="../css/main.css">
     <link type="text/css" rel="stylesheet" href="../css/users.css">
+    <link rel="stylesheet" href="../css/messages.css " type="text/css">
     <script src="../js/jquery-1.9.1.min.js"></script>
     <script src="../js/pop.js"></script>
     <script src="../js/nav.js"></script>
@@ -47,8 +49,11 @@ include_once '../../config/conn.php';
         <br>
 
         <div class="card">
-            <form>
-                <button type="submit" formaction="">Add Year</button>
+        <?php if (isset($_GET['error'])) { ?>
+        <div id="error"><?php echo $_GET['error']; ?></div>
+    <?php } ?>
+            <form action="../../src/addClass.php">
+                <button type="submit" name="addYear" value=1>Add Year</button>
             </form>
             <br>
             <br>
