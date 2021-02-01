@@ -56,11 +56,13 @@
                 
         }
     }
+    else{}
 
-    if(isset($_GET['grade'])){
+    if(isset($_GET['Ggrades'])){
 
-        $thisGrade = $_GET['grade'];
-        $class_sql = "SELECT * FROM classes where gradeID = $thisGrade "; 
+        $thisGrade = $_GET['Ggrades'];
+        echo $thisGrade;
+        $class_sql = "SELECT * FROM classes WHERE gradeID = $thisGrade "; 
         $class_result = $conn->query($class_sql);
         
         if(!$class_result  ){
@@ -71,6 +73,7 @@
                 
         }
     }
+    else{}
 
 
 
