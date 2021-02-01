@@ -81,10 +81,8 @@
                         }
                         
 					?></td>
-                    <td>
-                        <form><button class="btn editbtn" type="submit" formaction="o_addClassGrades.php">View
-                                Grades</button></form>
-                    </td>
+                    <?php echo "<td><a class='btn editbtn' href = o_addClassGrades.php?Gyear=".$year." >View Grades </a> </td>"?>
+                  
 
                 </tr>
                 <?php }?>

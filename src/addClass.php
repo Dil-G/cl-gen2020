@@ -41,5 +41,26 @@
     else{
             
     }
+
+    if(isset($_GET['Gyear'])){
+
+        $thisYear = $_GET['Gyear'];
+        $grade_sql = "SELECT * FROM grades where Year = $thisYear order by  Grade"; 
+        $grade_result = $conn->query($grade_sql);
+        
+        if(!$grade_result  ){
+            $error="Invalid year";
+        }
+        
+        else{
+                
+        }
+    }
+
+
+
+
+
+
     $conn->close();
 ?>

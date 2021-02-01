@@ -10,6 +10,9 @@
       $dutyID = $_SESSION['dutyID'];
 
       if (in_array("d6", $dutyID)) {
+
+        include_once '../../config/conn.php';
+        include_once '../../src/addClass.php';
 	?>
 
 <!DOCTYPE html>
@@ -17,9 +20,6 @@
 
 <head>
 
-    <?php
-include_once '../../config/conn.php';
-?>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Assign Classes</title>
@@ -50,6 +50,7 @@ include_once '../../config/conn.php';
 
 
             <hr>
+           
             <table>
                 <tr>
                     <th>Grade ID </th>
@@ -58,48 +59,24 @@ include_once '../../config/conn.php';
                     <th>View classes</th>
 
                 </tr>
-
+                <?php
+                while($row=mysqli_fetch_assoc($grade_result)) {
+                    ?>
                 <tr>
-                    <td>20G1</td>
-                    <td>Grade 1</td>
-                    <td>
-                        <form><button class="btn editbtn" type="submit" formaction="o_addClasses.php">Add
-                                Classes</button></form>
-                    </td>
-                    <td>
-                        <form><button class="btn editbtn" type="submit" formaction="o_classes.php">View Classes</button>
-                        </form>
-                    </td>
-
+               
+                    <td><?php echo $row['GradeID'] ?></td>
+                    <td><?php echo $row['Grade'] ?></td>
+                  
+                        <?php echo "<td><a class='btn editbtn' href = o_addClasses.php?grade=".$row['GradeID']." >Add Classes </a> </td>"?>
+                       
+                  
+                        <?php echo "<td><a class='btn editbtn' href = o_classes.php?grade=".$row['GradeID']." >View Classes </a> </td>"?>
+                 
+                    
                 </tr>
-                <tr>
-                    <td>20G2</td>
-                    <td>Grade 2</td>
-                    <td>
-                        <form><button class="btn editbtn" type="submit" formaction="o_addClasses.php">Add
-                                Classes</button></form>
-                    </td>
-                    <td>
-                        <form><button class="btn editbtn" type="submit" formaction="o_classes.php">View Classes</button>
-                        </form>
-                    </td>
-
-                </tr>
-                <tr>
-                    <td>20G3</td>
-                    <td>Grade 3</td>
-                    <td>
-                        <form><button class="btn editbtn" type="submit" formaction="o_addClasses.php">Add
-                                Classes</button></form>
-                    </td>
-                    <td>
-                        <form><button class="btn editbtn" type="submit" formaction="o_classes.php">View Classes</button>
-                        </form>
-                    </td>
-
-                </tr>
-
+                <?php }?>
             </table>
+           
         </div>
 
     </div>
