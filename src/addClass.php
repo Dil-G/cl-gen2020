@@ -57,6 +57,21 @@
         }
     }
 
+    if(isset($_GET['grade'])){
+
+        $thisGrade = $_GET['grade'];
+        $class_sql = "SELECT * FROM classes where gradeID = $thisGrade "; 
+        $class_result = $conn->query($class_sql);
+        
+        if(!$class_result  ){
+            $error="Invalid year";
+        }
+        
+        else{
+                
+        }
+    }
+
 
 
 

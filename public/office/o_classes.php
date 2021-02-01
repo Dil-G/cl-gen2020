@@ -75,6 +75,23 @@ include_once '../../config/conn.php';
 
                 </tr>
 
+                <?php
+                while($row=mysqli_fetch_assoc($grade_result)) {
+                    ?>
+                <tr>
+               
+                    <td><?php echo $row['GradeID'] ?></td>
+                    <td><?php echo $row['Grade'] ?></td>
+                  
+                        <?php echo "<td><a class='btn editbtn' href = o_addClasses.php?grade=".$row['GradeID']." >Add Classes </a> </td>"?>
+                       
+                  
+                        <?php echo "<td><a class='btn editbtn' href = o_classes.php?grade=".$row['GradeID']." >View Classes </a> </td>"?>
+                 
+                    
+                </tr>
+                <?php }?>
+
             </table>
         </div>
 
