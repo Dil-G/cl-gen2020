@@ -10,6 +10,10 @@
       $dutyID = $_SESSION['dutyID'];
 
       if (in_array("d6", $dutyID)) {
+
+        include_once '../../config/conn.php';
+        include_once '../../src/addClass.php';
+      
 	?>
 
 <!DOCTYPE html>
@@ -17,10 +21,7 @@
 
 <head>
 
-    <?php
-include_once '../../config/conn.php';
-//include_once '../src/addClass.php';
-?>
+
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Assign Classes</title>
@@ -65,15 +66,28 @@ include_once '../../config/conn.php';
                     <th>View Grades</th>
 
                 </tr>
-
+                <?php 
+                    $year=0;
+                    while($row = $year_result->fetch_assoc()) {
+                        if($year == $row["Year"]){
+                            continue;
+                        }else{
+                        ?>
                 <tr>
-                    <td>2020</td>
+                    <td>
+                    <?php
+                            echo $row["Year"]. "<br>";
+                            $year = $row["Year"];
+                        }
+                        
+					?></td>
                     <td>
                         <form><button class="btn editbtn" type="submit" formaction="o_addClassGrades.php">View
                                 Grades</button></form>
                     </td>
 
                 </tr>
+                <?php }?>
 
             </table>
         </div>

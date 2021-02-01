@@ -1,5 +1,5 @@
 <?php
-    include_once '../config/conn.php';
+    require_once(realpath(dirname(__FILE__) . '/../config/conn.php'));
     
 
     if(isset($_GET['addYear'])){
@@ -28,6 +28,18 @@
             $i=$i+1;
         }
         
+    }
+  
+
+    $year_sql = "SELECT Year FROM grades order by Year"; 
+    $year_result = $conn->query($year_sql);
+    
+    if(!$year_result  ){
+        $error="Invalid year";
+    }
+    
+    else{
+            
     }
     $conn->close();
 ?>
