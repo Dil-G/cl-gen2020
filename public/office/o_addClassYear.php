@@ -51,7 +51,7 @@
 
         <div class="card">
         <?php if (isset($_GET['error'])) { ?>
-        <div id="error"><?php echo $_GET['error']; ?></div>
+        <div id="error" style="margin-left:-10px; line-height:20px;"><?php echo $_GET['error']; ?></div>
     <?php } ?>
             <form action="../../src/addClass.php">
                 <button type="submit" name="addYear" value=1>Add Year</button>

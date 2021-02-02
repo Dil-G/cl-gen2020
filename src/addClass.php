@@ -42,6 +42,23 @@
             
     }
 
+    if(isset($_GET['Ggrades'])){
+
+        $grades = $_GET['Ggrades'];
+        $class_sql = "SELECT * FROM classes WHERE gradeID = '$grades'";
+        
+        $class_result = $conn->query($class_sql);
+        
+        if(!$class_result  ){
+            $error="Invalid year";
+        }
+        
+        else{
+                
+        }
+    }
+    else{}
+
     if(isset($_GET['Gyear'])){
 
         $thisYear = $_GET['Gyear'];
@@ -58,22 +75,46 @@
     }
     else{}
 
-    if(isset($_GET['Ggrades'])){
+ 
+    if(isset($_POST['addclasses'])){
 
-        $thisGrade = $_GET['Ggrades'];
-        echo $thisGrade;
-        $class_sql = "SELECT * FROM classes WHERE gradeID = $thisGrade "; 
-        $class_result = $conn->query($class_sql);
+    
+        $number = $_POST['noOfClasses'];
+        $grades = $_POST['grade'];
+        echo $grades;
+        $date = date('Y');
         
-        if(!$class_result  ){
-            $error="Invalid year";
+        $prefix = "C";
+        $ascii = 65;
+        $i;
+        for($i=1;$i<=$number;){
+            
+
+            if($i == 1){
+                $name = 'T';
+                $classID =$grades . $name ;
+            }else{
+                $name = chr($ascii);
+                $classID =$grades . $name ;
+                $ascii = $ascii + 1;
+            }
+
+            $sql = "INSERT INTO classes (gradeID, classID, name) VALUES ('$grades','$classID','$name');";
+            
+            if($conn->query($sql)===TRUE){
+                echo '<script language = "javascript">';
+                echo 'alert("Details Added");';
+                header('Location: ../public/office/o_addClassYear.php');
+            }else{
+                $error = "Cannot add Classes";
+                header('Location: ../public/office/o_addClassYear.php?error='.$error);
+            }
+            $i=$i+1;
         }
+           
+       
         
-        else{
-                
-        }
     }
-    else{}
 
 
 

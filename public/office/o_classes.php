@@ -72,7 +72,7 @@
                     <td><?php echo $row['classID'] ?></td>
                     <td><?php echo $row['name'] ?></td>
                   
-                        <?php echo "<td><a class='btn editbtn' href = o_class.php?class=".$row['classID']." >Add Classes </a> </td>"?>
+                        <?php echo "<td><a class='btn editbtn' href = o_class.php?class=".$row['classID']." >View Class </a> </td>"?>
  
                 </tr>
                 <?php }?>
