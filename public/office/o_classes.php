@@ -54,7 +54,7 @@
             </form>
             <br>
             <br>
-
+        <a class='btn editbtn' href = o_addClasses.php>Add Classes </a> 
             <hr>
             <table>
                 <tr>

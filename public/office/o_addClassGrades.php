@@ -55,7 +55,7 @@
                 <tr>
                     <th>Grade ID </th>
                     <th>Grade</th>
-                    <th>Add classes</th>
+                    <th>Classes</th>
                     <th>View classes</th>
 
                 </tr>
