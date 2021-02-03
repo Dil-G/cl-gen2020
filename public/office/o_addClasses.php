@@ -10,6 +10,9 @@
       $dutyID = $_SESSION['dutyID'];
 
       if (in_array("d6", $dutyID)) {
+
+        include_once '../../config/conn.php';
+        include_once '../../src/addClass.php';
     ?>
 
 <!DOCTYPE html>
@@ -34,22 +37,18 @@
     <div class="content">
         <br>
         <div class="container">
-            <form action="../../src/o_addOl.php" method="POST">
+            <form action="../../src/addClass.php" method="POST">
                 <h1>Add Classes</h1>
                 <hr>
 
                 <label for="noOfClasses"><b>Number Of Classes</b></label>
                 <input type="text" placeholder="Enter Class Number" name="noOfClasses" required>
 
-                <label for="noOfStu"><b>Maximum Number of students</b></label>
-                <input type="text" placeholder="Enter Maximum Number" name="noOfStu" required>
-
-                <br>
-
+                <input type="hidden" p name="grade" value="<?php echo $_GET['grade'] ?>" required>
 
                 <hr>
 
-                <button type="submit" class="registerbtn" name="savebtn">Save</button>
+                <button type="submit" class="registerbtn" name="addclasses">Save</button>
                 <a href="o_addClassGrades.php" class="cancel-btn">Cancel</a>
 
             </form>

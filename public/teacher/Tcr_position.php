@@ -7,8 +7,9 @@
         }else if($_SESSION['userType'] != 'teacher'){
             header('Location: ../common/error.html');
      }else if(($_SESSION['userType'] == 'teacher') && ($_SESSION['teacherType'] == 'classTcr')){
-
+       
          $userID = $_SESSION['userID'];
+         include('../../src/view_position.php');
 ?>
 <!DOCTYPE html>
 <html>
@@ -53,24 +54,46 @@
                                 <th>Average</th>
                                 <th>Position</th>
                             </tr>
-                            <tr>
-                                <td>ST200001</td>
-                                <td>Medani</td>
-                                <td>800</td>
-                                <td>88.7%</td>
-                                <td>3</td>
+                           
+                            <?php
+				while($row=mysqli_fetch_assoc($result)){
 
-                            </td>
-                                
-                            </tr>
-                            <tr><td>ST200002</td>
-                                <td>Hansika</td>
-                                <td>900</td>
-                                <td>87.1%</td>
-                                <td>6</td>
-                                
-                                
-                            </tr>
+                    
+                    $sinhala = $row['sinhala'];
+                    $english = $row['english'];
+                    $english = $row['english'];
+                    $buddhism = $row['buddhism'];
+                    $maths = $row['maths'];
+                    $science = $row['science'];
+                    $history = $row['history'];
+                    $group01 = $row['group01'];
+                    $group02 = $row['group02'];
+                    $group03 = $row['group03'];
+
+                    $total = ($sinhala + $english + $buddhism + $maths + $science + $history + $group01 + $group02 + $group03);
+                    $average = ($total/$numb);
+
+			?>
+      
+      <tr>
+        <td><?php echo $row['admissionNumber'] ?></td>
+        <td><?php echo $row['studentName'] ?></td>
+        <?php echo "<td>$total </td>"?>
+        <?php echo "<td>$average </td>"?>
+                
+				
+        </tr>
+        
+       
+       
+       
+        <?php
+    }
+    
+  
+    ?>
+
+ 
                         </table>
                         </div>
 

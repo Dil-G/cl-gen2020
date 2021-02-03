@@ -108,7 +108,12 @@ else{
     	
 }
 
-$totalUsers =$user_res4->fetch_assoc();
+$totUser = "SELECT COUNT(isActivated) FROM user where userType != 'superadmin' AND isActivated = 1"; 
+            
+            	
+$totalUser= mysqli_query($conn,$totUser);
+
+$totalUsers =$totalUser->fetch_assoc();
 $totalStudents = $student_result->fetch_assoc();
 $totalOfficers = $staff_result->fetch_assoc();
 $totalTeacher = $teacher_result->fetch_assoc();

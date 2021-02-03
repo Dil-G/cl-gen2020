@@ -9,6 +9,7 @@
      }else if(($_SESSION['userType'] == 'teacher') && ($_SESSION['teacherType'] == 'both')){
 
          $userID = $_SESSION['userID'];
+         include('../../src/view_fees.php');
 ?>
 
 <!DOCTYPE html>
@@ -18,9 +19,9 @@
 		<title>Fees and Fines 4</title>
 		<script src="../js/jquery-1.9.1.min.js"></script>
 		<script src="../js/nav.js"></script>
-		<link rel="stylesheet" href="../css/register2.css " type="text/css">
-		<link type="text/css" rel="stylesheet" href="../css/main.css">
-		<link type="text/css" rel="stylesheet" href="../css/view.css">
+        <link rel="stylesheet" href="../css/view.css " type="text/css">
+        <link type="text/css" rel="stylesheet" href="../css/main.css">
+    <link type="text/css" rel="stylesheet" href="../css/register.css">
 	</head>
 
 <body name=top>
@@ -28,25 +29,73 @@
         <div id="nav3"></div>
 
         <div class="content">
-            <div class="container" style="margin-left: 140px;width:75%;">
-                <form action="../php/register.php" method="POST">
-                    	<h1 style="color: #6a7480;">ADD PAYMENT</h1>
-                    	<hr>
+        <h1 style="color: #6a7480;">Fees and Fines</h1>
+        <form class="search" action="action_page.php">
+            <input type="text" placeholder="Search.." name="search">
+            <button type="submit">Search</button>
+        </form>
+        <br>
+        <br>
+        <br>
+        <hr>
+        
+    
+        <div class="card">
+            <form>
+                <button type="submit" formaction="Tcr_fees5.php">Add Fees</button>
+            </form>
+         
+            <hr>
 
-                    <div class="alert">
-                        <hr>
-                        <label for="name"><b>Select Student</b></label>
-                        <input type="text" placeholder="Enter ID" name="id" required>
-                        <button type="submit" class="searchbtn" formaction="Tcr_fees5.php">Search</button>
-                </form>
-                <hr>
-                <h2 align="center"><a href="Tcr_dashboard3.php">Cancel</a></h2>
-                <hr>
-            </div>
-        </div>
-    </body>
+            <table>
+    
 
-</html>
-<?php 
-	 }
+  
+    <tr>
+                    <th>Fees ID</th>
+                    <th>Teacher ID </th>
+                    <th>Student ID</th>
+                    <th>Student Name</th>
+                    <th>Fee Type </th>
+                    <th>Amount</th>
+                    <th>Status </th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    
+        
+    </tr>
+
+    <?php
+            while($row=mysqli_fetch_assoc($result)){
+
+        ?>
+  
+  <tr>
+    <td><?php echo $row['feesID'] ?></td>
+            <td><?php echo $row['TeacherID'] ?></td>
+            <td><?php echo $row['StudentID'] ?></td>
+            <td><?php echo $row['StudentName'] ?></td>
+            <td><?php echo $row['FeeType'] ?></td>
+            <td><?php echo $row['Amount'] ?></td>
+            <td><?php echo $row['Status'] ?></td>
+            <td><?php echo $row['Date'] ?></td>
+            <td><?php echo $row['Time'] ?></td>
+           
+            
+    </tr>
+    
+   
+   
+   
+    <?php
+}
+
+
 ?>
+
+
+</body>
+</html>
+
+<?php } ?>
+
