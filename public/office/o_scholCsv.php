@@ -31,7 +31,7 @@
 
 				require_once '../../config/conn.php';
 
-				$sql = "SELECT * FROM addscholexam where examID='".$_GET['examID']."'";
+				$sql = "SELECT * FROM addscholexam where examID ='".$_GET['examID']."'";
 
                 $res= mysqli_query($conn,$sql);
                 $row=mysqli_fetch_array($res);

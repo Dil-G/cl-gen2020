@@ -191,7 +191,7 @@
     var button3 = document.getElementById("button3");
 
     let url = window.location.href;
-    if (url == "http://localhost/CL-GEN/public/office/o_reqCc.php") {
+    if (url == "http://localhost/cl-gen2020/public/office/o_reqCc.php") {
         page1.style.display = "block";
         page2.style.display = "none";
         page3.style.display = "none";

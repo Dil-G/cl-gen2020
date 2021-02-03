@@ -91,10 +91,10 @@ include_once '../../config/conn.php';
                     <td><?php echo $row['examID']?></td>
                     <td><?php echo $row['examYear']?></td>
                     <td><?php echo $row['examName']?></td>
-                    <td>
-                        <form><button class="btn editbtn" type="submit" formaction="o_scholCsv.php">Add Results</button>
-                        </form>
-                    </td>
+                    
+                    <?php echo "<td><a class='btn editbtn' href = o_scholCsv.php?examID=".$row['examID']." > Add Results </a> </td>"?>
+                        
+                
                     <td>
                         <form><button class="btn viewbtn" type="submit" formaction="o_schol.php">View Results</button>
                         </form>
