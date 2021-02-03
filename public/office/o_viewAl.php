@@ -15,7 +15,7 @@
 <!DOCTYPE html>
 <html>
 
-<head>
+<head> 
 
     <?php
 include_once '../../config/conn.php';
@@ -93,10 +93,8 @@ include_once '../../config/conn.php';
                     <td><?php echo $row['examID']?></td>
                     <td><?php echo $row['examYear']?></td>
                     <td><?php echo $row['examName']?></td>
-                    <td>
-                        <form><button class="btn editbtn" type="submit" formaction="o_alCsv.php">Add Results</button>
-                        </form>
-                    </td>
+                    <?php echo "<td><a id='addExamBtn' class='btn editbtn' href = o_alCsv.php?examID=".$row['examID']." > Add Results </a></td>"
+                    ?>
                     <td>
                         <form><button class="btn viewbtn" type="submit" formaction="o_al.php">View Results</button>
                         </form>

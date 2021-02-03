@@ -48,7 +48,7 @@ include_once '../../config/conn.php';
         <div class="card">
             <div>
                 <button id="addExamBtn" class="btn editbtn" type="submit" formaction="o_addSchol.php">Add
-                     Exam</button>
+                    Exam</button>
                 <div id="addExamForm" class="model">
                     <div class="modal-content container">
                         <form action="../../src/o_addschol.php" method="POST">
@@ -91,13 +91,9 @@ include_once '../../config/conn.php';
                     <td><?php echo $row['examID']?></td>
                     <td><?php echo $row['examYear']?></td>
                     <td><?php echo $row['examName']?></td>
+                    <?php echo "<td><a id='addExamBtn' class='btn editbtn' href = o_scholCsv.php?examID=".$row['examID']." > Add Results </a></td>"
+                    ?>
                     
-                    <?php echo "<td><a id='addExamBtn' class='btn editbtn'  scholCsv(); href = o_scholCsv.php?examID=".$row['examID']." > Add Results </a> 
-                    
-                    
-                    </td>"?>
-                        
-                
                     <td>
                         <form><button class="btn viewbtn" type="submit" formaction="o_schol.php">View Results</button>
                         </form>
@@ -114,15 +110,10 @@ include_once '../../config/conn.php';
     <script>
     var form1 = document.getElementById("addExamForm");
     var addExam = document.getElementById("addExamBtn");
-    var scholCSV = scholCsv();
+
     addExam.onclick = function() {
-    form1.style.display = "block";
+        form1.style.display = "block";
     }
-    addCsv.onclick = function(){
-        form.style.display = "block";
-    }
-
-
     </script>
 </body>
 

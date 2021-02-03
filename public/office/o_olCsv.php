@@ -13,7 +13,7 @@
 
         
 	?>
-
+ 
 <!DOCTYPE html>
 <html>
 
@@ -29,22 +29,31 @@
 
 <body>
     <div id="officeNav"></div>
+    <?php
 
+        
+require_once '../../config/conn.php';
+
+$sql = "SELECT * FROM addolexam where examID ='".$_GET['examID']."'";
+
+$res= mysqli_query($conn,$sql);
+$row=mysqli_fetch_array($res);
+
+if($res){
+
+}
+else{
+echo"failed";	
+}
+?>
     <div class="content">
     <div class="container" style="margin-left:250px;">
             <form action="../php/register.php" method="POST">
-                <h1>Add G.C.E. O/L Examination Results</h1>
+                <h1><?php echo $row['examName']?></h1>
                 <hr>
 
                 <label for="examID"><b>Exam ID</b></label>
-                <input type="text" id="username" name="id" value="<?php  echo  $_POST['examID']?>" name="examID" readonly>
-
-                <label for="olExamYear"><b>Enter Exam Year</b></label>
-                <input type="text" value="<?php if (isset ($_GET['scholExamYear'])){echo $_GET['scholExamYear'];}?>" name="olExamYear" readonly>
-
-                <label for="olexamName"><b>Exam Name</b></label>
-                <input type="text" value="<?php if (isset ($_GET['examName'])){echo $_GET['scholExamYear'];}?>" name="olexamName" readonly>
-
+                <input type="text" id="username" name="id" value="<?php echo $row['examID']?>" name="examID" readonly>
 
                 <label for="myFile"><b>Enter CSV File</b></label>
                 <input type="file" id="myFile" name="filename" class="nextpgbtn" required></br>

@@ -13,7 +13,7 @@
 	?>
 
 <!DOCTYPE html>
-
+ 
 <head>
 
     <head>
@@ -95,10 +95,8 @@
                     <td><?php echo $row['examID']?></td>
                     <td><?php echo $row['examYear']?></td>
                     <td><?php echo $row['examName']?></td>
-                    <td>
-                        <form><button class="btn editbtn" type="submit" formaction="o_olCsv.php">Add Results</button>
-                        </form>
-                    </td>
+                    <?php echo "<td><a id='addExamBtn' class='btn editbtn' href = o_olCsv.php?examID=".$row['examID']." > Add Results </a></td>"
+                    ?>
                     <td>
                         <form><button class="btn viewbtn" type="submit" formaction="o_ol.php">View Results</button>
                         </form>

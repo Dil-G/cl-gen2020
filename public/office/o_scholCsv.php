@@ -30,7 +30,6 @@
     <div id="officeNav"></div>
     <?php
 
-    function scholCsv(){
         
 				require_once '../../config/conn.php';
 
@@ -49,7 +48,7 @@
     <div class="content">
         <div class="container" style="margin-left:250px;">
             <form action="../../src/o_scholCsv.php" method="POST">
-                <h1>Add Grade 5 Scholarship Exam Results</h1>
+                <h1><?php echo $row['examName']?></h1>
                 <hr>
 
                 <label for="examID"><b>Exam ID</b></label>
@@ -67,13 +66,10 @@
 
         </div>
 
-    </div>
-
-
-}
+</div>
 
 </body>
 
 </html>
 
-<?php }}} ?>
+<?php }} ?>
