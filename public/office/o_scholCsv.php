@@ -18,6 +18,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Add Scholarship Results</title>
+    <link type="text/css" rel="stylesheet" href="../css/pop.css">
     <link rel="stylesheet" href="../css/register.css " type="text/css">
     <link type="text/css" rel="stylesheet" href="../css/main.css">
     <script src="../js/jquery-1.9.1.min.js"></script>
@@ -29,19 +30,17 @@
     <div id="officeNav"></div>
     <?php
 
+    function scholCsv(){
+        
 				require_once '../../config/conn.php';
 
 				$sql = "SELECT * FROM addscholexam where examID ='".$_GET['examID']."'";
 
                 $res= mysqli_query($conn,$sql);
                 $row=mysqli_fetch_array($res);
-                
-             //   $examID = $row['examID'];
-              //  $examYear = $row['examYear'];
-               // $examName = $row['examName'];
 
 				if($res){
-				//echo "Sucessfull";
+
 				}
 				else{
 				echo"failed";	
@@ -56,12 +55,6 @@
                 <label for="examID"><b>Exam ID</b></label>
                 <input type="text" value= "<?php echo $row['examID']?>" required>
                 
-                <label for="examYear"><b>Enter Exam Year</b></label>
-                <input type="text" value="<?php if (isset ($_GET['examYear'])){echo $_GET['examYear'];}?>" name="examYear" readonly>
-
-                <label for="examName"><b>Exam Name</b></label>
-                <input type="text" value= "<?php if (isset ($_GET['examName'])){echo $_GET['examName'];}?>" name="examName" readonly>
-
                 <label for="myFile"><b>Enter CSV File</b></label>
                 <input type="file" id="myFile" name="fileName" class="nextpgbtn" required></br>
 
@@ -77,8 +70,10 @@
     </div>
 
 
+}
+
 </body>
 
 </html>
 
-<?php }} ?>
+<?php }}} ?>

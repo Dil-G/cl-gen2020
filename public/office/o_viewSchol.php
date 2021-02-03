@@ -48,7 +48,7 @@ include_once '../../config/conn.php';
         <div class="card">
             <div>
                 <button id="addExamBtn" class="btn editbtn" type="submit" formaction="o_addSchol.php">Add
-                    </form> Exam</button>
+                     Exam</button>
                 <div id="addExamForm" class="model">
                     <div class="modal-content container">
                         <form action="../../src/o_addschol.php" method="POST">
@@ -92,7 +92,10 @@ include_once '../../config/conn.php';
                     <td><?php echo $row['examYear']?></td>
                     <td><?php echo $row['examName']?></td>
                     
-                    <?php echo "<td><a class='btn editbtn' href = o_scholCsv.php?examID=".$row['examID']." > Add Results </a> </td>"?>
+                    <?php echo "<td><a id='addExamBtn' class='btn editbtn'  scholCsv(); href = o_scholCsv.php?examID=".$row['examID']." > Add Results </a> 
+                    
+                    
+                    </td>"?>
                         
                 
                     <td>
@@ -111,12 +114,38 @@ include_once '../../config/conn.php';
     <script>
     var form1 = document.getElementById("addExamForm");
     var addExam = document.getElementById("addExamBtn");
+    var scholCSV = scholCsv();
     addExam.onclick = function() {
-        form1.style.display = "block";
+    form1.style.display = "block";
     }
+    addCsv.onclick = function(){
+        form.style.display = "block";
+    }
+
+
     </script>
 </body>
 
 </html>
 
 <?php }} ?>
+
+<!--<div class='container' style='margin-left:250px;'>
+            <form action='../../src/o_scholCsv.php' method='POST'>
+                <h1>Add Grade 5 Scholarship Exam Results</h1>
+                <hr>
+
+                <label for='examID'><b>Exam ID</b></label>
+                <input type='text' value=  required>
+                
+                <label for='myFile'><b>Enter CSV File</b></label>
+                <input type='file' id='myFile' name='fileName' class='nextpgbtn' required></br>
+
+                <button type='submit' class='registerbtn' name='savebtn'>Save</button>
+                <a href='o_viewSchol.php' class='cancel-btn'>Cancel</a>
+
+
+
+                </form>
+
+        </div>-->

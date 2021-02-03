@@ -55,11 +55,13 @@
                      echo "Student Count: " . $row["COUNT(isActivated)"]. "<br>";
                      }?>
                 </div>
+
+           
                 <hr>
                 <table>
                     <tr>
                         <th>User ID</th>
-                        <th>UserName</th>
+                        <th>Student Name</th>
                         <th>Add Details</th>
                     </tr>
                     <?php
