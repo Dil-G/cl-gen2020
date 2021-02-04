@@ -47,7 +47,7 @@ else{
 
 $student_sql = "SELECT COUNT(isActivated) FROM user where userType='student' AND isActivated=0"; 
 $student_sql1 = "SELECT COUNT(isActivated) FROM user where userType='student' AND isActivated=1"; 
-$student_sql2 = "SELECT * FROM user where userType='student' ";
+$student_sql2 = "SELECT * FROM user where userType='student' AND isActivated=0 ";
 $student_sql3 = "SELECT * FROM student  ";
 $student_sql4 = "SELECT * FROM user where isActivated=1 and userType='student' ";
 
