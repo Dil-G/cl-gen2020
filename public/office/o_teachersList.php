@@ -51,7 +51,7 @@
                      }?>
                 </div>
                 <hr>
-                <table>
+                <table style="height:100px;overflow:auto;">
                     <tr>
                         <th>User ID</th>
                         <th>UserName</th>
@@ -80,12 +80,13 @@
                      }?>
                 </div>
                 <hr>
-                <table>
+                <table >
                     <tr>
                         <th>User ID</th>
                         <th>Name</th>
                         <th>Edit Details</th>
                     </tr>
+                    <tbody style="display:block;height:200px;width:100%;overflow-x:hidden;overflow-y:auto;">
                     <?php
                         while($row=mysqli_fetch_assoc($teacher_result4)){
                         ?>
@@ -101,6 +102,7 @@
                         ?></td>
                         <?php echo "<td><a class='btn editbtn' href = Tcr_profile.php?userID=".$row['userID']." > update </a> </td>"?>
                     </tr>
+                    </tbody>
                     <?php
                         }
                         ?>
