@@ -33,15 +33,15 @@
 <body>
     <div id="officeNav"></div>
     <div class="content">
-    
+    <div class="card">
         <h1>Students List</h1>
 
 
-        <div class="btn-box">
+        <div class="btn-box" style="margin-left:5px;">
             <button id="button2" onclick="activated()">Added Users</button>
             <button id="button1" onclick="notActivated()">Activated Users</button>
         </div>
-
+    </div>
         <br>
         <br>
         <div id="page1" class="page">

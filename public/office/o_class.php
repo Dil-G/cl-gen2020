@@ -37,8 +37,9 @@ include_once '../../config/conn.php';
     <div id="officeNav"></div>
 
     <div class="content">
-        <br>
-        <h1 style="color:#6a7480;">Class 1A</h1>
+    
+    <div class="card">
+        <h1 style="color:#6a7480;">Class <?php echo substr($_GET['class'],5) ?></h1>
 
 
         <div class="l-part">
@@ -49,8 +50,8 @@ include_once '../../config/conn.php';
             <label for="medium"><b>Medium</b></label>
             <input type="text" placeholder="Sinhala" name="medium" required>
         </div>
-        <button type="submit" formaction="">Update</button>
-        <br>
+        <button type="submit" formaction="" style="margin-top:-40px;">Update</button>
+    </div>
         <br>
         <div class="card">
             <br>
