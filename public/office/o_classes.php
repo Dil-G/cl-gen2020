@@ -54,7 +54,11 @@
             </form>
             <br>
             <br>
-        <a class='btn editbtn' href = o_addClasses.php>Add Classes </a> 
+            <form action="../../src/addClass.php" method="POST">
+            <input type="hidden"  name="thisGrade" value="<?php echo $_GET['Ggrades'] ?>" required>
+                <button type="submit" class='btn viewbtn' name="addNewClass" >Add a class</button>
+            </form>
+       
             <hr>
             <table>
                 <tr>

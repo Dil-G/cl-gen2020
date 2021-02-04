@@ -98,7 +98,6 @@
                 $classID =$grades . $name ;
                 $ascii = $ascii + 1;
             }
-            $active = 1;
 
             $sql = "INSERT INTO classes (gradeID, classID, name) VALUES ('$grades','$classID','$name');";
             $sql2 = "UPDATE grades SET gradeActive = 1 WHERE gradeID = '$grades';";
@@ -112,11 +111,36 @@
                 header('Location: ../public/office/o_addClassYear.php?error='.$error);
             }
             $i=$i+1;
-        }
-           
+        } 
+    }else{}
+
+    if(isset($_POST['addNewClass'])){
+
+        $thisGrade = $_POST['thisGrade'];
+        echo $thisGrade;
+        $class_sql = "SELECT classID FROM classes where gradeID = '$thisGrade'";
+        $class_result= mysqli_query($conn,$class_sql);
+        $Number = mysqli_num_rows($class_result);
+
        
+        $noOfClasses =  $Number - 1;
+        echo $noOfClasses;
+        $asciiVal = 65 + $noOfClasses;
+        $nameNew = chr($asciiVal);
+        $classIDNew =$thisGrade . $nameNew ;
         
+        $sql = "INSERT INTO classes (gradeID, classID, name) VALUES ('$thisGrade','$classIDNew','$nameNew');";
+      
+        if($conn->query($sql)===TRUE){
+            echo '<script language = "javascript">';
+            echo 'alert("Details Added");';
+            header('Location: ../public/office/o_classes.php');
+        }else{
+            $error = "Cannot add Classes";
+            header('Location: ../public/office/o_classes.php?error='.$error);
+        }
     }
+    else{}
 
 
 
