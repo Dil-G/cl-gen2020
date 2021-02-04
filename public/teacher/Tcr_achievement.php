@@ -19,10 +19,13 @@
     <title>Achievements</title>
     <script src="../js/jquery-1.9.1.min.js"></script>
     <script src="../js/nav.js"></script>
-    <link rel="stylesheet" href="../css/view.css " type="text/css">
-<link type="text/css" rel="stylesheet" href="../css/main.css">
-<link type="text/css" rel="stylesheet" href="../css/register.css">
-<link rel="stylesheet" href="../css/messages.css " type="text/css">
+    <script src="../js/errors.js"></script>
+    <link type="text/css" rel="stylesheet" href="../css/main.css">
+    <link type="text/css" rel="stylesheet" href="../css/register.css">
+    <link type="text/css" rel="stylesheet" href="../css/register2.css">
+    <link type="text/css" rel="stylesheet" href="../css/view.css">
+    <link type="text/css" rel="stylesheet" href="../css/register.css">
+    <link type="text/css" rel="stylesheet" href="../css/messages.css">
 </head>
 
 <body name=top>
@@ -33,26 +36,36 @@
         <div id="nav"></div>
         <div class="content">
             <div class="container">
-                <form action="../../src/add_achievement.php" method="POST">
-                    <h1>Achievements</h1>
+            <form action="../../src/add_achievement.php"  onsubmit="return validateUsername()" method="POST" enctype="multipart/form-data">
+                <h1 style="color:#6a7480;">Achievement Form</h1>
                     <hr>
 
                     <label for="name"><b>Student Admission Number</b></label>
-                    <input type="text" placeholder="Enter admission number" name="Snumber" required>
-
+                    <input type="text" placeholder="Enter admission number"  id="username" name="anumber"  onblur="validateUsername(username.value)"  required>
+                  
+                    
                     <label for="nic"><b>Category ID</b></label>
                     <input type="text" placeholder="Enter category ID" name="cID" required>
 
-                    <label for="email"><b>Achievement Date</b></label>
-                    <input type="text" placeholder="Enter achievement date" name="aDate" required>
-
+                    <label for="aDate"><b>Achievement Date</b></label>
+                    <input type="date" placeholder="Enter achievement date" name="aDate" id="date" required>
+                    
                     <label for="position"><b>Achievement Name</b></label>
                     <input type="text" placeholder="Achievement name" name="aname" required>
 
-                    <label for="position"><b>Position</b></label>
-                    <input type="text" placeholder="Enter position" name="position" required>
 
-                    <label for="position"><b>Description</b></label>
+
+                    <label for="position"><b>Position</b></label>
+                    <select name="position" id="district" required>
+                    <option disabled selected value> -- Select an option -- </option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="patticipation">Participation</option>
+                        </select>
+                    <br><br>
+
+                    <label for="description"><b>Description</b></label>
                     <input type="text" placeholder="Enter description" name="description" required>
 
                     <label><b>Important Value:</b></label>
@@ -63,17 +76,14 @@
                     <br>
                     </br><br>
                     </br>
-                    <hr>
-
-                    <div>
-							<button type="submit" class="registerbtn" name="addAchieve">Save</button>
-							
-							<a href="sports.php" class="cancel-btn">Cancel</a>
-
-                    	</div>
-
-                </form>
+                  
+                    <br>
+                <div id="msg"></div>
                 <hr>
+                <div>
+                    <button type="submit" class="registerbtn" name="regbtn">Add</button>
+                    <a href="Tcr_dashboard2.php" class="cancel-btn">Cancel</a>
+              
             </div>
         </div>
         </div>
