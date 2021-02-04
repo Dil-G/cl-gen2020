@@ -98,10 +98,12 @@
                 $classID =$grades . $name ;
                 $ascii = $ascii + 1;
             }
+            $active = 1;
 
             $sql = "INSERT INTO classes (gradeID, classID, name) VALUES ('$grades','$classID','$name');";
+            $sql2 = "UPDATE grades SET gradeActive = 1 WHERE gradeID = '$grades';";
             
-            if($conn->query($sql)===TRUE){
+            if($conn->query($sql)===TRUE && $conn->query($sql2)===TRUE){
                 echo '<script language = "javascript">';
                 echo 'alert("Details Added");';
                 header('Location: ../public/office/o_addClassYear.php');
