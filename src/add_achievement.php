@@ -1,8 +1,15 @@
 <?php
+include ('../public/teacher/Tcr_achievement.php');
+
+//require_once('cl_gen.php');
 include_once '../config/conn.php';
+/*
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+echo "Connected successfully";
+*/
 
-
-if (isset($_POST['addAchieve'])) {
 
     $sql = "SELECT * from achievement";
     $result = mysqli_query($conn,$sql);
@@ -11,7 +18,7 @@ if (isset($_POST['addAchieve'])) {
     while($row=mysqli_fetch_array($result)){
 
         $lastId = $row['achievementID'];
-        $charID = substr($lastId,1);
+        $charID = substr($lastId,2);
         $intID = intval($charID);
 
         if($intID > $maxID){
@@ -22,49 +29,38 @@ if (isset($_POST['addAchieve'])) {
 
     if(mysqli_num_rows($result) == 0){
             $date = date("y");
-            $prefix = "A";
+            $prefix = "AC";
             $achievementID = $prefix . $date . "00001" ;
     }else{
 
             if(substr($maxID,0,2) != date("y")){
                 $date = date("y");
-                $prefix = "A";
+                $prefix = "AC";
                 $achievementID = $prefix . $date . "00001";
             }else{
-                $prefix = "A";
+                $prefix = "AC";
                 $achievementID = $prefix . ($maxID+1) ;
             }
 
 
+    echo $achievementID;
     }
-    $cID = $_POST['cID'];
-    $catID = substr($lastId,0,1);
 
-    if($catID == "SP"){
-        $sql2 = "SELECT * from csport WHERE SportID = '$cID'";
-        $result2 = mysqli_query($conn,$sql2);
-        $row2=mysqli_fetch_array($result2);
-        $category = $row2['SportName'];
-        $cType = "1";
-    }else if($catID == "SO"){
-        $sql3 = "SELECT * from csocieties  WHERE SocietyName = '$cID'";
-        $result3 = mysqli_query($conn,$sql3);
-        $row3=mysqli_fetch_array($result3);
-        $category = $row3['SocietyName'];
-        $cType = "2";
-    }
+if (isset($_POST['regbtn'])) {
 
     //$sportID = $_POST['Spid'];
-    $Snumber = $_POST['Snumber'];
-    $aDate = $_POST['aDate'];
-    $aname = $_POST['aname'];
-    $description = $_POST['description'];
+    $categoryID = $_POST['cID'];
+    $studentID = $_POST['anumber'];
+    $achievementDate = $_POST['aDate'];
+    $achievementName = $_POST['aname'];
     $position = $_POST['position'];
-    $Ivalue = $_POST['Ivalue'];
-    $rDate =  date("Y-m-d");
+    $value = $_POST['Ivalue'];
+    $description = $_POST['description'];
+    $date = date('Y-m-d');
+    $time = date('H:i:s');
 
-$sql1 = "INSERT INTO `achievement`(`achievementID`, `achievementName`, `stuID`, `date`, `categoryID`, `category`, `description`, `impValue`, `recordedDate`, `position`,`Ctype`) VALUES 
-('$achievementID','$aname','$Snumber','$aDate','$cID','$category','$description','$Ivalue','$rDate','$position','$cType')";
+$sql = "INSERT INTO achievement(achievementID,categoryID,studentID,achievementDate,achievementName,position,value,description,date,time) VALUES
+ ('$achievementID','$categoryID','$studentID', '$achievementDate','$achievementName','$position', '$value','$description','$date', '$time')";
 
 if ($conn->query($sql) === TRUE) {
     echo '<script language="javascript">';
