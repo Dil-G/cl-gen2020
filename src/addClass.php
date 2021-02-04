@@ -134,7 +134,7 @@
         if($conn->query($sql)===TRUE){
             echo '<script language = "javascript">';
             echo 'alert("Details Added");';
-            header('Location: ../public/office/o_classes.php');
+            header('Location: ../public/office/o_classes.php?Ggrades='.$thisGrade);
         }else{
             $error = "Cannot add Classes";
             header('Location: ../public/office/o_classes.php?error='.$error);

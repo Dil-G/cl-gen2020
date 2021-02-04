@@ -35,18 +35,17 @@
 
     <div class="content">
         <br>
-        <h1 style="color:#6a7480;">Grade 1 - Classes</h1>
+        <div class="card">
+        <h1 style="color:#6a7480;">Grade <?php echo substr($_GET['Ggrades'],5) ?>  Classes</h1>
         <form class="search" action="register_stu.html">
             <input type="text" placeholder="Search.." name="search">
             <button type="submit">Search</button>
         </form>
-
-        <br>
-        <br>
+        </div>
         <br>
 
         <div class="card">
-            <form>
+            <form style="float:left;margin-left:50px;">
                 <p><b>Upload student list</b></p>
                 <input type="file" id="myFile" name="filename" required>
                 </br>
@@ -54,11 +53,17 @@
             </form>
             <br>
             <br>
-            <form action="../../src/addClass.php" method="POST">
+            <br>
+            
+
+            <form action="../../src/addClass.php" method="POST" style="float:right;margin-right:50px;">
             <input type="hidden"  name="thisGrade" value="<?php echo $_GET['Ggrades'] ?>" required>
                 <button type="submit" class='btn viewbtn' name="addNewClass" >Add a class</button>
             </form>
-       
+            <br>
+            <br>
+            <br>
+            <br>
             <hr>
             <table>
                 <tr>

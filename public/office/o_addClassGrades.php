@@ -36,14 +36,13 @@
 
     <div class="content">
         <br>
-        <h1 style="color:#6a7480;">Classes</h1>
+        <div class="card">
+        <h1 style="color:#6a7480;"><?php echo $_GET['Gyear'] ?> Grades</h1>
         <form class="search" action="register_stu.html">
             <input type="text" placeholder="Search.." name="search">
             <button type="submit">Search</button>
         </form>
-
-        <br>
-        <br>
+        </div>
         <br>
 
         <div class="card">
