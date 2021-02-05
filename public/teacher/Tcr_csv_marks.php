@@ -81,7 +81,7 @@
 						<input type="text"  id="username" name="id" value = <?php  echo  $_SESSION['userID']?> readonly>
                         
 
-                    <label for="filename">Click on the "Choose File" button to upload a CSV file:</label>
+                    <label for="filename"><b>Upload a CSV file </b></label>
                     <input type="file" placeholder="Add Your File" id="myFile" name="file" required>
                     </br>
                     </br>
