@@ -32,17 +32,17 @@
 <body>
     <div id="officeNav"></div>
     <div class="content">
-
+    <div class="card">
         <h1 style="margin-top:20px;">Teachers List</h1>
 
-        <div class="btn-box">
-            <button id="button2" onclick="activated()">Added Users</button>
-            <button id="button1" onclick="notActivated()">Activated Users</button>
+        <div class="btn-box" style="margin-left:5px;">
+            <button id="button2" onclick="activated()">Activated Users</button>
+            <button id="button1" onclick="notActivated()">Un-activated Users</button>
         </div>
-
+    </div>
         <br>
         <br>
-        <div id="page1" class="page">
+        <div id="page2" class="page">
             <div class="card">
                 <div class="count">
                     <?php
@@ -51,11 +51,10 @@
                      }?>
                 </div>
                 <hr>
-                <table>
+                <table style="height:100px;overflow:auto;">
                     <tr>
                         <th>User ID</th>
                         <th>UserName</th>
-                        <th>User Type</th>
                         <th>Add Details</th>
                     </tr>
                     <?php
@@ -64,7 +63,6 @@
                     <tr>
                         <td><?php echo $row['userID'] ?></td>
                         <td><?php echo $row['username'] ?></td>
-                        <td><?php echo $row['userType'] ?></td>
                         <?php echo "<td><a class='btn editbtn' href = o_addTeacherDetails.php?userID=".$row['userID']." > Add </a> </td>"?>
                     </tr>
                     <?php
@@ -73,7 +71,7 @@
                 </table>
             </div>
         </div>
-        <div id="page2" class="page">
+        <div id="page1" class="page">
             <div class="card">
                 <div class="count">
                     <?php
@@ -82,22 +80,29 @@
                      }?>
                 </div>
                 <hr>
-                <table>
+                <table >
                     <tr>
                         <th>User ID</th>
-                        <th>UserName</th>
-                        <th>User Type</th>
+                        <th>Name</th>
                         <th>Edit Details</th>
                     </tr>
+                    <tbody style="display:block;height:200px;width:100%;overflow-x:hidden;overflow-y:auto;">
                     <?php
                         while($row=mysqli_fetch_assoc($teacher_result4)){
                         ?>
                     <tr>
                         <td><?php echo $row['userID'] ?></td>
-                        <td><?php echo $row['username'] ?></td>
-                        <td><?php echo $row['userType'] ?></td>
+                        <td><?php
+                        $name = $conn->query("SELECT * FROM teacher where teacherID='$row[userID]'");
+
+                        while($fname = mysqli_fetch_assoc($name)){
+                            echo $fname['fName'] . " ";
+                            echo $fname['lName'];
+                        }
+                        ?></td>
                         <?php echo "<td><a class='btn editbtn' href = Tcr_profile.php?userID=".$row['userID']." > update </a> </td>"?>
                     </tr>
+                    </tbody>
                     <?php
                         }
                         ?>
@@ -119,19 +124,6 @@
         button1.style.color = "#008080";
         button2.style.color = "#000";
 
-    } else if (url == "http://localhost/CL-GEN/public/office/o_teachersList.php?loggedin") {
-        page1.style.display = "block";
-        page2.style.display = "none";
-        button1.style.color = "#008080";
-        button2.style.color = "#000";
-    }
-
-    function activated() {
-        page1.style.display = "block";
-        page2.style.display = "none";
-        button1.style.color = "#008080";
-        button2.style.color = "#000";
-
     }
 
     function notActivated() {
@@ -139,6 +131,14 @@
         page2.style.display = "block";
         button1.style.color = "#000";
         button2.style.color = "#008080";
+
+    }
+
+    function activated() {
+        page1.style.display = "block";
+        page2.style.display = "none";
+        button1.style.color = "#008080";
+        button2.style.color = "#000";
     }
     </script>
 </body>

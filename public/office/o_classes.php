@@ -35,14 +35,18 @@
 
     <div class="content">
         <br>
-        <h1 style="color:#6a7480;">Grade 1 - Classes</h1>
+        <div class="card">
+        <h1 style="color:#6a7480;">Grade <?php echo substr($_GET['Ggrades'],5) ?>  Classes</h1>
+        <hr>
+        <form action="../../src/addClass.php" method="POST" style="float:left;margin-right:50px;">
+            <input type="hidden"  name="thisGrade" value="<?php echo $_GET['Ggrades'] ?>" required>
+                <button type="submit" class='btn viewbtn' name="addNewClass" >Add a class</button>
+            </form>
         <form class="search" action="register_stu.html">
             <input type="text" placeholder="Search.." name="search">
             <button type="submit">Search</button>
         </form>
-
-        <br>
-        <br>
+        </div>
         <br>
 
         <div class="card">
@@ -52,9 +56,6 @@
                 </br>
                 <button type="submit" formaction="">Upload</button>
             </form>
-            <br>
-            <br>
-        <a class='btn editbtn' href = o_addClasses.php>Add Classes </a> 
             <hr>
             <table>
                 <tr>

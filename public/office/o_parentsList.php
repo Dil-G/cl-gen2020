@@ -32,16 +32,18 @@
     <div id="officeNav"></div>
     <div class="content">
 
-        <h1>Parents List</h1>
-      
-        <div class="btn-box">
-            <button id="button2" onclick="activated()">Added Users</button>
-            <button id="button1" onclick="notActivated()">Activated Users</button>
+    <div class="card">
+        <h1 style="margin-top:20px;">Parents List</h1>
+
+        <div class="btn-box" style="margin-left:5px;">
+            <button id="button2" onclick="activated()">Activated Users</button>
+            <button id="button1" onclick="notActivated()">Un-activated Users</button>
         </div>
+    </div>
 
         <br>
         <br>
-        <div id="page1" class="page">
+        <div id="page2" class="page">
             <div class="card">
                 <div class="count">
                     <?php
@@ -54,7 +56,6 @@
                     <tr>
                         <th>User ID</th>
                         <th>UserName</th>
-                        <th>User Type</th>
                     </tr>
                     <?php
                         while($row=mysqli_fetch_assoc($parent_result1)){
@@ -62,7 +63,6 @@
                     <tr>
                         <td><?php echo $row['userID'] ?></td>
                         <td><?php echo $row['username'] ?></td>
-                        <td><?php echo $row['userType'] ?></td>
                     </tr>
                     <?php
                         }
@@ -70,7 +70,7 @@
                 </table>
             </div>
         </div>
-        <div id="page2" class="page">
+        <div id="page1" class="page">
             <div class="card">
                 <div class="count">
                     <?php
@@ -82,8 +82,7 @@
                 <table>
                     <tr>
                         <th>User ID</th>
-                        <th>UserName</th>
-                        <th>User Type</th>
+                        <th>Name</th>
                         <th>Edit Details</th>
                     </tr>
                     <?php
@@ -91,8 +90,13 @@
                         ?>
                     <tr>
                         <td><?php echo $row['userID'] ?></td>
-                        <td><?php echo $row['username'] ?></td>
-                        <td><?php echo $row['userType'] ?></td>
+                        <td><?php
+                        $name = $conn->query("SELECT * FROM parent where parentID='$row[userID]'");
+
+                        while($fname = mysqli_fetch_assoc($name)){
+                            echo $fname['name'] ;
+                        }
+                        ?></td>
                         <?php echo "<td><a class='btn editbtn' href = SProfile.php?userID=".$row['userID']." > update </a> </td>"?>
                     </tr>
                     <?php
@@ -110,20 +114,7 @@
     var button2 = document.getElementById("button2");
 
     let url = window.location.href;
-    if (url == "http://localhost/CL-GEN/public/office/o_parentsList.php") {
-        page1.style.display = "block";
-        page2.style.display = "none";
-        button1.style.color = "#008080";
-        button2.style.color = "#000";
-
-    } else if (url == "http://localhost/CL-GEN/public/admin/userlist.php?loggedin") {
-        page1.style.display = "block";
-        page2.style.display = "none";
-        button1.style.color = "#008080";
-        button2.style.color = "#000";
-    }
-
-    function activated() {
+    if (url == window.location.href) {
         page1.style.display = "block";
         page2.style.display = "none";
         button1.style.color = "#008080";
@@ -136,6 +127,14 @@
         page2.style.display = "block";
         button1.style.color = "#000";
         button2.style.color = "#008080";
+
+    }
+
+    function activated() {
+        page1.style.display = "block";
+        page2.style.display = "none";
+        button1.style.color = "#008080";
+        button2.style.color = "#000";
     }
     </script>
 </body>

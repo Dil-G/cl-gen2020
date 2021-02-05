@@ -1,5 +1,5 @@
 <?php
-include ('../public/teacher/Tcr_achievement.php');
+include ('../public/teacher/Tcr_achievement2.php');
 
 //require_once('cl_gen.php');
 include_once '../config/conn.php';
@@ -68,7 +68,7 @@ if ($conn->query($sql) === TRUE) {
 	//echo 'window.location.href="../driver.php";';
     echo '</script>';
     echo "Succesfully Added Record";
-    header('Location: ../public/teacher/Tcr_achievement.php');
+    header('Location: ../public/teacher/Tcr_achievement2.php');
 
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;

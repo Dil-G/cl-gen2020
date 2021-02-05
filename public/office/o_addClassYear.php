@@ -39,14 +39,14 @@
 
     <div class="content">
         <br>
-        <h1 style="color:#6a7480;">Years</h1>
+        <div class="card">
+        <h1 style="color:#6a7480;margin-left:-20px;">Academic Years</h1>
+        <hr>
         <form class="search" action="register_stu.html">
             <input type="text" placeholder="Search.." name="search">
             <button type="submit">Search</button>
         </form>
-
-        <br>
-        <br>
+        </div>
         <br>
 
         <div class="card">

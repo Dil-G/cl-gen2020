@@ -36,14 +36,14 @@
 
     <div class="content">
         <br>
-        <h1 style="color:#6a7480;">Classes</h1>
+        <div class="card">
+        <h1 style="color:#6a7480;"><?php echo $_GET['Gyear'] ?> Grades</h1>
+        <hr>
         <form class="search" action="register_stu.html">
             <input type="text" placeholder="Search.." name="search">
             <button type="submit">Search</button>
         </form>
-
-        <br>
-        <br>
+        </div>
         <br>
 
         <div class="card">
@@ -56,7 +56,6 @@
                     <th>Grade ID </th>
                     <th>Grade</th>
                     <th>Classes</th>
-                    <th>View classes</th>
 
                 </tr>
                 <?php
@@ -68,10 +67,13 @@
                     <td><?php echo $gradeID ?></td>
                     <td><?php echo $row['Grade'] ?></td>
                   
-                        <?php echo "<td><a class='btn editbtn' href = o_addClasses.php?grade=".$gradeID." >Add Classes </a> </td>"?>
+                        <?php if($row['gradeActive'] == 0){
+                            echo "<td><a class='btn viewbtn' href = o_addClasses.php?grade=".$gradeID." >Add Classes </a> </td>";
+                        }else{
+                            echo "<td><a class='btn editbtn' href = o_classes.php?Ggrades=".$gradeID." >View Classes </a> </td>";
+                        }?>
                        
                   
-                        <?php echo "<td><a class='btn editbtn' href = o_classes.php?Ggrades=".$gradeID." >View Classes </a> </td>"?>
                  
                     
                 </tr>

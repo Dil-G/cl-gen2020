@@ -59,18 +59,15 @@
         <div id="error"><?php echo $_GET['error']; ?></div>
         <?php } ?>
 
+        <div class="card">
         <h1> News List</h1>
-        <br>
+        <hr>
         <form class="search">
             <input type="text" placeholder="Search.." name="search">
             <button type="submit">Search</button>
         </form>
+        </div>
 
-
-        <br>
-
-
-        <br>
         <br>
 
 
