@@ -46,18 +46,26 @@
                         </div>
                     </a>
                 </td>
+                
+            
+          
                 <td style="width:28%">
-                    <a href="Tcr_position2.php">
+                    <a href="newsfeed3.php">
                         <div class="container">
 
                             <br>
                             <br>
-                            <h2><b>Generate Positions</b></h2>
+                            <h2><b>NewsFeed</b></h2>
 
-                            <img src="../../images/sport.png" width="110" height="100">
+                            <img src="../../images/online.png" width="110" height="100">
                         </div>
                     </a>
                 </td>
+                </td>
+
+
+
+           
 
                 <td style="width:28%">
                     <a href="Tcr_AddInquiery3.php">
@@ -90,50 +98,6 @@
                     </a>
                 </td>
                 <td style="width:28%">
-                    <a href="Tcr_achievement2.php">
-                        <div class="container">
-
-                            <br>
-                            <br>
-                            <h2><b>Cricket</b></h2>
-
-                            <img src="../../images/11.jpg" width="110" height="100">
-                        </div>
-                    </a>
-                </td>
-
-                <td style="width:28%">
-                    <a href="Tcr_achievement2.php">
-                        <div class="container">
-
-                            <br>
-                            <br>
-                            <h2><b>Volleyball</b></h2>
-
-                            <img src="../../images/13.jpg" width="110" height="100">
-                        </div>
-                    </a>
-                </td>
-
-
-            </tr>
-        </table>
-
-        <table  style="width:90%;margin-left:2%">
-            <tr>
-            <td style="width:28%">
-                    <a href="Tcr_achievement2.php">
-                        <div class="container">
-
-                            <br>
-                            <br>
-                            <h2><b>Tamil society</b></h2>
-
-                            <img src="../../images/society.png" width="110" height="100">
-                        </div>
-                    </a>
-                </td>
-                <td style="width:28%">
                     <a href="Tcr_profile3.php">
                         <div class="container">
 
@@ -147,12 +111,12 @@
                 </td>
                 </td>
                 <td style="width:28%">
-                    <a href="newsfeed3.php">
+                    <a href="Tcr_ach2.php">
                         <div class="container">
 
                             <br>
                             <br>
-                            <h2><b>NewsFeed</b></h2>
+                            <h2><b>Add achievement</b></h2>
 
                             <img src="../../images/online.png" width="110" height="100">
                         </div>
@@ -160,13 +124,10 @@
                 </td>
 
 
-
-
             </tr>
         </table>
 
-
-
+       
 
     </div>
 
