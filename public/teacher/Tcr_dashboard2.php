@@ -34,56 +34,17 @@
             <hr>
             <table  style="width:90%;margin-left:2%">
                 <tr>
-                <td style="width:28%">
-                        <a href="Tcr_achievement.php">
-                            <div class="container">
-
-                                <br>
-                                <br>
-                                <h2><b>Cricket</b></h2>
-
-                                <img src="../../images/11.jpg" width="110" height="100">
-                            </div>
-                        </a>
-                    </td>
-                    <td style="width:28%">
-                        <a href="Tcr_achievement.php">
-                            <div class="container">
-
-                                <br>
-                                <br>
-                                <h2><b>Volley ball</b></h2>
-
-                                <img src="../../images/13.jpg" width="110" height="100">
-                            </div>
-                        </a>
-                    </td>
-
-                    <td style="width:28%">
-                        <a href="Tcr_Achievement.php">
-                            <div class="container">
-
-                                <br>
-                                <br>
-                                <h2><b>Tamil society</b></h2>
-
-                                <img src="../../images/12.png" width="110" height="100">
-                            </div>
-                        </a>
-                    </td>
-                </tr>
-            </table>
-
+               
 
             <table  style="width:90%;margin-left:2%">
                 <tr>
                 <td style="width:28%">
-                        <a href="Tcr_Achievement.php">
+                        <a href="Tcr_Ach.php">
                             <div class="container">
 
                                 <br>
                                 <br>
-                                <h2><b>Music society</b></h2>
+                                <h2><b>Add achievements</b></h2>
 
                                 <img src="../../images/9.jpg" width="110" height="100">
                             </div>
