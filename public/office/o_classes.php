@@ -58,6 +58,7 @@
                             <label  for="file">Upload student list</label>
                           
                             <input type="file" name="file" id="file" >
+                            <input type="hidden" name="grade" id="grade" value="<?php echo $_GET['Ggrades'] ?>" >
                        
                        <br>
                      
