@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="../css/view.css " type="text/css">
     <link type="text/css" rel="stylesheet" href="../css/main.css">
     <link type="text/css" rel="stylesheet" href="../css/users.css">
+    <link type="text/css" rel="stylesheet" href="../css/messages.css">
     <script src="../js/jquery-1.9.1.min.js"></script>
     <script src="../js/pop.js"></script>
     <script src="../js/nav.js"></script>
@@ -51,14 +52,18 @@
 
         <div class="card">
 
+        <?php if (isset($_GET['error'])) { ?>
+        <div id="error"><?php echo $_GET['error']; ?></div>
+    <?php } ?>
+
         <form  action="../../src/uploadClasses.php" method="post" name="upload_excel" enctype="multipart/form-data">
              
                  
 
                             <label  for="file">Upload student list</label>
                           
-                            <input type="file" name="file" id="file" >
-                            <input type="hidden" name="grade" id="grade" value="<?php echo $_GET['Ggrades'] ?>" >
+                            <input type="file" name="file" id="file" required >
+                            <input type="hidden" name="grade" id="grade" value="<?php echo $_GET['Ggrades'] ?>"  >
                        
                        <br>
                      

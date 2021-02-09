@@ -3,14 +3,30 @@ require_once '../config/conn.php';
 
  if(isset($_POST["Import"])){
     
+  $thisGrade =$_POST["grade"];
+  $allowed =  array('csv');
     $filename=$_FILES["file"]["tmp_name"];    
-    $thisGrade =$_POST["grade"];
+    $ext = pathinfo($filename, PATHINFO_EXTENSION);
+    echo "EXTENSIOM" . $ext;
+    if(!in_array($ext,$allowed) ) {
+      // echo "<script type=\"text/javascript\">
+      //       alert(\"Upload a CSV file\");
+      //       window.location = \"../public/office/o_classes.php?Ggrades='.$thisGrade\"
+      //     </script>";
+      $error = "Upload a CSV file";
+            header('Location: ../public/office/o_classes.php?Ggrades='.$thisGrade.'&error=' . $error);
+            //exit;
+    }
 
+    
+
+    $firstLine = TRUE;
      if($_FILES["file"]["size"] > 0)
      {
         $file = fopen($filename, "r");
-          while (($getData = fgetcsv($file, 10000, ",")) !== FALSE)
+          while (($getData = fgetcsv($file, 1000, ",")) !== FALSE)
            {
+            if($firstLine) { $firstLine = false; continue; }
             $retireve = "SELECT * from classStudent WHERE studentID = $getData[1]";
             $resultRetrieve= mysqli_query($conn,$retireve);
         
@@ -35,7 +51,7 @@ require_once '../config/conn.php';
             header('Location: ../public/office/o_classes.php?error='.$error);
         }
         else {
-          header('Location: ../public/office/o_classes.php?Ggrades='.$thisGrade);
+         // header('Location: ../public/office/o_classes.php?Ggrades='.$thisGrade);
         }
            }
       
