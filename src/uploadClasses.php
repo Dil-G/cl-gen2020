@@ -5,9 +5,11 @@ require_once '../config/conn.php';
     
   $thisGrade =$_POST["grade"];
   $allowed =  array('csv');
-    $filename=$_FILES["file"]["tmp_name"];    
-    $ext = pathinfo($filename, PATHINFO_EXTENSION);
-    echo "EXTENSIOM" . $ext;
+  $checkFile=$_FILES["file"]["name"];
+    $filename=$_FILES["file"]["tmp_name"];   
+    print_r(pathinfo($checkFile,PATHINFO_BASENAME));
+    $ext = pathinfo($checkFile, PATHINFO_EXTENSION);
+    echo "///EXTENSIOM" . $ext;
     if(!in_array($ext,$allowed) ) {
       // echo "<script type=\"text/javascript\">
       //       alert(\"Upload a CSV file\");
@@ -15,7 +17,7 @@ require_once '../config/conn.php';
       //     </script>";
       $error = "Upload a CSV file";
             header('Location: ../public/office/o_classes.php?Ggrades='.$thisGrade.'&error=' . $error);
-            //exit;
+            exit();
     }
 
     
@@ -51,7 +53,7 @@ require_once '../config/conn.php';
             header('Location: ../public/office/o_classes.php?error='.$error);
         }
         else {
-         // header('Location: ../public/office/o_classes.php?Ggrades='.$thisGrade);
+         header('Location: ../public/office/o_classes.php?Ggrades='.$thisGrade);
         }
            }
       
