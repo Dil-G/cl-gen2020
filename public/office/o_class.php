@@ -10,6 +10,10 @@
       $dutyID = $_SESSION['dutyID'];
 
       if (in_array("d6", $dutyID)) {
+        include_once '../../config/conn.php';
+        //include "function.php";
+        include_once '../../src/addClass.php';
+        
 	?>
 
 <!DOCTYPE html>
@@ -17,9 +21,6 @@
 
 <head>
 
-    <?php
-include_once '../../config/conn.php';
-?>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title> Classes</title>
@@ -44,18 +45,16 @@ include_once '../../config/conn.php';
 
         <div class="l-part">
             <label for="name"><b>Class Teacher</b></label>
-            <input type="text" placeholder="W.H.M.Gunathilaka" name="name" required>
+            <input type="text" placeholder="Add the class teacher" name="name" required>
         </div>
         <div class="r-part">
             <label for="medium"><b>Medium</b></label>
-            <input type="text" placeholder="Sinhala" name="medium" required>
+            <input type="text" placeholder="Add the medium" name="medium" required>
         </div>
         <button type="submit" formaction="" style="margin-top:-40px;">Update</button>
     </div>
         <br>
         <div class="card">
-            <br>
-            <br>
             <hr>
             <table>
                 <tr>
@@ -63,21 +62,29 @@ include_once '../../config/conn.php';
                     <th>Student name</th>
                     <th>View Profile</th>
                 </tr>
+               
+                <?php
+                while($row=mysqli_fetch_assoc($classOne_result)) {
+                    ?>
                 <tr>
-                    <td>AAA</td>
-                    <td>BBB</td>
-                    <td>
-                        <form><button class="btn editbtn" type="submit" formaction="SProfile.php">View</button></form>
-                    </td>
+               
+                    <td><?php $studentID = $row['studentID'];
+                    echo $studentID;?>
+                    <td><?php
+                    $sql = "SELECT * FROM student WHERE admissionNo ='$studentID'";
+                    $result = $conn->query($sql);
+                    while($rows=mysqli_fetch_assoc($result)){
+                    echo $rows['fName'] . " " .  $rows['lName'];
+                    }
+                    ?></td>
+                    
+                  
+                        <?php echo "<td><a class='btn editbtn' href = SProfile.php?userID=".$row['studentID']." >View Profile </a> </td>"?>
+ 
+                </tr>
+                <?php }?>
 
-                </tr>
-                <tr>
-                    <td>AAA</td>
-                    <td>BBB</td>
-                    <td>
-                        <form><button class="btn editbtn" type="submit" formaction="SProfile.php">View</button></form>
-                    </td>
-                </tr>
+                
             </table>
         </div>
     </div>

@@ -142,10 +142,28 @@
     }
     else{}
 
+    if(isset($_GET['class'])){
+
+        
+
+        $thisClass= $_GET['class'];
+   
+        $classOne_sql = "SELECT * FROM classstudent where classID = '$thisClass'";
+
+        $classOne_result = $conn->query($classOne_sql);
+        
+        if(!$classOne_result  ){
+            $error="Invalid year";
+        }
+        
+        else{
+                
+        }
+        
+}
 
 
 
 
-
-    $conn->close();
+    //$conn->close();
 ?>
