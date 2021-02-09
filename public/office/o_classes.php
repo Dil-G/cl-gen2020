@@ -50,12 +50,29 @@
         <br>
 
         <div class="card">
-            <form>
+
+        <form  action="../../src/uploadClasses.php" method="post" name="upload_excel" enctype="multipart/form-data">
+             
+                 
+
+                            <label  for="file">Upload student list</label>
+                          
+                            <input type="file" name="file" id="file" >
+                       
+                       <br>
+                     
+                            <label for="Import">Import data</label>
+                            
+                                <button type="submit" id="submit" name="Import" class="editbtn" data-loading-text="Loading...">Import</button>
+                            
+                </form>
+
+            <!-- <form>
                 <p><b>Upload student list</b></p>
                 <input type="file" id="myFile" name="filename" required>
                 </br>
                 <button type="submit" formaction="">Upload</button>
-            </form>
+            </form> -->
             <hr>
             <table>
                 <tr>
