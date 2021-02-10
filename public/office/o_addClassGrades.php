@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="../css/view.css " type="text/css">
     <link type="text/css" rel="stylesheet" href="../css/main.css">
     <link type="text/css" rel="stylesheet" href="../css/users.css">
+    <link type="text/css" rel="stylesheet" href="../css/register.css">
     <script src="../js/jquery-1.9.1.min.js"></script>
     <script src="../js/pop.js"></script>
     <script src="../js/nav.js"></script>
@@ -71,7 +72,7 @@
                             echo "<td><a class='btn viewbtn' href = o_addClasses.php?grade=".$gradeID." >Add Classes </a> </td>";
                         }else{
                             
-                            echo "<td><a class='btn editbtn' href = o_classes.php?Ggrades=".$gradeID." >View Classes </a> </td>";
+                            echo "<td><a class='btn editbtn' href = o_classes.php?Ggrades=".$gradeID." >View Grade </a> </td>";
                         }?>
                        
                   

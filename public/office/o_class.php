@@ -46,7 +46,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
         <div id="error"><?php echo $_GET['error']; ?></div>
     <?php } ?>
                     <h1 style="color:#6a7480;">Class <?php echo substr($_GET['class'], 5) ?></h1>
-
+<hr>
                     <form action="../../src/uploadClasses.php" method="POST">
                         <?php
                         while ($row = mysqli_fetch_assoc($result)) {
@@ -68,10 +68,14 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 
                             <div class="r-part">
                                 <label for="medium"><b>Medium</b></label>
-
-                                <input type="text" placeholder="Add the medium" name="medium" value="<?php if ($row['name'] == TRUE) {
-                                                                                                            echo $row['medium'];
-                                                                                                        } ?>" required>
+                    <select name="medium" id="medium" required >
+                    <option  value="<?php if ($row['name'] == TRUE) {echo $row['medium'];} ?>"><?php if ($row['name'] == TRUE) {echo $row['medium'];} ?></option>
+                        <option value="English">English</option>
+                        <option value="Sinhala">Sinhala</option>
+                        <option value="Tamil">Tamil</option>
+                    </select>
+                    <br><br>
+                                <!-- <input type="text" placeholder="Add the medium" name="medium" value="<?php if ($row['name'] == TRUE) {echo $row['medium']; } ?>" required> -->
                             </div>
                         <?php } ?>
                         <button type="submit" style="margin-top:-40px;" name="uploadClass">Update</button>
