@@ -50,7 +50,6 @@
                             <th>Student ID</th>
                             <th>Student Name</th>
                             <th>Student NIC</th>
-                            <th>Student email</th>
                             <th>View Request</th>
                             <th>Generate Character Certificate</th>
                             <th>Reject Request</th>
@@ -85,7 +84,7 @@
                                 </div>
                             </td>
                             <td>
-                            <button class="btn editbtn" value="Open Window" onclick="openWinCharacter()" type="button">Generate Character Certificate</button>
+                            <?php echo "<a class='btn editbtn' href = 'character.php?userID=ST2000001' >Generate </a> " ?>
                                
                             </td>
                             <td><button class="btn dltbtn" type="button">Reject</button></td>
@@ -174,6 +173,7 @@
                             <td>123456789V</td>
                             <td>Student@gmail.com</td>
                             <td><button class="btn dltbtn" type="button">Download</button></td>
+                            
                         </tr>
                     </table>
                 </div>
@@ -191,7 +191,7 @@
     var button3 = document.getElementById("button3");
 
     let url = window.location.href;
-    if (url == "http://localhost/cl-gen2020/public/office/o_reqCc.php") {
+    if (url == window.location.href) {
         page1.style.display = "block";
         page2.style.display = "none";
         page3.style.display = "none";
