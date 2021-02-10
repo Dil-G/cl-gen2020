@@ -1,5 +1,5 @@
 <?php
-require_once '../config/conn.php';
+ require_once(realpath(dirname(__FILE__) . '/../config/conn.php'));
 
  if(isset($_POST["Import"])){
     
@@ -19,8 +19,6 @@ require_once '../config/conn.php';
             header('Location: ../public/office/o_classes.php?Ggrades='.$thisGrade.'&error=' . $error);
             exit();
     }
-
-    
 
     $firstLine = TRUE;
      if($_FILES["file"]["size"] > 0)
@@ -60,4 +58,64 @@ require_once '../config/conn.php';
            fclose($file);  
      }
   }   
+
+  if(isset($_GET['class'])){
+
+    $thisClass = $_GET['class'];
+  $sql = "SELECT * FROM classes WHERE classID = '$thisClass'"; 
+  $result = $conn->query($sql);
+  
+  if(!$result  ){
+      $error="Invalid year";
+  }
+  
+  else{
+          
+  }
+
+
+  }
+
+
+
+
+  if(isset($_POST['uploadClass'])){
+
+    
+    $teacherID = $_POST['teacherID'];
+    $medium = $_POST['medium'];
+    $classID = $_POST['classID'];
+
+   
+    $sql1 = "SELECT * FROM teacher WHERE teacherID = '$teacherID'"; 
+    $result1 = mysqli_query($conn, $sql1);
+  
+
+    if($result1 == FALSE){
+     
+      $error="Incorrect Teacher ID";
+      header('Location: ../public/office/o_class.php?class='.$classID.'&error=' . $error);
+      exit();
+  }else{
+    while($row1= $result1->fetch_assoc()) {
+      
+      $tcrname = $row1['fName']." ".$row1['lName'] ;
+
+      $sql2 = "UPDATE classes SET  teacherIncharge='$tcrname', teacherID='$teacherID', medium='$medium' WHERE classID = '$classID'" ;
+        $result2 = mysqli_query($conn, $sql2);
+
+        if($result2 == FALSE){
+          $error = "Cannot delete";
+          header('Location: ../public/office/o_class.php?class='.$classID.'&error=' . $error);
+        }else{
+          
+         header('Location: ../public/office/o_class.php?class='.$classID);
+        }
+     }
+    }
+}else{}
+  
+
+
+  
  ?>

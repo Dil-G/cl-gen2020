@@ -1,12 +1,12 @@
 .l-part{
     float:left;
-    width:50%;
+    width:36%;
     padding: 20px;
 }
 
 .r-part{
     float:right;
-    width:50%;
+    width:25%;
     padding: 20px;
 }
 

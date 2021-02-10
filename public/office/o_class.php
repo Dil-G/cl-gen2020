@@ -13,6 +13,7 @@
         include_once '../../config/conn.php';
         //include "function.php";
         include_once '../../src/addClass.php';
+        include_once '../../src/uploadClasses.php';
         
 	?>
 
@@ -42,16 +43,28 @@
     <div class="card">
         <h1 style="color:#6a7480;">Class <?php echo substr($_GET['class'],5) ?></h1>
 
-
+        <form action="../../src/uploadClasses.php" method="POST">
+<?php
+        while ($row = mysqli_fetch_assoc($result)) {
+?>
+ <div class="l-part">
+            <label for="teacherID"><b>Class Teacher ID</b></label>
+            <input type="text" placeholder="Add the class teacher" name="teacherID" value="<?php if ($row['teacherID'] == TRUE) { echo $row['teacherID'] ; }?>" required>
+            <input type="hidden" name="classID" value="<?php echo $_GET['class'] ?>" required>
+        </div>
         <div class="l-part">
             <label for="name"><b>Class Teacher</b></label>
-            <input type="text" placeholder="Add the class teacher" name="name" required>
+           
+            <input type="text" placeholder="Add the class teacher" name="name" value="<?php if ($row['teacherIncharge'] == TRUE) { echo $row['teacherIncharge'] ; }?>" readonly>
         </div>
+       
         <div class="r-part">
             <label for="medium"><b>Medium</b></label>
-            <input type="text" placeholder="Add the medium" name="medium" required>
+            <input type="text" placeholder="Add the medium" name="medium" value="<?php if ($row['name'] == TRUE) { echo $row['medium']; }?>" required>
         </div>
-        <button type="submit" formaction="" style="margin-top:-40px;">Update</button>
+        <?php } ?>
+        <button type="submit" style="margin-top:-40px;" name="uploadClass">Update</button>
+</form>
     </div>
         <br>
         <div class="card">
