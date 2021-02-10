@@ -26,6 +26,8 @@
     <link type="text/css" rel="stylesheet" href="../css/main.css">
     <link type="text/css" rel="stylesheet" href="../css/users.css">
     <link type="text/css" rel="stylesheet" href="../css/messages.css">
+    <link type="text/css" rel="stylesheet" href="../css/class.css">
+    <link type="text/css" rel="stylesheet" href="../css/register.css">
     <script src="../js/jquery-1.9.1.min.js"></script>
     <script src="../js/pop.js"></script>
     <script src="../js/nav.js"></script>
@@ -60,26 +62,32 @@
              
                  
 
-                            <label  for="file">Upload student list</label>
-                          
+                            <h3>Upload student list</h3>
+                            <hr>
+                            <div class="le-part">
+                            <label>Enter Number of Students</label>
+                            <input type="text" name="NoOfStudents" id="NoOfStudents" required >
+                           
+                            </div>
+                            <div class="ri-part">
+                            <label for="Import">Import data</label>
                             <input type="file" name="file" id="file" required >
                             <input type="hidden" name="grade" id="grade" value="<?php echo $_GET['Ggrades'] ?>"  >
-                       
-                       <br>
+                      
                      
-                            <label for="Import">Import data</label>
                             
+                            
+                            </div>
+                            <br>
+                            <br>
+                            <br>
+                            <br>  <br>
+                           
                                 <button type="submit" id="submit" name="Import" class="editbtn" data-loading-text="Loading...">Import</button>
-                            
+                               
                 </form>
-
-            <!-- <form>
-                <p><b>Upload student list</b></p>
-                <input type="file" id="myFile" name="filename" required>
-                </br>
-                <button type="submit" formaction="">Upload</button>
-            </form> -->
-            <hr>
+                <hr>
+          
             <table>
                 <tr>
                     <th>Class ID </th>
