@@ -732,9 +732,17 @@ function validateStudent() {
             document.getElementById("msg").style.display = "none";
 
         } else if (nic ==''){
+            if(document.getElementById("showNIC").style.display == "none"){
+                document.getElementById("nic").style.background = "#FFE5E4";
+                document.getElementById("nic").style.borderColor = "red";
+            }else if(document.getElementById("showNIC").style.display == "block"){
 
-            document.getElementById("nic").style.background = "#FFE5E4";
-            document.getElementById("nic").style.borderColor = "red";
+                document.getElementById("nic").style.background = "#FFE5E4";
+                document.getElementById("nic").style.borderColor = "red";
+                document.getElementById("msg").style.display = "block";
+                document.getElementById("msg").innerHTML = "Invalid NIC";
+                return false;
+            }
         }else{
             document.getElementById("nic").style.background = "#FFE5E4";
             document.getElementById("nic").style.borderColor = "red";
