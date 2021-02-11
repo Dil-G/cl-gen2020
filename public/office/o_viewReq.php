@@ -59,7 +59,7 @@
         <div id="error"><?php echo $_GET['error']; ?></div>
         <?php } ?>
 
-        <h1> Request List</h1>
+        <h1> Request List "IMAGE DOWNLOAD WENNE NA"</h1>
         <br>
         <form class="search">
             <input type="text" placeholder="Search.." name="search">
@@ -102,20 +102,23 @@
                     <td><?php echo $row['id'] ?></td>
                     <td><?php echo $row['name'] ?></td>
                     <td><?php echo $row['request'] ?></td>
-                    <td><?php echo $row['image'] ?></td>
-                    <td><?php echo $row['requestDate'] ?></td>
-                    <td><?php echo $row['requestTime'] ?></td>
                     <td>
                         <?php 
 						if($row['image']==TRUE){ ?>
-                        <div class="news-image"><?php echo "<img src='../../images/".$row['image']."' >"; ?></div>
+                         <a download="<?php echo $row['image'] ?>" href="../../images/" title="Image">
+                        <div class="news-image"  ><?php echo "<img src='../../images/".$row['image']."' height='100'  >"  ?></div>
+                       
+                        </a>
                         <?php }else{
 							echo "No Image..";
 						} ?>
                     </td>
+                    <td><?php echo $row['requestDate'] ?></td>
+                    <td><?php echo $row['requestTime'] ?></td>
+                    
                     
                     <td><button
-                            class="dltbtn"><?php echo "<a href = ../../src/delete_news.php?newsID='".$row['newsID']."' > Delete </a> "?></button>
+                            class="dltbtn"><?php echo "<a href = ../../src/delete_news.php?requestID='".$row['requestID']."' > Delete </a> "?></button>
                     </td>
 
                 </tr>
