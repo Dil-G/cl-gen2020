@@ -8,6 +8,11 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 
   $userID = $_SESSION['userID'];
   include('../../src/dashboard.php');
+  include('../../config/conn.php');
+
+  $user_sql = "SELECT * FROM office WHERE officerID='$userID'";
+  $user_res = $conn->query($user_sql);
+
 ?>
 
   <!DOCTYPE html>
@@ -26,10 +31,16 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 
   <body>
 
+
+  
+
     <div id="officeNav"></div>
     <div class="content">
       <div class="welcome">
         <div class="dash-content">
+        <h1>Hello <?php  while($uRow = $user_res->fetch_assoc()){
+   echo  $uRow['fName'] ." ". $uRow['lName']."!";
+  } ?></h1>
           <h2>Welcome to CL-GEN</h2>
           <?php echo "Date : " . date("Y/m/d"); ?>
         </div>

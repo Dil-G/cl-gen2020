@@ -66,7 +66,8 @@ if (isset($_POST['login'])){
 
                 }else if($row['userType'] == "officer"){
                     
-                    $sql = "SELECT * FROM officerduties WHERE officerID ='". $row["userID"]."'";
+                    $userID = $row['userID'];
+                    $sql = "SELECT * FROM officerduties WHERE officerID = '$userID'";
                     $result = mysqli_query($conn,$sql);
                     
                     $duty = array();
@@ -75,7 +76,7 @@ if (isset($_POST['login'])){
                     }
                     
                     $_SESSION['dutyID'] = $duty;
-                    $_SESSION['userID'] = $row['userID'];
+                    $_SESSION['userID'] =  $userID;
                     $_SESSION['username'] = $row['username'];
                     $_SESSION['userType'] = "officer";
                     header('Location: ../public/office/o_dashboard.php');
