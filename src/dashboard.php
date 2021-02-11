@@ -108,6 +108,17 @@ else{
     	
 }
 
+$news_sql = "SELECT * FROM newsfeed ORDER BY newsID DESC LIMIT 3;"; 
+$news_result = $conn->query($news_sql);
+
+if(!$news_result  ){
+    $error="ERROR";
+}
+
+else{
+    	
+}
+
 // $totUser = "SELECT COUNT(isActivated) FROM user where userType != 'superadmin' AND isActivated = 1"; 
             
             	

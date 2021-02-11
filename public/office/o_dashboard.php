@@ -46,7 +46,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                       while ($Srow = $student_result->fetch_assoc()) {
                         echo  $Srow["COUNT(isActivated)"] . "<br>";
                       } ?></h3> <span>Students</span>
-                  <p>Lorem ipsum dolor sit amet</p>
+                  <p>Click here to view data</p>
                 </div>
               </div>
             </a>
@@ -60,7 +60,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                       while ($Trow = $teacher_result->fetch_assoc()) {
                         echo $Trow["COUNT(isActivated)"] . "<br>";
                       } ?></h3> <span>Teachers</span>
-                  <p>Lorem ipsum dolor sit amet</p>
+                  <p>Click here to view data</p>
                 </div>
               </div>
             </a>
@@ -74,13 +74,14 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                       while ($Strow = $staff_result->fetch_assoc()) {
                         echo $Strow["COUNT(isActivated)"] . "<br>";
                       } ?></h3> <span>Office Staff</span>
-                  <p>Lorem ipsum dolor sit amet</p>
+                  <p>Click here to view data</p>
                 </div>
               </div>
             </a>
           </td>
         </tr>
       </table>
+
 
 
       <table class="statis two">
@@ -128,6 +129,38 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
         </tr>
       </table>
 
+
+      <table class="statis three">
+        <tr>
+
+          <th>
+          <a href=newsfeed.php>
+            <div class="box "><h2 style=" float:left;margin-left:20px;">NEWS</h2>
+            <p style="float:right;line-height:35px;margin-right:25px;">View More<i class="fa fa-angle-right" style="float:right;margin-left:85%;line-height:120px;"></i></p>
+          </div>
+          </a>
+            
+          </th>
+
+        </tr>
+        <tr>
+          <td>
+            <div class="box ">
+              <?php
+              while ($Nrow = $news_result->fetch_assoc()) {
+                echo "<h3>" . $Nrow["title"] . "<hr></h3>";
+
+                echo substr($Nrow['news'], 0, 200) . "...<br>";
+              ?>
+                <hr>
+              <?php
+              } ?>
+
+            </div>
+          </td>
+
+        </tr>
+      </table>
 
   </body>
 
