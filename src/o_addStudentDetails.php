@@ -45,7 +45,6 @@ if ($conn->query($sql) === TRUE &&  $conn->query($update_query1)){
 
     header('Location: ../public/office/o_addParentDetails.php?userID='.$admissionNo);
 
-
     }else{
         $error = "Cannot add record";
                header('Location: ../public/office/o_addStudentDetails.php?error='.$error);

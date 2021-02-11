@@ -1,6 +1,7 @@
 
 window.onload = function () {
     document.getElementById("msg").style.display = "none";
+    document.getElementById("showNIC").style.display = "none";
 
 };
 
@@ -322,8 +323,6 @@ else if (nic.length == 12 && /^\d+$/.test(nic) == true) {
     }
 
 
-
-
 }
 
 function validateRegistration() {
@@ -542,15 +541,30 @@ function validateStudent() {
     return false;
     }
 
+    function dates() {
+        var d1 = new Date('Jul 12 1920');
+        
+        var g1 = new Date();
+        return { d1, g1 };
+    }
     //Date
     var date = document.getElementById("date").value;
+    var now = new Date();
+    var year = new Date(date);
+
+    var thisYear = now.getFullYear();
+    var dobYear = year.getFullYear();
+
+    var max = 20;
+    var min = 5;
+
+    var dif = thisYear - dobYear;
     var reg = /^(\d{4})\-(\d{1,2})\-(\d{1,2})$/;
-    var { d1, g1 } = dates();
-    var now = new Date(date);
+   // var { d1, g1 } = dates();
 
     if (date != '') {
         if (regs = date.match(reg)) {
-            if (now.getTime() < d1.getTime() || now.getTime() > g1.getTime()) {
+            if (dif < min || dif > max || dif < 0) {
                 document.getElementById("date").style.background = "#FFE5E4";
                 document.getElementById("date").style.borderColor = "red";
                 document.getElementById("msg").style.display = "block";
@@ -576,11 +590,7 @@ function validateStudent() {
         return false;
     }
 
-    function dates() {
-        var d1 = new Date('Jul 12 1920');
-        var g1 = new Date();
-        return { d1, g1 };
-    }
+  
 
         
     //District
@@ -866,6 +876,61 @@ function checkDate(date) {
     } else {
         document.getElementById("date").style.background = "#FFE5E4";
         document.getElementById("date").style.borderColor = "red";
+        return false;
+    }
+
+    function dates() {
+        var d1 = new Date('Jul 12 1920');
+        var g1 = new Date();
+        return { d1, g1 };
+    }
+}
+
+function checkStuDate(date) {
+
+     
+    var date = document.getElementById("date").value;
+    var now = new Date();
+    var year = new Date(date);
+            
+    var thisYear = now.getFullYear();
+    var dobYear = year.getFullYear();
+            
+    var max = 20;
+    var min = 5;
+            
+    var dif = thisYear - dobYear;
+    var reg = /^(\d{4})\-(\d{1,2})\-(\d{1,2})$/;
+               // var { d1, g1 } = dates();
+            
+    if (date != '') {
+        if (regs = date.match(reg)) {
+            if (dif < min || dif > max || dif < 0) {
+                document.getElementById("date").style.background = "#FFE5E4";
+                document.getElementById("date").style.borderColor = "red";
+                document.getElementById("showNIC").style.display = "none";
+                return false;
+
+            } else if( dif >= 15) {
+                document.getElementById("date").style.background = "#f1f1f1";
+                document.getElementById("date").style.borderColor = "transparent";
+                document.getElementById("showNIC").style.display = "block";
+                document.getElementById("showNIC").style.borderColor = "transparent";
+            }else{
+                document.getElementById("date").style.background = "#f1f1f1";
+                document.getElementById("date").style.borderColor = "transparent";
+                document.getElementById("showNIC").style.display = "none";
+            }
+        } else {
+            document.getElementById("date").style.background = "#FFE5E4";
+            document.getElementById("date").style.borderColor = "red";
+            document.getElementById("showNIC").style.display = "none";
+            return false;
+        }
+    } else {
+        document.getElementById("date").style.background = "#FFE5E4";
+        document.getElementById("date").style.borderColor = "red";
+        document.getElementById("showNIC").style.display = "none";
         return false;
     }
 

@@ -28,7 +28,7 @@
     <link type="text/css" rel="stylesheet" href="../css/register.css">
     <link type="text/css" rel="stylesheet" href="../css/messages.css">
     <link type="text/css" rel="stylesheet" href="../css/main.css">
-    
+
     <script src="../js/jquery-1.9.1.min.js"></script>
     <script src="../js/errors.js"></script>
     <script src="../js/nav.js"></script>
@@ -57,39 +57,47 @@
 				echo"failed";	
 				}
 ?>
-    
+
     <div id="pg1">
         <div class="content">
-            <div class="container"  style="margin-left:250px;">
-                <form action="../../src/o_addStudentDetails.php" onsubmit="return validateStudent()" method="POST" enctype="multipart/form-data">
+            <div class="container" style="margin-left:250px;">
+                <form action="../../src/o_addStudentDetails.php" onsubmit="return validateStudent()" method="POST"
+                    enctype="multipart/form-data">
                     <h1>Add Student Details</h1>
                     <hr>
 
 
-                <label for="stuID"><b>Admission Number</b></label>
-				<input type="text" placeholder="Enter ID" value = "<?php if (isset ($_GET['userID'])){echo $_GET['userID'];}?>" name="stuID" required>
-				
-				<label for="stufName"><b>First Name</b></label>
-				<input type="text" placeholder="Enter First Name" name="stufName"  id="fname" onblur="checkFname(fname.value)"  >
+                    <label for="stuID"><b>Admission Number</b></label>
+                    <input type="text" placeholder="Enter ID"
+                        value="<?php if (isset ($_GET['userID'])){echo $_GET['userID'];}?>" name="stuID" required>
 
-                <label for="stumName"><b>Middle Name</b></label>
-				<input type="text" placeholder="Enter Middle Name" name="stumName"  id="mname" onblur="checkMname(mname.value)"  >
+                    <label for="stufName"><b>First Name</b></label>
+                    <input type="text" placeholder="Enter First Name" name="stufName" id="fname"
+                        onblur="checkFname(fname.value)">
 
-                <label for="stulName"><b>Last Name</b></label>
-				<input type="text" placeholder="Enter Last Name" name="stulName" id="lname" onblur="checkLname(lname.value)"  >
+                    <label for="stumName"><b>Middle Name</b></label>
+                    <input type="text" placeholder="Enter Middle Name" name="stumName" id="mname"
+                        onblur="checkMname(mname.value)">
 
-                <label for="stuDob"><b>Date of Birth</b></label> <br>
-                <input type="date" placeholder="Enter Date of Birth" name="stuDob" id="date" onblur="checkDate(date.value)" >
+                    <label for="stulName"><b>Last Name</b></label>
+                    <input type="text" placeholder="Enter Last Name" name="stulName" id="lname"
+                        onblur="checkLname(lname.value)">
 
-                <label for="stuAdStreet"><b>Residential Addresss - Street</b></label>
-                <input type="text" placeholder="Enter Number and street" name="stuAdStreet"  id="street" onblur="checkStreet(street.value)">
-                
-                <label for="stuAdCity"><b>Residential Addresss - City</b></label>
-                <input type="text" placeholder="Enter City" name="stuAdCity" id="city" onblur="checkCity(city.value)">
+                    <label for="stuDob"><b>Date of Birth</b></label> <br>
+                    <input type="date" placeholder="Enter Date of Birth" name="stuDob" id="date"
+                        onblur="checkStuDate(date.value)">
+
+                    <label for="stuAdStreet"><b>Residential Addresss - Street</b></label>
+                    <input type="text" placeholder="Enter Number and street" name="stuAdStreet" id="street"
+                        onblur="checkStreet(street.value)">
+
+                    <label for="stuAdCity"><b>Residential Addresss - City</b></label>
+                    <input type="text" placeholder="Enter City" name="stuAdCity" id="city"
+                        onblur="checkCity(city.value)">
 
                     <label for="stuAdDistrict"><b>Residential Addresss - District</b></label>
-                    <select name="stuAdDistrict" id="district" onblur="checkDistrict(district.value)"  >
-                    <option disabled selected value> -- Select an option -- </option>
+                    <select name="stuAdDistrict" id="district" onblur="checkDistrict(district.value)">
+                        <option disabled selected value> -- Select an option -- </option>
                         <option value="Ampara">Ampara</option>
                         <option value="Anuradhapura">Anuradhapura</option>
                         <option value="Badulla">Badulla</option>
@@ -118,44 +126,50 @@
                     </select>
                     <br><br>
 
-                
+
                     <label for="stuReligion"><b>Religion</b></label>
-                    <input type="text" placeholder="Enter Religion" name="stuReligion" id="religion" onblur="checkReligion(religion.value)" >
+                    <input type="text" placeholder="Enter Religion" name="stuReligion" id="religion"
+                        onblur="checkReligion(religion.value)">
 
                     <label for="stuEnteredGrade"><b>Entered Grade</b></label>
-                    <input type="text" placeholder="Enter Grade Entered" name="stuEnteredGrade" id="grade" onblur="checkGrade(grade.value)" >
+                    <input type="text" placeholder="Enter Grade Entered" name="stuEnteredGrade" id="grade"
+                        onblur="checkGrade(grade.value)">
 
                     <label for="email"><b>Email</b></label>
-				<input type="email" placeholder="Enter Email" name="email" id="email" onblur="validateEmail(email.value)" >
+                    <input type="email" placeholder="Enter Email" name="email" id="email"
+                        onblur="validateEmail(email.value)">
 
-				<label for="contactNo"><b>Contact Number</b></label>
-                <input type="text" placeholder="Enter Contact Number" name="contactNo" id="contactNo"  onblur="contact(contactNo.value)" >
-                <br>
-                <label><b>Gender:</b></label>
-			    <label> <input type="radio" name="stuGender" value="Male" required> Male</label>
-			    <label> <input type="radio" name="stuGender" value="Female" required> Female</label>
-                <label><input type="radio" name="stuGender" value="Other" required> Other</label>
-                <br></br>
-                <br>
-                </br>
+                    <label for="contactNo"><b>Contact Number</b></label>
+                    <input type="text" placeholder="Enter Contact Number" name="contactNo" id="contactNo"
+                        onblur="contact(contactNo.value)">
+                    <br>
+                    <label><b>Gender:</b></label>
+                    <label> <input type="radio" name="stuGender" value="Male" required> Male</label>
+                    <label> <input type="radio" name="stuGender" value="Female" required> Female</label>
+                    <label><input type="radio" name="stuGender" value="Other" required> Other</label>
+                    <br></br>
+                    <br>
+                    </br>
 
-                <label for="nic"><b>NIC </b></label>
-                <input type="text" placeholder="Add NIC Number" id="nic" name="nic" onblur="NIC(nic.value)" >
-                <div id="noNIC" class="text"></div>
+                    <div id="showNIC">
+                        <label for="nic"><b>NIC </b></label>
+                        <input type="text" placeholder="Add NIC Number" id="nic" name="nic" onblur="NIC(nic.value)">
+                        <div id="noNIC" class="text"></div>
+                    </div>
 
-                <label for="stuPhoto"><b>Add Your Photo</b></label>
-                <input type="file" placeholder="Add Your Photo" name="stuPhoto" id="stuPhoto">
-                <br>
-                <div id="msg"></div>
-                <hr>
-                <div>
-               
-                
-                    <button type="submit" class="registerbtn" style="margin-left: 5px;" name="regbtn1">Save</button>
-                    <a href="o_studentsList.php" class="cancel-btn">Cancel</a>
-                    
-                   
-                   
+                    <label for="stuPhoto"><b>Add Your Photo</b></label>
+                    <input type="file" placeholder="Add Your Photo" name="stuPhoto" id="stuPhoto">
+                    <br>
+                    <div id="msg"></div>
+                    <hr>
+                    <div>
+
+
+                        <button type="submit" class="registerbtn" style="margin-left: 5px;" name="regbtn1">Save</button>
+                        <a href="o_studentsList.php" class="cancel-btn">Cancel</a>
+
+
+
                     </div>
                     <br>
                     <hr>
