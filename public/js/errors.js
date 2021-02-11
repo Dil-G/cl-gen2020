@@ -187,15 +187,23 @@ function validateRegistrations() {
         return false;
     }
 
-    
     var date = document.getElementById("date").value;
+    var now = new Date();
+    var year = new Date(date);
+            
+    var thisYear = now.getFullYear();
+    var dobYear = year.getFullYear();
+            
+    var max = 65;
+    var min = 18;
+            
+    var dif = thisYear - dobYear;
     var reg = /^(\d{4})\-(\d{1,2})\-(\d{1,2})$/;
-    var { d1, g1 } = dates();
-    var now = new Date(date);
-
+               // var { d1, g1 } = dates();
+            
     if (date != '') {
         if (regs = date.match(reg)) {
-            if (now.getTime() < d1.getTime() || now.getTime() > g1.getTime()) {
+            if (dif < min || dif > max || dif < 0) {
                 document.getElementById("date").style.background = "#FFE5E4";
                 document.getElementById("date").style.borderColor = "red";
                 document.getElementById("msg").style.display = "block";
@@ -861,13 +869,23 @@ function validateParent(){
 
 function checkDate(date) {
 
+    var date = document.getElementById("date").value;
+    var now = new Date();
+    var year = new Date(date);
+            
+    var thisYear = now.getFullYear();
+    var dobYear = year.getFullYear();
+            
+    var max = 65;
+    var min = 18;
+            
+    var dif = thisYear - dobYear;
     var reg = /^(\d{4})\-(\d{1,2})\-(\d{1,2})$/;
-    var { d1, g1 } = dates();
-    var now = new Date(date);
-
+               // var { d1, g1 } = dates();
+            
     if (date != '') {
         if (regs = date.match(reg)) {
-            if (now.getTime() < d1.getTime() || now.getTime() > g1.getTime()) {
+            if (dif < min || dif > max || dif < 0) {
                 document.getElementById("date").style.background = "#FFE5E4";
                 document.getElementById("date").style.borderColor = "red";
                 return false;

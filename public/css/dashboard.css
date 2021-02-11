@@ -13,6 +13,16 @@ body {background-color: #2a2b3d}
   margin-left: 3px;
 }
 
+a:visited {
+	color: #313348;
+}
+a:hover {
+	color: black;
+  }
+  a:active {
+    color: #313348;
+  }
+
 .welcome .dash-content {
   background-color: #fff;
   padding: 15px;

@@ -7,10 +7,10 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 } elseif ($_SESSION['userType'] == 'officer') {
 
   $userID = $_SESSION['userID'];
-  include ('../../src/dashboard.php');
+  include('../../src/dashboard.php');
 ?>
 
-<!DOCTYPE html>
+  <!DOCTYPE html>
   <html lang="en">
 
   <head>
@@ -21,7 +21,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
     <script src="../js/nav.js"></script>
     <link type="text/css" rel="stylesheet" href="../css/main.css">
     <link type="text/css" rel="stylesheet" href="../css/dashboard.css">
-    <title>Admin Dashboard</title>
+    <title>Office Dashboard</title>
   </head>
 
   <body>
@@ -30,52 +30,58 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
     <div class="content">
       <div class="welcome">
         <div class="dash-content">
-          <h2>Welcome to Dashboard</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.</p>
+          <h2>Welcome to CL-GEN</h2>
+          <?php echo "Date : " . date("Y/m/d"); ?>
         </div>
       </div>
 
       <table class="statis one">
         <tr>
           <td>
-            <div class="box">
-              <i class="fa fa-users "></i>
-              <div class="info">
-                <h3><?php
-					while($Srow = $student_result->fetch_assoc()) {
-						echo  $Srow["COUNT(isActivated)"]. "<br>";
-					}?></h3> <span>Students</span>
-                <p>Lorem ipsum dolor sit amet</p>
+            <a href=o_studentsList.php>
+              <div class="box">
+                <i class="fa fa-users "></i>
+                <div class="info">
+                  <h3><?php
+                      while ($Srow = $student_result->fetch_assoc()) {
+                        echo  $Srow["COUNT(isActivated)"] . "<br>";
+                      } ?></h3> <span>Students</span>
+                  <p>Lorem ipsum dolor sit amet</p>
+                </div>
               </div>
-            </div>
+            </a>
           </td>
           <td>
-            <div class="box">
-              <i class="fa fa-users"></i>
-              <div class="info">
-                <h3><?php
-					while($Trow = $teacher_result->fetch_assoc()) {
-						echo $Trow["COUNT(isActivated)"]. "<br>";
-					}?></h3> <span>Teachers</span>
-                <p>Lorem ipsum dolor sit amet</p>
+            <a href=o_teachersList.php>
+              <div class="box">
+                <i class="fa fa-users"></i>
+                <div class="info">
+                  <h3><?php
+                      while ($Trow = $teacher_result->fetch_assoc()) {
+                        echo $Trow["COUNT(isActivated)"] . "<br>";
+                      } ?></h3> <span>Teachers</span>
+                  <p>Lorem ipsum dolor sit amet</p>
+                </div>
               </div>
-            </div>
+            </a>
           </td>
           <td>
-            <div class="box">
-              <i class="fa fa-users "></i>
-              <div class="info">
-              <h3><?php
-					while($Strow = $staff_result->fetch_assoc()) {
-						echo $Strow["COUNT(isActivated)"]. "<br>";
-					}?></h3> <span>Office Staff</span>
-                <p>Lorem ipsum dolor sit amet</p>
+            <a href=o_officersList.php>
+              <div class="box">
+                <i class="fa fa-users "></i>
+                <div class="info">
+                  <h3><?php
+                      while ($Strow = $staff_result->fetch_assoc()) {
+                        echo $Strow["COUNT(isActivated)"] . "<br>";
+                      } ?></h3> <span>Office Staff</span>
+                  <p>Lorem ipsum dolor sit amet</p>
+                </div>
               </div>
-            </div>
+            </a>
           </td>
         </tr>
       </table>
- 
+
 
       <table class="statis two">
         <tr>
@@ -83,9 +89,9 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
             <div class="box ">
               <i class="fa fa-futbol-o"></i>
               <h3><?php
-					while($Sprow = $sport_result->fetch_assoc()) {
-						echo $Sprow["COUNT(SportID)"]. "<br>";
-					}?></h3> 
+                  while ($Sprow = $sport_result->fetch_assoc()) {
+                    echo $Sprow["COUNT(SportID)"] . "<br>";
+                  } ?></h3>
               <p class="lead">Sports</p>
             </div>
           </td>
@@ -93,9 +99,9 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
             <div class="box ">
               <i class="fa fa-music"></i>
               <h3><?php
-					while($Sorow = $society_result->fetch_assoc()) {
-						echo $Sorow["COUNT(SocietyID)"]. "<br>";
-					}?></h3> 
+                  while ($Sorow = $society_result->fetch_assoc()) {
+                    echo $Sorow["COUNT(SocietyID)"] . "<br>";
+                  } ?></h3>
               <p class="lead">Societies</p>
             </div>
           </td>
@@ -103,9 +109,9 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
             <div class="box ">
               <i class="fa fa-user"></i>
               <h3><?php
-					while($Urow = $user_res4->fetch_assoc()) {
-						echo $Urow["COUNT(isActivated)"]. "<br>";
-					}?></h3>
+                  while ($Urow = $user_res4->fetch_assoc()) {
+                    echo $Urow["COUNT(isActivated)"] . "<br>";
+                  } ?></h3>
               <p class="lead">Users</p>
             </div>
           </td>
@@ -113,9 +119,9 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
             <div class="box ">
               <i class="fa fa-trophy"></i>
               <h3><?php
-					while($Arow = $achievement_result->fetch_assoc()) {
-						echo $Arow["COUNT(achievementID)"]. "<br>";
-					}?></h3>
+                  while ($Arow = $achievement_result->fetch_assoc()) {
+                    echo $Arow["COUNT(achievementID)"] . "<br>";
+                  } ?></h3>
               <p class="lead">Achievements</p>
             </div>
           </td>

@@ -128,8 +128,15 @@
 
 
                     <label for="stuReligion"><b>Religion</b></label>
-                    <input type="text" placeholder="Enter Religion" name="stuReligion" id="religion"
-                        onblur="checkReligion(religion.value)">
+                    <select name="stuReligion" id="religion" onblur="checkReligion(religion.value)">
+                        <option disabled selected value> -- Select an option -- </option>
+                        <option value="Buddhism">Buddhism</option>
+                        <option value="Christian">Christian</option>
+                        <option value="Catholic">Catholic</option>
+                        <option value="Hinduism">Hinduism</option>
+                        <option value="Islam">Islam</option>
+                        </select>
+                    <br><br>
 
                     <label for="stuEnteredGrade"><b>Entered Grade</b></label>
                     <input type="text" placeholder="Enter Grade Entered" name="stuEnteredGrade" id="grade"
