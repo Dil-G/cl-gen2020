@@ -73,7 +73,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                                                     </div>
                                                 </td>
                                             <?php } ?>
-
+                                            
                                         <div class="first">
                                             <div class="row">
                                                 <div class="col">
