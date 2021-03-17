@@ -15,7 +15,7 @@ if (isset($_GET['newsID'])){
         }
         else
         {
-            header('Location: ../public/office/edit_newsfeed.php?errorrrrrr');
+            header('Location: ../public/office/edit_newsfeed.php?error');
         }
     }else{
         header('Location: ../public/office/update_newsfeed.php?error');

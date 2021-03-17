@@ -1,16 +1,16 @@
 <?php
-    session_start();
+session_start();
 
-    if(!isset($_SESSION['userType']) && !isset($_SESSION['userID'])){
-        $error = "Please Login!";
-        header('Location: ../common/loginFile.php?error='.$error);
-    }elseif($_SESSION['userType'] == 'officer'){
-      
-      $dutyID = array();
-      $dutyID = $_SESSION['dutyID'];
+if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
+    $error = "Please Login!";
+    header('Location: ../common/loginFile.php?error=' . $error);
+} elseif ($_SESSION['userType'] == 'officer') {
 
-      if (in_array("d5", $dutyID)) {
-    ?>
+    $dutyID = array();
+    $dutyID = $_SESSION['dutyID'];
+
+    if (in_array("d5", $dutyID)) {
+?>
 
 <!DOCTYPE html>
 <html>
@@ -32,11 +32,11 @@
     <div id="officeNav"></div>
 
     <div class="content">
-        <?php if (isset($_GET['message'])){?>
+        <?php if (isset($_GET['message'])) { ?>
         <div id="message"><?php echo $_GET['message']; ?></div>
         <?php } ?>
 
-        <?php if (isset($_GET['error'])){?>
+        <?php if (isset($_GET['error'])) { ?>
         <div id="error"><?php echo $_GET['error']; ?></div>
         <?php } ?>
 
@@ -81,4 +81,5 @@
 
 </html>
 
-<?php }} ?>
+<?php }
+} ?>
