@@ -17,7 +17,7 @@ if (isset($_POST['add_news'])){
 
         if(mysqli_query($conn,$sql)){
             if (move_uploaded_file($_FILES['image']['tmp_name'], $target)) {
-                $message = "Image uploaded successfully";
+                $message = "News added successfully";
                 header('Location: ../public/office/news_list.php?message='.$message);
             }else{
                 header('Location: ../public/office/news_list.php');

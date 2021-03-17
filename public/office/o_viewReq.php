@@ -23,6 +23,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
     <link rel="stylesheet" href="../css/register.css " type="text/css">
     <link type="text/css" rel="stylesheet" href="../css/main.css">
     <link type="text/css" rel="stylesheet" href="../css/profile.css">
+    <link type="text/css" rel="stylesheet" href="../css/tabs.css">
     <link type="text/css" rel="stylesheet" href="../css/view.css">
     <link type="text/css" rel="stylesheet" href="../css/pop.css">
 </head>
@@ -32,9 +33,11 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 
             require_once '../../config/conn.php';
 
-            $sql = "SELECT * FROM Request ORDER BY requestID DESC";
+            $sql = "SELECT * FROM Request  WHERE RequestStatus='1' ORDER BY requestID DESC";
+            $sql1 = "SELECT * FROM Request WHERE RequestStatus='0' ORDER BY requestID DESC ";
 
             $res = mysqli_query($conn, $sql);
+            $res1 = mysqli_query($conn, $sql1);
 
             if ($res) {
                 //echo "Sucessfull";
@@ -66,66 +69,129 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                 <input type="text" placeholder="Search.." name="search">
                 <button type="submit">Search</button>
             </form>
+
+            <div class="btn-box" style="margin-left:5px;">
+                <button id="button2" onclick="activated()">Requests</button>
+                <button id="button1" onclick="notActivated()">Responded requests</button>
+            </div>
         </div>
 
         <br>
 
-
-        <div class="card">
-
-
-            <br>
+        <div id="page2" class="page">
+            <div class="card">
 
 
-            <hr>
-
-            <table>
-                <tr>
-                    <th>Request ID</th>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Request</th>
-                    <th>Proof</th>
-                    <th>Date</th>
-                    <th>Time</th>
-
-                </tr>
-                <?php
-                        while ($row = mysqli_fetch_assoc($res)) {
-                        ?>
-                <tr>
-                    <td><?php echo $row['requestID'] ?></td>
-                    <td><?php echo $row['id'] ?></td>
-                    <td><?php echo $row['name'] ?></td>
-                    <td><?php echo $row['request'] ?></td>
-                    <td>
-                        <?php
-                                    if ($row['image'] == TRUE) { ?>
-                        <a download="<?php echo $row['image'] ?>" href="../../images/" title="Image">
-                            <div class="news-image">
-                                <?php echo "<img src='../../images/" . $row['image'] . "' height='100'  >"  ?></div>
-
-                        </a>
-                        <?php } else {
-                                        echo "No Image..";
-                                    } ?>
-                    </td>
-                    <td><?php echo $row['requestDate'] ?></td>
-                    <td><?php echo $row['requestTime'] ?></td>
+                <br>
 
 
-                    <td><button
-                            class="dltbtn"><?php echo "<a href = ../../src/delete_news.php?requestID='" . $row['requestID'] . "' > Delete </a> " ?></button>
-                    </td>
+                <hr>
 
-                </tr>
-                <?php
-                        }
-                        ?>
-            </table>
+                <table>
+                    <tr>
+                        <th>Request ID</th>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Request</th>
+                        <th>Proof</th>
+                        <th>Date</th>
+                        <th>Time</th>
+
+                    </tr>
+                    <?php
+                            while ($row = mysqli_fetch_assoc($res)) {
+                                $task = 'delete';
+                            ?>
+                    <tr>
+                        <td><?php echo $row['requestID'] ?></td>
+                        <td><?php echo $row['id'] ?></td>
+                        <td><?php echo $row['name'] ?></td>
+                        <td><?php echo $row['request'] ?></td>
+                        <td>
+                            <?php
+                                        if ($row['image'] == TRUE) { ?>
+                            <a download="<?php echo $row['image'] ?>" href="../../images/" title="Image">
+                                <div class="news-image">
+                                    <?php echo "<img src='../../images/" . $row['image'] . "' height='100'  >"  ?></div>
+
+                            </a>
+                            <?php } else {
+                                            echo "No Image..";
+                                        } ?>
+                        </td>
+                        <td><?php echo $row['requestDate'] ?></td>
+                        <td><?php echo $row['requestTime'] ?></td>
+
+
+                        <td><button
+                                class="dltbtn"><?php echo "<a href = ../../src/manage_request.php?requestID=" . $row['requestID']   . '&task=' . $task . " > Delete </a> " ?></button>
+                        </td>
+
+                    </tr>
+                    <?php
+                            }
+                            ?>
+                </table>
+            </div>
         </div>
 
+        <div id="page1" class="page">
+            <div class="card">
 
+
+                <br>
+
+
+                <hr>
+
+                <table>
+                    <tr>
+                        <th>Request ID</th>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Request</th>
+                        <th>Proof</th>
+                        <th>Date</th>
+                        <th>Time</th>
+
+                    </tr>
+                    <?php
+                            while ($row1 = mysqli_fetch_assoc($res1)) {
+                                $task = 'resolve';
+                            ?>
+                    <tr>
+                        <td><?php echo $row1['requestID'] ?></td>
+                        <td><?php echo $row1['id'] ?></td>
+                        <td><?php echo $row1['name'] ?></td>
+                        <td><?php echo $row1['request'] ?></td>
+                        <td>
+                            <?php
+                                        if ($row1['image'] == TRUE) { ?>
+                            <a download="<?php echo $row1['image'] ?>" href="../../images/" title="Image">
+                                <div class="news-image">
+                                    <?php echo "<img src='../../images/" . $row1['image'] . "' height='100'  >"  ?>
+                                </div>
+
+                            </a>
+                            <?php } else {
+                                            echo "No Image..";
+                                        } ?>
+                        </td>
+                        <td><?php echo $row1['requestDate'] ?></td>
+                        <td><?php echo $row1['requestTime'] ?></td>
+
+
+                        <td><button
+                                class="dltbtn"><?php echo "<a href = ../../src/manage_request.php?requestID=" . $row['requestID'] . '&task=' . $task . " > Mark as resolved </a> " ?></button>
+                        </td>
+
+                    </tr>
+                    <?php
+                            }
+                            ?>
+                </table>
+            </div>
+        </div>
 
     </div>
     <script>
@@ -161,3 +227,34 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 
 <?php }
 } ?>
+
+<script>
+var page1 = document.getElementById("page1");
+var page2 = document.getElementById("page2");
+var button1 = document.getElementById("button1");
+var button2 = document.getElementById("button2");
+
+let url = window.location.href;
+if (url == window.location.href) {
+    page1.style.display = "block";
+    page2.style.display = "none";
+    button1.style.color = "#008080";
+    button2.style.color = "#000";
+
+}
+
+function notActivated() {
+    page1.style.display = "none";
+    page2.style.display = "block";
+    button1.style.color = "#000";
+    button2.style.color = "#008080";
+
+}
+
+function activated() {
+    page1.style.display = "block";
+    page2.style.display = "none";
+    button1.style.color = "#008080";
+    button2.style.color = "#000";
+}
+</script>

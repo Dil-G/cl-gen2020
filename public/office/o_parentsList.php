@@ -17,7 +17,7 @@
 <!DOCTYPE html>
 
 <head>
-  
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Parents User List</title>
     <link rel="stylesheet" href="../css/view.css " type="text/css">
@@ -28,18 +28,19 @@
     <script src="../js/pop.js"></script>
     <script src="../js/nav.js"></script>
 </head>
+
 <body>
     <div id="officeNav"></div>
     <div class="content">
 
-    <div class="card">
-        <h1 style="margin-top:20px;">Parents List</h1>
+        <div class="card">
+            <h1 style="margin-top:20px;">Parents List</h1>
 
-        <div class="btn-box" style="margin-left:5px;">
-            <button id="button2" onclick="activated()">Activated Users</button>
-            <button id="button1" onclick="notActivated()">Un-activated Users</button>
+            <div class="btn-box" style="margin-left:5px;">
+                <button id="button2" onclick="activated()">Activated Users</button>
+                <button id="button1" onclick="notActivated()">Un-activated Users</button>
+            </div>
         </div>
-    </div>
 
         <br>
         <br>
