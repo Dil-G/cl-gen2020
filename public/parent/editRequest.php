@@ -31,7 +31,7 @@
   <div id="nav"></div>
 		
   <div class="content">
-  <form action="../../src/parentrequest.php" method="POST" enctype="multipart/form-data">
+ 
       <h1>Edit Request Form</h1>
 
 
@@ -39,7 +39,7 @@
     <br>
 
 
-        <form>
+    <form action="../../src/request1.php" method="POST" enctype="multipart/form-data">
           <hr>
 
 
