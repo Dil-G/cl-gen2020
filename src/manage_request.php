@@ -29,8 +29,7 @@ if (isset($_GET['requestID']) && $task == 'delete') {
     $result1 = mysqli_query($conn, $sql1);
 
     if ($result1) {
-       
-        //header('Location: ../public/office/o_viewReq.php');
+       header('Location: ../public/office/o_viewReq.php');
     } else {
         $error = "Cannot resolve the request";
        header('Location: ../public/office/o_viewReq.php?error');

@@ -208,12 +208,7 @@ html body{
 a{
 	text-decoration:none;
 }
-a:visited {
-	color: Black;
-}
-a:active {
-	color: black;
-  }
+
 
 .content ul li{
 	text-align: left;

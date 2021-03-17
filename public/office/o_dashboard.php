@@ -162,9 +162,44 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                     <div class="box ">
                         <?php
               while ($Nrow = $news_result->fetch_assoc()) {
-                echo "<h3>" . $Nrow["title"] . "<hr></h3>";
+                echo "<h3 >" . $Nrow["title"] . "<hr></h3>";
 
                 echo substr($Nrow['news'], 0, 200) . "...<br>";
+              ?>
+                        <hr>
+                        <?php
+              } ?>
+
+                    </div>
+                </td>
+
+            </tr>
+        </table>
+
+        <table class="statis four">
+            <tr>
+
+                <th>
+                    <a href=o_viewReq.php>
+                        <div class="box ">
+                            <h2 style=" float:left;margin-left:20px;">Requests</h2>
+                            <p style="float:right;line-height:35px;margin-right:25px;">View More<i
+                                    class="fa fa-angle-right"
+                                    style="float:right;margin-left:85%;line-height:120px;"></i></p>
+                        </div>
+                    </a>
+
+                </th>
+
+            </tr>
+            <tr>
+                <td>
+                    <div class="box ">
+                        <?php
+              while ($Rrow = $request_result->fetch_assoc()) {
+                echo "<h3>" . $Rrow["name"] . "<hr></h3>";
+
+                echo substr($Rrow['request'], 0, 200) . "...<br>";
               ?>
                         <hr>
                         <?php

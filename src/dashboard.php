@@ -7,121 +7,106 @@ $staff_sql = "SELECT COUNT(isActivated) FROM user where userType='officer' AND i
 
 $staff_result = $conn->query($staff_sql);
 
-if(!$staff_result){
+if (!$staff_result) {
     $error = "Cannot Retrieve Data";
-}
-else{
-    	
+} else {
 }
 
 
 
-$teacher_sql = "SELECT COUNT(isActivated) FROM user where userType='teacher' AND isActivated=1"; 
+$teacher_sql = "SELECT COUNT(isActivated) FROM user where userType='teacher' AND isActivated=1";
 $teacher_result = $conn->query($teacher_sql);
-            
 
-if(!$staff_result){
+
+if (!$staff_result) {
     $error = "Cannot Retrieve Data";
-}
-else{
-    	
+} else {
 }
 
-$student_sql = "SELECT COUNT(isActivated) FROM user where userType='student' AND isActivated=1"; 
+$student_sql = "SELECT COUNT(isActivated) FROM user where userType='student' AND isActivated=1";
 $student_result = $conn->query($student_sql);
 
-if(!$student_result  ){
-    $error="Invalid UserID";
+if (!$student_result) {
+    $error = "Invalid UserID";
+} else {
 }
 
-else{
-    	
-}
-
-$parent_sql = "SELECT COUNT(isActivated) FROM user where userType='parent' AND isActivated=0"; 
+$parent_sql = "SELECT COUNT(isActivated) FROM user where userType='parent' AND isActivated=0";
 $parent_sql3 = "SELECT COUNT(isActivated) FROM user where userType='parent' AND isActivated=1";
 $parent_sql1 = "SELECT * FROM user where isActivated=0 and userType='parent' ";
 $parent_sql2 = "SELECT * FROM parent  ";
-		
+
 $parent_result = $conn->query($parent_sql);
 $parent_result3 = $conn->query($parent_sql3);
 $parent_result1 = $conn->query($parent_sql1);
 $parent_result2 = $conn->query($parent_sql2);
 
-if(!$parent_result ){
+if (!$parent_result) {
     $error = "Cannot Retrieve Data";
-}
-else{
-    	
+} else {
 }
 
 
 $user_sql1 = "SELECT * FROM user WHERE isActivated = 0  AND userType != 'superadmin'";
 $user_sql2 = "SELECT * FROM user WHERE (isActivated = 1 AND userType != 'superadmin')";
 
-$user_sql3 = "SELECT COUNT(isActivated) FROM user where userType != 'superadmin' AND isActivated = 0 "; 
-$user_sql4 = "SELECT COUNT(isActivated) FROM user where userType != 'superadmin' AND isActivated = 1"; 
-            
-            	
-$user_res1= mysqli_query($conn,$user_sql1);
-$user_res2= mysqli_query($conn,$user_sql2);
-$user_res3= mysqli_query($conn,$user_sql3);
-$user_res4= mysqli_query($conn,$user_sql4);
+$user_sql3 = "SELECT COUNT(isActivated) FROM user where userType != 'superadmin' AND isActivated = 0 ";
+$user_sql4 = "SELECT COUNT(isActivated) FROM user where userType != 'superadmin' AND isActivated = 1";
 
-if(!$user_res1 || !$user_res2 || !$user_res3 || !$user_res4){
+
+$user_res1 = mysqli_query($conn, $user_sql1);
+$user_res2 = mysqli_query($conn, $user_sql2);
+$user_res3 = mysqli_query($conn, $user_sql3);
+$user_res4 = mysqli_query($conn, $user_sql4);
+
+if (!$user_res1 || !$user_res2 || !$user_res3 || !$user_res4) {
     $error = "Error in Retrieving aaaa";
-}
-else{
-    	
+} else {
 }
 
-$sport_sql = "SELECT COUNT(SportID) FROM csports"; 
+$sport_sql = "SELECT COUNT(SportID) FROM csports";
 $sport_result = $conn->query($sport_sql);
 
-if(!$sport_result  ){
-    $error="Invalid UserID";
+if (!$sport_result) {
+    $error = "Invalid UserID";
+} else {
 }
 
-else{
-    	
-}
-
-$society_sql = "SELECT COUNT(SocietyID) FROM csocieties"; 
+$society_sql = "SELECT COUNT(SocietyID) FROM csocieties";
 $society_result = $conn->query($society_sql);
 
-if(!$society_result  ){
-    $error="Invalid UserID";
+if (!$society_result) {
+    $error = "Invalid UserID";
+} else {
 }
 
-else{
-    	
-}
-
-$achievement_sql = "SELECT COUNT(achievementID) FROM achievement"; 
+$achievement_sql = "SELECT COUNT(achievementID) FROM achievement";
 $achievement_result = $conn->query($achievement_sql);
 
-if(!$achievement_result  ){
-    $error="Invalid UserID";
+if (!$achievement_result) {
+    $error = "Invalid UserID";
+} else {
 }
 
-else{
-    	
-}
-
-$news_sql = "SELECT * FROM newsfeed ORDER BY newsID DESC LIMIT 3;"; 
+$news_sql = "SELECT * FROM newsfeed ORDER BY newsID DESC LIMIT 3;";
 $news_result = $conn->query($news_sql);
 
-if(!$news_result  ){
-    $error="ERROR";
+if (!$news_result) {
+    $error = "ERROR";
+} else {
 }
 
-else{
-    	
+$request_sql = "SELECT * FROM request WHERE RequestStatus = '0' ORDER BY requestID DESC LIMIT 4;";
+$request_result = $conn->query($request_sql);
+
+if (!$request_result) {
+    $error = "ERROR";
+} else {
 }
 
 // $totUser = "SELECT COUNT(isActivated) FROM user where userType != 'superadmin' AND isActivated = 1"; 
-            
-            	
+
+
 // $totalUser= mysqli_query($conn,$totUser);
 
 // $totalUsers =$totalUser->fetch_assoc();

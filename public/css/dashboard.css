@@ -160,9 +160,18 @@ margin: 20px;
 }
 
  .three {
-  width:50%
+  width:48%;
+  float: left;
+}
+ .four {
+  float: right !important;;
+  width:48%;
 }
 
+.statis .four {
+  float: right !important;;
+  width:48%;
+}
 /*chart*/
 .chrt3 {
   padding-bottom: 50px;
