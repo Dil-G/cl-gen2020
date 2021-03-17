@@ -107,7 +107,7 @@
                             echo $fname['lName'];
                         }
                         ?></td>
-                        <?php echo "<td><a class='btn editbtn' href = SProfile.php?userID=".$row['userID']." > update </a> </td>"?>
+                        <?php echo "<td><a class='btn editbtn' href = update_student.php?userID=".$row['userID']." > update </a> </td>"?>
                     </tr>
                     <?php
                         }

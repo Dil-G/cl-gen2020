@@ -921,7 +921,7 @@ function checkStuDate(date) {
             
     var thisYear = now.getFullYear();
     var dobYear = year.getFullYear();
-            
+          
     var max = 20;
     var min = 5;
             

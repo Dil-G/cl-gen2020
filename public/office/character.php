@@ -268,11 +268,22 @@ $document->render();
 
 	// $dompdf->loadHtml($html);
     $filePath = "../../pdf/character-certificate-$userID.pdf";
+    $file = "character-certificate-$userID.pdf";
 
 	$files = $document->output();
-	file_put_contents($filePath, $files);
+    
+	$data =file_put_contents($filePath, $files);
 
-    $sql = "INSERT INTO characterCertificate (characterID, studentID, characterCertificate) VALUES ('1','$userID','$filePath');";
+    $dbh = new PDO("mysql:host=localhost;dbname=cl_gen","root","");
+    file_get_contents($files);
+    $stmt = $dbh->prepare("INSERT INTO characterCertificate VALUES ('',?,?,?)");
+    $stmt->bindParam(1,$userID);
+    $stmt->bindParam(2,$file);
+    $stmt->bindParam(3,$data);
+    $stmt->execute();
+
+
+   // $sql = "INSERT INTO characterCertificate (characterID, studentID, characterCertificate) VALUES ('1','$userID','$file');";
 
     if ($conn->query($sql) === TRUE ) {
         header('Location: o_reqCc.php');

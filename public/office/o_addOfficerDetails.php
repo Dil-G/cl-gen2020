@@ -38,7 +38,7 @@
     
     <div class="content">
         <div class="container">
-            <form action="../../src/addOfficerDetails.php" method="POST" onsubmit="return validateRegistration()">
+            <form action="../../src/register.php" method="POST" onsubmit="return validateRegistration()">
                 <h1>Add Officer Details</h1>
                 <hr>
 
@@ -103,7 +103,7 @@
 					<hr>
 					<div id="msg"></div>
 					<div>
-                        <button type="submit" class="registerbtn" name="regbtn">Save</button>
+                        <button type="submit" class="registerbtn" name="officerReg">Save</button>
                         
                         <a href="o_officersList.php" class="cancel-btn">Cancel</a>
 

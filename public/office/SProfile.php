@@ -65,6 +65,8 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                                 <hr>
                                 <div class="card">
                                     <form>
+
+                                    
                                             <?php if ($row['stuPhoto'] == TRUE) { ?>
                                                 <td width="30%">
                                                     <div class="image" style="width:180px;">

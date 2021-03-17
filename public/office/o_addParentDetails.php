@@ -57,7 +57,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 
         <div class="content">
             <div class="container" style="margin-left:250px;padding:0 20px">
-                <form action="../../src/o_addParentDetails.php" onsubmit="return validateParent()" method="POST">
+                <form action="../../src/register.php" onsubmit="return validateParent()" method="POST">
 
                     <h1>Parent's / Guardian's Details</h1>
                     <hr>
@@ -86,7 +86,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                     <div id="msg"></div>
                     <hr>
                     <div>
-                        <button type="submit" style="margin-left: 5px;" class="registerbtn" name="regbtn2">Save</button>
+                        <button type="submit" style="margin-left: 5px;" class="registerbtn" name="parentReg">Save</button>
 
                         <a href="o_studentsList.php" class="cancel-btn">Cancel</a>
                     </div>

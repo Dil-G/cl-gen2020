@@ -41,14 +41,11 @@
 
 				require_once '../../config/conn.php';
 
-				$sql = "SELECT * FROM user where userID='".$_GET['userID']."'";
+				$sql = "SELECT * FROM student where admissionNo='".$_GET['userID']."'";
 
                 $res= mysqli_query($conn,$sql);
-                $row=mysqli_fetch_array($res);
                 
-                $stuID = $row['userID'];
-                $charID = substr($stuID,2);
-                $pID = "PR" . $charID;
+            
 
 				if($res){
 				//echo "Sucessfull";
@@ -61,43 +58,44 @@
     <div id="pg1">
         <div class="content">
             <div class="container" style="margin-left:250px;">
-                <form action="../../src/register.php" onsubmit="return validateStudent()" method="POST"
+                <form action="../../src/o_addStudentDetails.php" onsubmit="return validateStudent()" method="POST"
                     enctype="multipart/form-data">
                     <h1>Add Student Details</h1>
                     <hr>
-
-
+                    <?php
+                    while($row=mysqli_fetch_array($res)){
+                        ?>
                     <label for="stuID"><b>Admission Number</b></label>
                     <input type="text" placeholder="Enter ID"
                         value="<?php if (isset ($_GET['userID'])){echo $_GET['userID'];}?>" name="stuID" required>
 
                     <label for="stufName"><b>First Name</b></label>
-                    <input type="text" placeholder="Enter First Name" name="stufName" id="fname"
+                    <input type="text" placeholder="Enter First Name" name="stufName" id="fname"  value="<?php echo $row['fName']?>"
                         onblur="checkFname(fname.value)">
 
                     <label for="stumName"><b>Middle Name</b></label>
-                    <input type="text" placeholder="Enter Middle Name" name="stumName" id="mname"
+                    <input type="text" placeholder="Enter Middle Name" name="stumName" id="mname" value="<?php echo $row['mName']?>"
                         onblur="checkMname(mname.value)">
 
                     <label for="stulName"><b>Last Name</b></label>
-                    <input type="text" placeholder="Enter Last Name" name="stulName" id="lname"
+                    <input type="text" placeholder="Enter Last Name" name="stulName" id="lname" value="<?php echo $row['lName']?>"
                         onblur="checkLname(lname.value)">
 
                     <label for="stuDob"><b>Date of Birth</b></label> <br>
-                    <input type="date" placeholder="Enter Date of Birth" name="stuDob" id="date"
+                    <input type="date" placeholder="Enter Date of Birth" name="stuDob" id="date" value="<?php echo $row['dob']?>"
                         onblur="checkStuDate(date.value)">
 
                     <label for="stuAdStreet"><b>Residential Addresss - Street</b></label>
-                    <input type="text" placeholder="Enter Number and street" name="stuAdStreet" id="street"
+                    <input type="text" placeholder="Enter Number and street" name="stuAdStreet" id="street" value="<?php echo $row['adStreet']?>"
                         onblur="checkStreet(street.value)">
 
                     <label for="stuAdCity"><b>Residential Addresss - City</b></label>
-                    <input type="text" placeholder="Enter City" name="stuAdCity" id="city"
+                    <input type="text" placeholder="Enter City" name="stuAdCity" id="city" value="<?php echo $row['adCity']?>"
                         onblur="checkCity(city.value)">
 
                     <label for="stuAdDistrict"><b>Residential Addresss - District</b></label>
                     <select name="stuAdDistrict" id="district" onblur="checkDistrict(district.value)">
-                        <option disabled selected value> -- Select an option -- </option>
+                        <option  value="<?php echo $row['userID']?> "> <?php echo $row['adDistrict']?></option>
                         <option value="Ampara">Ampara</option>
                         <option value="Anuradhapura">Anuradhapura</option>
                         <option value="Badulla">Badulla</option>
@@ -129,7 +127,7 @@
 
                     <label for="stuReligion"><b>Religion</b></label>
                     <select name="stuReligion" id="religion" onblur="checkReligion(religion.value)">
-                        <option disabled selected value> -- Select an option -- </option>
+                        <option value="<?php echo $row['userID']?>"><?php echo $row['religion']?></option>
                         <option value="Buddhism">Buddhism</option>
                         <option value="Christian">Christian</option>
                         <option value="Catholic">Catholic</option>
@@ -139,28 +137,25 @@
                     <br><br>
 
                     <label for="stuEnteredGrade"><b>Entered Grade</b></label>
-                    <input type="text" placeholder="Enter Grade Entered" name="stuEnteredGrade" id="grade"
+                    <input type="text" placeholder="Enter Grade Entered" name="stuEnteredGrade" id="grade" value="<?php echo $row['enteredGrade']?>"
                         onblur="checkGrade(grade.value)">
 
                     <label for="email"><b>Email</b></label>
-                    <input type="email" placeholder="Enter Email" name="email" id="email"
+                    <input type="email" placeholder="Enter Email" name="email" id="email" value="<?php echo $row['email']?>"
                         onblur="validateEmail(email.value)">
 
                     <label for="contactNo"><b>Contact Number</b></label>
-                    <input type="text" placeholder="Enter Contact Number" name="contactNo" id="contactNo"
+                    <input type="text" placeholder="Enter Contact Number" name="contactNo" id="contactNo" value="<?php echo $row['contactNo']?>"
                         onblur="contact(contactNo.value)">
                     <br>
                     <label><b>Gender:</b></label>
-                    <label> <input type="radio" name="stuGender" value="Male" required> Male</label>
-                    <label> <input type="radio" name="stuGender" value="Female" required> Female</label>
-                    <label><input type="radio" name="stuGender" value="Other" required> Other</label>
-                    <br></br>
-                    <br>
-                    </br>
+                    <input type="text" placeholder="Enter Gender" name="gender" id="gender" value="<?php echo $row['gender']?>"
+                     >
+                  
 
                     <div id="showNIC">
                         <label for="nic"><b>NIC </b></label>
-                        <input type="text" placeholder="Add NIC Number" id="nic" name="nic" onblur="NIC(nic.value)">
+                        <input type="text" placeholder="Add NIC Number" id="nic" name="nic" onblur="NIC(nic.value)"> value="<?php echo $row['stuNIC']?>"
                         <div id="noNIC" class="text"></div>
                     </div>
 
@@ -172,13 +167,14 @@
                     <div>
 
 
-                        <button type="submit" class="registerbtn" style="margin-left: 5px;" name="studentReg">Save</button>
+                        <button type="submit" class="registerbtn" style="margin-left: 5px;" name="regbtn1">Save</button>
                         <a href="o_studentsList.php" class="cancel-btn">Cancel</a>
 
 
                     </div>
                     <br>
                     <hr>
+                    <?php } ?>
                 </form>
             </div>
         </div>

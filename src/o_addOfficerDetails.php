@@ -7,7 +7,7 @@ if ($conn->connect_error) {
 } 
 echo "Connected successfully";
 
-if (isset($_POST['regbtn'])) {
+if (isset($_POST['officerReg'])) {
         
     $userID = $_POST['officerid'];
     $fName = $_POST['fname'];

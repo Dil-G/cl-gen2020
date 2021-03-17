@@ -45,7 +45,7 @@
                   
                     
                     <label for="nic"><b>Category ID</b></label>
-                    <input type="text" placeholder="Enter category ID" name="cID" required>
+                    <input type="text" placeholder="Enter category ID" name="cID" id="cID"  required>
 
                     <label for="aDate"><b>Achievement Date</b></label>
                     <input type="date" placeholder="Enter achievement date" name="aDate" id="date" required>

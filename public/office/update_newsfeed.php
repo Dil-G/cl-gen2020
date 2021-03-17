@@ -53,13 +53,10 @@ if (isset($_GET['newsID'])){
     <div id="officeNav"></div>
 
     <div class="content">
-            <h1>Add News</h1>
 
 
             <div class="container" style="margin-left:25%!important;
   width: 50% !important;">
-                <br>
-
 
                 <form action="../../src/newsfeed_update.php" method="POST" enctype="multipart/form-data">
                     <hr>
@@ -71,7 +68,7 @@ if (isset($_GET['newsID'])){
                     <input type="text" name="title" placeholder="Title" value="<?php echo $row['title']?>" required>
 
                     <label for="news"><b>News</b></label>
-                    <?php echo "<textarea  name=\"news\" rows=\"4\" cols=\"50\"  required>" .$row['news']." </textarea> "?>
+                    <?php echo "<textarea  name=\"news\" rows=\"10\" cols=\"50\"  required>" .$row['news']." </textarea> "?>
                     <br>
 
                     <?php 
