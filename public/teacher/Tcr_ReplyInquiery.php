@@ -1,15 +1,18 @@
 <?php
-     session_start();
+    session_start();
 
-     if(!isset($_SESSION['userType']) && !isset($_SESSION['userID'])){
-         $error = "Please Login!";
-         header('Location: ../common/loginFile.php?error='.$error);
-        }else if($_SESSION['userType'] != 'teacher'){
-            header('Location: ../common/error.html');
-     }else if(($_SESSION['userType'] == 'teacher') && ($_SESSION['teacherType'] == 'classTcr')){
+    if(!isset($_SESSION['userType']) && !isset($_SESSION['userID'])){
+        $error = "Please Login!";
+        header('Location: ../common/loginFile.php?error='.$error);
+    }elseif($_SESSION['userType'] == 'teacher'){
+      
+      $teacherType = array();
+      $teacherType = $_SESSION['teacherType'];
+      $userID = $_SESSION['userID'];
+      include('../../src/view_inquiery.php');
+     
+	?>
 
-         $userID = $_SESSION['userID'];
-?>
 <!DOCTYPE html>
 <html>
 
@@ -21,12 +24,28 @@
     <link rel="stylesheet" href="../css/view.css " type="text/css">
     <link type="text/css" rel="stylesheet" href="../css/main.css">
     <link type="text/css" rel="stylesheet" href="../css/inquiry.css">
+
+    <script>
+    $(document).ready(function() {
+        $("#Inputs").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#Table tr").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+    </script>
+
 </head>
 
 <body>
-    <div id="nav1"></div>
+    <div id="teacherNav"></div>
     <div class="content">
         <h1 style="color: #6a7480;">Reply Inquieries</h1>
+        <form class="search" action="Tcr_ach.php">
+           
+            
+        </form>
         <div class="card">
             <form>
                 <button type="submit" formaction="Tcr_AddInquiery.php">Add Inquiery</button>
@@ -38,29 +57,44 @@
             <hr>
             <table>
                 <tr>
-                    <th>Inquiry</th>
+                    <th>Inquiry ID</th>
+                    <th>Title</th>
+                    <th>Message</th>
                     <th>Sender</th>
-                    <th>Date</th>
                     <th>Reply</th>
+                    
 
                 </tr>
-                <tr>
-                    <td>Regarding para 2</td>
-                    <td>Medani</td>
-                    <td>02/03/2020</td>
-                    <td>
-                        <form class="search" action="">
-                            <button type="submit" formaction="Tcr_Reply.php" align="center">Reply</button>
-                        </form>
-                    </td>
-                </tr>
-            </table>
-        </div>
-       
-    </div>
-</body>
+                <?php
+            while($row=mysqli_fetch_assoc($result)){
 
-</html>
-<?php 
-	 }
+        ?>
+  
+  <tr>
+    <td><?php echo $row['inquiryID'] ?></td>
+            <td><?php echo $row['title'] ?></td>
+            <td><?php echo $row['message'] ?></td>
+            <td><?php echo $row['sender'] ?></td>
+           
+            <td>
+                            <form class="search" action="Tcr_Reply.php">
+                                <button type="submit">Reply</button>
+                            </form>
+                        </td>
+    </tr>
+    
+   
+   
+   
+    <?php
+}
+
+
 ?>
+
+
+</body>
+</html>
+
+<?php } ?>
+
