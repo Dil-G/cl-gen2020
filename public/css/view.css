@@ -32,6 +32,20 @@ button , .button{
         cursor: pointer;
 }
 
+button a:visited {
+  color: white;
+}
+button a {
+  color: white;
+}
+
+ a:link .btn{
+  color: white;
+}
+
+ a:visited  {
+  color: white;
+}
 .login input[type="text"]
 {
     cursor: pointer;

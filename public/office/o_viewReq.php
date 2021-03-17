@@ -182,7 +182,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 
 
                         <td><button
-                                class="dltbtn"><?php echo "<a href = ../../src/manage_request.php?requestID=" . $row['requestID'] . '&task=' . $task . " > Mark as resolved </a> " ?></button>
+                                class="viewbtn"><?php echo "<a href = ../../src/manage_request.php?requestID=" . $row1['requestID'] . '&task=' . $task . " > Mark as resolved </a> " ?></button>
                         </td>
 
                     </tr>

@@ -25,10 +25,10 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Assign Classes</title>
-    <link rel="stylesheet" href="../css/view.css " type="text/css">
     <link type="text/css" rel="stylesheet" href="../css/main.css">
     <link type="text/css" rel="stylesheet" href="../css/users.css">
     <link rel="stylesheet" href="../css/messages.css " type="text/css">
+    <link rel="stylesheet" href="../css/view.css " type="text/css">
     <script src="../js/jquery-1.9.1.min.js"></script>
     <script src="../js/pop.js"></script>
     <script src="../js/nav.js"></script>

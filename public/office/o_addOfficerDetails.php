@@ -31,6 +31,7 @@
 	<link type="text/css" rel="stylesheet" href="../css/main.css">
 	<link type="text/css" rel="stylesheet" href="../css/messages.css">
 	<link type="text/css" rel="stylesheet" href="../css/register.css">
+    <link rel="stylesheet" href="../css/view.css " type="text/css">
 </head>
 <body>
     <div id="officeNav"></div>

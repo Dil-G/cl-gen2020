@@ -29,6 +29,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 		<link type="text/css" rel="stylesheet" href="../css/main.css">
 		<link type="text/css" rel="stylesheet" href="../css/messages.css">
 		<link type="text/css" rel="stylesheet" href="../css/register.css">
+        <link type="text/css" rel="stylesheet" href="../css/view.css">
 	</head>
 
 	<body>
