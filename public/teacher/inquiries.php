@@ -1,17 +1,16 @@
 <?php
-     session_start();
+    session_start();
 
-     if(!isset($_SESSION['userType']) && !isset($_SESSION['userID'])){
-         $error = "Please Login!";
-         header('Location: ../common/loginFile.php?error='.$error);
-        }else if($_SESSION['userType'] != 'teacher'){
-            header('Location: ../common/error.html');
-     }else if(($_SESSION['userType'] == 'teacher') && ($_SESSION['teacherType'] == 'classTcr')){
-
-         $userID = $_SESSION['userID'];
-?>
-
-
+    if(!isset($_SESSION['userType']) && !isset($_SESSION['userID'])){
+        $error = "Please Login!";
+        header('Location: ../common/loginFile.php?error='.$error);
+    }elseif($_SESSION['userType'] == 'teacher'){
+      
+   
+      $teacherType = $_SESSION['teacherType'];
+      $userID = $_SESSION['userID'];
+      
+	?>
 
 <!DOCTYPE html>
 <html>
@@ -33,7 +32,7 @@
 require_once '../../config/conn.php';
 
 $count = "SELECT COUNT(*) FROM inquiry";
-    $sql = "SELECT * FROM inquiry WHERE reciever = '$userID' ORDER BY inquiryID DESC";
+$sql = "SELECT * FROM inquiry WHERE reciever ='$userID' ORDER BY inquiryID DESC";
    
 
     $res= mysqli_query($conn,$sql);
@@ -49,7 +48,7 @@ $count = "SELECT COUNT(*) FROM inquiry";
 
 ?>
 
-    <div id="nav1"></div>
+    <div id="teacherNav"></div>
 
 
     <div class="content">
