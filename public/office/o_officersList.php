@@ -16,91 +16,94 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
       include_once '../../src/view_users.php';
 ?>
 
-      <!DOCTYPE html>
+<!DOCTYPE html>
 
-      <head>
+<head>
 
-         <meta name="viewport" content="width=device-width, initial-scale=1">
-         <title>Grade Scholarship Results</title>
-         <link rel="stylesheet" href="../css/view.css " type="text/css">
-         <link type="text/css" rel="stylesheet" href="../css/main.css">
-         <link type="text/css" rel="stylesheet" href="../css/tabs.css">
-         <link type="text/css" rel="stylesheet" href="../css/users.css">
-         <link type="text/css" rel="stylesheet" href="../css/view.css">
-         <script src="../js/jquery-1.9.1.min.js"></script>
-         <script src="../js/pop.js"></script>
-         <script src="../js/nav.js"></script>
-         <script src="../js/search.js"></script>
-         <script src="../js/tabs.js"></script>
-      </head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Grade Scholarship Results</title>
+    <link rel="stylesheet" href="../css/view.css " type="text/css">
+    <link type="text/css" rel="stylesheet" href="../css/main.css">
+    <link type="text/css" rel="stylesheet" href="../css/tabs.css">
+    <link type="text/css" rel="stylesheet" href="../css/users.css">
+    <link type="text/css" rel="stylesheet" href="../css/view.css">
+    <script src="../js/jquery-1.9.1.min.js"></script>
+    <script src="../js/pop.js"></script>
+    <script src="../js/nav.js"></script>
+    <script src="../js/search.js"></script>
+    <script src="../js/tabs.js"></script>
+</head>
 
-      <body>
-         <div id="officeNav"></div>
-         <div class="content">
-            <div class="card">
-               <h1 style="margin-top:20px;">Officers List</h1>
-               <form class="search">
-                  <input type="text" ID="Inputs" placeholder="Search.." name="search">
-                  <button type="submit">Search</button>
-               </form>
-               <div class="btn-box" style="margin-left:5px;">
-                  <button id="button2" onclick="activated()">Activated Users</button>
-                  <button id="button1" onclick="notActivated()">Un-activated Users</button>
-               </div>
+<body>
+    <div id="officeNav"></div>
+    <div class="content">
+        <div class="card">
+            <h1 style="margin-top:20px;">Officers List</h1>
+            <form class="search">
+                <input type="text" ID="Inputs" placeholder="Search.." name="search">
+                <button type="submit">Search</button>
+            </form>
+            <div class="btn-box" style="margin-left:5px;">
+                <button id="button2" onclick="activated()">Activated Users</button>
+                <button id="button1" onclick="notActivated()">Un-activated Users</button>
             </div>
+        </div>
 
-            <br>
-            <br>
-            <div id="page2" class="page">
-               <div class="card">
-                  <div class="count">
-                     <?php
+        <br>
+        <br>
+        <div id="page2" class="page">
+            <div class="card">
+                <div class="count">
+                    <?php
                      while ($row = $staff_result->fetch_assoc()) {
                         echo "Officer Count: " . $row["COUNT(isActivated)"] . "<br>";
                      } ?>
-                  </div>
-                  <hr>
-                  <table>
-                     <tr>
+                </div>
+                <hr>
+                <table>
+                    <tr>
                         <th>User ID</th>
                         <th>UserName</th>
                         <th>Add Details</th>
-                     </tr>
-                     <?php
+                    </tr>
+                    <?php
                      while ($row = mysqli_fetch_assoc($staff_result1)) {
                      ?>
+                    <tbody id="Table">
                         <tr>
-                           <td><?php echo $row['userID'] ?></td>
-                           <td><?php echo $row['username'] ?></td>
-                           <?php echo "<td><a class='btn editbtn' href = o_addOfficerDetails.php?userID=" . $row['userID'] . " > Add </a> </td>" ?>
+                            <td><?php echo $row['userID'] ?></td>
+                            <td><?php echo $row['username'] ?></td>
+                            <?php echo "<td><a class='btn editbtn' href = o_addOfficerDetails.php?userID=" . $row['userID'] . " > Add </a> </td>" ?>
                         </tr>
-                     <?php
+                    </tbody>
+                    <?php
                      }
                      ?>
-                  </table>
-               </div>
+                </table>
             </div>
-            <div id="page1" class="page">
-               <div class="card">
-                  <div class="count">
-                     <?php
+        </div>
+        <div id="page1" class="page">
+            <div class="card">
+                <div class="count">
+                    <?php
                      while ($row = $staff_result3->fetch_assoc()) {
                         echo "Activated Officer Count: " . $row["COUNT(isActivated)"] . "<br>";
                      } ?>
-                  </div>
-                  <hr>
-                  <table>
-                     <tr>
+                </div>
+                <hr>
+                <table>
+                    <tr>
                         <th>User ID</th>
                         <th>Name</th>
                         <th>Edit Details</th>
-                     </tr>
-                     <?php
+                    </tr>
+                    <?php
                      while ($row = mysqli_fetch_assoc($staff_result4)) {
                      ?>
+                    <tbody id="Table">
                         <tr>
-                           <td><?php echo $row['userID'] ?></td>
-                           <td><?php
+                            <td><?php echo $row['userID'] ?></td>
+                            <td><?php
                                  $name = $conn->query("SELECT * FROM office where officerID='$row[userID]'");
 
                                  while ($fname = mysqli_fetch_assoc($name)) {
@@ -108,19 +111,20 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                                     echo $fname['lName'];
                                  }
                                  ?></td>
-                           <?php echo "<td><a class='btn editbtn' href = officerProfile.php?userID=" . $row['userID'] . " > update </a> </td>" ?>
+                            <?php echo "<td><a class='btn editbtn' href = officerProfile.php?userID=" . $row['userID'] . " > update </a> </td>" ?>
                         </tr>
-                     <?php
+                    </tbody>
+                    <?php
                      }
                      ?>
-                  </table>
-               </div>
+                </table>
             </div>
-         </div>
-         </div>
-      </body>
+        </div>
+    </div>
+    </div>
+</body>
 
-      </html>
+</html>
 
 <?php }
 } ?>

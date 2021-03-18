@@ -38,15 +38,9 @@
 
     <div class="content">
 
-        <h1 style="font-size: 36px;">Duty List</h1>
-        <form class="search" action="register_stu.html">
-            <input type="text" id="Inputs" placeholder="Search.." name="search">
-            <button type="submit">Search</button>
-        </form>
         <?php if (isset($_GET['error'])) { ?>
         <div id="error"><?php echo $_GET['error']; ?></div>
-        <?php } ?>
-        <?php
+        <?php }
          //echo "test";
 
          $sql = "SELECT * FROM duty";
@@ -57,10 +51,16 @@
 
 
          ?>
-
-        <div class="btn-box">
-            <button id="button2" onclick="activated()">Assigned Officers</button>
-            <button id="button1" onclick="notActivated()">Duties</button>
+        <div class="card">
+            <h1>Duty List</h1>
+            <form class="search">
+                <input type="text" id="Inputs" placeholder="Search.." name="search">
+                <button type="submit">Search</button>
+            </form>
+            <div class="btn-box" style="margin-left: 10px;">
+                <button id="button2" onclick="return activated()">Added Users</button>
+                <button id="button1" onclick="return notActivated()">Activated Users</button>
+            </div>
         </div>
 
         <br>

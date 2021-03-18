@@ -67,13 +67,15 @@
                     <?php
                         while($row=mysqli_fetch_assoc($parent_result1)){
                         ?>
-                    <tr>
-                        <td><?php echo $row['userID'] ?></td>
-                        <td><?php echo $row['username'] ?></td>
-                    </tr>
-                    <?php
+                    <tbody id="Table">
+                        <tr>
+                            <td><?php echo $row['userID'] ?></td>
+                            <td><?php echo $row['username'] ?></td>
+                        </tr>
+                        <?php
                         }
                         ?>
+                    </tbody>
                 </table>
             </div>
         </div>
@@ -95,17 +97,19 @@
                     <?php
                         while($row=mysqli_fetch_assoc($parent_result4)){
                         ?>
-                    <tr>
-                        <td><?php echo $row['userID'] ?></td>
-                        <td><?php
+                    <tbody id="Table">
+                        <tr>
+                            <td><?php echo $row['userID'] ?></td>
+                            <td><?php
                         $name = $conn->query("SELECT * FROM parent where parentID='$row[userID]'");
 
                         while($fname = mysqli_fetch_assoc($name)){
                             echo $fname['name'] ;
                         }
                         ?></td>
-                        <?php echo "<td><a class='btn editbtn' href = SProfile.php?userID=".$row['userID']." > update </a> </td>"?>
-                    </tr>
+                            <?php echo "<td><a class='btn editbtn' href = SProfile.php?userID=".$row['userID']." > update </a> </td>"?>
+                        </tr>
+                    </tbody>
                     <?php
                         }
                         ?>

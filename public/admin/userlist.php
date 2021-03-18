@@ -36,22 +36,20 @@
     <div id="nav2"></div>
 
     <div class="content" style="margin-top: -60px;">
-        <h1 style="font-size: 40px;"> User List</h1>
 
-        <form class="search" action="register_stu.html">
-            <input type="text" id="Inputs" placeholder="Search.." name="search">
-            <button type="submit">Search</button>
-        </form>
-        <br>
-        <br>
-
-
-        <div class="btn-box">
-
-
-            <button id="button2" onclick="activated()">Added Users</button>
-            <button id="button1" onclick="notActivated()">Activated Users</button>
+        <div class="card">
+            <h1>User List</h1>
+            <form class="search" >
+                <input type="text" id="Inputs" placeholder="Search.." name="search">
+                <button type="submit">Search</button>
+            </form>
+            <div class="btn-box" style="margin-left: 10px;">
+                <button id="button2" onclick="return activated()">Added Users</button>
+                <button id="button1" onclick="return notActivated()">Activated Users</button>
+            </div>
         </div>
+
+
         <br>
         <div id="page1" class="page">
 

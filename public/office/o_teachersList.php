@@ -66,14 +66,16 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                     <?php
                             while ($row = mysqli_fetch_assoc($teacher_result1)) {
                             ?>
-                    <tr>
-                        <td><?php echo $row['userID'] ?></td>
-                        <td><?php echo $row['username'] ?></td>
-                        <?php echo "<td><a class='btn editbtn' href = o_addTeacherDetails.php?userID=" . $row['userID'] . " > Add </a> </td>" ?>
-                    </tr>
-                    <?php
+                    <tbody id="Table">
+                        <tr>
+                            <td><?php echo $row['userID'] ?></td>
+                            <td><?php echo $row['username'] ?></td>
+                            <?php echo "<td><a class='btn editbtn' href = o_addTeacherDetails.php?userID=" . $row['userID'] . " > Add </a> </td>" ?>
+                        </tr>
+                        <?php
                             }
-                            ?>
+                                ?>
+                    </tbody>
                 </table>
             </div>
         </div>
@@ -92,10 +94,11 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                         <th>Name</th>
                         <th>Edit Details</th>
                     </tr>
-                    <tbody style="display:block;height:200px;width:100%;overflow-x:hidden;overflow-y:auto;">
-                        <?php
-                                while ($row = mysqli_fetch_assoc($teacher_result4)) {
-                                ?>
+
+                    <?php
+                        while ($row = mysqli_fetch_assoc($teacher_result4)) {
+                        ?>
+                    <tbody id="Table">
                         <tr>
                             <td><?php echo $row['userID'] ?></td>
                             <td><?php
@@ -110,8 +113,8 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                         </tr>
                     </tbody>
                     <?php
-                                }
-                        ?>
+                            }
+                            ?>
                 </table>
             </div>
         </div>
