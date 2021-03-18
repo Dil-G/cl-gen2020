@@ -11,7 +11,7 @@
 
 		$userID = $_SESSION['userID'];
 		$username = $_SESSION['username'];
-		
+		include_once '../../src/view_inquiery.php';
 
 ?>
 
@@ -26,28 +26,10 @@
 <script src="../js/nav.js"></script>
 <link type="text/css" rel="stylesheet" href="../css/main_stu.css">
 <link type="text/css" rel="stylesheet" href="../css/news.css">
+<link type="text/css" rel="stylesheet" href="../css/button.css">
 </head>
 <body>
-<?php
 
-require_once '../../config/conn.php';
-
-	$count = "SELECT COUNT(*) FROM inquiry WHERE sender= '$username'";
-    $sql = "SELECT * FROM inquiry WHERE sender='$username' ORDER BY inquiryID DESC";
-   
-
-    $res= mysqli_query($conn,$sql);
-    $res1= mysqli_query($conn,$count);
-
-    if($res){
-    //echo "Sucessfull";
-    }
-    else{
-    echo"failed";	
-    }
-
-
-?>
 
 <div id="nav"></div>
 
@@ -114,6 +96,7 @@ require_once '../../config/conn.php';
 			<hr>
             <h2><b><?php echo "Title :" . $row['title'] ?></b></h2>
             <p> <?php echo $row['message'] ?></p>
+			<?php echo " <button type='submit' class='search'><a href=AddInquiery.php?userID=".$row['reciever']." >Reply</a></button>"?>
         </div>
         <?php }}
         ?>
