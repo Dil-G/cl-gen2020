@@ -28,12 +28,12 @@
 </head>
 
 <body>
-    <div id="officeNav"></div>
+    <div id="nav2"></div>
 
 
     <div class="content">
         <div class="container">
-            <form action="../../src/o_addTeacherDetails.php" method="POST" onsubmit="return validateRegistrations()">
+            <form action="../../src/register.php" method="POST" onsubmit="return validateRegistrations()">
                 <h1>Add Teacher Details</h1>
                 <hr>
 
@@ -91,7 +91,7 @@
                 <hr>
                 <div id="msg"></div>
                 <div>
-                    <button type="submit" class="registerbtn" name="regbtn">Save</button>
+                    <button type="submit" class="registerbtn" name="teacherReg">Save</button>
 
                     <a href="o_teachersList.php" class="cancel-btn">Cancel</a>
                 </div>

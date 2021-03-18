@@ -40,12 +40,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 
         require_once '../../config/conn.php';
 
-        $sql = "SELECT * FROM user where userID='" . $_GET['userID'] . "'";
-
-        $res = mysqli_query($conn, $sql);
-        $row = mysqli_fetch_array($res);
-
-        $stuID = $row['userID'];
+        $stuID = $_GET['userID'];
         $charID = substr($stuID, 2);
         $pID = "PR" . $charID;
 

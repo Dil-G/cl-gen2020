@@ -363,15 +363,26 @@ function validateRegistration() {
         document.getElementById("msg").innerHTML = "Invalid First Name";
     return false;
     }
-    
-    var date = document.getElementById("date").value;
-    var reg = /^(\d{4})\-(\d{1,2})\-(\d{1,2})$/;
-    var { d1, g1 } = dates();
-    var now = new Date(date);
 
+    //validate birthday
+
+    var date = document.getElementById("date").value;
+    var now = new Date();
+    var year = new Date(date);
+            
+    var thisYear = now.getFullYear();
+    var dobYear = year.getFullYear();
+            
+    var max = 65;
+    var min = 18;
+            
+    var dif = thisYear - dobYear;
+    var reg = /^(\d{4})\-(\d{1,2})\-(\d{1,2})$/;
+               // var { d1, g1 } = dates();
+            
     if (date != '') {
         if (regs = date.match(reg)) {
-            if (now.getTime() < d1.getTime() || now.getTime() > g1.getTime()) {
+            if (dif < min || dif > max || dif < 0) {
                 document.getElementById("date").style.background = "#FFE5E4";
                 document.getElementById("date").style.borderColor = "red";
                 document.getElementById("msg").style.display = "block";
@@ -397,11 +408,46 @@ function validateRegistration() {
         return false;
     }
 
-    function dates() {
-        var d1 = new Date('Jul 12 1920');
-        var g1 = new Date();
-        return { d1, g1 };
-    }
+
+
+    // var date = document.getElementById("date").value;
+    // var reg = /^(\d{4})\-(\d{1,2})\-(\d{1,2})$/;
+    // var { d1, g1 } = dates();
+    // var now = new Date(date);
+
+    // if (date != '') {
+    //     if (regs = date.match(reg)) {
+    //         if (now.getTime() < d1.getTime() || now.getTime() > g1.getTime()) {
+    //             document.getElementById("date").style.background = "#FFE5E4";
+    //             document.getElementById("date").style.borderColor = "red";
+    //             document.getElementById("msg").style.display = "block";
+    //             document.getElementById("msg").innerHTML = "Invalid Date of Birth";
+    //             return false;
+
+    //         } else {
+    //             document.getElementById("date").style.background = "#f1f1f1";
+    //             document.getElementById("date").style.borderColor = "transparent";
+    //         }
+    //     } else {
+    //         document.getElementById("date").style.background = "#FFE5E4";
+    //         document.getElementById("date").style.borderColor = "red";
+    //         document.getElementById("msg").style.display = "block";
+    //         document.getElementById("msg").innerHTML = "Invalid Date ";
+    //         return false;
+    //     }
+    // } else {
+    //     document.getElementById("date").style.background = "#FFE5E4";
+    //     document.getElementById("date").style.borderColor = "red";
+    //     document.getElementById("msg").style.display = "block";
+    //     document.getElementById("msg").innerHTML = "Invalid Date ";
+    //     return false;
+    // }
+
+    // function dates() {
+    //     var d1 = new Date('Jul 12 1920');
+    //     var g1 = new Date();
+    //     return { d1, g1 };
+    // }
 
     var d1 = document.getElementById("d1").checked;
     var d2 = document.getElementById("d2").checked;

@@ -67,7 +67,6 @@
                     <h1>Add Student Details</h1>
                     <hr>
 
-
                     <label for="stuID"><b>Admission Number</b></label>
                     <input type="text" placeholder="Enter ID"
                         value="<?php if (isset ($_GET['userID'])){echo $_GET['userID'];}?>" name="stuID" required>
@@ -184,14 +183,6 @@
             </div>
         </div>
     </div>
-    <!--page 1 END-->
-
-    <!--Page 2-->
-
-
-
-
-    <!--Page2 End-->
 
 
 </body>
