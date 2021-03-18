@@ -1,19 +1,21 @@
 <?php
-    session_start();
+session_start();
 
-    if(!isset($_SESSION['userType']) && !isset($_SESSION['userID'])){
-        $error = "Please Login!";
-        header('Location: ../common/loginFile.php?error='.$error);
-    }elseif($_SESSION['userType'] == 'officer'){
-      
-      $dutyID = array();
-      $dutyID = $_SESSION['dutyID'];
+if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
+    $error = "Please Login!";
+    header('Location: ../common/loginFile.php?error=' . $error);
+} elseif ($_SESSION['userType'] == 'officer') {
 
-      if (in_array("d5", $dutyID)) {
-	?>
+    $dutyID = array();
+    $dutyID = $_SESSION['dutyID'];
+
+    if (in_array("d5", $dutyID)) {
+        include_once '../../src/view_news.php';
+?>
 
 <!DOCTYPE html>
 <html>
+
 <head>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -23,22 +25,7 @@
     <link type="text/css" rel="stylesheet" href="../css/main.css">
     <link type="text/css" rel="stylesheet" href="../css/newsfeed.css">
 </head>
-<?php
-require_once '../../config/conn.php';
 
-
-    $sql = "SELECT * FROM newsfeed ORDER BY newsID DESC";
-
-	$res= mysqli_query($conn,$sql);
-	$res1= mysqli_query($conn,$sql);
-
-    if($res){
-    //echo "Sucessfull";
-    }
-    else{
-    echo"failed";	
-    }
-?>
 
 <div id="officeNav"></div>
 <div class="content">
@@ -47,8 +34,8 @@ require_once '../../config/conn.php';
         </div>
 
         <?php
-		while($row=mysqli_fetch_assoc($res)){
-			?>
+                while ($row = mysqli_fetch_assoc($news_result)) {
+                ?>
         <div class="container">
             <table>
                 <tr>
@@ -61,10 +48,10 @@ require_once '../../config/conn.php';
                     <td width="60%">
                         <p> <?php echo $row['news'] ?></p>
                     </td>
-                    <?php if($row['image']==TRUE){ ?>
+                    <?php if ($row['image'] == TRUE) { ?>
                     <td width="30%">
                         <div class="image">
-                            <?php echo "<img src='../../images/".$row['image']."'>"; ?>
+                            <?php echo "<img src='../../images/" . $row['image'] . "'>"; ?>
 
                         </div>
                     </td>
@@ -73,11 +60,13 @@ require_once '../../config/conn.php';
             </table>
         </div>
         <?php
-		}
-		?>
+                }
+                ?>
     </div>
 </div>
 </body>
+
 </html>
 
-<?php }} ?>
+<?php }
+} ?>

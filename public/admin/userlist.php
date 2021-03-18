@@ -27,16 +27,7 @@
     <link type="text/css" rel="stylesheet" href="../css/main.css">
     <link type="text/css" rel="stylesheet" href="../css/users.css">
     <link type="text/css" rel="stylesheet" href="../css/tabs.css">
-    <script>
-    $(document).ready(function() {
-        $("#Inputs").on("keyup", function() {
-            var value = $(this).val().toLowerCase();
-            $("#Table tr").filter(function() {
-                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-            });
-        });
-    });
-    </script>
+    <script src="../js/search.js"></script>
 </head>
 
 <body>

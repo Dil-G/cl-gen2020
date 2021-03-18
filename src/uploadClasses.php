@@ -5,7 +5,7 @@ if (isset($_POST["Import"])) {
 
   $thisGrade = $_POST["grade"];
   $NoOfStudents = $_POST["NoOfStudents"];
-  
+
   $allowed =  array('csv');
   $checkFile = $_FILES["file"]["name"];
   $filename = $_FILES["file"]["tmp_name"];
@@ -13,9 +13,9 @@ if (isset($_POST["Import"])) {
   $ext = pathinfo($checkFile, PATHINFO_EXTENSION);
 
   $fp = file($filename);
-  $c =  count($fp) -1;
+  $c =  count($fp) - 1;
 
-  if($NoOfStudents != $c){
+  if ($NoOfStudents != $c) {
     $error = "Numbers do not match!";
     header('Location: ../public/office/o_classes.php?Ggrades=' . $thisGrade . '&error=' . $error);
     exit();
@@ -96,7 +96,7 @@ if (isset($_POST['uploadClass'])) {
   $result1 = mysqli_query($conn, $sql1);
 
 
-  if(mysqli_num_rows($result1) < 1){
+  if (mysqli_num_rows($result1) < 1) {
 
     $error = "Incorrect Teacher ID";
     header('Location: ../public/office/o_class.php?class=' . $classID . '&error=' . $error);

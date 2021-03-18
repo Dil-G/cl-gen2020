@@ -10,6 +10,9 @@
 		else{
 
          $userID = $_SESSION['userID'];
+         include ('../../src/add_userDetails.php');
+
+         
 ?> 
 
 
@@ -32,38 +35,18 @@
 
 <body>
 
-    <div id="officeNav"></div>
-    <?php
+    <div id="nav2"></div>
 
-				require_once '../../config/conn.php';
-
-				$sql = "SELECT * FROM user where userID='".$_GET['userID']."'";
-
-                $res= mysqli_query($conn,$sql);
-                $row=mysqli_fetch_array($res);
-                
-                $stuID = $row['userID'];
-                $charID = substr($stuID,2);
-                $pID = "PR" . $charID;
-
-				if($res){
-				//echo "Sucessfull";
-				}
-				else{
-				echo"failed";	
-				}
-?>
-    
     <div id="pg1">
         <div class="content">
             <div class="container"  style="margin-left:250px;">
-                <form action="../../src/o_addStudentDetails.php" onsubmit="return validateStudent()" method="POST" enctype="multipart/form-data">
+                <form action="../../src/register.php" onsubmit="return validateStudent()" method="POST" enctype="multipart/form-data">
                     <h1>Add Student Details</h1>
                     <hr>
 
 
                 <label for="stuID"><b>Admission Number</b></label>
-				<input type="text" placeholder="Enter ID" value = "<?php if (isset ($_GET['userID'])){echo $_GET['userID'];}?>" name="stuID" required>
+				<input type="text" placeholder="Enter ID" value = "<?php if (isset ($_GET['studentID'])){echo $_GET['studentID'];}?>" name="stuID" required>
 				
 				<label for="stufName"><b>First Name</b></label>
 				<input type="text" placeholder="Enter First Name" name="stufName"  id="fname" onblur="checkFname(fname.value)"  >
@@ -147,7 +130,7 @@
                 <div>
                
                 
-                    <button type="submit" class="registerbtn" style="margin-left: 5px;" name="regbtn1">Save</button>
+                    <button type="submit" class="registerbtn" style="margin-left: 5px;" name="studentReg">Save</button>
                     <a href="o_studentsList.php" class="cancel-btn">Cancel</a>
                     
                    

@@ -29,16 +29,7 @@
     <script src="../js/jquery-1.9.1.min.js"></script>
     <script src="../js/pop.js"></script>
     <script src="../js/nav.js"></script>
-    <script>
-    $(document).ready(function() {
-        $("#Inputs").on("keyup", function() {
-            var value = $(this).val().toLowerCase();
-            $("#Table tr").filter(function() {
-                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-            });
-        });
-    });
-    </script>
+    <script src="../js/search.js"></script>
 </head>
 
 <body>

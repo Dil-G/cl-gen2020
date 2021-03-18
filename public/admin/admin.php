@@ -36,14 +36,9 @@
 		<input type="text" placeholder="Search.." name="search">
 		<button type="submit">Search</button>
 		</form>
-		
-		
 		<br>
 		<br>
 		<br>
-		
-
-			
 			  <div class="card">
 			  <form>
 					<button type="submit" formaction="register_user.php">Add Admin</button>

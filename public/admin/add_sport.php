@@ -30,20 +30,12 @@
 		
 		<div class="content">
 		
-			
-			
-		
-  
 				<div class="container">
 					<h2><b>SPORTS</b></h2>
 					
 					<form action="../../src/A_addsports.php" method="POST">
 					
 						<hr>
-
-						
-
-
 						<label for="sportname"><b>Sport</b></label>
 						<!--<input type="text"  name="Sname" id="sportname" onblur="return validatesportsname(sportname.value)" required> -->
 						<input type="text"  name="Sname" id="sportname" pattern="[a-zA-Z]+"  required>
@@ -54,10 +46,7 @@
 						<!--<label for="tID"><b>Teacher in charge ID</b></label>
 						<input type="text"  name="tID" id="username" onblur="return validateUsername(username.value)" required>
 						-->
-						
-						
 						<hr>
-					
 					
 						<div>
 							<button type="submit" class="registerbtn" name="regbtn">Save</button>
@@ -70,8 +59,6 @@
 				</div>
 				
 			</div>
-		
-		
 </body>
 </html>
 

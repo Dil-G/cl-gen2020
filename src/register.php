@@ -1,4 +1,5 @@
 <?php
+ session_start();
 //require_once('cl_gen.php');
 require_once '../config/conn.php';
 
@@ -81,8 +82,13 @@ if (isset($_POST['teacherReg'])) {
         } else {
             header('Location: ../public/office/o_addStudentDetails.php');
         }
-
-        header('Location: ../public/office/o_addParentDetails.php?userID=' . $admissionNo);
+        echo  $_SESSION['userType'];
+        if($_SESSION['userType']=='officer'){
+            header('Location: ../public/office/o_addParentDetails.php?parentID=' . $admissionNo);
+        }elseif($_SESSION['userType']=='admin'){
+            header('Location: ../public/admin/o_addParentDetails.php?parentID=' . $admissionNo);
+        }
+       
     } else {
         $error = "Cannot add record";
         header('Location: ../public/office/o_addStudentDetails.php?error=' . $error);

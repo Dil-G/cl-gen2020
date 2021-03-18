@@ -44,3 +44,32 @@ chart.render();
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 </body>
 </html>    
+
+
+<script>
+window.onload = function() {
+ 
+ 
+var chart = new CanvasJS.Chart("chartContainer", {
+	theme: "light2",
+	animationEnabled: true,
+	title: {
+		text: "World Energy Consumption by Sector - 2012"
+	},
+	data: [{
+		type: "pie",
+		indexLabel: "{y}",
+		yValueFormatString: "#,##0.00\"%\"",
+		indexLabelPlacement: "inside",
+		indexLabelFontColor: "#36454F",
+		indexLabelFontSize: 18,
+		indexLabelFontWeight: "bolder",
+		showInLegend: true,
+		legendText: "{label}",
+		dataPoints: <?php echo json_encode($userData, JSON_NUMERIC_CHECK); ?>
+	}]
+});
+chart.render();
+ 
+}
+</script>
