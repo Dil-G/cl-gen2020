@@ -29,6 +29,7 @@
     <script src="../js/jquery-1.9.1.min.js"></script>
     <script src="../js/pop.js"></script>
     <script src="../js/nav.js"></script>
+    <script src="../js/tabs.js"></script>
     <script src="../js/search.js"></script>
 </head>
 
@@ -58,8 +59,8 @@
          ?>
 
         <div class="btn-box">
-            <button id="button1" onclick="Assigned()">Assigned Officers</button>
-            <button id="button2" onclick="duties()">Duties</button>
+            <button id="button2" onclick="activated()">Assigned Officers</button>
+            <button id="button1" onclick="notActivated()">Duties</button>
         </div>
 
         <br>
@@ -139,48 +140,6 @@
         </div>
     </div>
     </div>
-    <script>
-    var page1 = document.getElementById("page1");
-    var page2 = document.getElementById("page2");
-    var button1 = document.getElementById("button1");
-    var button2 = document.getElementById("button2");
-
-    let url = window.location.href;
-    if (url == window.location.href) {
-        page1.style.display = "block";
-        page2.style.display = "none";
-        button1.style.color = "#000";
-        button2.style.color = "#008080";
-
-    } else if (url == "http://localhost/CL-GEN/public/admin/duty.php?error=Error%20in%20entering%20data") {
-        page1.style.display = "block";
-        page2.style.display = "none";
-        button1.style.color = "#008080";
-        button2.style.color = "#000";
-
-    } else if (url == "http://localhost/CL-GEN/public/admin/duty.php?error=Duty%20already%20Assigned") {
-        page1.style.display = "block";
-        page2.style.display = "none";
-        button1.style.color = "#008080";
-        button2.style.color = "#000";
-
-    }
-
-    function duties() {
-        page2.style.display = "block";
-        page1.style.display = "none";
-        button1.style.color = "#008080";
-        button2.style.color = "#000";
-
-    }
-
-    function Assigned() {
-        page2.style.display = "none";
-        page1.style.display = "block";
-        button1.style.color = "#000";
-        button2.style.color = "#008080";
-    }
-    </script>
 </body>
 
 </html>

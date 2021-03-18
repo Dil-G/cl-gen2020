@@ -363,7 +363,7 @@ function validateRegistration() {
         document.getElementById("msg").innerHTML = "Invalid First Name";
     return false;
     }
-
+    
     var date = document.getElementById("date").value;
     var reg = /^(\d{4})\-(\d{1,2})\-(\d{1,2})$/;
     var { d1, g1 } = dates();

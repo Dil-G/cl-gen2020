@@ -24,6 +24,7 @@
     <script src="../js/jquery-1.9.1.min.js"></script>
     <script src="../js/nav.js"></script>
     <script src="../js/search.js"></script>
+    <script src="../js/tabs.js"></script>
     <link rel="stylesheet" href="../css/view.css " type="text/css">
     <link type="text/css" rel="stylesheet" href="../css/main.css">
     <link type="text/css" rel="stylesheet" href="../css/users.css">
@@ -44,10 +45,10 @@
 
 
         <div class="btn-box">
-            <button id="button2" onclick="activated()">Added Users</button>
-            <button id="button1" onclick="notActivated()">Activated Users</button>
+            <button id="button2" onclick="return activated()">Added Users</button>
+            <button id="button1" onclick="return notActivated()">Activated Users</button>
         </div>
-
+        
         <br>
         <br>
         <div id="page1" class="page">
@@ -58,7 +59,7 @@
                 <div class="count">
                     <?php
 				 while($row = $parent_result->fetch_assoc()) {
-				 echo "Student Count: " . $row["COUNT(isActivated)"]. "<br>";
+				 echo "Non-Activated Account Count: " . $row["COUNT(isActivated)"]. "<br>";
 				 }?>
                 </div>
                 <hr>
@@ -87,7 +88,7 @@
                 <div class="count">
                     <?php
 				 while($row = $parent_result3->fetch_assoc()) {
-				 echo "Activated Student Count: " . $row["COUNT(isActivated)"]. "<br>";
+				 echo "Activated Account Count: " . $row["COUNT(isActivated)"]. "<br>";
 				 }?>
                 </div>
                 <hr>
@@ -117,36 +118,7 @@
         </div>
     </div>
     </div>
-    <script>
-    var page1 = document.getElementById("page1");
-    var page2 = document.getElementById("page2");
-    var button1 = document.getElementById("button1");
-    var button2 = document.getElementById("button2");
-
-    let url = window.location.href;
-    if (url == window.location.href) {
-        page1.style.display = "block";
-        page2.style.display = "none";
-        button1.style.color = "#008080";
-        button2.style.color = "#000";
-
-    }
-
-    function activated() {
-        page1.style.display = "block";
-        page2.style.display = "none";
-        button1.style.color = "#008080";
-        button2.style.color = "#000";
-
-    }
-
-    function notActivated() {
-        page1.style.display = "none";
-        page2.style.display = "block";
-        button1.style.color = "#000";
-        button2.style.color = "#008080";
-    }
-    </script>
+  
 </body>
 
 </html>
