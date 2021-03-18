@@ -33,7 +33,7 @@
 
     <div id="teacherNav"></div>
 
-
+    
     <div class="content">
         <?php if (isset($_GET['message'])){?>
         <div id="message"><?php echo $_GET['message']; ?></div>
@@ -46,37 +46,37 @@
 
         <div class="container">
 
-
+           
 
             <form action="../../src/request1.php" method="POST" enctype="multipart/form-data">
                 <hr>
 
 
-
+            
                 <h1 style="color:#6a7480;">Request Edit Form</h1>
 
-                <label for="id">ID Number</label>
-                <input type="text" name="id" value=<?php  echo  $_SESSION['userID']?> readonly>
+                    <label for="id">ID Number</label>
+                    <input type="text"  name="id" value = <?php  echo  $_SESSION['userID']?> readonly>
 
-                <label for="name">Name</label>
-                <input type="text" name="name" placeholder="Type the name here" required>
+                    <label for="name">Name</label>
+                    <input type="text" name="name" placeholder="Type the name here" required>
 
-                <label for="request"><b>Request</b></label>
-                <textarea id="request" name="request" rows="4" placeholder="News" cols="50" required></textarea>
-
-                <label for="image"><b>Upload a proof</b></label>
-                <input type="hidden" name="size" value="1000000" required>
+                    <label for="request"><b>Request</b></label>
+                    <textarea id="request" name="request" rows="4" placeholder="News" cols="50" required></textarea>
+                    
+                    <label for="image"><b>Upload a proof</b></label>
+                    <input type="hidden" name="size" value="1000000" required>
 
                 <div>
-                    <input type="file" name="image" id="image" required/>
+                    <input type="file" name="image" id="image" />
                 </div>
                 <br>
                 <button type="submit" class="registerbtn" id="add_news" name="add_request">Submit</button>
                 <a href="Tcr_dashboard1.php" class="cancel-btn">Cancel</a>
-
-
+                
+                
             </form>
-
+         
         </div>
     </div>
 </body>
