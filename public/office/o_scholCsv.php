@@ -49,7 +49,7 @@
 ?>
     <div class="content">
         <div class="container" style="margin-left:250px;">
-            <form method="POST" enctype="multipart/form-data" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
+            <form method="POST" enctype="multipart/form-data" action="../../src/o_scholCsv.php">
                 
                 <h1><?php echo $row['examName']?></h1>
                 <hr>

@@ -1,4 +1,55 @@
 <?php
+require_once(realpath(dirname(__FILE__) . '/../config/conn.php'));
+
+if (isset($_POST["submit"])) {
+
+  
+  $allowed =  array('csv');
+  $checkFile = $_FILES["file"]["name"];
+  $filename = $_FILES["file"]["tmp_name"];
+  print_r(pathinfo($checkFile, PATHINFO_BASENAME));
+  $ext = pathinfo($checkFile, PATHINFO_EXTENSION);
+
+  $fp = file($filename);
+  $c =  count($fp) -1;
+
+
+
+
+  if (!in_array($ext, $allowed)) {
+
+    $error = "Upload a CSV file";
+    header('Location: ../public/office/o_viewSchol.php?error='.$error);
+    exit();
+  }
+  
+
+  $firstLine = TRUE;
+  if ($_FILES["file"]["size"] > 0) {
+    $file = fopen($filename, "r");
+    while (($getData = fgetcsv($file, 1000, ",")) !== FALSE) {
+      if ($firstLine) {
+        $firstLine = false;
+        continue;
+      }
+
+      $sql = "INSERT into schol_RSheet (examID, admissionNo, studentIndex, studentName)  values ('$getData[0]','" . $getData[1] . "','" . $getData[2] . "')";
+      $result = mysqli_query($conn, $sql);
+
+      if (!isset($result)) {
+        $error = "Cannot Upload the file";
+        header('Location: ../public/office/o_classes.php?error=' . $error);
+      } else {
+        header('Location: ../public/office/o_classes.php?Ggrades=' . $thisGrade);
+      }
+    }
+    fclose($file);
+  }
+}
+
+
+/*
+<?php
 
 include_once '../config/conn.php';
 
@@ -37,11 +88,11 @@ include_once '../config/conn.php';
                 header('Location: ../public/office/o_viewSchol.php?error='.$error);
                 echo "No file selected <br />";
           }
-     }
+     
 
 
 
-/*
+//.......................................................................
 
     if(isset($_POST['submit'])){
 
