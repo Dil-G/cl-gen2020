@@ -10,7 +10,7 @@
 		else{
 
          $userID = $_SESSION['userID'];
-         include_once '../../src/view_news.php';
+         include_once '../../src/newsfeed.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -32,7 +32,7 @@
         </div>
 
         <?php
-		while($row=mysqli_fetch_assoc($news_result)){
+		while($row=mysqli_fetch_assoc($res)){
 			?>
         <div class="container">
             <table>
