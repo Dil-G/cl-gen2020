@@ -113,8 +113,8 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                         </tr>
                     </tbody>
                     <?php
-                            }
-                            ?>
+                        }
+                    ?>
                 </table>
             </div>
         </div>

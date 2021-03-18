@@ -10,6 +10,8 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
     $dutyID = $_SESSION['dutyID'];
 
     if (in_array("d5", $dutyID)) {
+
+        include_once '../../src/newsfeed.php';
 ?>
 
 <!DOCTYPE html>
@@ -31,21 +33,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 
 <body>
 
-    <?php
 
-            require_once '../../config/conn.php';
-
-            $sql = "SELECT * FROM newsfeed ORDER BY newsID DESC";
-
-            $res = mysqli_query($conn, $sql);
-
-            if ($res) {
-                //echo "Sucessfull";
-            } else {
-                echo "failed";
-            }
-
-            ?>
     <div id="officeNav"></div>
 
     <div class="content">
@@ -76,10 +64,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
             </form>
             <br>
             <br>
-
-
             <hr>
-
             <table>
                 <tr>
                     <th>News ID</th>
@@ -88,7 +73,6 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                     <th>Date</th>
                     <th>Time</th>
                     <th>Image</th>
-
                 </tr>
                 <?php
                         while ($row = mysqli_fetch_assoc($res)) {

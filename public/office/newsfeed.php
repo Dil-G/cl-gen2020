@@ -10,7 +10,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
     $dutyID = $_SESSION['dutyID'];
 
     if (in_array("d5", $dutyID)) {
-        include_once '../../src/view_news.php';
+        include_once '../../src/newsfeed.php';
 ?>
 
 <!DOCTYPE html>
@@ -34,7 +34,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
         </div>
 
         <?php
-                while ($row = mysqli_fetch_assoc($news_result)) {
+                while ($row = mysqli_fetch_assoc($res)) {
                 ?>
         <div class="container">
             <table>

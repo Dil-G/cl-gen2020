@@ -40,23 +40,23 @@
     <div id="officeNav"></div>
     <?php
 
-				require_once '../../config/conn.php';
+				// require_once '../../config/conn.php';
 
-				$sql = "SELECT * FROM user where userID='".$_GET['userID']."'";
+				// $sql = "SELECT * FROM user where userID='".$_GET['userID']."'";
 
-                $res= mysqli_query($conn,$sql);
-                $row=mysqli_fetch_array($res);
+                // $res= mysqli_query($conn,$sql);
+                // $row=mysqli_fetch_array($res);
                 
-                $stuID = $row['userID'];
-                $charID = substr($stuID,2);
-                $pID = "PR" . $charID;
+                // $stuID = $row['userID'];
+                // $charID = substr($stuID,2);
+                // $pID = "PR" . $charID;
 
-				if($res){
-				//echo "Sucessfull";
-				}
-				else{
-				echo"failed";	
-				}
+				// if($res){
+				// //echo "Sucessfull";
+				// }
+				// else{
+				// echo"failed";	
+				// }
 ?>
 
     <div id="pg1">

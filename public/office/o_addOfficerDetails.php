@@ -109,14 +109,9 @@
                         <a href="o_officersList.php" class="cancel-btn">Cancel</a>
 
                     </div>
-
             	</form>
-				
         	</div>
-
     	</div>
-
-		
 	</body>
 </html>
 
