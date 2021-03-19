@@ -10,7 +10,8 @@ if(isset($_POST['submit'])){
    {
     if($_FILES["file"]["size"] > 0){
       $csvFile = file($_FILES['file']['tmp_name']);
-      //move_uploaded_file($_FILES['file']['tmp_name'],'../public/tmp/'.$_FILES['file']['name']);
+      //security feature - save to a folder
+      move_uploaded_file($_FILES['file']['tmp_name'],'../public/tmp/'.$_FILES['file']['name']);
       $data = [];
       //read & store each line in $data
       foreach ($csvFile as $line) {
@@ -20,14 +21,14 @@ if(isset($_POST['submit'])){
       $count=5;
       while ($count < count($data)){
          $last=explode("\r",$data[$count-1]);
-         $item00 = mysqli_real_escape_string($conn, $last[1] );
-         $item0 = mysqli_real_escape_string($conn, $data[$count+0]);  
-         $item1 = mysqli_real_escape_string($conn, $data[$count+1]);
-         $item2 = mysqli_real_escape_string($conn, $data[$count+2]);
+         $item1 = mysqli_real_escape_string($conn, $last[1] );
+         $item2 = mysqli_real_escape_string($conn, $data[$count+0]);  
+         $item3 = mysqli_real_escape_string($conn, $data[$count+1]);
+         $item4 = mysqli_real_escape_string($conn, $data[$count+2]);
          $last=explode("\r",$data[$count+3]);
-         $item3 = mysqli_real_escape_string($conn, $last[0]);
+         $item5 = mysqli_real_escape_string($conn, $last[0]);
          
-         $sql = "INSERT into schol_rsheet(examID, admissionNo, studentIndex, studentName,examMarks) values('$item00','$item0','" .$item1. "','" . $item2. "',$item3)";
+         $sql = "INSERT into schol_rsheet(examID, admissionNo, studentIndex, studentName,examMarks) values('$item1','$item2','" .$item3. "','" . $item4. "',$item5)";
          mysqli_query($conn, $sql);
         
         $count=$count+4;

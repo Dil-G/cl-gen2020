@@ -1,44 +1,74 @@
 <?php
+require_once(realpath(dirname(__FILE__) . '/../config/conn.php'));
 
-use FontLib\Table\Type\head;
+if(isset($_POST['submit'])){
 
-include_once '../config/conn.php';
-
-    if ($conn->connect_error){
-        die("Connection failed : " . $conn->connect_error);
+  if($_FILES['file']['name'])
+  {
+   $filename = explode(".", $_FILES['file']['name']);
+   if($filename[1] == 'csv')
+   {
+    if($_FILES["file"]["size"] > 0){
+      $csvFile = file($_FILES['file']['tmp_name']);
+      //security feature - save to a folder
+      move_uploaded_file($_FILES['file']['tmp_name'],'../public/tmp/'.$_FILES['file']['name']);
+      $data = [];
+      //read & store each line in $data
+      foreach ($csvFile as $line) {
+          $data = str_getcsv($line);
+      }
+      //get each line in $data and  drived the relevent values
+      $count=26;
+      while ($count < count($data)){
+         $last=explode("\r",$data[$count-1]);
+         $item0 = mysqli_real_escape_string($conn, $last[1] );
+         $item1 = mysqli_real_escape_string($conn, $data[$count+0]);  
+         $item2 = mysqli_real_escape_string($conn, $data[$count+1]);
+         $item3 = mysqli_real_escape_string($conn, $data[$count+2]);
+         $item4 = mysqli_real_escape_string($conn, $data[$count+2]);
+         $item5 = mysqli_real_escape_string($conn, $data[$count+2]);
+         $item6 = mysqli_real_escape_string($conn, $data[$count+2]);
+         $item7 = mysqli_real_escape_string($conn, $data[$count+2]);
+         $item8 = mysqli_real_escape_string($conn, $data[$count+2]);
+         $item9 = mysqli_real_escape_string($conn, $data[$count+2]);
+         $item10 = mysqli_real_escape_string($conn, $data[$count+2]);
+         $item11 = mysqli_real_escape_string($conn, $data[$count+2]);
+         $item12 = mysqli_real_escape_string($conn, $data[$count+2]);
+         $item13 = mysqli_real_escape_string($conn, $data[$count+2]);
+         $item14 = mysqli_real_escape_string($conn, $data[$count+2]);
+         $item15 = mysqli_real_escape_string($conn, $data[$count+2]);
+         $item16 = mysqli_real_escape_string($conn, $data[$count+2]);
+         $item17 = mysqli_real_escape_string($conn, $data[$count+2]);
+         $item18 = mysqli_real_escape_string($conn, $data[$count+2]);
+         $item19 = mysqli_real_escape_string($conn, $data[$count+2]);
+         $item20 = mysqli_real_escape_string($conn, $data[$count+2]);
+         $item21 = mysqli_real_escape_string($conn, $data[$count+2]);
+         $item22 = mysqli_real_escape_string($conn, $data[$count+2]);
+         $item23 = mysqli_real_escape_string($conn, $data[$count+2]);
+         $item24 = mysqli_real_escape_string($conn, $data[$count+2]);
+         $item3 = mysqli_real_escape_string($conn, $data[$count+2]);
+         $last=explode("\r",$data[$count+3]);
+         $item4 = mysqli_real_escape_string($conn, $last[0]);
+         
+         $sql = "INSERT into ol_rsheet(examID, admissionNo, studentIndex, studentName,examMarks) values('$item0','$item1','" .$item2. "','" . $item3. "',$item4)";
+         mysqli_query($conn, $sql);
+        
+        $count=$count+25;
+      }
+   
+      
+    echo "<script>alert('Import done');</script>";
+    
     }
-    //echo "Connected Successfully";
+    
+   }
+  }
 
-    if(isset($_POST['savebtn'])){
+}else{
+  $error = "Cannot add the record";
+  header('Location: ../public/office/o_viewSchol.php?error='.$error);
+}
 
-        $examID = $_POST['examID'];
-        $examYear = $_POST['olExamYear'];
-        $examName = $_POST['examName']; 
-        $scholCsv = $_FILES['fileName']['name'];
-        $target = "../images/examResults".basename($scholCsv);
-
-        $sql = "INSERT INTO schol_RSheet (examID, examYear, examName, scholCsv) VALUES
-        ('$examID', '$examYear', '$examName', '$scholCsv')";
-
-        if($conn->query($sql)===TRUE){
-            if(move_uploaded_file($_FILES['fileName']['temp_name'],$target)){
-                $message = "File uploaded successfully";
-                header('Location: ../pulic/office/o_scholCsv.php?message='.$message);
-            }else{
-                header('Location: ../public/office/o_scholCsv.php');
-            }
-
-            header('Location: ../public/office/o_scholCsv.php?userID='.$admissionNo);
-
-            }else{
-                $error = "Cannot add record";
-                header('Location: ../public/office/o_scholCsv.php?error='.$error);
-            }
-
-    }else{
-        $error = "Cannot add the record";
-        header('Location: ../public/office/o_scholCsv.php?error='.$error);
-    }
-
+ 
     $conn->close();
 ?>
