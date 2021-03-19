@@ -27,7 +27,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
     <body>
 
 
-        <div id="nav3"></div>
+        <div id="teacherNav"></div>
         <div class="content">
             <h2 style="color: #6a7480;">Class A</h2>
             <div class=l-part>

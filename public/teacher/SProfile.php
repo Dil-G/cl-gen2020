@@ -1,15 +1,17 @@
 <?php
-     session_start();
+    session_start();
 
-     if(!isset($_SESSION['userType']) && !isset($_SESSION['userID'])){
-         $error = "Please Login!";
-         header('Location: ../common/loginFile.php?error='.$error);
-        }else if($_SESSION['userType'] != 'teacher'){
-            header('Location: ../common/error.html');
-     }else if(($_SESSION['userType'] == 'teacher')){
+    if(!isset($_SESSION['userType']) && !isset($_SESSION['userID'])){
+        $error = "Please Login!";
+        header('Location: ../common/loginFile.php?error='.$error);
+    }elseif($_SESSION['userType'] == 'teacher'){
+      
+   
+      $teacherType = $_SESSION['teacherType'];
 
-         $userID = $_SESSION['userID'];
-?> 
+     
+	?>
+
 
 <!DOCTYPE html>
 
@@ -28,7 +30,7 @@
 <body>
 
 
-    <div id="nav1"></div>
+    <div id="teacherNav"></div>
 
 
     <div class="content">

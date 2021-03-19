@@ -1,15 +1,17 @@
 <?php
-     session_start();
+    session_start();
 
-     if(!isset($_SESSION['userType']) && !isset($_SESSION['userID'])){
-         $error = "Please Login!";
-         header('Location: ../common/loginFile.php?error='.$error);
-        }else if($_SESSION['userType'] != 'teacher'){
-            header('Location: ../common/error.html');
-     }else if(($_SESSION['userType'] == 'teacher') && ($_SESSION['teacherType'] == 'classTcr')){
+    if(!isset($_SESSION['userType']) && !isset($_SESSION['userID'])){
+        $error = "Please Login!";
+        header('Location: ../common/loginFile.php?error='.$error);
+    }elseif($_SESSION['userType'] == 'teacher'){
+      
+   
+      $teacherType = $_SESSION['teacherType'];
 
-         $userID = $_SESSION['userID'];
-?> 
+     
+	?>
+
 <!DOCTYPE html>
 <html>
 
@@ -21,28 +23,48 @@
     <link type="text/css" rel="stylesheet" href="../css/register2.css">
     <link type="text/css" rel="stylesheet" href="../css/class.css">
     <link rel="stylesheet" href="../css/view.css " type="text/css">
+    
+    <script>
+    $(document).ready(function() {
+        $("#Inputs").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#Table tr").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+    </script>
 </head>
 
 <body>
-    <div id="nav1"></div>
+    <div id="teacherNav"></div>
     <div class="content">
+   
         <h1 style="color: #6a7480;">Class A</h1>
         <form class="search" action="Tcr_marks.php">
+        
             <button type="submit">View Marks</button>
         </form>
         <form class="search" action="Tcr_csv_marks.php">
             <button type="submit">Upload Marks</button>
         </form>
-
+        
         <div class=l-part>
             <label for="name"><b>Class Name</b></label>
             <input type="text" placeholder="12-A" name="id" required>
         </div>
-
         <div class=r-part>
             <label for="name"><b>Class Teacher</b></label>
             <input type="text" placeholder="W.H.M.Gunathilaka" name="name" required>
+
+          
+
+            
         </div>
+      
+        
+
+        
 
         <div class="card">
             <br>

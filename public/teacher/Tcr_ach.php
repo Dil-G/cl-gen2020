@@ -1,17 +1,16 @@
 <?php
-     session_start();
-
-     if(!isset($_SESSION['userType']) && !isset($_SESSION['userID'])){
-         $error = "Please Login!";
-         header('Location: ../common/loginFile.php?error='.$error);
-        }else if($_SESSION['userType'] != 'teacher'){
-            header('Location: ../common/error.html');
-     }else if(($_SESSION['userType'] == 'teacher') && ($_SESSION['teacherType'] == 'TcrinCharge')){
-
-         $userID = $_SESSION['userID'];
-         include('../../src/view_sportcategory.php');
-?>
-
+    session_start();
+    
+ 
+    if(!isset($_SESSION['userType']) && !isset($_SESSION['userID'])){
+        $error = "Please Login!";
+        header('Location: ../common/loginFile.php?error='.$error);
+    }elseif($_SESSION['userType'] == 'teacher'){
+      
+        $userID = $_SESSION['userID'];
+      include('../../src/view_sportcategory.php');
+     
+	?>
 <!DOCTYPE html>
 <html>
 
@@ -19,9 +18,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Select the Category</title>
     <link rel="stylesheet" href="../css/view.css " type="text/css">
-    <link type="text/css" rel="stylesheet" href="../css/main.css">
-    <link type="text/css" rel="stylesheet" href="../css/tabs.css">
-    <link type="text/css" rel="stylesheet" href="../css/users.css">
+<link type="text/css" rel="stylesheet" href="../css/main.css">
+<link type="text/css" rel="stylesheet" href="../css/register.css">
+<link type="text/css" rel="stylesheet" href="../css/register2.css">
+<script>
     <script src="../js/jquery-1.9.1.min.js"></script>
     <script src="../js/pop.js"></script>
     <script src="../js/nav.js"></script>
@@ -39,10 +39,10 @@
 
 <body>
 <!-- Start Add achievements -->
-    <div id="nav"></div>
+    <div id="teacherNav"></div>
     <div class="content">
     <h1 style="color: #6a7480;">Select the category</h1>
-    <form class="search" action="register_stu.html">
+    <form class="search" action="Tcr_ach.php">
             <input type="text" ID="Inputs" placeholder="Search.." name="search">
             <button type="submit">Search</button>
         </form>
@@ -55,7 +55,9 @@ while($row1=mysqli_fetch_assoc($result1)){
     if($row1["COUNT(SportID)"]){
           
   
+
     ?>
+
              <table>
     
 
@@ -76,7 +78,7 @@ while($row1=mysqli_fetch_assoc($result1)){
     <?php echo "<td><a class='btn editbtn' href = Tcr_achievement.php?SportID=".$row['SportID']." > Add </a> </td>"?>
   </tr>
   </tbody>
-                </table>
+              
    
     <?php
             }
@@ -89,10 +91,12 @@ while($row1=mysqli_fetch_assoc($result1)){
 
 <?php
 while($row2=mysqli_fetch_assoc($result2)){
-    if($row2["COUNT(SocietyID)"])
+    
           
 
     ?>
+
+
 <table>
     <!-- Start Csocouey -->
 <br>
@@ -114,9 +118,9 @@ while($row2=mysqli_fetch_assoc($result2)){
     <td><?php echo $row2['SocietyName'] ?></td>
     <?php echo "<td><a class='btn editbtn' href = Tcr_achievement.php?SocietyID=".$row2['SocietyID']." > Add </a> </td>"?>
 </tr>
-
-</table>
 </tbody>
+
+
 <?php
 }
 }
@@ -129,9 +133,6 @@ while($row2=mysqli_fetch_assoc($result2)){
 </html>
 
 <?php } ?>
-
-
-
 
 
 

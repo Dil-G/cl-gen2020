@@ -97,6 +97,31 @@ function validateUsername(username) {
 
 }
 
+
+function validateUserID(userID) {
+    
+    var anUpperCase = /[A-Z]/;
+    var aLowerCase = /[a-z]/;
+    var aNumber = /[0-9]/g;
+
+
+    if (userID.length != 9 || userID.search(anUpperCase) == -1 || userID.match(aLowerCase) || !userID.charAt(0).match(anUpperCase) || !userID.charAt(1).match(anUpperCase) || !userID.charAt(2).match(aNumber) || !userID.charAt(3).match(aNumber) || !userID.charAt(4).match(aNumber) || !userID.charAt(5).match(aNumber) || !userID.charAt(6).match(aNumber) || !userID.charAt(7).match(aNumber) || !userID.charAt(8).match(aNumber)) {
+        document.getElementById("username").style.background = "#FFE5E4";
+        document.getElementById("username").style.borderColor = "red";
+        document.getElementById("uName").style.display = "block";
+        document.getElementById("uName").innerHTML = "Invalid userID";
+       
+    } else {
+        document.getElementById("username").style.background = "#f1f1f1";
+        document.getElementById("username").style.borderColor = "transparent";
+        document.getElementById("uName").style.display = "none";
+        alert("fff");
+        return true;
+    }
+
+
+}
+
 function validate(username, password) {
 
     var anUpperCase = /[A-Z]/;

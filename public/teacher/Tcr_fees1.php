@@ -1,16 +1,18 @@
 <?php
-     session_start();
+    session_start();
 
-     if(!isset($_SESSION['userType']) && !isset($_SESSION['userID'])){
-         $error = "Please Login!";
-         header('Location: ../common/loginFile.php?error='.$error);
-        }else if($_SESSION['userType'] != 'teacher'){
-            header('Location: ../common/error.html');
-     }else if(($_SESSION['userType'] == 'teacher') && ($_SESSION['teacherType'] == 'classTcr')){
+    if(!isset($_SESSION['userType']) && !isset($_SESSION['userID'])){
+        $error = "Please Login!";
+        header('Location: ../common/loginFile.php?error='.$error);
+    }elseif($_SESSION['userType'] == 'teacher'){
+      
+   
+      $teacherType = $_SESSION['teacherType'];
+      $userID = $_SESSION['userID'];
+      include('../../src/view_fees.php');
+     
+	?>
 
-         $userID = $_SESSION['userID'];
-         include('../../src/view_fees.php');
-?>
 
 
 <!DOCTYPE html>
@@ -24,19 +26,30 @@
     <link rel="stylesheet" href="../css/view.css " type="text/css">
 <link type="text/css" rel="stylesheet" href="../css/main.css">
 <link type="text/css" rel="stylesheet" href="../css/register.css">
+<script>
+    $(document).ready(function() {
+        $("#Inputs").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#Table tr").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+    </script>
 </head>
 
 <body name=top>
 
     <body>
-        <div id="nav1"></div>
+        <div id="teacherNav"></div>
+
 
         <div class="content">
         
 		
         <h1 style="color: #6a7480;">Fees and Fines</h1>
-        <form class="search" action="action_page.php">
-            <input type="text" placeholder="Search.." name="search">
+        <form class="search" action="Tcr_fees1.php">
+            <input type="text" ID="Inputs" placeholder="Search.." name="search">
             <button type="submit">Search</button>
         </form>
         <br>
@@ -74,7 +87,7 @@
             while($row=mysqli_fetch_assoc($result)){
 
         ?>
-  
+ <tbody id="Table"> 
   <tr>
     <td><?php echo $row['feesID'] ?></td>
             <td><?php echo $row['TeacherID'] ?></td>
@@ -88,7 +101,7 @@
            
             
     </tr>
-    
+            </tbody>  
    
    
    
