@@ -41,7 +41,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 			<h1>INQUIERY FORM</h1>
 			<div class="container " style="padding: 10px 20px;">
 				<br>
-				<button type="submit"><a href="ReplyInquiery.php">Reply Inquieries</a></button>
+				<button type="submit"><a href="inquiries.php">View Inquieries</a></button>
 				<hr>
 				<form action="../../src/add_inquiry.php" method="POST">
 

@@ -23,3 +23,17 @@ if ($res) {
 } else {
   echo "failed";
 }
+
+
+
+$recieved_sql = "SELECT * FROM inquiry WHERE reciever='$username' ORDER BY inquiryID DESC";
+$recieved_count = "SELECT COUNT(*) FROM inquiry WHERE reciever= '$username'";
+
+$recieved_res = mysqli_query($conn, $recieved_sql);
+$count_res = mysqli_query($conn, $recieved_count);
+
+if ($recieved_res) {
+  //echo "Sucessfull";
+} else {
+  echo "failed";
+}
