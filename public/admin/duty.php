@@ -29,16 +29,8 @@
     <script src="../js/jquery-1.9.1.min.js"></script>
     <script src="../js/pop.js"></script>
     <script src="../js/nav.js"></script>
-    <script>
-    $(document).ready(function() {
-        $("#Inputs").on("keyup", function() {
-            var value = $(this).val().toLowerCase();
-            $("#Table tr").filter(function() {
-                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-            });
-        });
-    });
-    </script>
+    <script src="../js/tabs.js"></script>
+    <script src="../js/search.js"></script>
 </head>
 
 <body>
@@ -46,15 +38,9 @@
 
     <div class="content">
 
-        <h1 style="font-size: 36px;">Duty List</h1>
-        <form class="search" action="register_stu.html">
-            <input type="text" id="Inputs" placeholder="Search.." name="search">
-            <button type="submit">Search</button>
-        </form>
         <?php if (isset($_GET['error'])) { ?>
         <div id="error"><?php echo $_GET['error']; ?></div>
-        <?php } ?>
-        <?php
+        <?php }
          //echo "test";
 
          $sql = "SELECT * FROM duty";
@@ -65,10 +51,16 @@
 
 
          ?>
-
-        <div class="btn-box">
-            <button id="button1" onclick="Assigned()">Assigned Officers</button>
-            <button id="button2" onclick="duties()">Duties</button>
+        <div class="card">
+            <h1>Duty List</h1>
+            <form class="search">
+                <input type="text" id="Inputs" placeholder="Search.." name="search">
+                <button type="submit">Search</button>
+            </form>
+            <div class="btn-box" style="margin-left: 10px;">
+                <button id="button2" onclick="return activated()">Added Users</button>
+                <button id="button1" onclick="return notActivated()">Activated Users</button>
+            </div>
         </div>
 
         <br>
@@ -148,48 +140,6 @@
         </div>
     </div>
     </div>
-    <script>
-    var page1 = document.getElementById("page1");
-    var page2 = document.getElementById("page2");
-    var button1 = document.getElementById("button1");
-    var button2 = document.getElementById("button2");
-
-    let url = window.location.href;
-    if (url == window.location.href) {
-        page1.style.display = "block";
-        page2.style.display = "none";
-        button1.style.color = "#000";
-        button2.style.color = "#008080";
-
-    } else if (url == "http://localhost/CL-GEN/public/admin/duty.php?error=Error%20in%20entering%20data") {
-        page1.style.display = "block";
-        page2.style.display = "none";
-        button1.style.color = "#008080";
-        button2.style.color = "#000";
-
-    } else if (url == "http://localhost/CL-GEN/public/admin/duty.php?error=Duty%20already%20Assigned") {
-        page1.style.display = "block";
-        page2.style.display = "none";
-        button1.style.color = "#008080";
-        button2.style.color = "#000";
-
-    }
-
-    function duties() {
-        page2.style.display = "block";
-        page1.style.display = "none";
-        button1.style.color = "#008080";
-        button2.style.color = "#000";
-
-    }
-
-    function Assigned() {
-        page2.style.display = "none";
-        page1.style.display = "block";
-        button1.style.color = "#000";
-        button2.style.color = "#008080";
-    }
-    </script>
 </body>
 
 </html>

@@ -32,7 +32,7 @@ include_once '../../config/conn.php';
 
 <body>
     <div id="officeNav"></div>
-
+    
     <div class="content">
         <br>
         <h1 style="color: #6a7480;">Grade 5 Scholarship Examination Results</h1>

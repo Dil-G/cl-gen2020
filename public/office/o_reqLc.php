@@ -39,141 +39,135 @@
         </div>
 
         <div id="page1" class="page">
-            <div class="container" style="margin-left:4%;width:95%;">
+            <div class="card" style="margin-left:4%;width:95%;">
                 <h2>Requests</h2>
                 <br>
-                <div class="card">
-                    <hr>
-                    <table>
-                        <tr>
-                            <th>Student ID</th>
-                            <th>Student Name</th>
-                            <th>Student NIC</th>
-                            <th>Student email</th>
-                            <th>View Request</th>
-                            <th>Generate Leaving Certificate</th>
-                            <th>Reject Request</th>
-                            <th>Send to Student</th>
-                        </tr>
-                        <tr>
-                            <td>S1234</td>
-                            <td>A.B.C. Student</td>
-                            <td>123456789V</td>
-                            <td>Student@gmail.com</td>
-                            <td>
-                                <button id="requests-btn" class="btn editbtn">Open Form</button>
-                                <div id="requests-form" class="model">
-                                    <div class="modal-content">
-                                        <span class="close1">&times;</span>
-                                        <h2>Leaving Certificate Request Form</h2>
-                                        <form>
-                                            <hr>
-                                            <label for="userID"><b>Student Admission Number</b></label>
-                                            <input type="text" value="ST2000001" name="id">
+                <hr>
+                <table>
+                    <tr>
+                        <th>Student ID</th>
+                        <th>Student Name</th>
+                        <th>Student NIC</th>
+                        <th>Student email</th>
+                        <th>View Request</th>
+                        <th>Generate Leaving Certificate</th>
+                        <th>Reject Request</th>
+                        <th>Send to Student</th>
+                    </tr>
+                    <tr>
+                        <td>S1234</td>
+                        <td>A.B.C. Student</td>
+                        <td>123456789V</td>
+                        <td>Student@gmail.com</td>
+                        <td>
+                            <button id="requests-btn" class="btn editbtn">Open Form</button>
+                            <div id="requests-form" class="model">
+                                <div class="modal-content">
+                                    <span class="close1">&times;</span>
+                                    <h2>Leaving Certificate Request Form</h2>
+                                    <form>
+                                        <hr>
+                                        <label for="userID"><b>Student Admission Number</b></label>
+                                        <input type="text" value="ST2000001" name="id">
 
-                                            <label for="reason"><b>Reason for Requesting Leaving Certificate</b></label>
-                                            <textarea id="w3review" name="w3review" rows="4" cols="50"></textarea>
-                                            <br>
-                                      
+                                        <label for="reason"><b>Reason for Requesting Leaving Certificate</b></label>
+                                        <textarea id="w3review" name="w3review" rows="4" cols="50"></textarea>
+                                        <br>
 
-                                            <button type="submit" class="registerbtn">Request</button>
-                                            <hr>
-                                        </form>
-                                    </div>
+
+                                        <button type="submit" class="registerbtn">Request</button>
+                                        <hr>
+                                    </form>
                                 </div>
-                            </td>
-                            <td>
+                            </div>
+                        </td>
+                        <td>
                             <button class="btn editbtn" value="Open Window" onclick="openWinLeaving()"
-                                    type="button">Generate Leaving Certificate</button>
-                                
-                            </td>
-                            <td><button class="btn dltbtn" type="button">Reject</button></td>
-                            <td>
-                        </tr>
-                    </table>
-                </div>
+                                type="button">Generate Leaving Certificate</button>
+
+                        </td>
+                        <td><button class="btn dltbtn" type="button">Reject</button></td>
+                        <td>
+                    </tr>
+                </table>
             </div>
         </div>
         <!--Page1 end-->
         <!--Page 2-->
         <div id="page2" class="page">
-            <div class="container" style="margin-left:4%;width:95%;">
+            <div class="card" style="margin-left:4%;width:95%;">
                 <h2>Issues</h2>
                 <br>
-                <div class="card">
-                    <hr>
-                    <table>
-                        <tr>
-                            <th>Student ID</th>
-                            <th>Student Name</th>
-                            <th>Student NIC</th>
-                            <th>Student email</th>
-                            <th>View Request</th>
-                            <th>Generate Leaving Certificate</th>
-                            <th>Reject Request</th>
-                            <th>Send to Student</th>
-                        </tr>
-                        <tr>
-                            <td>S1234</td>
-                            <td>A.B.C. Student</td>
-                            <td>123456789V</td>
-                            <td>Student@gmail.com</td>
-                            <td>
-                                <button id="issues-btn" class="btn editbtn">Open Form</button>
-                                <div id="issues-form" class="model">
-                                    <div class="modal-content">
-                                        <span class="close2">&times;</span>
-                                        <h2>Leaving Certificate Issues</h2>
-                                        <form>
-                                            <hr>
-                                            <label for="userID"><b>Student Admission Number</b></label>
-                                            <input type="text" value="ST2000001" name="id">
+                <hr>
+                <table>
+                    <tr>
+                        <th>Student ID</th>
+                        <th>Student Name</th>
+                        <th>Student NIC</th>
+                        <th>Student email</th>
+                        <th>View Request</th>
+                        <th>Generate Leaving Certificate</th>
+                        <th>Reject Request</th>
+                        <th>Send to Student</th>
+                    </tr>
+                    <tr>
+                        <td>S1234</td>
+                        <td>A.B.C. Student</td>
+                        <td>123456789V</td>
+                        <td>Student@gmail.com</td>
+                        <td>
+                            <button id="issues-btn" class="btn editbtn">Open Form</button>
+                            <div id="issues-form" class="model">
+                                <div class="modal-content">
+                                    <span class="close2">&times;</span>
+                                    <h2>Leaving Certificate Issues</h2>
+                                    <form>
+                                        <hr>
+                                        <label for="userID"><b>Student Admission Number</b></label>
+                                        <input type="text" value="ST2000001" name="id">
 
-                                            <label for="reason"><b>Reason for Requesting Leaving Certificate</b></label>
-                                            <textarea id="w3review" name="w3review" rows="4" cols="50"></textarea>
-                                            <br>
-                                     
-                                            <button type="submit" class="registerbtn">Request</button>
-                                            <hr>
-                                        </form>
-                                    </div>
+                                        <label for="reason"><b>Reason for Requesting Leaving Certificate</b></label>
+                                        <textarea id="w3review" name="w3review" rows="4" cols="50"></textarea>
+                                        <br>
+
+                                        <button type="submit" class="registerbtn">Request</button>
+                                        <hr>
+                                    </form>
                                 </div>
-                            </td>
-                            <td>
-                                <button class="btn editbtn" type="submit">Generate New Leaving Certificate</button>
-                            </td>
-                            <td><button class="btn dltbtn" type="button">Reject</button></td>
-                            <td>
-                        </tr>
-                    </table>
-                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <button class="btn editbtn" type="submit">Generate New Leaving Certificate</button>
+                        </td>
+                        <td><button class="btn dltbtn" type="button">Reject</button></td>
+                        <td>
+                    </tr>
+                </table>
             </div>
         </div>
         <!--Page2 End-->
         <!--Page3-->
         <div id="page3" class="page">
-            <div class="container" style="margin-left:4%;width:95%;">
+            <div class="card" style="margin-left:4%;width:95%;">
                 <h2>Accepted</h2>
                 <br>
-                <div class="card">
-                    <hr>
-                    <table>
-                        <tr>
-                            <th>Student ID</th>
-                            <th>Student Name</th>
-                            <th>Student NIC</th>
-                            <th>Student email</th>
-                            <th>Download</th>
-                        </tr>
-                        <tr>
-                            <td>S1234</td>
-                            <td>A.B.C. Student</td>
-                            <td>123456789V</td>
-                            <td>Student@gmail.com</td>
-                            <td><button class="btn dltbtn" type="button">Download</button></td>
-                        </tr>
-                    </table>
-                </div>
+                <hr>
+                <table>
+                    <tr>
+                        <th>Student ID</th>
+                        <th>Student Name</th>
+                        <th>Student NIC</th>
+                        <th>Student email</th>
+                        <th>Download</th>
+                    </tr>
+                    <tr>
+                        <td>S1234</td>
+                        <td>A.B.C. Student</td>
+                        <td>123456789V</td>
+                        <td>Student@gmail.com</td>
+                        <td><button class="btn dltbtn" type="button">Download</button></td>
+                    </tr>
+                </table>
             </div>
         </div>
         <!--Page 3 end-->

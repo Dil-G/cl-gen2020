@@ -35,19 +35,22 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
             <ul>
                 <br>
                 <li><a href="dashboard.php">Dashboard</a></li>
-                
+                <li><a href="newsfeed.php">Newsfeed</a></li>
+
                 <li class="drop">
                     <div class="drop" id="drop">User Management<i class="fa fa-angle-down"></i></div>
                 </li>
                 <div class="submenu" id="submenu">
                     <ul>
-                        <li><a href="userlist.php">System Users</a></li>
+                        
                         <li><a href="users.php">Add Users</a></li>
+                        <li><a href="staff.php">Office staff </a></li>
                         <li><a href="student.php">Students</a></li>
                         <li><a href="parent.php">Parents</a></li>
                         <li><a href="teachers.php"> Teachers</a></li>
-                        <li><a href="staff.php">Office staff </a></li>
-                        <li><a href="officerList.php">Add Officer</a></li>
+                        <li><a href="userlist.php">System Users</a></li>
+
+                        <!-- <li><a href="officerList.php">Add Officer</a></li> -->
                         <?php //if($user=="a"){ 
                         ?>
                         <?php //} 

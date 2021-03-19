@@ -9,20 +9,20 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 } else {
 
   $userID = $_SESSION['userID'];
-  include ('../../src/dashboard.php');
-  
+  include('../../src/dashboard.php');
+
 ?>
-<?php
- 
- $dataPoints = array( 
-   array("label"=>"Industrial", "y"=>51.7),
-   array("label"=>"Transportation", "y"=>264.6),
-   array("label"=>"Residential", "y"=>13.9),
-   array("label"=>"Commercial", "y"=>7.8)
- )
-  
- ?>
-<!DOCTYPE html>
+  <?php
+
+  $dataPoints = array(
+    array("label" => "Industrial", "y" => 51.7),
+    array("label" => "Transportation", "y" => 264.6),
+    array("label" => "Residential", "y" => 13.9),
+    array("label" => "Commercial", "y" => 7.8)
+  )
+
+  ?>
+  <!DOCTYPE html>
   <html lang="en">
 
   <head>
@@ -33,46 +33,17 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
     <script src="../js/nav.js"></script>
     <link type="text/css" rel="stylesheet" href="../css/main.css">
     <link type="text/css" rel="stylesheet" href="../css/dashboard.css">
-    <script>
-window.onload = function() {
- 
- 
-var chart = new CanvasJS.Chart("chartContainer", {
-	theme: "light2",
-	animationEnabled: true,
-	title: {
-		text: "World Energy Consumption by Sector - 2012"
-	},
-	data: [{
-		type: "pie",
-		indexLabel: "{y}",
-		yValueFormatString: "#,##0.00\"%\"",
-		indexLabelPlacement: "inside",
-		indexLabelFontColor: "#36454F",
-		indexLabelFontSize: 18,
-		indexLabelFontWeight: "bolder",
-		showInLegend: true,
-		legendText: "{label}",
-		dataPoints: <?php echo json_encode($userData, JSON_NUMERIC_CHECK); ?>
-	}]
-});
-chart.render();
- 
-}
-</script>
+
     <title>Office Dashboard</title>
   </head>
 
   <body>
 
- 
-  
-
     <div id="nav2"></div>
     <div class="content">
       <div class="welcome">
         <div class="dash-content">
-        <h1>Hello!</h1>
+          <h1>Hello!</h1>
           <h2>Welcome to CL-GEN</h2>
           <?php echo "Date : " . date("Y/m/d"); ?>
         </div>
@@ -177,12 +148,13 @@ chart.render();
         <tr>
 
           <th>
-          <a href=newsfeed.php>
-            <div class="box "><h2 style=" float:left;margin-left:20px;">NEWS</h2>
-            <p style="float:right;line-height:35px;margin-right:25px;">View More<i class="fa fa-angle-right" style="float:right;margin-left:85%;line-height:120px;"></i></p>
-          </div>
-          </a>
-            
+            <a href=newsfeed.php>
+              <div class="box ">
+                <h2 style=" float:left;margin-left:20px;">NEWS</h2>
+                <p style="float:right;line-height:35px;margin-right:25px;">View More<i class="fa fa-angle-right" style="float:right;margin-left:85%;line-height:120px;"></i></p>
+              </div>
+            </a>
+
           </th>
 
         </tr>
@@ -205,39 +177,35 @@ chart.render();
         </tr>
       </table>
       <table class="statis four">
-            <tr>
+        <tr>
 
-                <th>
-                    <a href=o_viewReq.php>
-                        <div class="box ">
-                            <h2 style=" float:left;margin-left:20px;">Requests</h2>
-                            <p style="float:right;line-height:35px;margin-right:25px;">View More<i
-                                    class="fa fa-angle-right"
-                                    style="float:right;margin-left:85%;line-height:120px;"></i></p>
-                        </div>
-                    </a>
-
-                </th>
-
-            </tr>
-            <tr>
-                <td>
-                    <div class="box ">
-                        <?php
+          <th>
+            <a href=o_viewReq.php>
+              <div class="box ">
+                <h2 style=" float:left;margin-left:20px;">Requests</h2>
+                <p style="float:right;line-height:35px;margin-right:25px;">View More<i class="fa fa-angle-right" style="float:right;margin-left:85%;line-height:120px;"></i></p>
+              </div>
+            </a>
+          </th>
+        </tr>
+        <tr>
+          <td>
+            <div class="box ">
+              <?php
               while ($Rrow = $request_result->fetch_assoc()) {
                 echo "<h3>" . $Rrow["name"] . "<hr></h3>";
 
                 echo substr($Rrow['request'], 0, 200) . "...<br>";
               ?>
-                        <hr>
-                        <?php
+                <hr>
+              <?php
               } ?>
 
-                    </div>
-                </td>
+            </div>
+          </td>
 
-            </tr>
-        </table>
+        </tr>
+      </table>
 
   </body>
 

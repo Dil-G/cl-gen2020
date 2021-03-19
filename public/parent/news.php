@@ -10,12 +10,12 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 
     $userID = $_SESSION['userID'];
 
+    include_once '../../src/newsfeed.php';
 
 ?>
 
-
-    <!DOCTYPE html>
-    <html>
+<!DOCTYPE html>
+<html>
 
     <head>
 
@@ -29,26 +29,6 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
         <link type="text/css" rel="stylesheet" href="../css/main_stu.css">
 
     </head>
-    <?php
-
-    if (isset($_POST['view_news'])) {
-
-
-        require_once '../../config/conn.php';
-
-        $newsID = $_POST['newsID'];
-
-        $sql = "SELECT * FROM newsfeed WHERE newsID='$newsID'";
-
-        $res = mysqli_query($conn, $sql);
-
-        if ($res) {
-            //echo "Sucessfull";
-        } else {
-            echo "failed";
-        }
-    }
-    ?>
 
     </head>
 
@@ -59,29 +39,25 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
             <br>
             <div class="container news">
 
-
                 <?php
-                while ($row = mysqli_fetch_assoc($res)) {
-
-                ?>
-                    <p class="da" style="float:right;"> <?php echo $row['newsDate'] . " || " .  $row['newsTime'] ?></p>
-                    <br>
-                    <br>
-                    <hr>
-                    <h2><?php echo $row['title']; ?></h2>
-                    <p><?php echo $row['news']; ?></p>
-                    <?php
-                    if ($row['image'] == TRUE) { ?>
-                        <div class="image">
-                            <?php echo "<img src='../../images/" . $row['image'] . "'>"; ?>
-                        </div>
+                    while ($row = mysqli_fetch_assoc($news_res)) {
+                    ?>
+                <p class="da" style="float:right;"> <?php echo $row['newsDate'] . " || " .  $row['newsTime'] ?></p>
+                <br>
+                <br>
+                <hr>
+                <h2><?php echo $row['title']; ?></h2>
+                <p><?php echo $row['news']; ?></p>
+                <?php
+                        if ($row['image'] == TRUE) { ?>
+                <div class="image">
+                    <?php echo "<img src='../../images/" . $row['image'] . "'>"; ?>
+                </div>
                 <?php }
-                }
-                ?>
+                    }
+                    ?>
                 <hr>
                 <button class="view-btn"><a href="newsfeed.php">Back</a></button>
-
-
 
             </div>
         </div>
@@ -89,6 +65,6 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 
     </body>
 
-    </html>
+</html>
 
 <?php } ?>

@@ -15,4 +15,24 @@ else{
 echo"failed";	
 }
 
+
+if (isset($_POST['view_news'])) {
+
+
+    require_once '../../config/conn.php';
+
+    $newsID = $_POST['newsID'];
+
+    $sql = "SELECT * FROM newsfeed WHERE newsID='$newsID'";
+
+    $news_res = mysqli_query($conn, $sql);
+
+    if ($news_res) {
+        //echo "Sucessfull";
+    } else {
+        echo "failed";
+    }
+}
 ?>
+
+

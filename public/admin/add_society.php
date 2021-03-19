@@ -1,16 +1,15 @@
 <?php
-     session_start();
+session_start();
 
-     if(!isset($_SESSION['userType']) && !isset($_SESSION['userID'])){
-         $error = "Please Login!";
-         header('Location: ../common/loginFile.php?error='.$error);
-	 }else if($_SESSION['userType'] != 'admin'){
-			header('Location: ../common/error.html');
-		}
-		else{
+if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
+	$error = "Please Login!";
+	header('Location: ../common/loginFile.php?error=' . $error);
+} else if ($_SESSION['userType'] != 'admin') {
+	header('Location: ../common/error.html');
+} else {
 
-         $userID = $_SESSION['userID'];
-?> 
+	$userID = $_SESSION['userID'];
+?>
 
 	<!DOCTYPE html>
 	<html>
@@ -33,36 +32,25 @@
 
 		<div class="content">
 
-
-
-
 			<div class="container">
 				<h2><b>Societies</b></h2>
 				<form action="../../src/A_addsocieties.php" method="POST">
-
-
 					<hr>
 					<label for="name"><b>Society</b></label>
 					<input type="text" name="Soname" pattern="[a-zA-Z]+" required>
 
 
 					<label for="TID"><b>Teacher in charge Username</b></label>
-						<input type="text"  id="username" name="TID" onblur="validateUsername(username.value)" required>
-
-
+					<input type="text" id="username" name="TID" onblur="validateUsername(username.value)" required>
 					<hr>
-
 					<div>
 						<button type="submit" class="registerbtn" name="regbtn">Save</button>
-
 						<a href="societies.php" class="cancel-btn">Cancel</a>
 
 					</div>
 				</form>
 
 			</div>
-
-
 
 		</div>
 

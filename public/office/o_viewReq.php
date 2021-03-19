@@ -10,6 +10,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
     $dutyID = $_SESSION['dutyID'];
 
     if (in_array("d4", $dutyID)) {
+        include_once '../../src/View_requests.php';
 ?>
 
 <!DOCTYPE html>
@@ -20,6 +21,8 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
     <title>View Requests</title>
     <script src="../js/jquery-1.9.1.min.js"></script>
     <script src="../js/nav.js"></script>
+    <script src="../js/search.js"></script>
+    <script src="../js/tabs.js"></script>
     <link rel="stylesheet" href="../css/register.css " type="text/css">
     <link type="text/css" rel="stylesheet" href="../css/main.css">
     <link type="text/css" rel="stylesheet" href="../css/profile.css">
@@ -29,28 +32,6 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 </head>
 
 <body>
-    <?php
-
-            require_once '../../config/conn.php';
-
-            $sql = "SELECT * FROM Request  WHERE RequestStatus='1' ORDER BY requestID DESC";
-            $sql1 = "SELECT * FROM Request WHERE RequestStatus='0' ORDER BY requestID DESC ";
-
-            $res = mysqli_query($conn, $sql);
-            $res1 = mysqli_query($conn, $sql1);
-
-            if ($res) {
-                //echo "Sucessfull";
-            } else {
-                echo "failed";
-            }
-
-            ?>
-
-
-
-
-
     <div id="officeNav"></div>
     <div class="content">
         <br>
@@ -80,13 +61,8 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 
         <div id="page2" class="page">
             <div class="card">
-
-
                 <br>
-
-
                 <hr>
-
                 <table>
                     <tr>
                         <th>Request ID</th>
@@ -96,12 +72,11 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                         <th>Proof</th>
                         <th>Date</th>
                         <th>Time</th>
-
                     </tr>
                     <?php
-                            while ($row = mysqli_fetch_assoc($res)) {
-                                $task = 'delete';
-                            ?>
+                        while ($row = mysqli_fetch_assoc($res)) {
+                            $task = 'delete';
+                        ?>
                     <tr>
                         <td><?php echo $row['requestID'] ?></td>
                         <td><?php echo $row['id'] ?></td>
@@ -126,7 +101,6 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                         <td><button
                                 class="dltbtn"><?php echo "<a href = ../../src/manage_request.php?requestID=" . $row['requestID']   . '&task=' . $task . " > Delete </a> " ?></button>
                         </td>
-
                     </tr>
                     <?php
                             }
@@ -137,13 +111,8 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 
         <div id="page1" class="page">
             <div class="card">
-
-
                 <br>
-
-
                 <hr>
-
                 <table>
                     <tr>
                         <th>Request ID</th>
@@ -153,7 +122,6 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                         <th>Proof</th>
                         <th>Date</th>
                         <th>Time</th>
-
                     </tr>
                     <?php
                             while ($row1 = mysqli_fetch_assoc($res1)) {
@@ -179,12 +147,9 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                         </td>
                         <td><?php echo $row1['requestDate'] ?></td>
                         <td><?php echo $row1['requestTime'] ?></td>
-
-
                         <td><button
                                 class="viewbtn"><?php echo "<a href = ../../src/manage_request.php?requestID=" . $row1['requestID'] . '&task=' . $task . " > Mark as resolved </a> " ?></button>
                         </td>
-
                     </tr>
                     <?php
                             }
@@ -227,34 +192,3 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 
 <?php }
 } ?>
-
-<script>
-var page1 = document.getElementById("page1");
-var page2 = document.getElementById("page2");
-var button1 = document.getElementById("button1");
-var button2 = document.getElementById("button2");
-
-let url = window.location.href;
-if (url == window.location.href) {
-    page1.style.display = "block";
-    page2.style.display = "none";
-    button1.style.color = "#008080";
-    button2.style.color = "#000";
-
-}
-
-function notActivated() {
-    page1.style.display = "none";
-    page2.style.display = "block";
-    button1.style.color = "#000";
-    button2.style.color = "#008080";
-
-}
-
-function activated() {
-    page1.style.display = "block";
-    page2.style.display = "none";
-    button1.style.color = "#008080";
-    button2.style.color = "#000";
-}
-</script>

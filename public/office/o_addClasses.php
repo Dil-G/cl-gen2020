@@ -1,19 +1,19 @@
 <?php
-    session_start();
+session_start();
 
-    if(!isset($_SESSION['userType']) && !isset($_SESSION['userID'])){
-        $error = "Please Login!";
-        header('Location: ../common/loginFile.php?error='.$error);
-    }elseif($_SESSION['userType'] == 'officer'){
-      
-      $dutyID = array();
-      $dutyID = $_SESSION['dutyID'];
+if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
+    $error = "Please Login!";
+    header('Location: ../common/loginFile.php?error=' . $error);
+} elseif ($_SESSION['userType'] == 'officer') {
 
-      if (in_array("d6", $dutyID)) {
+    $dutyID = array();
+    $dutyID = $_SESSION['dutyID'];
+
+    if (in_array("d6", $dutyID)) {
 
         include_once '../../config/conn.php';
         include_once '../../src/addClass.php';
-    ?>
+?>
 
 <!DOCTYPE html>
 <html>
@@ -62,4 +62,5 @@
 
 </html>
 
-<?php }} ?>
+<?php }
+} ?>

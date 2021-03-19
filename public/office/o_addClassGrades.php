@@ -1,25 +1,24 @@
 <?php
-    session_start();
+session_start();
 
-    if(!isset($_SESSION['userType']) && !isset($_SESSION['userID'])){
-        $error = "Please Login!";
-        header('Location: ../common/loginFile.php?error='.$error);
-    }elseif($_SESSION['userType'] == 'officer'){
-      
-      $dutyID = array();
-      $dutyID = $_SESSION['dutyID'];
+if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
+    $error = "Please Login!";
+    header('Location: ../common/loginFile.php?error=' . $error);
+} elseif ($_SESSION['userType'] == 'officer') {
 
-      if (in_array("d6", $dutyID)) {
+    $dutyID = array();
+    $dutyID = $_SESSION['dutyID'];
+
+    if (in_array("d6", $dutyID)) {
 
         include_once '../../config/conn.php';
         include_once '../../src/addClass.php';
-	?>
+?>
 
 <!DOCTYPE html>
 <html>
 
 <head>
-
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Assign Classes</title>
@@ -38,12 +37,12 @@
     <div class="content">
         <br>
         <div class="card">
-        <h1 style="color:#6a7480;"><?php echo $_GET['Gyear'] ?> Grades</h1>
-        <hr>
-        <form class="search" action="register_stu.html">
-            <input type="text" placeholder="Search.." name="search">
-            <button type="submit">Search</button>
-        </form>
+            <h1 style="color:#6a7480;"><?php echo $_GET['Gyear'] ?> Grades</h1>
+            <hr>
+            <form class="search" action="register_stu.html">
+                <input type="text" placeholder="Search.." name="search">
+                <button type="submit">Search</button>
+            </form>
         </div>
         <br>
 
@@ -51,7 +50,7 @@
 
 
             <hr>
-           
+
             <table>
                 <tr>
                     <th>Grade ID </th>
@@ -60,28 +59,23 @@
 
                 </tr>
                 <?php
-                while($row=mysqli_fetch_assoc($grade_result)) {
-                    $gradeID=$row['GradeID'];
-                    ?>
+                    while ($row = mysqli_fetch_assoc($grade_result)) {
+                        $gradeID = $row['GradeID'];
+                ?>
                 <tr>
-                    
+
                     <td><?php echo $gradeID ?></td>
                     <td><?php echo $row['Grade'] ?></td>
-                  
-                        <?php if($row['gradeActive'] == 0){
-                            echo "<td><a class='btn viewbtn' href = o_addClasses.php?grade=".$gradeID." >Add Classes </a> </td>";
-                        }else{
-                            
-                            echo "<td><a class='btn editbtn' href = o_classes.php?Ggrades=".$gradeID." >View Grade </a> </td>";
-                        }?>
-                       
-                  
-                 
-                    
+
+                    <?php if ($row['gradeActive'] == 0) {
+                            echo "<td><a class='btn viewbtn' href = o_addClasses.php?grade=" . $gradeID . " >Add Classes </a> </td>";
+                        } else {
+                            echo "<td><a class='btn editbtn' href = o_classes.php?Ggrades=" . $gradeID . " >View Grade </a> </td>";
+                        } ?>
                 </tr>
-                <?php }?>
+                <?php } ?>
             </table>
-           
+
         </div>
 
     </div>
@@ -90,4 +84,5 @@
 
 </html>
 
-<?php }} ?>
+<?php }
+} ?>

@@ -10,6 +10,7 @@
     }else{
 
 		$userID = $_SESSION['userID'];
+		include_once '../../src/newsfeed.php';
 		
 
 ?>
@@ -26,25 +27,7 @@
 <link type="text/css" rel="stylesheet" href="../css/main_stu.css">
 <link type="text/css" rel="stylesheet" href="../css/news.css">
 </head>
-<?php
-require_once '../../config/conn.php';
 
-
-	$count = "SELECT COUNT(*)  FROM newsfeed";
-    $sql = "SELECT * FROM newsfeed ORDER BY newsID DESC";
-
-	$res= mysqli_query($conn,$sql);
-	$res1= mysqli_query($conn,$count);
-
-    if($res){
-    //echo "Sucessfull";
-    }
-    else{
-    echo"failed";	
-    }
-
-
-?>
 
 <div id="nav"></div>
 

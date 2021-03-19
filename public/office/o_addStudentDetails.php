@@ -40,23 +40,23 @@
     <div id="officeNav"></div>
     <?php
 
-				require_once '../../config/conn.php';
+				// require_once '../../config/conn.php';
 
-				$sql = "SELECT * FROM user where userID='".$_GET['userID']."'";
+				// $sql = "SELECT * FROM user where userID='".$_GET['userID']."'";
 
-                $res= mysqli_query($conn,$sql);
-                $row=mysqli_fetch_array($res);
+                // $res= mysqli_query($conn,$sql);
+                // $row=mysqli_fetch_array($res);
                 
-                $stuID = $row['userID'];
-                $charID = substr($stuID,2);
-                $pID = "PR" . $charID;
+                // $stuID = $row['userID'];
+                // $charID = substr($stuID,2);
+                // $pID = "PR" . $charID;
 
-				if($res){
-				//echo "Sucessfull";
-				}
-				else{
-				echo"failed";	
-				}
+				// if($res){
+				// //echo "Sucessfull";
+				// }
+				// else{
+				// echo"failed";	
+				// }
 ?>
 
     <div id="pg1">
@@ -66,7 +66,6 @@
                     enctype="multipart/form-data">
                     <h1>Add Student Details</h1>
                     <hr>
-
 
                     <label for="stuID"><b>Admission Number</b></label>
                     <input type="text" placeholder="Enter ID"
@@ -184,14 +183,6 @@
             </div>
         </div>
     </div>
-    <!--page 1 END-->
-
-    <!--Page 2-->
-
-
-
-
-    <!--Page2 End-->
 
 
 </body>
