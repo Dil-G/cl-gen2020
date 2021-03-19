@@ -1,15 +1,17 @@
 <?php
-     session_start();
+    session_start();
 
-     if(!isset($_SESSION['userType']) && !isset($_SESSION['userID'])){
-         $error = "Please Login!";
-         header('Location: ../common/loginFile.php?error='.$error);
-        }else if($_SESSION['userType'] != 'teacher'){
-            header('Location: ../common/error.html');
-     }else if(($_SESSION['userType'] == 'teacher') && ($_SESSION['teacherType'] == 'classTcr')){
+    if(!isset($_SESSION['userType']) && !isset($_SESSION['userID'])){
+        $error = "Please Login!";
+        header('Location: ../common/loginFile.php?error='.$error);
+    }elseif($_SESSION['userType'] == 'teacher'){
+      
+      $teacherType = array();
+      $teacherType = $_SESSION['teacherType'];
+      $userID = $_SESSION['userID'];
+      include('../../src/add_reply.php');
+	?>
 
-         $userID = $_SESSION['userID'];
-?>
 <!DOCTYPE html>
 <html>
 
@@ -31,43 +33,41 @@
 <body >
 
 
-<div id="nav1"></div>
+<div id="teacherNav"></div>
 
 <div class= content>
 	
 			<div class="container">
                                     
 				<hr>
-                <form action="../../src/add_inquiry.php" method="POST">
+                <form method="POST">
                 <h1 style="color: #6a7480;">REPLY FORM</h1>
 
 
-					<label for="title"><b> Inquiry Title</b></label>
-                    <input type="text" id="title" name="title" placeholder="Type Inquiry ID.." required>
+					<label for="title"><b> Inquiry ID</b></label>
+                    <input type="text" id="title" name="inquiry" >
                     
-                   
-					<input type="hidden" id="sender" name="sender" value="<?php echo $userID ?>" required>
 	
-					<label for="reciever"><b>Reciever's ID</b></label>
-					<input type="text" id="reciever" name="reciever" placeholder="Type Inquier ID.." required>
+					<label for="reciever"><b>Sender's ID</b></label>
+					<input type="text" id="reciever" name="sID"  value = <?php  echo  $_SESSION['userID']?> readonly> 
 
-					<label for="msge"><b> Message </b></label>
-					<textarea id="msge" name="msge" placeholder="Write something.." style="height:200px" required></textarea>
+                    <label for="reciever"><b>Reciever's ID</b></label>
+					<input type="text" id="reciever" name="rID" placeholder="Type Inquier ID.." required>
 
-					<button type="submit" class="registerbtn"formaction="Tcr_Reply.php">Save</button>
+					<label for="msge"><b>Reply</b></label>
+					<textarea id="msge" name="reply" placeholder="Write something.." style="height:200px" required></textarea>
+
+					<button type="submit" class="registerbtn" name="add_rep" >Save</button>
                 <a href="Tcr_ReplyInquiery.php" class="cancel-btn">Cancel</a>
 					
 	
 				</form>
 			</div>
 
-			
+           
 	</div>
 
 </body>
 
 </html>
-
-<?php 
-     }
-?>
+<?php } ?>
