@@ -1,16 +1,16 @@
 <?php
-     session_start();
+    session_start();
 
-     if(!isset($_SESSION['userType']) && !isset($_SESSION['userID'])){
-         $error = "Please Login!";
-         header('Location: ../common/loginFile.php?error='.$error);
-        }else if($_SESSION['userType'] != 'teacher'){
-            header('Location: ../common/error.html');
-     }else if(($_SESSION['userType'] == 'teacher') && ($_SESSION['teacherType'] == 'TcrinCharge')){
+    if(!isset($_SESSION['userType']) && !isset($_SESSION['userID'])){
+        $error = "Please Login!";
+        header('Location: ../common/loginFile.php?error='.$error);
+    }elseif($_SESSION['userType'] == 'teacher'){
+      
+   
+      $teacherType = $_SESSION['teacherType'];
 
-         $userID = $_SESSION['userID'];
-?> 
-
+     
+	?>
 <!DOCTYPE html>
 <html>
 
@@ -33,7 +33,7 @@
     <body>
 
 
-        <div id="nav"></div>
+        <div id="teacherNav"></div>
         <div class="content">
             <div class="container">
             <form action="../../src/add_achievement.php"  onsubmit="return validateUsername()" method="POST" enctype="multipart/form-data">
@@ -45,7 +45,7 @@
                   
                     
                     <label for="nic"><b>Category ID</b></label>
-                    <input type="text" placeholder="Enter category ID" name="cID" id="cID"  required>
+                    <input type="text" placeholder="Enter category ID" name="cID" required>
 
                     <label for="aDate"><b>Achievement Date</b></label>
                     <input type="date" placeholder="Enter achievement date" name="aDate" id="date" required>

@@ -1,10 +1,10 @@
-
 $(function(){
 		$("#nav").load(navFunction());
 		$("#nav1").load(navFunction2());
 		$("#nav2").load(navFunction3());
 		$("#nav3").load(navFunction4());
 		$("#officeNav").load(navFunction5());
+		$("#teacherNav").load(navFunction6());
 		$("#footer").load(footFunction3());
 });
 
@@ -28,6 +28,11 @@ function navFunction4() {
 function navFunction5() {
 	return "nav.php";
 }
+
+function navFunction6() {
+	return "nav5.php";
+}
+
 
 function footFunction3() {
 	return "../common/footer.html";

@@ -1,14 +1,33 @@
 <?php
-     session_start();
+    session_start();
+    require_once '../../config/conn.php';
 
-     if(!isset($_SESSION['userType']) && !isset($_SESSION['userID'])){
-         $error = "Please Login!";
-         header('Location: ../common/loginFile.php?error='.$error);
-        }else if($_SESSION['userType'] != 'teacher'){
-            header('Location: ../common/error.html');
-     }else if(($_SESSION['userType'] == 'teacher') && ($_SESSION['teacherType'] == 'TcrinCharge')){
+    if(!isset($_SESSION['userType']) && !isset($_SESSION['userID'])){
+        $error = "Please Login!";
+        header('Location: ../common/loginFile.php?error='.$error);
+    }elseif($_SESSION['userType'] == 'teacher'){
+      
+   
+ $teacherType = $_SESSION['teacherType'];
+    $userID = $_SESSION['userID'];
+    include('../../src/view_position.php');
 
-         $userID = $_SESSION['userID'];
+         $query1 = "SELECT * FROM teacher WHERE teacherID = '$userID' ";
+        
+         $result1 = mysqli_query($conn, $query1);  
+         $row1 = mysqli_fetch_assoc($result1);
+
+         $name = $row1["fName"];
+         $lastname = $row1["lName"];
+         $gender = $row1["gender"];
+         $nic = $row1["nic"];
+         $id = $row1["teacherID"];
+         $dob = $row1["dob"];
+         $address = $row1["address"];
+         $type = $row1["teacherType"];
+         $contact_number = $row1["contactNo"];
+         $email = $row1["email"];
+
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +49,7 @@
     <body>
 
 
-        <div id="nav"></div>
+        <div id="teacherNav"></div>
 
 
         <div class="content">
@@ -38,8 +57,7 @@
 
                 <div class="container">
 
-
-                    <h2><b>User Information</b></h2>
+                <h2><b>User Information</b></h2>
                     <hr>
                     <div class="card">
                         <form>
@@ -50,92 +68,91 @@
                                 <div class="first">
                                     <div class="first">
                                         <div class="row">
+                                        <div class="row">
                                             <div class="col">
                                                 <div class="form-group ">
-                                                    <label class="label" for="input-username">First name</label>
-                                                    <input type="text" id="fname" class="inputs"
-                                                        placeholder="First name" value="Hansika">
+                                                    <label class="label" for="adNo">Name</label>
+                                                    <input type="text" id="adNo" class="inputs"
+                                                         value="<?php echo  $name; ?>" readonly>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-group ">
+                                                    <label class="label" for="input-username">Last Name</label>
+                                                    <input type="text" id="Edate" class="inputs"
+                                                    value = <?php  echo  $lastname; ?> readonly>
                                                 </div>
                                             </div>
                                             <div class="col">
                                                 <div class="form-group">
-                                                    <label class="label" for="input-address">Middle name</label>
-                                                    <input type="text" id="mname" class="inputs"
-                                                        placeholder="Middle name" value="Medani">
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <div class="form-group ">
-                                                    <label class="label" for="input-username">Last name</label>
-                                                    <input type="text" id="lname" class="inputs" placeholder="Last name"
-                                                        value="Gunathilaka">
+                                                    <label class="label" for="input-username">Gender</label>
+                                                    <input type="text" id="Egrade" class="inputs"
+                                                        value="<?php echo  $gender; ?>" readonly>
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
                                         <div class="row">
                                             <div class="col">
                                                 <div class="form-group ">
                                                     <label class="label" for="adNo">NIC</label>
                                                     <input type="text" id="adNo" class="inputs"
-                                                        placeholder="Admission Number" value="966601744V">
+                                                    value="<?php echo  $nic; ?>" readonly>
                                                 </div>
                                             </div>
                                             <div class="col">
                                                 <div class="form-group ">
                                                     <label class="label" for="input-username">ID</label>
                                                     <input type="text" id="Edate" class="inputs"
-                                                        placeholder="Entered Date" value="TC20/00001">
+                                                    value = <?php  echo  $id; ?> readonly>
                                                 </div>
                                             </div>
                                             <div class="col">
                                                 <div class="form-group">
                                                     <label class="label" for="input-username">Date of Birth</label>
                                                     <input type="text" id="Egrade" class="inputs"
-                                                        placeholder="Entered Grade" value="1996.06.08">
+                                                    value="<?php echo  $dob; ?>" readonly>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <h3><b>Contact Information</b></h3>
                                     <div class="first">
-                                        <h4><b>Address</b></h4>
+                                        
                                         <div class="row">
                                             <div class="col">
                                                 <div class="form-group">
 
-                                                    <label class="label" for="street">Street</label>
-                                                    <input id="street" class="inputs" placeholder="Home Address"
-                                                        value="65/A, R. Silva road" type="text">
+                                                <div class="row">
+                                            <div class="col">
+                                                <div class="form-group ">
+                                                    <label class="label" for="ContactNumber">Residential Address</label>
+                                                    <input type="text" id="ContactNumber" class="inputs"
+                                                    value="<?php echo  $address; ?>" readonly>
                                                 </div>
                                             </div>
                                             <div class="col">
-                                                <div class="form-group">
-                                                    <label class="label" for="city">City</label>
-                                                    <input id="city" class="inputs" placeholder="Home Address"
-                                                        value="Kelaniya" type="text">
+                                                <div class="form-group ">
+                                                    <label class="label" for="adNo">Teacher Type</label>
+                                                    <input type="text" id="email" class="inputs"   value="<?php echo  $type; ?>" readonly>
                                                 </div>
                                             </div>
-                                            <div class="col">
-                                                <div class="form-group">
-                                                    <label class="label" for="district">District</label>
-                                                    <input id="district" class="inputs" placeholder="Home Address"
-                                                        value="Colombo" type="text">
-                                                </div>
-                                            </div>
+
                                         </div>
+                                    </div>
+
                                         <div class="row">
                                             <div class="col">
                                                 <div class="form-group ">
                                                     <label class="label" for="ContactNumber">Contact Number</label>
                                                     <input type="text" id="ContactNumber" class="inputs"
-                                                        placeholder="Contact Number" value="01123456987">
+                                                    value="<?php echo  $contact_number; ?>" readonly>
                                                 </div>
                                             </div>
                                             <div class="col">
                                                 <div class="form-group ">
                                                     <label class="label" for="adNo">Email</label>
-                                                    <input type="text" id="email" class="inputs" placeholder="Email"
-                                                        value="hansikamedani@gmail.com">
+                                                    <input type="text" id="email" class="inputs"   value="<?php echo  $email; ?>" readonly>
                                                 </div>
                                             </div>
 
@@ -150,7 +167,6 @@
     </body>
 
 </html>
-
 <?php 
 	 }
 ?>

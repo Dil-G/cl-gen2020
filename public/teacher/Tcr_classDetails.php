@@ -1,80 +1,133 @@
 <?php
-     session_start();
+session_start();
 
-     if(!isset($_SESSION['userType']) && !isset($_SESSION['userID'])){
-         $error = "Please Login!";
-         header('Location: ../common/loginFile.php?error='.$error);
-        }else if($_SESSION['userType'] != 'teacher'){
-            header('Location: ../common/error.html');
-     }else if(($_SESSION['userType'] == 'teacher') && ($_SESSION['teacherType'] == 'classTcr')){
-
-         $userID = $_SESSION['userID'];
-?> 
-
-<!DOCTYPE html>
-<html>
-
-<head>
-    <title>Class</title>
-    <script src="../js/jquery-1.9.1.min.js"></script>
-    <script src="../js/nav.js"></script>
-    <link type="text/css" rel="stylesheet" href="../css/main.css">
-    <link type="text/css" rel="stylesheet" href="../css/register2.css">
-    <link type="text/css" rel="stylesheet" href="../css/class.css">
-    <link rel="stylesheet" href="../css/view.css " type="text/css">
-</head>
-
-<body>
+if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
+    $error = "Please Login!";
+    header('Location: ../common/loginFile.php?error=' . $error);
+} elseif ($_SESSION['userType'] == 'teacher') {
 
 
-    <div id="nav1"></div>
-    <div class="content">
-        <h2 style="color: #6a7480;">Class A</h2>
-        <div class=l-part>
-            <label for="name"><b>Class Name</b></label>
-            <input type="text" placeholder="12-A" name="id" required>
-        </div>
+    $teacherType = $_SESSION['teacherType'];
+    $userID = $_SESSION['userID'];
+    include_once '../../config/conn.php';
+    //include "function.php";
+    include_once '../../src/addClass.php';
+    include_once '../../src/uploadClasses.php';
+    include_once '../../src/view_class.php';
 
-        <div class=r-part>
-            <label for="name"><b>Class Teacher</b></label>
-            <input type="text" placeholder="W.H.M.Gunathilaka" name="name" required>
-        </div>
+?>
 
-        <div class="card">
+    <!DOCTYPE html>
+    <html>
+
+    <head>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title> Classes</title>
+        <link rel="stylesheet" href="../css/view.css " type="text/css">
+        <link type="text/css" rel="stylesheet" href="../css/main.css">
+        <link type="text/css" rel="stylesheet" href="../css/users.css">
+        <link type="text/css" rel="stylesheet" href="../css/register.css">
+        <link type="text/css" rel="stylesheet" href="../css/messages.css">
+        <link type="text/css" rel="stylesheet" href="../css/class.css">
+        <script src="../js/jquery-1.9.1.min.js"></script>
+        <script src="../js/pop.js"></script>
+        <script src="../js/nav.js"></script>
+    </head>
+
+    <body>
+        <div id="teacherNav"></div>
+
+        <div class="content">
+
+            <div class="card">
+                <?php if (isset($_GET['error'])) { ?>
+                    <div id="error"><?php echo $_GET['error']; ?></div>
+                <?php } ?>
+
+
+                <?php
+                while ($row = mysqli_fetch_assoc($class_result)) {
+                    $_SESSION['classID'] =$row['classID'];
+                ?>
+                    <h1 style="color:#6a7480;">Class <?php echo substr($row['classID'], 5) ?></h1>
+                    <hr>
+                    <form action="../../src/uploadClasses.php" method="POST">
+
+                        <div class="l-part">
+                            <label for="teacherID"><b>Class Teacher ID</b></label>
+                            <input type="text" placeholder="Add the class teacher" name="teacherID" value="<?php if ($row['teacherID'] == TRUE) {
+                                                                                                                echo $row['teacherID'];
+                                                                                                            } ?>" required>
+                            <input type="hidden" name="classID" value="<?php echo $_GET['class'] ?>" required>
+                        </div>
+                        <div class="l-part">
+                            <label for="name"><b>Class Teacher</b></label>
+
+                            <input type="text" placeholder="Add the class teacher" name="name" value="<?php if ($row['teacherIncharge'] == TRUE) {
+                                                                                                            echo $row['teacherIncharge'];
+                                                                                                        } ?>" readonly>
+                        </div>
+
+                        <div class="r-part">
+                            <label for="medium"><b>Medium</b></label>
+                            <select name="medium" id="medium" required>
+                                <option value="<?php if ($row['name'] == TRUE) {
+                                                    echo $row['medium'];
+                                                } ?>"><?php if ($row['name'] == TRUE) {
+                                                                                                                echo $row['medium'];
+                                                                                                            } ?></option>
+                                <option value="English">English</option>
+                                <option value="Sinhala">Sinhala</option>
+                                <option value="Tamil">Tamil</option>
+                            </select>
+                            <br><br>
+                            <!-- <input type="text" placeholder="Add the medium" name="medium" value="<?php if ($row['name'] == TRUE) {
+                                                                                                            echo $row['medium'];
+                                                                                                        } ?>" required> -->
+                        </div>
+                    <?php } ?>
+
+                    </form>
+            </div>
             <br>
-            <br>
-            <hr>
-            <table>
-                <tr>
-                    <th>Admission number</th>
-                    <th>Student name</th>
-                    <th>View Profile</th>
-                </tr>
-                <tr>
-                    <td>ST2000001</td>
-                    <td>Dilhani Gamhatha</td>
-                    <td>
-                        <form class="search" action="Sprofile.php">
-                            <button type="submit">View</button>
-                        </form>
-                    </td>
+            <div class="card">
+                <hr>
+                <table>
+                    <tr>
+                        <th>Admission number</th>
+                        <th>Student name</th>
+                        <th>View Profile</th>
+                    </tr>
 
-                </tr>
-                <tr>
-                    <td>ST2000001</td>
-                    <td>Sandali Perera</td>
-                    <td>
-                        <form class="search" action="SProfile.php">
-                            <button type="submit">View</button>
-                        </form>
-                    </td>
-                </tr>
-            </table>
+                    <?php
+                    while ($row = mysqli_fetch_assoc($students_result)) {
+                    ?>
+                        <tr>
+
+                            <td><?php $studentID = $row['studentID'];
+                                echo $studentID; ?>
+                            <td><?php
+                                $sql = "SELECT * FROM student WHERE admissionNo ='$studentID'";
+                                $result = $conn->query($sql);
+                                while ($rows = mysqli_fetch_assoc($result)) {
+                                    echo $rows['fName'] . " " .  $rows['lName'];
+                                }
+                                ?></td>
+
+
+                            <?php echo "<td><a class='btn editbtn' href = SProfile.php?userID=" . $row['studentID'] . " >View Profile </a> </td>" ?>
+
+                        </tr>
+                    <?php } ?>
+
+
+                </table>
+            </div>
         </div>
-    </div>
-</body>
+    </body>
 
-</html>
-<?php 
-     }
+    </html>
+
+<?php }
 ?>
