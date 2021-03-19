@@ -1,5 +1,6 @@
 <?php
     session_start();
+<<<<<<< HEAD
 
     if(!isset($_SESSION['userType']) && !isset($_SESSION['userID'])){
         $error = "Please Login!";
@@ -17,6 +18,20 @@
      
 	?>
 
+=======
+
+    if(!isset($_SESSION['userType']) && !isset($_SESSION['userID'])){
+        $error = "Please Login!";
+        header('Location: ../common/loginFile.php?error='.$error);
+    }elseif($_SESSION['userType'] == 'teacher'){
+      
+      $teacherType = array();
+      $teacherType = $_SESSION['teacherType'];
+      $userID = $_SESSION['userID'];
+      include('../../src/add_reply.php');
+	?>
+
+>>>>>>> 6f643f8f45a356e9dc9964b6c1fdb3b159b37f83
 <!DOCTYPE html>
 <html>
 
@@ -45,11 +60,12 @@
 			<div class="container">
                                     
 				<hr>
-                <form action="../../src/add_inquiry.php" method="POST">
+                <form method="POST">
                 <h1 style="color: #6a7480;">REPLY FORM</h1>
 
 
 					<label for="title"><b> Inquiry ID</b></label>
+<<<<<<< HEAD
                     <input type="text" id="title" name="title" >
                     
 	
@@ -61,21 +77,31 @@
 
 					<label for="msge"><b>Reply</b></label>
 					<textarea id="msge" name="msge" placeholder="Write something.." style="height:200px" required></textarea>
+=======
+                    <input type="text" id="title" name="inquiry" >
+                    
+	
+					<label for="reciever"><b>Sender's ID</b></label>
+					<input type="text" id="reciever" name="sID"  value = <?php  echo  $_SESSION['userID']?> readonly> 
 
-					<button type="submit" class="registerbtn"formaction="Tcr_Reply.php">Save</button>
+                    <label for="reciever"><b>Reciever's ID</b></label>
+					<input type="text" id="reciever" name="rID" placeholder="Type Inquier ID.." required>
+
+					<label for="msge"><b>Reply</b></label>
+					<textarea id="msge" name="reply" placeholder="Write something.." style="height:200px" required></textarea>
+>>>>>>> 6f643f8f45a356e9dc9964b6c1fdb3b159b37f83
+
+					<button type="submit" class="registerbtn" name="add_rep" >Save</button>
                 <a href="Tcr_ReplyInquiery.php" class="cancel-btn">Cancel</a>
 					
 	
 				</form>
 			</div>
 
-			
+           
 	</div>
 
 </body>
 
 </html>
-
-<?php 
-     }
-?>
+<?php } ?>
