@@ -141,10 +141,20 @@ if (isset($_POST['addNewClass'])) {
 }
 
 if (isset($_GET['class'])) {
-
-
-
     $thisClass = $_GET['class'];
+
+    $classOne_sql = "SELECT * FROM classstudent where classID = '$thisClass'";
+
+    $classOne_result = $conn->query($classOne_sql);
+
+    if (!$classOne_result) {
+        $error = "Invalid year";
+    } else {
+    }
+}
+
+if (isset($_SESSION['classID'])) {
+    $thisClass = $_SESSION['classID'];
 
     $classOne_sql = "SELECT * FROM classstudent where classID = '$thisClass'";
 
@@ -158,6 +168,4 @@ if (isset($_GET['class'])) {
 
 
 
-
     //$conn->close();
-?>

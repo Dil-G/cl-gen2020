@@ -17,7 +17,6 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
     // }
 
 ?>
-
     <link rel="stylesheet" href="../../images/font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
@@ -122,29 +121,10 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
  
     
     <script>
-        <?php if (in_array("d1", $teacherType)) { ?>
+        <?php if($_SESSION['teacherType'] == 'TcrinCharge' || $_SESSION['teacherType'] == 'both' || $_SESSION['teacherType'] == 'classTcr'  ){?>
             var menu = document.getElementById("drop");
-        <?php }
-        if (in_array("d2", $teacherType)) { ?>
-            var menu2 = document.getElementById("drop2");
-        
-       
-        <?php }
-        if (in_array("d3", $teacherType)) { ?>
-            var submenu3 = document.getElementById("submenu3");
-        <?php }
-        if (in_array("d5", $teacherType)) { ?>
-            var submenu5 = document.getElementById("submenu5");
-        
-        <?php }
-        if (in_array("d3", $teacherType)) { ?>
-            submenu3.style.display = "none";
-        <?php }
-        if (in_array("d5", $teacherType)) { ?>
-            submenu5.style.display = "none";
-        <?php } ?>
-
-        <?php if (in_array("d1", $teacherType)) { ?>
+            var submenu = document.getElementById("submenu");
+            document.getElementById("submenu").style.display = "none";
             menu.onclick = function(event) {
                 if (submenu.style.display === "none") {
                     submenu.style.display = "block";
@@ -152,8 +132,14 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                     submenu.style.display = "none";
                 }
             }
-        <?php }
-        if (in_array("d2", $teacherType)) { ?>
+
+            <?php
+        }?>
+
+<?php if( $_SESSION['teacherType'] == 'both' || $_SESSION['teacherType'] == 'classTcr'  ){?>
+            var menu2 = document.getElementById("drop2");
+            var submenu2 = document.getElementById("submenu2");
+            document.getElementById("submenu2").style.display = "none";
             menu2.onclick = function(event) {
                 if (submenu2.style.display === "none") {
                     submenu2.style.display = "block";
@@ -161,9 +147,11 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                     submenu2.style.display = "none";
                 }
             }
-       
 
-        <?php } ?>
+            <?php
+        }?>
+        
+       
     </script>
 
 

@@ -26,7 +26,6 @@
 </head>
 
 <body name=top>
-
     <body>
         <div id="teacherNav"></div>
         <div class="content">
@@ -43,49 +42,21 @@
                             <th>Admission Number</th>
                             <th>Student Name</th>
                             <th>Sinhala</th>
-                            <th>English</th>
-                            <th>Buddhism</th>
-                            <th>Maths</th>
-                            <th>Science</th>
-                            <th>History</th>
-                            <th>Group 01</th>
-                            <th>Group 02</th>
-                            <th>Group 03</th>
                             <th>Total</th>
                         </tr>
                         
                   
                     <?php
-				while($row=mysqli_fetch_assoc($result)){
-
-                    $sinhala = $row['sinhala'];
-                    $english = $row['english'];
-                    $english = $row['english'];
-                    $buddhism = $row['buddhism'];
-                    $maths = $row['maths'];
-                    $science = $row['science'];
-                    $history = $row['history'];
-                    $group01 = $row['group01'];
-                    $group02 = $row['group02'];
-                    $group03 = $row['group03'];
-
-                    $total = ($sinhala + $english + $buddhism + $maths + $science + $history + $group01 + $group02 + $group03);
+				while($row=mysqli_fetch_assoc($passed_result)){
+                    
 
                     ?>
       
       <tr>
-        <td><?php echo $row['admissionNumber'] ?></td>
-				<td><?php echo $row['studentName'] ?></td>
-                <td><?php echo $row['sinhala'] ?></td>
-                <td><?php echo $row['english'] ?></td>
-                <td><?php echo $row['buddhism'] ?></td>
-                <td><?php echo $row['maths'] ?></td>
-                <td><?php echo $row['science'] ?></td>
-                <td><?php echo $row['history'] ?></td>
-                <td><?php echo $row['group01'] ?></td>
-                <td><?php echo $row['group02'] ?></td>
-                <td><?php echo $row['group03'] ?></td>
-                <?php echo "<td>$total </td>"?>
+        <td><?php echo $subject ?></td>
+				<td><?php echo $row['mark'] ?></td>
+                <td><?php echo $row['classID'] ?></td>
+                <td><?php echo $name?></td>
                
                
 				

@@ -14,7 +14,6 @@
      
      
 	?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -63,19 +62,8 @@
 				while($row=mysqli_fetch_assoc($result)){
 
                     
-                    $sinhala = $row['sinhala'];
-                    $english = $row['english'];
-                    $english = $row['english'];
-                    $buddhism = $row['buddhism'];
-                    $maths = $row['maths'];
-                    $science = $row['science'];
-                    $history = $row['history'];
-                    $group01 = $row['group01'];
-                    $group02 = $row['group02'];
-                    $group03 = $row['group03'];
-
-                    $total = ($sinhala + $english + $buddhism + $maths + $science + $history + $group01 + $group02 + $group03);
-                    $average = ($total/$numb);
+                    $studentID = $row['admissionNumber'];
+                    $subjectID = $row['subjectID'];
 
 			?>
       

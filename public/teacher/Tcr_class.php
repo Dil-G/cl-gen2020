@@ -8,67 +8,81 @@
       
    
       $teacherType = $_SESSION['teacherType'];
+      $classID = $_SESSION['classID'];
 
+      include_once '../../src/addClass.php';
+        include_once '../../src/uploadClasses.php';
      
 	?>
 
+  
 <!DOCTYPE html>
 <html>
 
 <head>
-    <title>Class</title>
-    <script src="../js/jquery-1.9.1.min.js"></script>
-    <script src="../js/nav.js"></script>
-    <link type="text/css" rel="stylesheet" href="../css/main.css">
-    <link type="text/css" rel="stylesheet" href="../css/register2.css">
-    <link type="text/css" rel="stylesheet" href="../css/class.css">
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> Classes</title>
     <link rel="stylesheet" href="../css/view.css " type="text/css">
-    
-    <script>
-    $(document).ready(function() {
-        $("#Inputs").on("keyup", function() {
-            var value = $(this).val().toLowerCase();
-            $("#Table tr").filter(function() {
-                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-            });
-        });
-    });
-    </script>
+    <link type="text/css" rel="stylesheet" href="../css/main.css">
+    <link type="text/css" rel="stylesheet" href="../css/users.css">
+    <link type="text/css" rel="stylesheet" href="../css/register.css">
+    <link type="text/css" rel="stylesheet" href="../css/messages.css">
+    <link type="text/css" rel="stylesheet" href="../css/class.css">
+    <script src="../js/jquery-1.9.1.min.js"></script>
+    <script src="../js/pop.js"></script>
+    <script src="../js/nav.js"></script>
 </head>
 
 <body>
     <div id="teacherNav"></div>
+
     <div class="content">
-   
-        <h1 style="color: #6a7480;">Class A</h1>
-        <form class="search" action="Tcr_marks.php">
-        
-            <button type="submit">View Marks</button>
-        </form>
-        <form class="search" action="Tcr_csv_marks.php">
-            <button type="submit">Upload Marks</button>
-        </form>
-        
-        <div class=l-part>
-            <label for="name"><b>Class Name</b></label>
-            <input type="text" placeholder="12-A" name="id" required>
-        </div>
-        <div class=r-part>
-            <label for="name"><b>Class Teacher</b></label>
-            <input type="text" placeholder="W.H.M.Gunathilaka" name="name" required>
-
-          
-
-            
-        </div>
-      
-        
-
-        
 
         <div class="card">
-            <br>
-            <br>
+            <?php if (isset($_GET['error'])) { ?>
+            <div id="error"><?php echo $_GET['error']; ?></div>
+            <?php } ?>
+            <h1 style="color:#6a7480;">Class <?php echo $classID ?></h1>
+            <hr>
+            <form action="../../src/uploadClasses.php" method="POST">
+                <?php
+                        while ($row = mysqli_fetch_assoc($result)) {
+                        ?>
+                <div class="l-part">
+                    <label for="teacherID"><b>Class Teacher ID</b></label>
+                    <input type="text" placeholder="Add the class teacher" name="teacherID" value="<?php if ($row['teacherID'] == TRUE) {
+                                                                                                                    echo $row['teacherID'];
+                                                                                                                } ?>" readonly required>
+                    <input type="hidden" name="classID" value="<?php echo $classID ?>" required>
+                </div>
+                <div class="l-part">
+                    <label for="name"><b>Class Teacher</b></label>
+
+                    <input type="text" placeholder="Add the class teacher" name="name" value="<?php if ($row['teacherIncharge'] == TRUE) {
+                                                                                                                echo $row['teacherIncharge'];
+                                                                                                            } ?>"readonly readonly>
+                </div>
+
+                <div class="r-part">
+                    <label for="medium"><b>Medium</b></label>
+                    <select name="medium" id="medium" required>
+                        <option value="<?php if ($row['name'] == TRUE) {echo $row['medium'];} ?>">
+                            <?php if ($row['name'] == TRUE) {echo $row['medium'];} ?></option>
+                        <option value="English">English</option>
+                        <option value="Sinhala">Sinhala</option>
+                        <option value="Tamil">Tamil</option>
+                    </select>
+                    <br><br>
+                    <!-- <input type="text" placeholder="Add the medium" name="medium" value="<?php if ($row['name'] == TRUE) {echo $row['medium']; } ?>" required> -->
+                </div>
+                <?php } ?>
+                <button type="submit" style="margin-top:-40px;" name="uploadClass">Update</button>
+            </form>
+        </div>
+        <br>
+        <div class="card">
             <hr>
             <table>
                 <tr>
@@ -76,31 +90,35 @@
                     <th>Student name</th>
                     <th>View Profile</th>
                 </tr>
-                <tr>
-                <td>ST2000001</td>
-                    <td>Sandali Perera</td>
-                    <td>
-                        <form class="search" action="Sprofile.php">
-                            <button type="submit">View</button>
-                        </form>
-                    </td>
-                </tr>
 
+                <?php
+                        while ($row = mysqli_fetch_assoc($classOne_result)) {
+                        ?>
                 <tr>
-                <td>ST2000001</td>
-                    <td>Sandali Perera</td>
-                    <td>
-                        <form class="search" action="SProfile.php">
-                            <button type="submit">View</button>
-                        </form>
-                    </td>
+
+                    <td><?php $studentID = $row['studentID'];
+                                    echo $studentID; ?>
+                    <td><?php
+                                    $sql = "SELECT * FROM student WHERE admissionNo ='$studentID'";
+                                    $result = $conn->query($sql);
+                                    while ($rows = mysqli_fetch_assoc($result)) {
+                                        echo $rows['fName'] . " " .  $rows['lName'];
+                                    }
+                                    ?></td>
+
+
+                    <?php echo "<td><a class='btn editbtn' href = SProfile.php?userID=" . $row['studentID'] . " >View Profile </a> </td>" ?>
+
                 </tr>
+                <?php } ?>
+
+
             </table>
         </div>
     </div>
 </body>
 
 </html>
-<?php 
-     }
+
+<?php }
 ?>
