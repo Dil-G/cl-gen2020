@@ -16,6 +16,7 @@ if(isset($_POST['submit'])){
       //read & store each line in $data
       foreach ($csvFile as $line) {
           $data = str_getcsv($line);
+          print_r($data);
       }
       //get each line in $data and  drived the relevent values
       $count=5;
