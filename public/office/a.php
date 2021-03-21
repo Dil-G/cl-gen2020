@@ -45,7 +45,6 @@ chart.render();
 </body>
 </html>    
 
-
 <script>
 window.onload = function() {
  
