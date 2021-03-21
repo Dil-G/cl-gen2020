@@ -60,7 +60,7 @@
                 <label name="file"><b>Enter CSV File</b></label>
                 <input type="file" id="myFile" name="file" class="nextpgbtn" required></br>
 
-                <button type="submit" class="registerbtn" name="submit" value="Import">Save</button>
+                <button type="submit" class="registerbtn" name="submit" value="Import" >Save</button>
                 <a href="o_viewSchol.php" class="cancel-btn">Cancel</a>
 
 

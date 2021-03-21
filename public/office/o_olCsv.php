@@ -4,99 +4,75 @@
     if(!isset($_SESSION['userType']) && !isset($_SESSION['userID'])){
         $error = "Please Login!";
         header('Location: ../common/loginFile.php?error='.$error);
-    }
-    else if($_SESSION['userType'] != 'officer'){
-        header('Location: ../common/error.html');
-    }
-    else{      
+    }elseif($_SESSION['userType'] == 'officer'){
+      
       $dutyID = array();
       $dutyID = $_SESSION['dutyID'];
 
-      if (!in_array("d2", $dutyID)) {
-         header('Location: o_dashboard.php');
-        }
-
-        $connect = mysqli_connect("localhost", "root", "", "cl_gen");
-        if(isset($_POST['submit'])){
-            if($_FILES['file']['name']){
-                $filename = explode(".", $_FILES['file']['name']);
-                if($filename[1] == 'csv'){
-
-                    $handle = fopen($_FILES['file']['name'], "r");
-                    while($data = fgetcsv($handle)){
-                        $item1 = mysqli_real_escape_string($connect, $data[0]);
-                        $item2 = mysqli_real_escape_string($connect, $data[1]);
-                        $item3 = mysqli_real_escape_string($connect, $data[2]);
-                        $item4 = mysqli_real_escape_string($connect, $data[3]);
-                        $item5 = mysqli_real_escape_string($connect, $data[4]);
-
-                        $sqlNew = "INSERT into schol_RSheet(examID,admissionNo,studentIndex,studentName,examMarks) values ('$item1','$item2','$item3','$item4','$item5') "; 
-                        mysqli_query($connect, $sqlNew);                        
-                    }
-                    fclose($handle);
-                    print "Done";
-                }
-            }
-        }
-
-	?> 
-
-    
+      if (in_array("d2", $dutyID)) {
+	?>
 
 <!DOCTYPE html>
 <html>
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Add G.C.E. A/L Examination Results</title>
-    <link type="text/css" rel="stylesheet" href="../css/main.css">
+    <title>Add Scholarship Results</title>
+    <link type="text/css" rel="stylesheet" href="../css/pop.css">
     <link rel="stylesheet" href="../css/register.css " type="text/css">
+    <link type="text/css" rel="stylesheet" href="../css/main.css">
     <script src="../js/jquery-1.9.1.min.js"></script>
     <script src="../js/pop.js"></script>
     <script src="../js/nav.js"></script>
 </head>
 
 <body>
-    
-    <form action="" method='POST' enctype="multipart/form-data">
-    <p>Upload CSV : <input type="file" name="file"></p>
-    <p><input type="submit" name="submit" value="Import"></p>
-    </form>
+    <div id="officeNav"></div>
+    <?php
+
+        
+				require_once '../../config/conn.php';
+
+				$sql = "SELECT * FROM addolexam where examID ='".$_GET['examID']."'";
+
+                $res= mysqli_query($conn,$sql);
+                $row=mysqli_fetch_array($res);
+
+				if($res){
+
+				}
+				else{
+				echo"failed";	
+                }
+                    
+                
+?>
+    <div class="content">
+        <div class="container" style="margin-left:250px;">
+            <form method="POST" enctype="multipart/form-data" action="../../src/o_olCsv.php">
+                
+                <h1><?php echo $row['examName']?></h1>
+                <hr>
+
+                <label for="examID" ><b>Exam ID</b></label>
+                <input type="text" value= "<?php echo $row['examID']?>" required>
+                
+                <label name="file"><b>Enter CSV File</b></label>
+                <input type="file" id="myFile" name="file" class="nextpgbtn" required></br>
+
+                <button type="submit" class="registerbtn" name="submit" value="Import">Save</button>
+                <a href="o_viewOl.php" class="cancel-btn">Cancel</a>
+
+
+
+                </form>
+
+        </div>
+
+</div>
 
 </body>
 
 </html>
 
-<?php } ?>
-
-
-
-
-$connect = mysqli_connect("localhost", "root", "", "cl_gen");
-                if(isset($_POST["submit"]))
-                {
-                    if($_FILES['file']['name'])
-                    {
-                    $filename = explode('.', $_FILES['file']['name']);
-                        if($filename[1] == 'csv')
-                        {
-                            $handle = fopen($_FILES['file']['tmp_name'], "r");
-                                while($data = fgetcsv($handle))
-                                {
-                                    $item0 = mysqli_real_escape_string($connect, $data[0]);  
-                                    $item1 = mysqli_real_escape_string($connect, $data[1]);
-                                    $item2 = mysqli_real_escape_string($connect, $data[2]);
-                                    $item3 = mysqli_real_escape_string($connect, $data[3]);
-                                    $item5 = mysqli_real_escape_string($connect, $data[4]);
-                                    
-                                    $query = "INSERT INTO schol_RSheet(examID,admissionNo,studentIndex,studentName,examMarks) 
-                                    values('$item0','$item1','$item2','$item3','$item4','$item5')";
-
-                                mysqli_query($conn, $query);
-                                
-                                }
-                            fclose($handle);
-                            echo "<script>alert('Import done');</script>";
-                        }
-                    }
-                }
+<?php }} ?>
