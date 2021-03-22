@@ -108,17 +108,22 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                             <th>Deactivate Account</th>
                         </tr>
                         <?php
-					while($row=mysqli_fetch_assoc($staff_result2)){
-					?>
+					while($row=mysqli_fetch_assoc($staff_result4)){
+                        $offiicerID = $row ['userID'];
+                        $staff_sql2= "SELECT * FROM office where officerID= '$offiicerID'";
+                        $staff_result2 = $conn->query($staff_sql2);
+                        while ($rows = mysqli_fetch_assoc($staff_result2)) {
+                    ?>
                         <tbody id="Table">
                             <tr>
-                                <td><?php echo $row['officerID'] ?></td>
-                                <td><?php $name = $row['fName'] ." ".  $row['lName'] ; echo $name; ?></td>
-                                <?php echo "<td><a class='btn editbtn' href = updateOfficer.php?userID=".$row['officerID']." > update </a> </td>"?>
-                                <?php echo "<td><a class='btn dltbtn' href = # > Deactivate </a> </td>";?>
+                                <td><?php echo $rows['officerID'] ?></td>
+                                <td><?php $name = $rows['fName'] ." ".  $rows['lName'] ; echo $name; ?></td>
+                                <?php echo "<td><a class='btn editbtn' href = updateOfficer.php?userID=".$rows['officerID']." > update </a> </td>"?>
+                                <?php echo "<td><a class='btn dltbtn' href =  ../../src/deactivate_account.php?officerID=" . $rows['officerID'] . "  > Deactivate </a> </td>"; ?>
+
                             </tr>
                             <?php
-					}
+					}}
 					?>
                         </tbody>
                     </table>

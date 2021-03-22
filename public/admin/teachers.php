@@ -109,17 +109,22 @@
                             <th>Deactivate Account</th>
                         </tr>
                         <?php
-					while($row=mysqli_fetch_assoc($teacher_result2)){
-					?>
+					while($row=mysqli_fetch_assoc($teacher_result4)){
+                        $teacherID = $row ['userID'];
+                        $teacher_sql2 = "SELECT * FROM teacher where teacherID= '$teacherID'";
+                        $teacher_result2 = $conn->query($teacher_sql2);
+                        while ($rows = mysqli_fetch_assoc($teacher_result2)) {
+                    ?>
                         <tbody id="Table">
                             <tr>
-                                <td><?php echo $row['teacherID'] ?></td>
-                                <td><?php $name = $row['fName'] ." ".  $row['lName'] ; echo $name; ?></td>
-                                <?php echo "<td><a class='btn editbtn' href = updateTeacher.php?userID=".$row['teacherID']." > update </a> </td>"?>
-                                <?php echo "<td><a class='btn dltbtn' href = # > Deactivate </a> </td>";?>
+                                <td><?php echo $rows['teacherID'] ?></td>
+                                <td><?php $name = $rows['fName'] ." ".  $rows['lName'] ; echo $name; ?></td>
+                                <?php echo "<td><a class='btn editbtn' href = updateTeacher.php?userID=".$rows['teacherID']." > update </a> </td>"?>
+                                <?php echo "<td><a class='btn dltbtn' href =  ../../src/deactivate_account.php?teacherID=" . $rows['teacherID'] . "  > Deactivate </a> </td>"; ?>
+
                             </tr>
                             <?php
-					}
+					}}
 					?>
                         </tbody>
                     </table>

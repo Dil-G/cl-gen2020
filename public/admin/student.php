@@ -108,17 +108,23 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                             <th>Deactivate Account</th>
                         </tr>
                         <?php
-                        while ($row = mysqli_fetch_assoc($student_result3)) {
-                        ?>
+                        while ($row = mysqli_fetch_assoc($student_result4)) {
+                                $studentID = $row ['userID'];
+                                $student_sql3= "SELECT * FROM student where admissionNo= '$studentID'";
+                                $student_result3 = $conn->query($student_sql3);
+                                while ($rows = mysqli_fetch_assoc($student_result3)) {
+                            ?>
+                        
                         <tbody id="Table">
                             <tr>
-                                <td><?php echo $row['admissionNo'] ?></td>
-                                <td><?php $name = $row['fName'] . " " . $row['mName'] . " " . $row['lName'];
+                                <td><?php echo $rows['admissionNo'] ?></td>
+                                <td><?php $name = $rows['fName'] . " " . $rows['mName'] . " " . $rows['lName'];
                                         echo $name; ?>
                                 </td>
-                                <?php echo "<td><a class='btn editbtn' href = updateStudent.php?userID=" . $row['admissionNo'] . " > update </a> </td>" ?>
-                                <?php echo "<td><a class='btn dltbtn' href = # > Deactivate </a> </td>"; ?>
+                                <?php echo "<td><a class='btn editbtn' href = updateStudent.php?userID=" . $rows['admissionNo'] . " > update </a> </td>" ?>
+                                <?php echo "<td><a class='btn dltbtn' href =  ../../src/deactivate_account.php?studentID=" . $rows['admissionNo'] . "  > Deactivate </a> </td>"; ?>
                             </tr>
+                            <?php } ?>
                         </tbody>
                         <?php
                         }
