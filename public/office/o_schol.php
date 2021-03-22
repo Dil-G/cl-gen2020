@@ -44,7 +44,7 @@ include_once '../../config/conn.php';
          ?>
 
         <?php $postfix = explode("/", $row['examID'])  ?>
-    <h1 style="color: gray;">Grade 5 Scholarship Examination Results - <?php print_r($postfix[1]) ?></h1>
+    <h1 style="color: #6a7480;">Grade 5 Scholarship Examination Results - <?php print_r($postfix[1]) ?></h1>
         
         <br>
         <form class="search">
