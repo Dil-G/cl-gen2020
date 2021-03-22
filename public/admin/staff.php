@@ -37,7 +37,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 
         <div class="card">
             <h1>Officer List</h1>
-            <form class="search" >
+            <form class="search">
                 <input type="text" id="Inputs" placeholder="Search.." name="search">
                 <button type="submit">Search</button>
             </form>
@@ -66,27 +66,27 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                 </div>
                 <hr>
                 <div class="scroll">
-                <table>
-                    <tr>
-                        <th>User ID</th>
-                        <th>UserName</th>
-                        <th>Add Details</th>
-                    </tr>
-                    <?php
-					while($row=mysqli_fetch_assoc($staff_result1)){
-					?>
-                    <tbody id="Table">
+                    <table>
                         <tr>
-                            <td><?php echo $row['userID'] ?></td>
-                            <td><?php echo $row['username'] ?></td>
-
-                            <?php echo "<td><a class='btn editbtn' href = addOfficerDetails.php?userID=".$row['userID']." > Add </a> </td>"?>
+                            <th>User ID</th>
+                            <th>UserName</th>
+                            <th>Add Details</th>
                         </tr>
                         <?php
+					while($row=mysqli_fetch_assoc($staff_result1)){
+					?>
+                        <tbody id="Table">
+                            <tr>
+                                <td><?php echo $row['userID'] ?></td>
+                                <td><?php echo $row['username'] ?></td>
+
+                                <?php echo "<td><a class='btn editbtn' href = addOfficerDetails.php?userID=".$row['userID']." > Add </a> </td>"?>
+                            </tr>
+                            <?php
 					}
 					?>
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -100,28 +100,28 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                 </div>
                 <hr>
                 <div class="scroll">
-                <table>
-                    <tr>
-                        <th>User ID</th>
-                        <th>Name</th>
-                        <th>Edit Details</th>
-                        <th>Deactivate Account</th>
-                    </tr>
-                    <?php
-					while($row=mysqli_fetch_assoc($staff_result2)){
-					?>
-                    <tbody id="Table">
+                    <table>
                         <tr>
-                            <td><?php echo $row['officerID'] ?></td>
-                            <td><?php $name = $row['fName'] ." ".  $row['lName'] ; echo $name; ?></td>
-                            <?php echo "<td><a class='btn editbtn' href = SProfile.php?userID=".$row['officerID']." > update </a> </td>"?>
-                            <?php echo "<td><a class='btn dltbtn' href = # > Deactivate </a> </td>";?>
+                            <th>User ID</th>
+                            <th>Name</th>
+                            <th>Edit Details</th>
+                            <th>Deactivate Account</th>
                         </tr>
                         <?php
+					while($row=mysqli_fetch_assoc($staff_result2)){
+					?>
+                        <tbody id="Table">
+                            <tr>
+                                <td><?php echo $row['officerID'] ?></td>
+                                <td><?php $name = $row['fName'] ." ".  $row['lName'] ; echo $name; ?></td>
+                                <?php echo "<td><a class='btn editbtn' href = SProfile.php?userID=".$row['officerID']." > update </a> </td>"?>
+                                <?php echo "<td><a class='btn dltbtn' href = # > Deactivate </a> </td>";?>
+                            </tr>
+                            <?php
 					}
 					?>
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
