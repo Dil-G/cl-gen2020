@@ -93,11 +93,9 @@ include_once '../../config/conn.php';
                     <td><?php echo $row['examName']?></td>
                     <?php echo "<td><a id='addExamBtn' class='btn editbtn' href = o_scholCsv.php?examID=".$row['examID']." > Add Results </a></td>"
                     ?>
-                    
-                    <td>
-                        <form><button class="btn viewbtn" type="submit" formaction="o_schol.php">View Results</button>
-                        </form>
-                    </td>
+                   
+                    <?php echo "<td><a id='viewExamBtn' class='btn viewbtn' href = o_schol.php?examID=".$row['examID'].">View Results</td>" ?>
+                     
 
                 </tr>
                 <?php
@@ -120,23 +118,3 @@ include_once '../../config/conn.php';
 </html>
 
 <?php }} ?>
-
-<!--<div class='container' style='margin-left:250px;'>
-            <form action='../../src/o_scholCsv.php' method='POST'>
-                <h1>Add Grade 5 Scholarship Exam Results</h1>
-                <hr>
-
-                <label for='examID'><b>Exam ID</b></label>
-                <input type='text' value=  required>
-                
-                <label for='myFile'><b>Enter CSV File</b></label>
-                <input type='file' id='myFile' name='fileName' class='nextpgbtn' required></br>
-
-                <button type='submit' class='registerbtn' name='savebtn'>Save</button>
-                <a href='o_viewSchol.php' class='cancel-btn'>Cancel</a>
-
-
-
-                </form>
-
-        </div>-->

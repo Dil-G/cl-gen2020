@@ -14,7 +14,7 @@
 
 <?php
 include_once '../../config/conn.php';
-$result = mysqli_query($conn,"SELECT * FROM schol_rsheet");
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -35,7 +35,17 @@ $result = mysqli_query($conn,"SELECT * FROM schol_rsheet");
     
     <div class="content">
 
-        <h1 style="color: gray;">Grade 5 Scholarship Examination Results - 2016</h1>
+    <?php
+             
+             $sql = "SELECT * FROM addscholexam WHERE examID = '".$_GET['examID']."'";
+             $result = mysqli_query($conn,$sql);
+             $row=mysqli_fetch_assoc($result);
+
+         ?>
+
+        <?php $postfix = explode("/", $row['examID'])  ?>
+    <h1 style="color: gray;">Grade 5 Scholarship Examination Results - <?php print_r($postfix[1]) ?></h1>
+        
         <br>
         <form class="search">
                 <input type="text" ID="Inputs" placeholder="Search.." name="search">
@@ -56,8 +66,12 @@ $result = mysqli_query($conn,"SELECT * FROM schol_rsheet");
 
             <hr>
             <?php
-                if (mysqli_num_rows($result) > 0) {
-            ?>
+             
+             $sql2 = "SELECT * FROM schol_rsheet WHERE examID = '".$_GET['examID']."'";
+             $result2 = mysqli_query($conn,$sql2);
+             $row=mysqli_fetch_assoc($result2);
+
+         ?>
             <table>
                 <tr>
                     <th>Admission Number</th>
@@ -68,29 +82,20 @@ $result = mysqli_query($conn,"SELECT * FROM schol_rsheet");
 
                 </tr>
                 <?php
-                    $i=0;
-                    while($row = mysqli_fetch_array($result)) {
-                    ?>
+                    while($row=mysqli_fetch_array($result2)){
+                ?>
                     <tr>
                         <td><?php echo $row["admissionNo"]; ?></td>
                         <td><?php echo $row["studentIndex"]; ?></td>
                         <td><?php echo $row["studentName"]; ?></td>
                         <td><?php echo $row["examMarks"]; ?></td>
-                       
+                        <?php
+                   }
+               ?>
                     </tr>
-                    <?php
-                    $i++;
-                    }
-                    ?>
+                    
                     </table>
-                    <?php
-                    }
-                    else{
-                        echo "No result found";
-                    }
                 
-                ?>
-               
         </div>
 
 
