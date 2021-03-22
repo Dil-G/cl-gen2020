@@ -5,11 +5,7 @@
         $error = "Please Login!";
         header('Location: ../common/loginFile.php?error='.$error);
     }elseif($_SESSION['userType'] == 'teacher'){
-      
-   
-      $teacherType = $_SESSION['teacherType'];
-
-     
+     $teacherType = $_SESSION['teacherType']; 
 	?>
 
 
@@ -20,6 +16,7 @@
     <title>Student Profile</title>
     <script src="../js/jquery-1.9.1.min.js"></script>
     <script src="../js/nav.js"></script>
+    <script src="../js/tabs.js"></script>
     <link rel="stylesheet" href="../css/register.css " type="text/css">
 
     <link type="text/css" rel="stylesheet" href="../css/news.css">
@@ -28,7 +25,14 @@
 </head>
 
 <body>
+<?php
+            require_once '../../config/conn.php';
+            $userID = $_GET['userID'];
+            $sql = "SELECT * FROM student where admissionNo='$userID' ";
+            $result = $conn->query($sql);
 
+
+            ?>
 
     <div id="teacherNav"></div>
 
@@ -52,61 +56,85 @@
 
 
                     <h2><b>User Information</b></h2>
+                    <?php
+                            while ($row = mysqli_fetch_assoc($result)) {
+                            ?>
                     <hr>
                     <div class="card">
-                        <form>
-                            <div class="photo">
-                                <img src="../../images/student.png" width="160px" height="160px">
+                    <?php if ($row['stuPhoto'] == TRUE) { ?>
+                                                <td width="30%">
+                                                    <div class="image" style="width:180px;">
+                                                        <?php echo "<img src='../../images/" . $row['stuPhoto'] . "'>"; ?>
 
-                            </div>
+                                                    </div>
+                                                </td>
+                                            <?php } ?>
+                                            
                             <div class="first">
                                 <div class="row">
                                     <div class="col">
                                         <div class="form-group ">
-                                            <label class="label" for="input-username">First name</label>
-                                            <input type="text" id="fname" class="inputs" placeholder="First name"
-                                                value="Katy">
+                                        <label class="label" for="input-username">First name</label>
+                                                        <input type="text" id="fname" class="inputs" value="<?php echo $row['fName'] ?>">
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
-                                            <label class="label" for="input-address">Middle name</label>
-                                            <input type="text" id="mname" class="inputs" placeholder="Middle name"
-                                                value="Laura">
+                                        <label class="label" for="input-address">Middle name</label>
+                                                        <input type="text" id="mname" class="inputs" value="<?php echo $row['mName'] ?>">
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group ">
-                                            <label class="label" for="input-username">Last name</label>
-                                            <input type="text" id="lname" class="inputs" placeholder="Last name"
-                                                value="Maxwell">
+                                        <label class="label" for="input-username">Last name</label>
+                                                        <input type="text" id="lname" class="inputs" value="<?php echo $row['lName'] ?>">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col">
                                         <div class="form-group ">
-                                            <label class="label" for="adNo">Admission Number</label>
-                                            <input type="text" id="adNo" class="inputs" placeholder="Admission Number"
-                                                value="18020275">
+                                        <label class="label" for="adNo">Admission Number</label>
+                                                        <input type="text" id="adNo" class="inputs" placeholder="Admission Number" value="<?php echo $row['admissionNo'] ?>">
                                         </div>
                                     </div>
                                     <div class="col">
-                                        <div class="form-group ">
-                                            <label class="label" for="input-username">Entered Date</label>
-                                            <input type="text" id="Edate" class="inputs" placeholder="Entered Date"
-                                                value="2003.02.02">
+                                    <div class="form-group ">
+                                    <label class="label" for="input-username">Entered Date</label>
+                                                        <input type="text" id="Edate" class="inputs" placeholder="Entered Date" value="<?php echo $row['enteredDate'] ?>">
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
-                                            <label class="label" for="input-username">Entered Grade</label>
-                                            <input type="text" id="Egrade" class="inputs" placeholder="Entered Grade"
-                                                value="3">
+                                        <label class="label" for="input-username">Entered Grade</label>
+                                                        <input type="text" id="Egrade" class="inputs" placeholder="Entered Grade" value="<?php echo $row['enteredGrade'] ?>">
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                           
+
+                            <div class="row">
+                                    <div class="col">
+                                        <div class="form-group ">
+                                        <label class="label" for="dob">Date of Birth</label>
+                                                        <input type="text" id="dob" class="inputs" placeholder="Date of Birth" value="<?php echo $row['dob'] ?>">
+                                        </div>
+                                        </div>
+                                        <div class="col">
+                                        <div class="form-group ">
+                                        <label class="label" for="gender">Gender</label>
+                                                        <input type="text" id="gender" class="inputs" placeholder="Gender" value="<?php echo $row['gender'] ?>">
+                                        </div>
+                                        </div>
+                                        <div class="col">
+                                        <div class="form-group">
+                                        <label class="label" for="religion">Religion</label>
+                                                        <input id="religion" class="inputs" placeholder="Religion" value="<?php echo $row['religion'] ?>" type="text">
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                           
                             <h3><b>Contact Information</b></h3>
                             <div class="first">
                                 <h4><b>Address</b></h4>
@@ -114,70 +142,46 @@
                                     <div class="col">
                                         <div class="form-group">
 
-                                            <label class="label" for="street">Street</label>
-                                            <input id="street" class="inputs" placeholder="Home Address"
-                                                value="65/A, R. Silva road" type="text">
+                                        <label class="label" for="street">Street</label>
+                                                        <input id="street" class="inputs" placeholder="Home Address" value="<?php echo $row['adStreet'] ?>" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                    <div class="form-group">
+                                    <label class="label" for="city">City</label>
+                                                        <input id="city" class="inputs" placeholder="Home Address" value="<?php echo $row['adCity'] ?>" type="text">
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
-                                            <label class="label" for="city">City</label>
-                                            <input id="city" class="inputs" placeholder="Home Address" value="Kelaniya"
-                                                type="text">
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="form-group">
-                                            <label class="label" for="district">District</label>
-                                            <input id="district" class="inputs" placeholder="Home Address"
-                                                value="Colombo" type="text">
+                                        <label class="label" for="district">District</label>
+                                                        <input id="district" class="inputs" placeholder="Home Address" value="<?php echo $row['adDistrict'] ?>" type="text">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col">
                                         <div class="form-group ">
-                                            <label class="label" for="ContactNumber">Contact Number</label>
-                                            <input type="text" id="ContactNumber" class="inputs"
-                                                placeholder="Contact Number" value="0112456987">
+                                        <label class="label" for="ContactNumber">Contact Number</label>
+                                                        <input type="text" id="ContactNumber" class="inputs" placeholder="Contact Number" value="<?php echo $row['contactNo'] ?>">
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group ">
-                                            <label class="label" for="adNo">Email</label>
-                                            <input type="text" id="email" class="inputs" placeholder="Email"
-                                                value="hansikamedani@gmail.com">
+                                        <label class="label" for="adNo">Email</label>
+                                                        <input type="text" id="email" class="inputs" placeholder="Email" value="<?php echo $row['email'] ?>">
+                                        </div>
+                                        </div>
+                                    <div class="col">
+                                        <div class="form-group ">
+                                        <label class="label" for="stunic">NIC</label>
+                                                        <input id="stunic" class="inputs" placeholder="NIC" value="<?php echo $row['stuNic'] ?>" type="text">
                                         </div>
                                     </div>
 
                                 </div>
                             </div>
-                            <div class="first">
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="form-group ">
-                                            <label class="label" for="input-username">First name</label>
-                                            <input type="text" id="input-username" class="inputs" placeholder="Username"
-                                                value="lucky.jesse">
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="form-group">
-                                            <label class="label" for="input-address">Middle name</label>
-                                            <input id="input-address" class="inputs" placeholder="Home Address"
-                                                value="Bld " type="text">
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="form-group ">
-                                            <label class="label" for="input-username">Last name</label>
-                                            <input type="text" id="input-username" class="inputs" placeholder="Username"
-                                                value="lucky.jesse">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
+                           
 
                         </form>
 
@@ -764,14 +768,9 @@
         }
         </script>
 
-
-
-
-
 </body>
 
 </html>
 
-<?php 
-	 }
-?>
+<?php }
+} ?>
