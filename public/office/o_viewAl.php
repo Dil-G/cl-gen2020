@@ -15,7 +15,7 @@
 <!DOCTYPE html>
 <html>
 
-<head> 
+<head>
 
     <?php
 include_once '../../config/conn.php';
@@ -75,47 +75,48 @@ include_once '../../config/conn.php';
                     $result = mysqli_query($conn,$sql);
                     ?>
             <hr>
-            <table>
-                <tr>
-                    <th>Exam ID</th>
-                    <th>Year</th>
-                    <th>Name of the Examination</th>
-                    <th>Edit Details</th>
-                    <th>View Details</th>
+            <div class="scroll">
+                <table>
+                    <tr>
+                        <th>Exam ID</th>
+                        <th>Year</th>
+                        <th>Name of the Examination</th>
+                        <th>Edit Details</th>
+                        <th>View Details</th>
 
 
-                </tr>
-                <?php
+                    </tr>
+                    <?php
                     
                     while($row=mysqli_fetch_assoc($result)){
                     ?>
-                <tr>
-                    <td><?php echo $row['examID']?></td>
-                    <td><?php echo $row['examYear']?></td>
-                    <td><?php echo $row['examName']?></td>
-                    <?php echo "<td><a id='addExamBtn' class='btn editbtn' href = o_alCsv.php?examID=".$row['examID']." > Add Results </a></td>"
+                    <tr>
+                        <td><?php echo $row['examID']?></td>
+                        <td><?php echo $row['examYear']?></td>
+                        <td><?php echo $row['examName']?></td>
+                        <?php echo "<td><a id='addExamBtn' class='btn editbtn' href = o_alCsv.php?examID=".$row['examID']." > Add Results </a></td>"
                     ?>
-                    <td>
-                        <form><button class="btn viewbtn" type="submit" formaction="o_al.php">View Results</button>
-                        </form>
-                    </td>
+                        <td>
+                            <form><button class="btn viewbtn" type="submit" formaction="o_al.php">View Results</button>
+                            </form>
+                        </td>
 
-                </tr>
-                <?php
+                    </tr>
+                    <?php
                     }
                     ?>
-            </table>
+                </table>
+            </div>
         </div>
 
     </div>
     <script>
     var form1 = document.getElementById("addExamForm");
     var addExam = document.getElementById("addExamBtn");
-    
+
     addExam.onclick = function() {
         form1.style.display = "block";
     }
-    
     </script>
 </body>
 

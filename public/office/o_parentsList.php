@@ -59,24 +59,26 @@
                      }?>
                 </div>
                 <hr>
-                <table>
-                    <tr>
-                        <th>User ID</th>
-                        <th>UserName</th>
-                    </tr>
-                    <?php
-                        while($row=mysqli_fetch_assoc($parent_result1)){
-                        ?>
-                    <tbody id="Table">
+                <div class="scroll">
+                    <table>
                         <tr>
-                            <td><?php echo $row['userID'] ?></td>
-                            <td><?php echo $row['username'] ?></td>
+                            <th>User ID</th>
+                            <th>UserName</th>
                         </tr>
                         <?php
+                        while($row=mysqli_fetch_assoc($parent_result1)){
+                        ?>
+                        <tbody id="Table">
+                            <tr>
+                                <td><?php echo $row['userID'] ?></td>
+                                <td><?php echo $row['username'] ?></td>
+                            </tr>
+                            <?php
                         }
                         ?>
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
         <div id="page1" class="page">
@@ -88,32 +90,34 @@
                      }?>
                 </div>
                 <hr>
-                <table>
-                    <tr>
-                        <th>User ID</th>
-                        <th>Name</th>
-                        <th>Edit Details</th>
-                    </tr>
-                    <?php
+                <div class="scroll">
+                    <table>
+                        <tr>
+                            <th>User ID</th>
+                            <th>Name</th>
+                            <th>Edit Details</th>
+                        </tr>
+                        <?php
                         while($row=mysqli_fetch_assoc($parent_result4)){
                         ?>
-                    <tbody id="Table">
-                        <tr>
-                            <td><?php echo $row['userID'] ?></td>
-                            <td><?php
+                        <tbody id="Table">
+                            <tr>
+                                <td><?php echo $row['userID'] ?></td>
+                                <td><?php
                         $name = $conn->query("SELECT * FROM parent where parentID='$row[userID]'");
 
                         while($fname = mysqli_fetch_assoc($name)){
                             echo $fname['name'] ;
                         }
                         ?></td>
-                            <?php echo "<td><a class='btn editbtn' href = SProfile.php?userID=".$row['userID']." > update </a> </td>"?>
-                        </tr>
-                    </tbody>
-                    <?php
+                                <?php echo "<td><a class='btn editbtn' href = SProfile.php?userID=".$row['userID']." > update </a> </td>"?>
+                            </tr>
+                        </tbody>
+                        <?php
                         }
                         ?>
-                </table>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

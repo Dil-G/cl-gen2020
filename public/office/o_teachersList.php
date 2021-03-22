@@ -57,26 +57,28 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                             } ?>
                 </div>
                 <hr>
-                <table style="height:100px;overflow:auto;">
-                    <tr>
-                        <th>User ID</th>
-                        <th>UserName</th>
-                        <th>Add Details</th>
-                    </tr>
-                    <?php
-                            while ($row = mysqli_fetch_assoc($teacher_result1)) {
-                            ?>
-                    <tbody id="Table">
+                <div class="scroll">
+                    <table style="height:100px;overflow:auto;">
                         <tr>
-                            <td><?php echo $row['userID'] ?></td>
-                            <td><?php echo $row['username'] ?></td>
-                            <?php echo "<td><a class='btn editbtn' href = o_addTeacherDetails.php?userID=" . $row['userID'] . " > Add </a> </td>" ?>
+                            <th>User ID</th>
+                            <th>UserName</th>
+                            <th>Add Details</th>
                         </tr>
                         <?php
+                            while ($row = mysqli_fetch_assoc($teacher_result1)) {
+                            ?>
+                        <tbody id="Table">
+                            <tr>
+                                <td><?php echo $row['userID'] ?></td>
+                                <td><?php echo $row['username'] ?></td>
+                                <?php echo "<td><a class='btn editbtn' href = o_addTeacherDetails.php?userID=" . $row['userID'] . " > Add </a> </td>" ?>
+                            </tr>
+                            <?php
                             }
                                 ?>
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
         <div id="page1" class="page">
@@ -88,20 +90,21 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                             } ?>
                 </div>
                 <hr>
-                <table>
-                    <tr>
-                        <th>User ID</th>
-                        <th>Name</th>
-                        <th>Edit Details</th>
-                    </tr>
+                <div class="scroll">
+                    <table>
+                        <tr>
+                            <th>User ID</th>
+                            <th>Name</th>
+                            <th>Edit Details</th>
+                        </tr>
 
-                    <?php
+                        <?php
                         while ($row = mysqli_fetch_assoc($teacher_result4)) {
                         ?>
-                    <tbody id="Table">
-                        <tr>
-                            <td><?php echo $row['userID'] ?></td>
-                            <td><?php
+                        <tbody id="Table">
+                            <tr>
+                                <td><?php echo $row['userID'] ?></td>
+                                <td><?php
                                             $name = $conn->query("SELECT * FROM teacher where teacherID='$row[userID]'");
 
                                             while ($fname = mysqli_fetch_assoc($name)) {
@@ -109,13 +112,14 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                                                 echo $fname['lName'];
                                             }
                                             ?></td>
-                            <?php echo "<td><a class='btn editbtn' href = Tcr_profile.php?userID=" . $row['userID'] . " > update </a> </td>" ?>
-                        </tr>
-                    </tbody>
-                    <?php
+                                <?php echo "<td><a class='btn editbtn' href = Tcr_profile.php?userID=" . $row['userID'] . " > update </a> </td>" ?>
+                            </tr>
+                        </tbody>
+                        <?php
                         }
                     ?>
-                </table>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

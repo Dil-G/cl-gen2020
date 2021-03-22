@@ -65,6 +65,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
             <br>
             <br>
             <hr>
+            <div class="scroll">
             <table>
                 <tr>
                     <th>News ID</th>
@@ -103,6 +104,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                         }
                         ?>
             </table>
+            </div>
         </div>
 
     </div>
