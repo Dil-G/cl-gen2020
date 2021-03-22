@@ -28,13 +28,12 @@ else{
 $teacher_sql = "SELECT COUNT(isActivated) FROM user where userType='teacher' AND isActivated=0"; 
 $teacher_sql3 = "SELECT COUNT(isActivated) FROM user where userType='teacher' AND isActivated=1";
 $teacher_sql1 = "SELECT * FROM user where isActivated=0 and userType='teacher' ";
-$teacher_sql2 = "SELECT * FROM teacher  ";
+
 $teacher_sql4 = "SELECT * FROM user where isActivated=1 and userType='teacher' ";
 		
 $teacher_result = $conn->query($teacher_sql);
 $teacher_result3 = $conn->query($teacher_sql3);
 $teacher_result1 = $conn->query($teacher_sql1);
-$teacher_result2 = $conn->query($teacher_sql2);
 $teacher_result4 = $conn->query($teacher_sql4);
             
 
@@ -102,6 +101,27 @@ $user_res3= mysqli_query($conn,$user_sql3);
 $user_res4= mysqli_query($conn,$user_sql4);
 
 if(!$user_res1 || !$user_res2 || !$user_res3 || !$user_res4){
+    $error = "Error in Retrieving aaaa";
+}
+else{
+    	
+}
+
+
+
+$deleted_sql1 = "SELECT * FROM user WHERE isActivated = 0  AND userType != 'superadmin'";
+$deleted_sql2 = "SELECT * FROM user WHERE (isActivated = 2 AND userType != 'superadmin')";
+
+$deleted_sql3 = "SELECT COUNT(isActivated) FROM user where userType != 'superadmin' AND isActivated = 0 "; 
+$deleted_sql4 = "SELECT COUNT(isActivated) FROM user where userType != 'superadmin' AND isActivated = 2"; 
+            
+            	
+$deleted_res1= mysqli_query($conn,$deleted_sql1);
+$deleted_res2= mysqli_query($conn,$deleted_sql2);
+$deleted_res3= mysqli_query($conn,$deleted_sql3);
+$deleted_res4= mysqli_query($conn,$deleted_sql4);
+
+if(!$deleted_res1 || !$deleted_res2 || !$deleted_res3 || !$deleted_res4){
     $error = "Error in Retrieving aaaa";
 }
 else{

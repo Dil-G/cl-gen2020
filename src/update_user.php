@@ -3,10 +3,6 @@ session_start();
 //require_once('cl_gen.php');
 require_once '../config/conn.php';
 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-} 
-echo "Connected successfully";
 
 if (isset($_POST['update_student'])) {
         echo ("ss");
