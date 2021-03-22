@@ -12,6 +12,10 @@
       if (in_array("d2", $dutyID)) {
 	?>
 
+<?php
+include_once '../../config/conn.php';
+$result = mysqli_query($conn,"SELECT * FROM schol_rsheet");
+?>
 <!DOCTYPE html>
 <html>
 
@@ -31,11 +35,12 @@
     
     <div class="content">
 
-        <h1>Grade 5 Scholarship Examination Results - 2016</h1>
-        <form class="search" action="addStudentDetails.html">
-            <input type="text" placeholder="Search.." name="search">
-            <button type="submit">Search</button>
-        </form>
+        <h1 style="color: gray;">Grade 5 Scholarship Examination Results - 2016</h1>
+        <br>
+        <form class="search">
+                <input type="text" ID="Inputs" placeholder="Search.." name="search">
+                <button type="submit">Search</button>
+            </form>
 
 
         <br>
@@ -50,23 +55,42 @@
             <br>
 
             <hr>
+            <?php
+                if (mysqli_num_rows($result) > 0) {
+            ?>
             <table>
                 <tr>
-                    <th>Student Index Number</th>
-                    <th>A/L Index Number</th>
+                    <th>Admission Number</th>
+                    <th>Index Number</th>
                     <th>Student Name</th>
                     <th>Results</th>
 
 
                 </tr>
-                <tr>
-                    <td>S1234</td>
-                    <td>13526246</td>
-                    <td>A.B.C. Student</td>
-                    <td>180</td>
-
-                </tr>
-            </table>
+                <?php
+                    $i=0;
+                    while($row = mysqli_fetch_array($result)) {
+                    ?>
+                    <tr>
+                        <td><?php echo $row["admissionNo"]; ?></td>
+                        <td><?php echo $row["studentIndex"]; ?></td>
+                        <td><?php echo $row["studentName"]; ?></td>
+                        <td><?php echo $row["examMarks"]; ?></td>
+                       
+                    </tr>
+                    <?php
+                    $i++;
+                    }
+                    ?>
+                    </table>
+                    <?php
+                    }
+                    else{
+                        echo "No result found";
+                    }
+                
+                ?>
+               
         </div>
 
 
