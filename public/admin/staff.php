@@ -65,6 +65,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 				 }?>
                 </div>
                 <hr>
+                <div class="scroll">
                 <table>
                     <tr>
                         <th>User ID</th>
@@ -79,13 +80,14 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                             <td><?php echo $row['userID'] ?></td>
                             <td><?php echo $row['username'] ?></td>
 
-                            <?php echo "<td><a class='btn editbtn' href = o_addOfficerDetails.php?userID=".$row['userID']." > Add </a> </td>"?>
+                            <?php echo "<td><a class='btn editbtn' href = addOfficerDetails.php?userID=".$row['userID']." > Add </a> </td>"?>
                         </tr>
                         <?php
 					}
 					?>
                     </tbody>
                 </table>
+                </div>
             </div>
         </div>
         <div id="page2" class="page">
@@ -97,6 +99,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 				 }?>
                 </div>
                 <hr>
+                <div class="scroll">
                 <table>
                     <tr>
                         <th>User ID</th>
@@ -119,6 +122,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 					?>
                     </tbody>
                 </table>
+                </div>
             </div>
         </div>
     </div>

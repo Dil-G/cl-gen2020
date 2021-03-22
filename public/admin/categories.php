@@ -1,16 +1,15 @@
 <?php
-     session_start();
+session_start();
 
-     if(!isset($_SESSION['userType']) && !isset($_SESSION['userID'])){
-         $error = "Please Login!";
-         header('Location: ../common/loginFile.php?error='.$error);
-	 }else if($_SESSION['userType'] != 'admin'){
-			header('Location: ../common/error.html');
-		}
-		else{
+if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
+	$error = "Please Login!";
+	header('Location: ../common/loginFile.php?error=' . $error);
+} else if ($_SESSION['userType'] != 'admin') {
+	header('Location: ../common/error.html');
+} else {
 
-         $userID = $_SESSION['userID'];
-?> 
+	$userID = $_SESSION['userID'];
+?>
 
 
 	<!DOCTYPE html>
@@ -36,44 +35,45 @@
 
 			<h1 style="color: #6a7480;">CATEGORIES</h1>
 
+			<div class="scroll">
+				<table>
+					<tr>
+						<td>
+							<a href="sports.php">
+								<div class="container">
+									<form>
+										<button class="add" type="submit" formaction="add_sport.php">Add Sport</button>
+									</form>
 
-			<table>
-				<tr>
-					<td>
-						<a href="sports.php">
-							<div class="container">
-								<form>
-									<button class="add" type="submit" formaction="add_sport.php">Add Sport</button>
-								</form>
-								
-								<img src="../../images/sport.png" width="110" height="100">
-								<br>
-								<br>
-								<br>
-								<h2><b>Sports</b></h2>
-								<p>20</p>
-							</div>
-						</a>
-					</td>
-					<td>
-						<a href="societies.php">
-							<div class="container">
-								<form>
-									<button class="add" type="submit" formaction="add_society.php">Add Society</button>
-								</form>
-								
-								<img src="../../images/society.png" width="110" height="100">
-								<br>
-								<br>
-								<br>
-								<h2><b>Society</b></h2>
-								<p>25</p>
-							</div>
-						</a>
-					</td>
+									<img src="../../images/sport.png" width="110" height="100">
+									<br>
+									<br>
+									<br>
+									<h2><b>Sports</b></h2>
+									<p>20</p>
+								</div>
+							</a>
+						</td>
+						<td>
+							<a href="societies.php">
+								<div class="container">
+									<form>
+										<button class="add" type="submit" formaction="add_society.php">Add Society</button>
+									</form>
 
-				</tr>
-			</table>
+									<img src="../../images/society.png" width="110" height="100">
+									<br>
+									<br>
+									<br>
+									<h2><b>Society</b></h2>
+									<p>25</p>
+								</div>
+							</a>
+						</td>
+
+					</tr>
+				</table>
+			</div>
 
 		</div>
 

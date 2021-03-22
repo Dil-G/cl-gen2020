@@ -39,7 +39,7 @@
 
         <div class="card">
             <h1>User List</h1>
-            <form class="search" >
+            <form class="search">
                 <input type="text" id="Inputs" placeholder="Search.." name="search">
                 <button type="submit">Search</button>
             </form>
@@ -70,29 +70,30 @@
 
 
                 <hr>
-
-                <table>
-                    <tr>
-                        <th>User ID</th>
-                        <th>UserName</th>
-                        <th>User Type</th>
-
-                    </tr>
-                    <?php
-		while($row=mysqli_fetch_assoc($user_res1)){
-			?>
-                    <tbody id="Table">
+                <div class="scroll">
+                    <table>
                         <tr>
-                            <td><?php echo $row['userID'] ?></td>
-                            <td><?php echo $row['username'] ?></td>
-                            <td><?php echo $row['userType'] ?></td>
+                            <th>User ID</th>
+                            <th>UserName</th>
+                            <th>User Type</th>
 
                         </tr>
                         <?php
+		while($row=mysqli_fetch_assoc($user_res1)){
+			?>
+                        <tbody id="Table">
+                            <tr>
+                                <td><?php echo $row['userID'] ?></td>
+                                <td><?php echo $row['username'] ?></td>
+                                <td><?php echo $row['userType'] ?></td>
+
+                            </tr>
+                            <?php
 			}
 		?>
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
         <div id="page2" class="page">
@@ -109,29 +110,30 @@
 
 
                 <hr>
-
-                <table>
-                    <tr>
-                        <th>User ID</th>
-                        <th>UserName</th>
-                        <th>User Type</th>
-
-                    </tr>
-                    <?php
-		while($row=mysqli_fetch_assoc($user_res2)){
-			?>
-                    <tbody id="Table">
+                <div class="scroll">
+                    <table>
                         <tr>
-                            <td><?php echo $row['userID'] ?></td>
-                            <td><?php echo $row['username'] ?></td>
-                            <td><?php echo $row['userType'] ?></td>
+                            <th>User ID</th>
+                            <th>UserName</th>
+                            <th>User Type</th>
 
                         </tr>
                         <?php
+		while($row=mysqli_fetch_assoc($user_res2)){
+			?>
+                        <tbody id="Table">
+                            <tr>
+                                <td><?php echo $row['userID'] ?></td>
+                                <td><?php echo $row['username'] ?></td>
+                                <td><?php echo $row['userType'] ?></td>
+
+                            </tr>
+                            <?php
 			}
 		?>
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
 
