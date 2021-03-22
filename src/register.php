@@ -57,7 +57,7 @@ if (isset($_POST['teacherReg'])) {
     }*/
 } else if (isset($_POST['studentReg'])) {
 
-    $admissionNo = $_POST['stuID'];
+    $admissionNo = $_POST['studentID'];
     $fName = $_POST['stufName'];
     $mName = $_POST['stumName'];
     $lName = $_POST['stulName'];
@@ -86,7 +86,11 @@ if (isset($_POST['teacherReg'])) {
     if ($conn->query($sql) === TRUE &&  $conn->query($update_query1)) {
         if (move_uploaded_file($_FILES['stuPhoto']['tmp_name'], $target)) {
             $message = "Image uploaded successfully";
-            header('Location: ../public/office/o_addStudentDetails.php?message=' . $message);
+            if ($_SESSION['userType'] == 'officer') {
+                header('Location: ../public/office/o_addStudentDetails.php?message=' . $message);
+            }elseif ($_SESSION['userType'] == 'admin'){
+                header('Location: ../public/admin/addStudentDetails.php?message=' . $message);
+            }
         } else {
             header('Location: ../public/office/o_addStudentDetails.php');
         }
@@ -94,11 +98,16 @@ if (isset($_POST['teacherReg'])) {
         if ($_SESSION['userType'] == 'officer') {
             header('Location: ../public/office/o_addParentDetails.php?parentID=' . $admissionNo);
         } elseif ($_SESSION['userType'] == 'admin') {
-            header('Location: ../public/admin/o_addParentDetails.php?parentID=' . $admissionNo);
+            header('Location: ../public/admin/addParentDetails.php?parentID=' . $admissionNo);
         }
     } else {
         $error = "Cannot add record";
-        header('Location: ../public/office/o_addStudentDetails.php?error=' . $error);
+        if ($_SESSION['userType'] == 'officer') {
+            // header('Location: ../public/office/o_addStudentDetails.php?message=' . $error);
+        }elseif ($_SESSION['userType'] == 'admin'){
+            // header('Location: ../public/admin/addStudentDetails.php?message=' . $error);
+        }
+        
     }
 
 

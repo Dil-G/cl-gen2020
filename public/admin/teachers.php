@@ -81,7 +81,7 @@
                                 <td><?php echo $row['userID'] ?></td>
                                 <td><?php echo $row['username'] ?></td>
 
-                                <?php echo "<td><a class='btn editbtn' href = o_addTeacherDetails.php?userID=".$row['userID']." > Add </a> </td>"?>
+                                <?php echo "<td><a class='btn editbtn' href = addTeacherDetails.php?userID=".$row['userID']." > Add </a> </td>"?>
                             </tr>
                             <?php
 					}

@@ -34,7 +34,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 
     <div id="nav2"></div>
     <?php
-        $stuID = ($_GET['userID']);
+        $stuID = ($_GET['parentID']);
         $charID = substr($stuID, 2);
         $pID = "PR" . $charID;
 
