@@ -110,7 +110,7 @@
                             echo $fname['name'] ;
                         }
                         ?></td>
-                                <?php echo "<td><a class='btn editbtn' href = SProfile.php?userID=".$row['userID']." > update </a> </td>"?>
+                                <?php echo "<td><a class='btn editbtn' href = update_parent.php?userID=".$row['userID']." > update </a> </td>"?>
                             </tr>
                         </tbody>
                         <?php

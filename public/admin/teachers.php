@@ -115,7 +115,7 @@
                             <tr>
                                 <td><?php echo $row['teacherID'] ?></td>
                                 <td><?php $name = $row['fName'] ." ".  $row['lName'] ; echo $name; ?></td>
-                                <?php echo "<td><a class='btn editbtn' href = SProfile.php?userID=".$row['teacherID']." > update </a> </td>"?>
+                                <?php echo "<td><a class='btn editbtn' href = updateTeacher.php?userID=".$row['teacherID']." > update </a> </td>"?>
                                 <?php echo "<td><a class='btn dltbtn' href = # > Deactivate </a> </td>";?>
                             </tr>
                             <?php

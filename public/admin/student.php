@@ -116,7 +116,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                                 <td><?php $name = $row['fName'] . " " . $row['mName'] . " " . $row['lName'];
                                         echo $name; ?>
                                 </td>
-                                <?php echo "<td><a class='btn editbtn' href = SProfile.php?userID=" . $row['admissionNo'] . " > update </a> </td>" ?>
+                                <?php echo "<td><a class='btn editbtn' href = updateStudent.php?userID=" . $row['admissionNo'] . " > update </a> </td>" ?>
                                 <?php echo "<td><a class='btn dltbtn' href = # > Deactivate </a> </td>"; ?>
                             </tr>
                         </tbody>

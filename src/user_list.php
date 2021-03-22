@@ -11,7 +11,7 @@ if (isset($_SESSION['studentID'])) {
 
     $res_student = mysqli_query($conn, $sql_student);
 
-  
+    unset($_SESSION['studentID']);
     if ($res_student) {
         //echo "Sucessfull";
     } else {
@@ -42,6 +42,7 @@ if (isset($_SESSION['officerID'])) {
         array_push($duties,$row_duty['duty']);
         
       }
+      unset($_SESSION['officerID']);
     if ($res_officer) {
         //echo "Sucessfull";
     } else {
@@ -59,8 +60,29 @@ if (isset($_SESSION['teacherID'])) {
 
     $res_teacher = mysqli_query($conn, $sql_teacher);
 
-  
+    unset($_SESSION['teacherID']);
     if ($res_teacher) {
+        //echo "Sucessfull";
+    } else {
+        echo "failed";
+    }
+}
+
+
+if (isset($_SESSION['parentID'])) {
+
+
+    $stuID = ($_SESSION['parentID']);
+    $charID = substr($stuID, 2);
+    $parentID = "PR" . $charID;
+
+    // echo $studentID;
+    $sql_parent = "SELECT * FROM parent where parentID='$parentID'";
+
+    $res_parent = mysqli_query($conn, $sql_parent);
+
+    unset($_SESSION['parentID']);
+    if ($res_parent) {
         //echo "Sucessfull";
     } else {
         echo "failed";

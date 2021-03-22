@@ -1,22 +1,17 @@
 <?php
-session_start();
+     session_start();
 
-if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
-	$error = "Please Login!";
-	header('Location: ../common/loginFile.php?error=' . $error);
-} else if ($_SESSION['userType'] != 'officer') {
-	header('Location: ../common/error.html');
-} else {
-	$dutyID = array();
-	$dutyID = $_SESSION['dutyID'];
+     if(!isset($_SESSION['userType']) && !isset($_SESSION['userID'])){
+         $error = "Please Login!";
+         header('Location: ../common/loginFile.php?error='.$error);
+	 }else if($_SESSION['userType'] != 'admin'){
+			header('Location: ../common/error.html');
+		}
+		else{
 
-	if (!in_array("d2", $dutyID)) {
-		header('Location: o_dashboard.php');
-	}
+            $_SESSION['teacherID']=$_GET['userID'];
+         include '../../src/user_list.php';
 
-    
-    $_SESSION['teacherID']=$_GET['userID'];
-    include '../../src/user_list.php';
 ?>
 
 
@@ -37,7 +32,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 </head>
 
 <body>
-    <div id="officeNav"></div>
+    <div id="nav2"></div>
 
 
     <div class="content">

@@ -110,7 +110,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                             <td><?php echo $row['parentID'] ?></td>
                             <td><?php echo $row['name']  ?></td>
                             <?php
-                                    echo "<td><a class='btn editbtn' href = SProfile.php?userID=" . $row['admissionNo'] . " > update </a> </td>" ?>
+                                    echo "<td><a class='btn editbtn' href = updateParent.php?userID=" . $row['admissionNo'] . " > update </a> </td>" ?>
 
                         </tr>
                         <?php
