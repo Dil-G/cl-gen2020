@@ -12,12 +12,16 @@
       if (in_array("d2", $dutyID)) {
 	?>
 
+<?php
+include_once '../../config/conn.php';
+
+?>
 <!DOCTYPE html>
 <html>
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Grade 5 Scholarship Examination Results - 2016</title>
+    <title>Grade 5 Scholarship Examination Results</title>
     <link rel="stylesheet" href="../css/view.css " type="text/css">
     <link type="text/css" rel="stylesheet" href="../css/main.css">
     <link type="text/css" rel="stylesheet" href="../css/users.css">
@@ -31,11 +35,22 @@
     
     <div class="content">
 
-        <h1>Grade 5 Scholarship Examination Results - 2016</h1>
-        <form class="search" action="addStudentDetails.html">
-            <input type="text" placeholder="Search.." name="search">
-            <button type="submit">Search</button>
-        </form>
+    <?php
+             
+             $sql = "SELECT * FROM addscholexam WHERE examID = '".$_GET['examID']."'";
+             $result = mysqli_query($conn,$sql);
+             $row=mysqli_fetch_assoc($result);
+
+         ?>
+
+        <?php $postfix = explode("/", $row['examID'])  ?>
+    <h1 style="color: #6a7480;">Grade 5 Scholarship Examination Results - <?php print_r($postfix[1]) ?></h1>
+        
+        <br>
+        <form class="search">
+                <input type="text" ID="Inputs" placeholder="Search.." name="search">
+                <button type="submit">Search</button>
+            </form>
 
 
         <br>
@@ -50,23 +65,37 @@
             <br>
 
             <hr>
+            <?php
+             
+             $sql2 = "SELECT * FROM schol_rsheet WHERE examID = '".$_GET['examID']."'";
+             $result2 = mysqli_query($conn,$sql2);
+             $row=mysqli_fetch_assoc($result2);
+
+         ?>
             <table>
                 <tr>
-                    <th>Student Index Number</th>
-                    <th>A/L Index Number</th>
+                    <th>Admission Number</th>
+                    <th>Index Number</th>
                     <th>Student Name</th>
                     <th>Results</th>
 
 
                 </tr>
-                <tr>
-                    <td>S1234</td>
-                    <td>13526246</td>
-                    <td>A.B.C. Student</td>
-                    <td>180</td>
-
-                </tr>
-            </table>
+                <?php
+                    while($row=mysqli_fetch_array($result2)){
+                ?>
+                    <tr>
+                        <td><?php echo $row["admissionNo"]; ?></td>
+                        <td><?php echo $row["studentIndex"]; ?></td>
+                        <td><?php echo $row["studentName"]; ?></td>
+                        <td><?php echo $row["examMarks"]; ?></td>
+                        <?php
+                   }
+               ?>
+                    </tr>
+                    
+                    </table>
+                
         </div>
 
 

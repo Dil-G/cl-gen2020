@@ -97,10 +97,7 @@
                     <td><?php echo $row['examName']?></td>
                     <?php echo "<td><a id='addExamBtn' class='btn editbtn' href = o_olCsv.php?examID=".$row['examID']." > Add Results </a></td>"
                     ?>
-                    <td>
-                        <form><button class="btn viewbtn" type="submit" formaction="o_ol.php">View Results</button>
-                        </form>
-                    </td>
+                    <?php echo "<td><a class='btn viewbtn' href= o_ol.php?examID=".$row['examID'].">View Results</td>" ?>
 
                 </tr>
                 <?php

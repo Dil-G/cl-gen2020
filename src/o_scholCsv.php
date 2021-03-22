@@ -37,6 +37,7 @@ if(isset($_POST['submit'])){
    
       
     echo "<script>alert('Import done');</script>";
+    header('Location: ../public/office/o_viewSchol.php');
     
     }
     
