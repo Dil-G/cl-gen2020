@@ -19,7 +19,6 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 <html>
 
 <head>
-
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Assign Classes</title>
     <link type="text/css" rel="stylesheet" href="../css/main.css">
@@ -47,8 +46,6 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
         <br>
 
         <div class="card">
-
-
             <hr>
 
             <table>

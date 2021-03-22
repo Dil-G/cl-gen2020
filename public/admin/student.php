@@ -64,6 +64,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                         } ?>
                 </div>
                 <hr>
+                <div class="scroll">
                 <table>
                     <tr>
                         <th>User ID</th>
@@ -86,6 +87,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                         }
                         ?>
                 </table>
+                </div>
             </div>
         </div>
         <div id="page2" class="page">
@@ -97,6 +99,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                         } ?>
                 </div>
                 <hr>
+                <div class="scroll">
                 <table>
                     <tr>
                         <th>User ID</th>
@@ -121,6 +124,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                         }
                         ?>
                 </table>
+                </div>
             </div>
         </div>
     </div>

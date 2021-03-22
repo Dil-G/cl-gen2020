@@ -7,7 +7,6 @@ body {background-color: #2a2b3d}
   margin-left: 0 !important;
 }
 
-
 .welcome {
   color: #313348;
   margin-left: 3px;
@@ -22,7 +21,9 @@ a:hover {
   a:active {
     color: #313348;
   }
-
+  a {
+    color: #313348;
+    }
 .welcome .dash-content {
   background-color: #fff;
   padding: 5px;
@@ -113,7 +114,7 @@ margin: 20px;
 
 .statis{
   border-spacing: 24px 24px;
-  width: 98%;
+  /* width: 98%; */
   color: #313348;
 }
 
@@ -159,19 +160,20 @@ margin: 20px;
   border-radius: 50%;
 }
 
+.pack{
+  width: 98%;
+}
  .three {
-  width:48%;
+  width:40% !important;
   float: left;
+  text-align: left;
 }
  .four {
   float: right !important;;
-  width:48%;
-}
+  width:30%!important;
+  text-align: left;
+ }
 
-.statis .four {
-  float: right !important;;
-  width:48%;
-}
 /*chart*/
 .chrt3 {
   padding-bottom: 50px;
