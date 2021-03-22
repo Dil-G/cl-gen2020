@@ -63,14 +63,14 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                         ?>
                             <tbody id="Table">
                                 <tr>
-                                    <td><?php echo $row['sportID'] ?></td>
-                                    <td><?php echo $row['sportName'] ?></td>
+                                    <td><?php echo $row['SportID'] ?></td>
+                                    <td><?php echo $row['SportName'] ?></td>
                                     <td><?php echo $row['tcrID'] ?></td>
                                     <?php
-                                    echo "<td><a class='btn editbtn' href = updateSport.php?sportID=" . $row['sportID'] . " > Update </a> </td>";
+                                    echo "<td><a class='btn editbtn' href = updateSport.php?sportID=" . $row['SportID'] . " > Update </a> </td>";
                                     ?>
                                     <?php
-                                    echo "<td><a class='btn dltbtn' href = # > Deactivate </a> </td>";
+                                    echo "<td><a class='btn dltbtn' href = ../../src/deactivate_account.php?sportID=" . $row['SportID'] . " > Deactivate </a> </td>";
                                     ?>
 
                                 </tr>

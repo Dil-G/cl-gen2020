@@ -59,14 +59,14 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                     ?>
                     <tbody id="Table">
                         <tr>
-                            <td><?php echo $row['societyID'] ?></td>
-                            <td><?php echo $row['societyName'] ?></td>
+                            <td><?php echo $row['SocietyID'] ?></td>
+                            <td><?php echo $row['SocietyName'] ?></td>
                             <td><?php echo $row['tcrID'] ?></td>
                             <?php
-                                echo "<td><a class='btn editbtn' href = updateSociety.php?societyID=" . $row['societyID'] . " > Update </a> </td>";
+                                echo "<td><a class='btn editbtn' href = updateSociety.php?societyID=" . $row['SocietyID'] . " > Update </a> </td>";
                                 ?>
                             <?php
-                                echo "<td><a class='btn dltbtn' href = # > Deactivate </a> </td>";
+                                echo "<td><a class='btn dltbtn' href = ../../src/deactivate_account.php?societyID=" . $row['SocietyID'] . "> Deactivate </a> </td>";
                                 ?>
                         </tr>
                     </tbody>
@@ -75,7 +75,6 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                     ?>
                 </table>
             </div>
-
 </body>
 
 </html>
