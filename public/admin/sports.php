@@ -31,13 +31,13 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 
         <div class="content">
 
-            <h1 style="color: #6a7480;">SPORTS</h1>
-            <form class="search" action="register_stu.html">
-                <input type="text" id="Inputs" placeholder="Search.." name="search">
-                <button type="submit">Search</button>
-            </form>
-            <br>
-            <br>
+            <div class="card">
+                <h1 style="color: #6a7480;">SPORTS</h1>
+                <form class="search" action="register_stu.html">
+                    <input type="text" id="Inputs" placeholder="Search.." name="search">
+                    <button type="submit">Search</button>
+                </form>
+            </div>
             <br>
             <hr>
 
@@ -74,16 +74,14 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                                     ?>
 
                                 </tr>
-
+                            <?php
+                        }
+                            ?>
                             </tbody>
                     </table>
                 </div>
 
-            <?php
-                        }
 
-
-            ?>
 
 
     </body>

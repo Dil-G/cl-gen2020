@@ -2,7 +2,7 @@
 
 require_once '../config/conn.php';
 
-
+//Deactivate student and parent account
 if (isset($_GET['studentID'])) {
 
     $userID=$_GET['studentID'];
@@ -18,8 +18,8 @@ if (isset($_GET['studentID'])) {
 
     if ($result == false|| $result2 == false){
         $error = "Error in Deactivating";
-            // header('Location: ../public/admin/student.php?error='.$error);
-            // exit();
+            header('Location: ../public/admin/student.php?error='.$error);
+            exit();
     } else{
             header('Location: ../public/admin/student.php');
     
@@ -27,6 +27,8 @@ if (isset($_GET['studentID'])) {
 
 }
 
+
+//Deactivate Officer account
 if (isset($_GET['officerID'])) {
 
     $userID=$_GET['officerID'];
@@ -46,6 +48,7 @@ if (isset($_GET['officerID'])) {
 }
 
 
+//Deactivate Teacher account
 if (isset($_GET['teacherID'])) {
 
     $userID=$_GET['teacherID'];

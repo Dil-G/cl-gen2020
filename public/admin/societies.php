@@ -29,15 +29,13 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
     <div id="nav2"></div>
 
     <div class="content">
-
+ <div class="card">
         <h1 style="color: #6a7480;">SOCIETIES</h1>
         <form class="search" action="register_stu.html">
             <input type="text" id="Inputs" placeholder="Search.." name="search">
             <button type="submit">Search</button>
         </form>
-        <br>
-        <br>
-        <br>
+        <br></div>
         <hr>
         <div class="card">
             <form>
