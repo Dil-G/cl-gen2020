@@ -21,7 +21,7 @@ include_once '../../config/conn.php';
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Grade 5 Scholarship Examination Results - 2016</title>
+    <title>Grade 5 Scholarship Examination Results</title>
     <link rel="stylesheet" href="../css/view.css " type="text/css">
     <link type="text/css" rel="stylesheet" href="../css/main.css">
     <link type="text/css" rel="stylesheet" href="../css/users.css">
