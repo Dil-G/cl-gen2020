@@ -12,9 +12,18 @@
       $dutyID = array();
       $dutyID = $_SESSION['dutyID'];
 
+
       if (!in_array("d2", $dutyID)) {
          header('Location: o_dashboard.php');
         }
+        if (in_array("d1", $dutyID)) {
+            $_SESSION['studentID']=$_GET['userID'];
+        include '../../src/user_list.php';
+        
+      
+
+        
+
 	?>
 
 <!DOCTYPE html>
@@ -37,125 +46,83 @@
 <body>
 
     <div id="officeNav"></div>
-    <?php
 
-				require_once '../../config/conn.php';
-
-				$sql = "SELECT * FROM student where admissionNo='".$_GET['userID']."'";
-
-                $res= mysqli_query($conn,$sql);
-                
-            
-
-				if($res){
-				//echo "Sucessfull";
-				}
-				else{
-				echo"failed";	
-				}
-?>
 
     <div id="pg1">
         <div class="content">
             <div class="container" style="margin-left:250px;">
-                <form action="../../src/o_addStudentDetails.php" onsubmit="return validateStudent()" method="POST"
+                <form action="../../src/update_user.php" onsubmit="return validateStudent()" method="POST"
                     enctype="multipart/form-data">
                     <h1>Add Student Details</h1>
                     <hr>
                     <?php
-                    while($row=mysqli_fetch_array($res)){
+                    while($row_student=mysqli_fetch_array($res_student)){
                         ?>
+
                     <label for="stuID"><b>Admission Number</b></label>
                     <input type="text" placeholder="Enter ID"
                         value="<?php if (isset ($_GET['userID'])){echo $_GET['userID'];}?>" name="stuID" required>
 
                     <label for="stufName"><b>First Name</b></label>
-                    <input type="text" placeholder="Enter First Name" name="stufName" id="fname"  value="<?php echo $row['fName']?>"
-                        onblur="checkFname(fname.value)">
+                    <input type="text" placeholder="Enter First Name" name="stufName" id="fname"
+                        value="<?php echo $row_student['fName']?>" onblur="checkFname(fname.value)">
 
                     <label for="stumName"><b>Middle Name</b></label>
-                    <input type="text" placeholder="Enter Middle Name" name="stumName" id="mname" value="<?php echo $row['mName']?>"
-                        onblur="checkMname(mname.value)">
+                    <input type="text" placeholder="Enter Middle Name" name="stumName" id="mname"
+                        value="<?php echo $row_student['mName']?>" onblur="checkMname(mname.value)">
 
                     <label for="stulName"><b>Last Name</b></label>
-                    <input type="text" placeholder="Enter Last Name" name="stulName" id="lname" value="<?php echo $row['lName']?>"
-                        onblur="checkLname(lname.value)">
+                    <input type="text" placeholder="Enter Last Name" name="stulName" id="lname"
+                        value="<?php echo $row_student['lName']?>" onblur="checkLname(lname.value)">
 
                     <label for="stuDob"><b>Date of Birth</b></label> <br>
-                    <input type="date" placeholder="Enter Date of Birth" name="stuDob" id="date" value="<?php echo $row['dob']?>"
-                        onblur="checkStuDate(date.value)">
+                    <input type="date" placeholder="Enter Date of Birth" name="stuDob" id="date"
+                        value="<?php echo $row_student['dob']?>" onblur="checkStuDate(date.value)">
 
                     <label for="stuAdStreet"><b>Residential Addresss - Street</b></label>
-                    <input type="text" placeholder="Enter Number and street" name="stuAdStreet" id="street" value="<?php echo $row['adStreet']?>"
-                        onblur="checkStreet(street.value)">
+                    <input type="text" placeholder="Enter Number and street" name="stuAdStreet" id="street"
+                        value="<?php echo $row_student['adStreet']?>" onblur="checkStreet(street.value)">
 
                     <label for="stuAdCity"><b>Residential Addresss - City</b></label>
-                    <input type="text" placeholder="Enter City" name="stuAdCity" id="city" value="<?php echo $row['adCity']?>"
-                        onblur="checkCity(city.value)">
+                    <input type="text" placeholder="Enter City" name="stuAdCity" id="city"
+                        value="<?php echo $row_student['adCity']?>" onblur="checkCity(city.value)">
 
                     <label for="stuAdDistrict"><b>Residential Addresss - District</b></label>
-                    <select name="stuAdDistrict" id="district" onblur="checkDistrict(district.value)">
-                        <option  value="<?php echo $row['userID']?> "> <?php echo $row['adDistrict']?></option>
-                        <option value="Ampara">Ampara</option>
-                        <option value="Anuradhapura">Anuradhapura</option>
-                        <option value="Badulla">Badulla</option>
-                        <option value="Batticaloa">Batticaloa</option>
-                        <option value="Colombo">Colombo</option>
-                        <option value="Galle">Galle</option>
-                        <option value="Gampaha">Gampaha</option>
-                        <option value="Hambantota">Hambantota</option>
-                        <option value="Jaffna">Jaffna</option>
-                        <option value="Kalutara">Kalutara</option>
-                        <option value="Kandy">Kandy</option>
-                        <option value="Kegalle">Kegalle</option>
-                        <option value="Kilinochchi">Kilinochchi</option>
-                        <option value="Kurunegala">Kurunegala</option>
-                        <option value="Mannar">Mannar</option>
-                        <option value="Matale">Matale</option>
-                        <option value="Matara">Matara</option>
-                        <option value="Monaragala">Monaragala</option>
-                        <option value="Mullaitivu">Mullaitivu</option>
-                        <option value="Nuwara Eliya">Nuwara Eliya</option>
-                        <option value="Polonnaruwa">Polonnaruwa</option>
-                        <option value="Puttalam">Puttalam</option>
-                        <option value="Ratnapura">Ratnapura</option>
-                        <option value="Trincomalee">Trincomalee</option>
-                        <option value="Vavuniya">Vavuniya</option>
-                    </select>
-                    <br><br>
+
+                    <input type="text" name="stuAdDistrict" id="district"
+                        value="<?php echo $row_student['adDistrict']?>" onblur="checkDistrict(district.value)">
+                    
 
 
                     <label for="stuReligion"><b>Religion</b></label>
-                    <select name="stuReligion" id="religion" onblur="checkReligion(religion.value)">
-                        <option value="<?php echo $row['userID']?>"><?php echo $row['religion']?></option>
-                        <option value="Buddhism">Buddhism</option>
-                        <option value="Christian">Christian</option>
-                        <option value="Catholic">Catholic</option>
-                        <option value="Hinduism">Hinduism</option>
-                        <option value="Islam">Islam</option>
-                        </select>
-                    <br><br>
+                    <input type="text" name="stuReligion" id="religion"
+                        value="<?php echo $row_student['religion']?>" onblur="checkReligion(religion.value)">
+
+                        <label for="stuEnteredDate"><b>Entered Date</b></label>
+                    <input type="text" placeholder="Enter Grade Entered" name="stuEnteredDate" id="date"
+                        value="<?php echo $row_student['enteredDate']?>"readonly required>
 
                     <label for="stuEnteredGrade"><b>Entered Grade</b></label>
-                    <input type="text" placeholder="Enter Grade Entered" name="stuEnteredGrade" id="grade" value="<?php echo $row['enteredGrade']?>"
-                        onblur="checkGrade(grade.value)">
+                    <input type="text" placeholder="Enter Grade Entered" name="stuEnteredGrade" id="grade"
+                        value="<?php echo $row_student['enteredGrade']?>" onblur="checkGrade(grade.value)">
 
                     <label for="email"><b>Email</b></label>
-                    <input type="email" placeholder="Enter Email" name="email" id="email" value="<?php echo $row['email']?>"
-                        onblur="validateEmail(email.value)">
+                    <input type="email" placeholder="Enter Email" name="email" id="email"
+                        value="<?php echo $row_student['email']?>" onblur="validateEmail(email.value)">
 
                     <label for="contactNo"><b>Contact Number</b></label>
-                    <input type="text" placeholder="Enter Contact Number" name="contactNo" id="contactNo" value="<?php echo $row['contactNo']?>"
-                        onblur="contact(contactNo.value)">
+                    <input type="text" placeholder="Enter Contact Number" name="contactNo" id="contactNo"
+                        value="<?php echo $row_student['contactNo']?>" onblur="contact(contactNo.value)">
                     <br>
                     <label><b>Gender:</b></label>
-                    <input type="text" placeholder="Enter Gender" name="gender" id="gender" value="<?php echo $row['gender']?>"
-                     >
-                  
+                    <input type="text" placeholder="Enter Gender" name="stuGender" id="gender"
+                        value="<?php echo $row_student['gender']?>">
+
 
                     <div id="showNIC">
                         <label for="nic"><b>NIC </b></label>
-                        <input type="text" placeholder="Add NIC Number" id="nic" name="nic" onblur="NIC(nic.value)"> value="<?php echo $row['stuNIC']?>"
+                        <input type="text" placeholder="Add NIC Number" id="nic" name="nic" onblur="NIC(nic.value)"
+                        value="<?php if(isset($row_student['stuNic'])){ echo $row_student['stuNic'];}?>">
                         <div id="noNIC" class="text"></div>
                     </div>
 
@@ -167,14 +134,15 @@
                     <div>
 
 
-                        <button type="submit" class="registerbtn" style="margin-left: 5px;" name="regbtn1">Save</button>
+                        <button type="submit" class="registerbtn" style="margin-left: 5px;" name="update_student">Save</button>
                         <a href="o_studentsList.php" class="cancel-btn">Cancel</a>
 
 
                     </div>
+
+                    <?php } ?>
                     <br>
                     <hr>
-                    <?php } ?>
                 </form>
             </div>
         </div>
@@ -193,4 +161,4 @@
 
 </html>
 
-<?php } ?>
+<?php } }?>

@@ -112,7 +112,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                                                 echo $fname['lName'];
                                             }
                                             ?></td>
-                                <?php echo "<td><a class='btn editbtn' href = Tcr_profile.php?userID=" . $row['userID'] . " > update </a> </td>" ?>
+                                <?php echo "<td><a class='btn editbtn' href = update_teacher.php?userID=" . $row['userID'] . " > update </a> </td>" ?>
                             </tr>
                         </tbody>
                         <?php

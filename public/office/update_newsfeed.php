@@ -14,7 +14,6 @@
 
         include_once '../../src/newsfeed.php';
 
-
 	?>
 
 <!DOCTYPE html>
