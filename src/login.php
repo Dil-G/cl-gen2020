@@ -54,6 +54,11 @@ if (isset($_POST['login'])){
                     
                     if($row['teacherType'] == "classTcr"){
                         $_SESSION['teacherType'] = $row['teacherType'];
+                        $teacher_sql = "SELECT classID from classes where teacherID='$userID'";
+                        $teacher_result = mysqli_query($conn,$teacher_sql);
+                        while($teacher_row = mysqli_fetch_assoc($teacher_result)) {
+                            $_SESSION['classID'] = $teacher_row['classID'];
+                        }
                         header('Location: ../public/teacher/Tcr_dashboard1.php');
                     }else if($row['teacherType'] == "TcrinCharge"){
                         $_SESSION['teacherType'] = $row['teacherType'];

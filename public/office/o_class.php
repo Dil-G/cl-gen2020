@@ -87,21 +87,22 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
         <br>
         <div class="card">
             <hr>
-            <table>
-                <tr>
-                    <th>Admission number</th>
-                    <th>Student name</th>
-                    <th>View Profile</th>
-                </tr>
+            <div class="scroll">
+                <table>
+                    <tr>
+                        <th>Admission number</th>
+                        <th>Student name</th>
+                        <th>View Profile</th>
+                    </tr>
 
-                <?php
+                    <?php
                         while ($row = mysqli_fetch_assoc($classOne_result)) {
                         ?>
-                <tr>
+                    <tr>
 
-                    <td><?php $studentID = $row['studentID'];
+                        <td><?php $studentID = $row['studentID'];
                                     echo $studentID; ?>
-                    <td><?php
+                        <td><?php
                                     $sql = "SELECT * FROM student WHERE admissionNo ='$studentID'";
                                     $result = $conn->query($sql);
                                     while ($rows = mysqli_fetch_assoc($result)) {
@@ -110,13 +111,12 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                                     ?></td>
 
 
-                    <?php echo "<td><a class='btn editbtn' href = SProfile.php?userID=" . $row['studentID'] . " >View Profile </a> </td>" ?>
+                        <?php echo "<td><a class='btn editbtn' href = SProfile.php?userID=" . $row['studentID'] . " >View Profile </a> </td>" ?>
 
-                </tr>
-                <?php } ?>
-
-
-            </table>
+                    </tr>
+                    <?php } ?>
+                </table>
+            </div>
         </div>
     </div>
 </body>

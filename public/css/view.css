@@ -5,8 +5,22 @@ table{
   margin-top:10px;
 	text-align:center;
 }
+/* 
+thead,
+tbody {
+  width: 500px;
+  display: block;
+}
 
+tbody {
+  height: 250px;
+  overflow: auto;
+} */
 
+.scroll{
+  height:250px;
+   overflow:auto;
+}
 tr:nth-child(odd){
 	background:#ebecf0;
 }

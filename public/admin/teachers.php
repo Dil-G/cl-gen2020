@@ -66,27 +66,29 @@
 				 }?>
                 </div>
                 <hr>
-                <table>
-                    <tr>
-                        <th>User ID</th>
-                        <th>UserName</th>
-                        <th>Add Details</th>
-                    </tr>
-                    <?php
-					while($row=mysqli_fetch_assoc($teacher_result1)){
-					?>
-                    <tbody id="Table">
+                <div class="scroll">
+                    <table>
                         <tr>
-                            <td><?php echo $row['userID'] ?></td>
-                            <td><?php echo $row['username'] ?></td>
-
-                            <?php echo "<td><a class='btn editbtn' href = o_addTeacherDetails.php?userID=".$row['userID']." > Add </a> </td>"?>
+                            <th>User ID</th>
+                            <th>UserName</th>
+                            <th>Add Details</th>
                         </tr>
                         <?php
+					while($row=mysqli_fetch_assoc($teacher_result1)){
+					?>
+                        <tbody id="Table">
+                            <tr>
+                                <td><?php echo $row['userID'] ?></td>
+                                <td><?php echo $row['username'] ?></td>
+
+                                <?php echo "<td><a class='btn editbtn' href = o_addTeacherDetails.php?userID=".$row['userID']." > Add </a> </td>"?>
+                            </tr>
+                            <?php
 					}
 					?>
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
         <div id="page2" class="page">
@@ -98,28 +100,30 @@
 				 }?>
                 </div>
                 <hr>
-                <table>
-                    <tr>
-                        <th>User ID</th>
-                        <th>Name</th>
-                        <th>Edit Details</th>
-                        <th>Deactivate Account</th>
-                    </tr>
-                    <?php
-					while($row=mysqli_fetch_assoc($teacher_result2)){
-					?>
-                    <tbody id="Table">
+                <div class="scroll">
+                    <table>
                         <tr>
-                            <td><?php echo $row['teacherID'] ?></td>
-                            <td><?php $name = $row['fName'] ." ".  $row['lName'] ; echo $name; ?></td>
-                            <?php echo "<td><a class='btn editbtn' href = SProfile.php?userID=".$row['teacherID']." > update </a> </td>"?>
-                            <?php echo "<td><a class='btn dltbtn' href = # > Deactivate </a> </td>";?>
+                            <th>User ID</th>
+                            <th>Name</th>
+                            <th>Edit Details</th>
+                            <th>Deactivate Account</th>
                         </tr>
                         <?php
+					while($row=mysqli_fetch_assoc($teacher_result2)){
+					?>
+                        <tbody id="Table">
+                            <tr>
+                                <td><?php echo $row['teacherID'] ?></td>
+                                <td><?php $name = $row['fName'] ." ".  $row['lName'] ; echo $name; ?></td>
+                                <?php echo "<td><a class='btn editbtn' href = SProfile.php?userID=".$row['teacherID']." > update </a> </td>"?>
+                                <?php echo "<td><a class='btn dltbtn' href = # > Deactivate </a> </td>";?>
+                            </tr>
+                            <?php
 					}
 					?>
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

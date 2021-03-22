@@ -69,7 +69,7 @@ if (isset($_POST["Import"])) {
   }
 }
 
-if (isset($_GET['class'])) {
+if (isset($_GET['class']) ) {
 
   $thisClass = $_GET['class'];
   $sql = "SELECT * FROM classes WHERE classID = '$thisClass'";
@@ -81,7 +81,17 @@ if (isset($_GET['class'])) {
   }
 }
 
+if ( $_SESSION['classID']) {
 
+  $thisClass = $_SESSION['classID'];
+  $sql = "SELECT * FROM classes WHERE classID = '$thisClass'";
+  $result = $conn->query($sql);
+
+  if (!$result) {
+    $error = "Invalid year";
+  } else {
+  }
+}
 
 
 if (isset($_POST['uploadClass'])) {

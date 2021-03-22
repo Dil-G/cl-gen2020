@@ -66,26 +66,28 @@
 
 
                 <hr>
-                <table>
-                    <tr>
-                        <th>User ID</th>
-                        <th>User Name</th>
-                        <th>Add Details</th>
-                    </tr>
-                    <?php
+                <div class="scroll">
+                    <table>
+                        <tr>
+                            <th>User ID</th>
+                            <th>User Name</th>
+                            <th>Add Details</th>
+                        </tr>
+                        <?php
                         while($row=mysqli_fetch_assoc($student_result2)){
                         ?>
-                    <tbody id="Table">
-                        <tr>
-                            <td><?php echo $row['userID'] ?></td>
-                            <td><?php echo $row['username'] ?></td>
-                            <?php echo "<td><a class='btn editbtn' href = o_addStudentDetails.php?studentID=".$row['userID']." > Add </a> </td>"?>
-                        </tr>
-                    </tbody>
-                    <?php
+                        <tbody id="Table">
+                            <tr>
+                                <td><?php echo $row['userID'] ?></td>
+                                <td><?php echo $row['username'] ?></td>
+                                <?php echo "<td><a class='btn editbtn' href = o_addStudentDetails.php?studentID=".$row['userID']." > Add </a> </td>"?>
+                            </tr>
+                        </tbody>
+                        <?php
                         }
                         ?>
-                </table>
+                    </table>
+                </div>
             </div>
         </div>
         <div id="page1" class="page">
@@ -97,19 +99,20 @@
                      }?>
                 </div>
                 <hr>
-                <table>
-                    <tr>
-                        <th>User ID</th>
-                        <th>Student Name</th>
-                        <th>Edit Details</th>
-                    </tr>
-                    <?php
+                <div class="scroll">
+                    <table>
+                        <tr>
+                            <th>User ID</th>
+                            <th>Student Name</th>
+                            <th>Edit Details</th>
+                        </tr>
+                        <?php
                         while($row=mysqli_fetch_assoc($student_result4)){
                         ?>
-                    <tbody id="Table">
-                        <tr>
-                            <td><?php echo $row['userID'] ?></td>
-                            <td><?php
+                        <tbody id="Table">
+                            <tr>
+                                <td><?php echo $row['userID'] ?></td>
+                                <td><?php
                         $name = $conn->query("SELECT * FROM student where admissionNo='$row[userID]'");
 
                         while($fname = mysqli_fetch_assoc($name)){
@@ -117,13 +120,14 @@
                             echo $fname['lName'];
                         }
                         ?></td>
-                            <?php echo "<td><a class='btn editbtn' href = update_student.php?userID=".$row['userID']." > update </a> </td>"?>
-                        </tr>
-                    </tbody>
-                    <?php
+                                <?php echo "<td><a class='btn editbtn' href = update_student.php?userID=".$row['userID']." > update </a> </td>"?>
+                            </tr>
+                        </tbody>
+                        <?php
                         }
                         ?>
-                </table>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

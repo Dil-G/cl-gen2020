@@ -1,22 +1,20 @@
 <?php
-     session_start();
+session_start();
 
-     if(!isset($_SESSION['userType']) && !isset($_SESSION['userID'])){
-         $error = "Please Login!";
-         header('Location: ../common/loginFile.php?error='.$error);
-	 }else if($_SESSION['userType'] != 'admin'){
-			header('Location: ../common/error.html');
-		}
-		else{
+if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
+    $error = "Please Login!";
+    header('Location: ../common/loginFile.php?error=' . $error);
+} else if ($_SESSION['userType'] != 'admin') {
+    header('Location: ../common/error.html');
+} else {
 
-		 $userID = $_SESSION['userID'];
-		 include('../../src/view_societies.php');
+    $userID = $_SESSION['userID'];
+    include('../../src/view_societies.php');
 ?>
 <!DOCTYPE html>
 <html>
 
 <head>
-
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Societies</title>
     <script src="../js/jquery-1.9.1.min.js"></script>
@@ -47,46 +45,38 @@
             </form>
             <h2><b>SOCIETIES</b></h2>
             <hr>
-
-            <table>
-
-
-
-                <tr>
-                    <th>Society ID</th>
-                    <th>Society </th>
-                    <th>Teacher In Charge ID</th>
-                    <th>Update</th>
-                    <th>Deactivate</th>
-
-                </tr>
-
-                <?php
-					while ($row = mysqli_fetch_assoc($result)) {
-
-					?>
-                <tbody id="Table">
+            <div class="scroll">
+                <table>
                     <tr>
-                        <td><?php echo $row['societyID'] ?></td>
-                        <td><?php echo $row['societyName'] ?></td>
-                        <td><?php echo $row['tcrID'] ?></td>
-                        <?php
-							echo "<td><a class='btn editbtn' href = updateSociety.php?societyID=".$row['societyID']." > Update </a> </td>";
-						 ?>
-                        <?php 
-							echo "<td><a class='btn dltbtn' href = # > Deactivate </a> </td>";
-					 ?>
+                        <th>Society ID</th>
+                        <th>Society </th>
+                        <th>Teacher In Charge ID</th>
+                        <th>Update</th>
+                        <th>Deactivate</th>
                     </tr>
 
+                    <?php
+                    while ($row = mysqli_fetch_assoc($result)) {
 
-                </tbody>
-
-                <?php
-					}
-
-
-					?>
-
+                    ?>
+                    <tbody id="Table">
+                        <tr>
+                            <td><?php echo $row['societyID'] ?></td>
+                            <td><?php echo $row['societyName'] ?></td>
+                            <td><?php echo $row['tcrID'] ?></td>
+                            <?php
+                                echo "<td><a class='btn editbtn' href = updateSociety.php?societyID=" . $row['societyID'] . " > Update </a> </td>";
+                                ?>
+                            <?php
+                                echo "<td><a class='btn dltbtn' href = # > Deactivate </a> </td>";
+                                ?>
+                        </tr>
+                    </tbody>
+                    <?php
+                    }
+                    ?>
+                </table>
+            </div>
 
 </body>
 

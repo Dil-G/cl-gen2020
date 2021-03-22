@@ -1,16 +1,15 @@
 <?php
-     session_start();
+session_start();
 
-     if(!isset($_SESSION['userType']) && !isset($_SESSION['userID'])){
-         $error = "Please Login!";
-         header('Location: ../common/loginFile.php?error='.$error);
-	 }else if($_SESSION['userType'] != 'admin'){
-			header('Location: ../common/error.html');
-		}
-		else{
+if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
+    $error = "Please Login!";
+    header('Location: ../common/loginFile.php?error=' . $error);
+} else if ($_SESSION['userType'] != 'admin') {
+    header('Location: ../common/error.html');
+} else {
 
-		 $userID = $_SESSION['userID'];
-		 include ('../../src/view_users.php');
+    $userID = $_SESSION['userID'];
+    include('../../src/view_users.php');
 ?>
 
 
@@ -37,9 +36,9 @@
 
     <div class="content">
 
-    <div class="card">
+        <div class="card">
             <h1>Parent List</h1>
-            <form class="search" >
+            <form class="search">
                 <input type="text" id="Inputs" placeholder="Search.." name="search">
                 <button type="submit">Search</button>
             </form>
@@ -49,7 +48,7 @@
             </div>
         </div>
 
-        
+
         <br>
         <br>
         <div id="page1" class="page">
@@ -59,38 +58,42 @@
                 <?php } ?>
                 <div class="count">
                     <?php
-				 while($row = $parent_result->fetch_assoc()) {
-				 echo "Non-Activated Account Count: " . $row["COUNT(isActivated)"]. "<br>";
-				 }?>
+                        while ($row = $parent_result->fetch_assoc()) {
+                            echo "Non-Activated Account Count: " . $row["COUNT(isActivated)"] . "<br>";
+                        } ?>
                 </div>
                 <hr>
-                <table>
-                    <tr>
-                        <th>User ID</th>
-                        <th>UserName</th>
-                    </tr>
-                    <tbody id="Table">
-                        <?php
-					while($row=mysqli_fetch_assoc($parent_result1)){
-					?>
-                        <tr>
-                            <td><?php echo $row['userID'] ?></td>
-                            <td><?php echo $row['username'] ?></td>
-                        </tr>
-                        <?php
-					}
-					?>
-                    </tbody>
-                </table>
+                <div class="scroll">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>User ID</th>
+                                <th>UserName</th>
+                            </tr>
+                        </thead>
+                        <tbody id="Table">
+                            <?php
+                            while ($row = mysqli_fetch_assoc($parent_result1)) {
+                            ?>
+                            <tr>
+                                <td><?php echo $row['userID'] ?></td>
+                                <td><?php echo $row['username'] ?></td>
+                            </tr>
+                            <?php
+                            }
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
         <div id="page2" class="page">
             <div class="card">
                 <div class="count">
                     <?php
-				 while($row = $parent_result3->fetch_assoc()) {
-				 echo "Activated Account Count: " . $row["COUNT(isActivated)"]. "<br>";
-				 }?>
+                        while ($row = $parent_result3->fetch_assoc()) {
+                            echo "Activated Account Count: " . $row["COUNT(isActivated)"] . "<br>";
+                        } ?>
                 </div>
                 <hr>
                 <table>
@@ -101,28 +104,28 @@
                     </tr>
                     <tbody id="Table">
                         <?php
-					while($row=mysqli_fetch_assoc($parent_result2)){
-					?>
+                            while ($row = mysqli_fetch_assoc($parent_result2)) {
+                            ?>
                         <tr>
                             <td><?php echo $row['parentID'] ?></td>
                             <td><?php echo $row['name']  ?></td>
-                            <?php 
-					echo "<td><a class='btn editbtn' href = SProfile.php?userID=".$row['admissionNo']." > update </a> </td>"?>
+                            <?php
+                                    echo "<td><a class='btn editbtn' href = SProfile.php?userID=" . $row['admissionNo'] . " > update </a> </td>" ?>
 
                         </tr>
                         <?php
-					}
-					?>
+                            }
+                            ?>
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
     </div>
-  
+
 </body>
 
 </html>
 
 <?php }
- ?>
+?>

@@ -48,7 +48,6 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                 <?php
                 if (in_array("d1", $dutyID)) {
                 ?>
-
                     <li class="drop">
                         <div class="drop" id="drop">Manage User Information<i class="fa fa-angle-down"></i></div>
                     </li>

@@ -35,9 +35,9 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 
     <div class="content">
 
-    <div class="card">
+        <div class="card">
             <h1>Students List</h1>
-            <form class="search" >
+            <form class="search">
                 <input type="text" id="Inputs" placeholder="Search.." name="search">
                 <button type="submit">Search</button>
             </form>
@@ -64,28 +64,30 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                         } ?>
                 </div>
                 <hr>
-                <table>
-                    <tr>
-                        <th>User ID</th>
-                        <th>UserName</th>
-                        <th>Add Details</th>
-                    </tr>
-                    <?php
+                <div class="scroll">
+                    <table>
+                        <tr>
+                            <th>User ID</th>
+                            <th>UserName</th>
+                            <th>Add Details</th>
+                        </tr>
+                        <?php
                         while ($row = mysqli_fetch_assoc($student_result2)) {
                         ?>
-                    <tbody id="Table">
-                        <tr>
+                        <tbody id="Table">
+                            <tr>
 
-                            <td><?php echo $row['userID'] ?></td>
-                            <td><?php echo $row['username'] ?></td>
+                                <td><?php echo $row['userID'] ?></td>
+                                <td><?php echo $row['username'] ?></td>
 
-                            <?php echo "<td><a class='btn editbtn' href = o_addStudentDetails.php?studentID=" . $row['userID'] . " > Add </a> </td>" ?>
-                        </tr>
-                    </tbody>
-                    <?php
+                                <?php echo "<td><a class='btn editbtn' href = o_addStudentDetails.php?studentID=" . $row['userID'] . " > Add </a> </td>" ?>
+                            </tr>
+                        </tbody>
+                        <?php
                         }
                         ?>
-                </table>
+                    </table>
+                </div>
             </div>
         </div>
         <div id="page2" class="page">
@@ -97,30 +99,32 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                         } ?>
                 </div>
                 <hr>
-                <table>
-                    <tr>
-                        <th>User ID</th>
-                        <th>Name</th>
-                        <th>Edit Details</th>
-                        <th>Deactivate Account</th>
-                    </tr>
-                    <?php
+                <div class="scroll">
+                    <table>
+                        <tr>
+                            <th>User ID</th>
+                            <th>Name</th>
+                            <th>Edit Details</th>
+                            <th>Deactivate Account</th>
+                        </tr>
+                        <?php
                         while ($row = mysqli_fetch_assoc($student_result3)) {
                         ?>
-                    <tbody id="Table">
-                        <tr>
-                            <td><?php echo $row['admissionNo'] ?></td>
-                            <td><?php $name = $row['fName'] . " " . $row['mName'] . " " . $row['lName'];
+                        <tbody id="Table">
+                            <tr>
+                                <td><?php echo $row['admissionNo'] ?></td>
+                                <td><?php $name = $row['fName'] . " " . $row['mName'] . " " . $row['lName'];
                                         echo $name; ?>
-                            </td>
-                            <?php echo "<td><a class='btn editbtn' href = SProfile.php?userID=" . $row['admissionNo'] . " > update </a> </td>" ?>
-                            <?php echo "<td><a class='btn dltbtn' href = # > Deactivate </a> </td>"; ?>
-                        </tr>
-                    </tbody>
-                    <?php
+                                </td>
+                                <?php echo "<td><a class='btn editbtn' href = SProfile.php?userID=" . $row['admissionNo'] . " > update </a> </td>" ?>
+                                <?php echo "<td><a class='btn dltbtn' href = # > Deactivate </a> </td>"; ?>
+                            </tr>
+                        </tbody>
+                        <?php
                         }
                         ?>
-                </table>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

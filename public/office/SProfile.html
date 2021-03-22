@@ -559,51 +559,7 @@
 					
 		</div>
 		<br>
-			<h2><b>Father's Information</b></h2>
-			<hr>
-			<div class="card">	
-
-				<form>
-					<div class="first">
-					<div class="row">
-						<div class="col">
-						<div class="form-group ">
-							<label class="label" for="input-username">Name</label>
-							<input type="text" id="fname" class="inputs" placeholder="First name" value="Katy">
-						</div>
-						</div>
-						<div class="col">
-							<div class="form-group">
-							<label class="label" for="input-address">NIC</label>
-							<input type="text" id="mname" class="inputs" placeholder="Middle name" value="Laura">
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col">
-							<div class="form-group ">
-							<label class="label" for="adNo">Occupation</label>
-							<input type="text" id="adNo" class="inputs" placeholder="Admission Number" value="ST2000001">
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col">
-							<div class="form-group ">
-							<label class="label" for="adNo">Contact Number</label>
-							<input type="text" id="adNo" class="inputs" placeholder="Contact Number" value="ST2000001">
-							</div>
-						</div>
-						<div class="col">
-							<div class="form-group ">
-							<label class="label" for="adNo">Email</label>
-							<input type="text" id="email" class="inputs" placeholder="Email" value="ST2000001">
-							</div>
-						</div>
-					</div>
-					</div>
-					</form>
-				
+		
 	</div>
 		</div>
 		<!-- /Aesthetic Page 5 -->
@@ -622,16 +578,7 @@
 		var button4 = document.getElementById("button4");
 
 		let url = window.location.href;
-		if(url == "http://localhost/CL-GEN/public/student/SProfile.php"){
-			page1.style.display = "block";
-			page2.style.display = "none";
-			page3.style.display = "none";
-			page4.style.display = "none";
-			button1.style.color= "#000";
-			button2.style.color= "#008080";
-			button3.style.color= "#008080";
-			button4.style.color= "#008080";
-		}else if(url == "http://localhost/CL-GEN/html/admin/newsfeedphp?loggedin"){
+		if(url == window.location.href){
 			page1.style.display = "block";
 			page2.style.display = "none";
 			page3.style.display = "none";

@@ -1,5 +1,5 @@
 <?php  
-$connect = mysqli_connect("localhost", "root", "", "testing");
+require_once ('../../config/conn.php');
 if(isset($_POST["submit"]))
 {
  if($_FILES['file']['name'])
@@ -10,10 +10,10 @@ if(isset($_POST["submit"]))
    $handle = fopen($_FILES['file']['tmp_name'], "r");
    while($data = fgetcsv($handle))
    {
-    $item1 = mysqli_real_escape_string($connect, $data[0]);  
-                $item2 = mysqli_real_escape_string($connect, $data[1]);
+    $item1 = mysqli_real_escape_string($conn, $data[0]);  
+                $item2 = mysqli_real_escape_string($conn, $data[1]);
                 $query = "INSERT into excel(excel_name, excel_email) values('$item1','$item2')";
-                mysqli_query($connect, $query);
+                mysqli_query($conn, $query);
    }
    fclose($handle);
    echo "<script>alert('Import done');</script>";
@@ -38,3 +38,7 @@ if(isset($_POST["submit"]))
   </form>
  </body>  
 </html>
+
+
+
+
