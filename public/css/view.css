@@ -18,7 +18,7 @@ tbody {
 } */
 
 .scroll{
-  height:250px;
+  height:280px;
    overflow:auto;
 }
 tr:nth-child(odd){
