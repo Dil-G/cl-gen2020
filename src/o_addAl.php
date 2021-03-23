@@ -1,4 +1,4 @@
-<?php
+    <?php
     include_once '../config/conn.php';
 
     if ($conn->connect_error){
