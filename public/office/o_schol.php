@@ -78,17 +78,29 @@ include_once '../../config/conn.php';
                     <th>Index Number</th>
                     <th>Student Name</th>
                     <th>Results</th>
+                    <th>Pass/Fail</th>
 
 
                 </tr>
+
                 <?php
                     while($row=mysqli_fetch_array($result2)){
+                     
+                    function passFail($row){
+                        if($row["examMarks"]>=$row["pass_mark"]){
+                            $pass_fail  == 1;
+                        }else{
+                            $pass_fail  == 0;
+                        }
+                        return $pass_fail;
+                    }
                 ?>
                     <tr>
                         <td><?php echo $row["admissionNo"]; ?></td>
                         <td><?php echo $row["studentIndex"]; ?></td>
                         <td><?php echo $row["studentName"]; ?></td>
                         <td><?php echo $row["examMarks"]; ?></td>
+                        <td><?php (passFail(1)) ? echo "Pass" : echo "Fail";echo  ?></td>
                         <?php
                    }
                ?>

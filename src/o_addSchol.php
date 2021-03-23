@@ -16,8 +16,9 @@
 
         $prefixName = "Grade 5 Scholarship Examination - ";
         $examName = $prefixName.$examYear;
+        $pass_mark = $_POST['pass-mark'];
 
-        $sql = "INSERT INTO addScholExam (examID, examYear, examName) VALUES ('$examID','$examYear','$examName');";
+        $sql = "INSERT INTO addScholExam (examID, examYear, examName,pass_mark) VALUES ('$examID','$examYear','$examName',$pass_mark);";
         
         if($conn->query($sql)===TRUE){
             echo '<script language = "javascript">';
