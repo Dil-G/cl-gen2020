@@ -36,7 +36,7 @@
         <div id="teacherNav"></div>
         <div class="content">
             <div class="container">
-            <form action="../../src/add_achievement.php"  onsubmit="return validateUsername()" method="POST" enctype="multipart/form-data">
+            <form action="../../src/add_achievement.php"   method="POST" enctype="multipart/form-data">
                 <h1 style="color:#6a7480;">Achievement Form</h1>
                     <hr>
 
@@ -48,8 +48,10 @@
                     <input type="text" placeholder="Enter category ID" name="cID" required>
 
                     <label for="aDate"><b>Achievement Date</b></label>
-                    <input type="date" placeholder="Enter achievement date" name="aDate" id="date" required>
-                    
+                    <input type="date" placeholder="Enter Date of Birth" name="stuDob" required>
+
+
+           
                     <label for="position"><b>Achievement Name</b></label>
                     <input type="text" placeholder="Achievement name" name="aname" required>
 

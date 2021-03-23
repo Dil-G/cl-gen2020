@@ -23,19 +23,11 @@
     <title>Fees and Fines 1</title>
     <script src="../js/jquery-1.9.1.min.js"></script>
     <script src="../js/nav.js"></script>
+    <script src="../js/search.js"></script>
     <link rel="stylesheet" href="../css/view.css " type="text/css">
 <link type="text/css" rel="stylesheet" href="../css/main.css">
 <link type="text/css" rel="stylesheet" href="../css/register.css">
-<script>
-    $(document).ready(function() {
-        $("#Inputs").on("keyup", function() {
-            var value = $(this).val().toLowerCase();
-            $("#Table tr").filter(function() {
-                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-            });
-        });
-    });
-    </script>
+
 </head>
 
 <body name=top>

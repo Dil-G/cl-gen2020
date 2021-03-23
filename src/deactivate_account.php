@@ -68,18 +68,17 @@ if (isset($_GET['teacherID'])) {
 
 }
 
-if (isset($_GET['SportID'])) {
+if (isset($_GET['sportID'])) {
 
-    $sportID=$_GET['SportID'];
+    $sportID=$_GET['sportID'];
     $sql = "UPDATE csports SET  activeStatus='0' WHERE SportID='$sportID'";
     $result = $conn->query($sql);
 
     if ($result == false){
         $error = "Error in Deactivating";
-            // header('Location: ../public/admin/sports.php?error='.$error);
-            // exit();
+            header('Location: ../public/admin/sports.php?error='.$error);
+            exit();
         }
-    
     else{
             header('Location: ../public/admin/sports.php');
     
@@ -87,9 +86,9 @@ if (isset($_GET['SportID'])) {
 
 }
 
-if (isset($_GET['SocietyID'])) {
+if (isset($_GET['societyID'])) {
 
-    $societyID=$_GET['SocietyID'];
+    $societyID=$_GET['societyID'];
     $sql = "UPDATE csocieties SET  activeStatus='0' WHERE SocietyID='$societyID'";
     $result = $conn->query($sql);
 

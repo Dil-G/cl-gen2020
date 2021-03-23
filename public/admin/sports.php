@@ -46,7 +46,6 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                 <form>
                     <button type="submit" formaction="add_sport.php">Add Sport</button>
                 </form>
-                <h2><b>SPORT A</b></h2>
                 <hr>
                 <div class="scroll">
                     <table>

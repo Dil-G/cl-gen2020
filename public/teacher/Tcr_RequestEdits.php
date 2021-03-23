@@ -59,19 +59,18 @@
                     <input type="text"  name="id" value = <?php  echo  $_SESSION['userID']?> readonly>
 
                     <label for="name">Name</label>
-                    <input type="text" name="name" placeholder="Type the name here" required>
+                    <input type="text" name="name" placeholder="Type the name here" pattern="['a-z''A-Z' ]+$" required>
 
                     <label for="request"><b>Request</b></label>
                     <textarea id="request" name="request" rows="4" placeholder="News" cols="50" required></textarea>
+                
                     
-                    <label for="image"><b>Upload a proof</b></label>
-                    <input type="hidden" name="size" value="1000000" required>
+                    <label for="filename"><b>Upload a proof</b></label>
+                    <input type="file" placeholder="Add Your File" id="myFile" name="file" required>
 
-                <div>
-                    <input type="file" name="image" id="image" />
-                </div>
+               
                 <br>
-                <button type="submit" class="registerbtn" id="add_news" name="add_request">Submit</button>
+                <button type="submit" class="registerbtn" id="add_news" name="add_request" formaction="Tcr_dashboard.php">Submit</button>
                 <a href="Tcr_dashboard1.php" class="cancel-btn">Cancel</a>
                 
                 

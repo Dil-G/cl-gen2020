@@ -78,7 +78,7 @@
                                 <td><?php echo $row['userID'] ?></td>
                                 <td><?php echo $row['username'] ?></td>
                                 <td><?php echo $row['userType'] ?></td>
-                                <?php echo "<td><a class='btn editbtn' href = ../../src/reactivate_account.php?userID=".$row['userID']." > Reactivate </a> </td>"?>
+                                <?php echo "<td><a class='btn editbtn' href = ../../src/reactivate.php?userID=".$row['userID']." > Reactivate </a> </td>"?>
 
                             </tr>
                             <?php
