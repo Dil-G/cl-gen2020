@@ -21,41 +21,27 @@
     <title>Inquieries 1</title>
     <script src="../js/jquery-1.9.1.min.js"></script>
     <script src="../js/nav.js"></script>
+    <script src="../js/search.js"></script>
     <link rel="stylesheet" href="../css/view.css " type="text/css">
     <link type="text/css" rel="stylesheet" href="../css/main.css">
-    <link type="text/css" rel="stylesheet" href="../css/inquiry.css">
+    <link type="text/css" rel="stylesheet" href="../css/register.css">
 
-    <script>
-    $(document).ready(function() {
-        $("#Inputs").on("keyup", function() {
-            var value = $(this).val().toLowerCase();
-            $("#Table tr").filter(function() {
-                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-            });
-        });
-    });
-    </script>
-
+    <script src="../js/search.js"></script>
 </head>
 
 <body>
     <div id="teacherNav"></div>
     <div class="content">
         <h1 style="color: #6a7480;">Reply Inquieries</h1>
-        <form class="search" action="Tcr_ach.php">
-           
-            
+       
+
+        <form class="search" action="Tcr_ReplyInquiery.php">
+            <input type="text" ID="Inputs" placeholder="Search.." name="search"> <button type="submit">Search</button>
         </form>
-        <div class="card">
-            <form>
-                <button type="submit" formaction="Tcr_AddInquiery.php">Add Inquiery</button>
-            </form>
-            <br>
-            <br>
-        </div>
         <div class="card">
             <hr>
             <table>
+          
                 <tr>
                     <th>Inquiry ID</th>
                     <th>Title</th>
@@ -65,25 +51,26 @@
                     
 
                 </tr>
+              
                 <?php
             while($row=mysqli_fetch_assoc($result)){
 
         ?>
-  
+  <tbody id="Table"> 
   <tr>
+ 
     <td><?php echo $row['inquiryID'] ?></td>
             <td><?php echo $row['title'] ?></td>
             <td><?php echo $row['message'] ?></td>
             <td><?php echo $row['sender'] ?></td>
+         <?php echo "<td><a class='btn editbtn' href =Tcr_Reply.php?inquiryID='".$row['inquiryID']."' > Reply </a> </td>"?>
+        
+         
            
-            <td>
-                            <form class="search" action="Tcr_Reply.php">
-                                <button type="submit">Reply</button>
-                            </form>
-                        </td>
+         
     </tr>
     
-   
+    </tbody> 
    
    
     <?php
@@ -96,5 +83,5 @@
 </body>
 </html>
 
-<?php } ?>
 
+<?php } ?>
