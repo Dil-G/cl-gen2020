@@ -65,15 +65,6 @@ echo"failed";
                 <br><br><br>
                     <td><input type="file" id="maths-file" name="file" class="nextpgbtn" required></br></td>
                
-               
-
-
-
-
-
-
-
-               
 
                 <button type="submit" class="registerbtn">Save</button>
                 <a href="o_viewAl.php" class="cancel-btn">Cancel</a>
