@@ -108,7 +108,6 @@ include_once '../../config/conn.php';
                 </table>
             </div>
         </div>
-
     </div>
     <script>
     var form1 = document.getElementById("addExamForm");

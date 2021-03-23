@@ -87,6 +87,7 @@
             echo "Error : " . $sql . "<br>" . $conn->error;
         }
     }
+    
 
 
     if (isset($_POST['streamSubjects'])) {

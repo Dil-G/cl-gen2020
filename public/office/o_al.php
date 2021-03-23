@@ -10,6 +10,9 @@
       $dutyID = $_SESSION['dutyID'];
 
       if (in_array("d2", $dutyID)) {
+
+        include ('../../src/of_viewAl.php');
+
 	?>
 
 <!DOCTYPE html>
@@ -40,33 +43,36 @@
         <br>
           <div class ="card">
             <hr>
-            <table>
-            <tr>
-              <th rowspan = "2" >Student Index Number</th>            
-              <th rowspan = "2" >A/L Index Number</th>
-              <th rowspan="2">Student Name</th>              
-              <th colspan = "6" >Subjects</th>              
-            </tr>            
-            <tr>
-              <th>Combined Mathematics</th>                          
-              <th>Chemistry</th>                          
-              <th>Physics</th>                          
-              <th>ICT</th>                          
-              <th>General English</th>                          
-              <th>General Knowledge</th>                          
-            </tr>
-            <tr>
-              <td>S12345</td>
-              <td>65610</td>                          
-              <td>A.B.C. Student</td>                          
-              <td>A</td>
-              <td>C</td>                         
-              <td>B</td>
-              <td>A</td>
-              <td>A</td>
-              <td>86</td>
-            </tr> 
-          </table>
+            <div class="scroll">
+                <table>
+                    <tr>
+                        <th>Exam</th>
+                        <th>Student</th>
+                        <th>Subject</th>
+                        <th>Stream</th>
+                        <th>Grade</th>
+
+
+                    </tr>
+                    <?php
+                    
+                    while($row=mysqli_fetch_assoc($result_alresults)){
+                    ?>
+                    <tr>
+                        <td><?php echo $row['examName']?></td>
+                        <td><?php echo $row['fName']." ".$row['lName']?></td>
+                        <td><?php echo $row['subjectName']?></td>
+                        <td><?php echo $row['streamName']?></td>
+                        <td><?php echo $row['grade']?></td>
+                       
+                       
+
+                    </tr>
+                    <?php
+                    }
+                    ?>
+                </table>
+            </div>
          </div>
         </div>
       </div>

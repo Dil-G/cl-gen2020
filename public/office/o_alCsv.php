@@ -53,20 +53,21 @@ echo"failed";
     </div>
     <div class="content">
         <div class="container">
-            <form action="../php/register.php" method="POST">
+            <form enctype="multipart/form-data" action="../../src/add_alresults.php" method="POST">
                 <h1><?php echo $row['examName']?></h1>
                 <hr>
 
                 <label for="examID"><b>Exam ID</b></label>
                 <input type="text" value= "<?php echo $row['examID']?>" name="examID" readonly>
 
-                <label><b>Enter CSV Files</b></label>
 
-                <br><br><br>
-                    <td><input type="file" id="maths-file" name="file" class="nextpgbtn" required></br></td>
+                <label for="filename"><b>Upload a CSV file </b></label>
+                            <input type="file" placeholder="Add Your File" id="myFile" name="file" required>
+
+
                
 
-                <button type="submit" class="registerbtn">Save</button>
+                <button type="submit" class="registerbtn" name="alresults">Save</button>
                 <a href="o_viewAl.php" class="cancel-btn">Cancel</a>
                 <hr>
 
