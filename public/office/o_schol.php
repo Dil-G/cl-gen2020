@@ -71,6 +71,10 @@ include_once '../../config/conn.php';
              $result2 = mysqli_query($conn,$sql2);
              $row=mysqli_fetch_assoc($result2);
 
+             $sql3 = "SELECT pass_mark FROM addscholexam WHERE examID = '".$_GET['examID']."'";
+             $results3 = mysqli_query($conn,$sql3);
+             $marks_row =mysqli_fetch_assoc($results3);
+
          ?>
             <table>
                 <tr>
@@ -86,21 +90,14 @@ include_once '../../config/conn.php';
                 <?php
                     while($row=mysqli_fetch_array($result2)){
                      
-                    function passFail($row){
-                        if($row["examMarks"]>=$row["pass_mark"]){
-                            $pass_fail  == 1;
-                        }else{
-                            $pass_fail  == 0;
-                        }
-                        return $pass_fail;
-                    }
+                   
                 ?>
                     <tr>
                         <td><?php echo $row["admissionNo"]; ?></td>
                         <td><?php echo $row["studentIndex"]; ?></td>
                         <td><?php echo $row["studentName"]; ?></td>
                         <td><?php echo $row["examMarks"]; ?></td>
-                        <td><?php (passFail(1)) ? echo "Pass" : echo "Fail";echo  ?></td>
+                        <td><?php echo ($row["examMarks"] >= $marks_row["pass_mark"] ? "Pass" : "Fail"); ?></td>
                         <?php
                    }
                ?>
