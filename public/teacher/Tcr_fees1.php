@@ -81,7 +81,7 @@
         ?>
  <tbody id="Table"> 
   <tr>
-    <td><?php echo $row['feesID'] ?></td>
+    <td><?php echo $row['FeesID'] ?></td>
             <td><?php echo $row['TeacherID'] ?></td>
             <td><?php echo $row['StudentID'] ?></td>
             <td><?php echo $row['StudentName'] ?></td>

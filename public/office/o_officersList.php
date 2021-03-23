@@ -19,7 +19,6 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
         <!DOCTYPE html>
 
         <head>
-
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <title>Grade Scholarship Results</title>
             <link rel="stylesheet" href="../css/view.css " type="text/css">

@@ -8,7 +8,7 @@
       
    
       $teacherType = $_SESSION['teacherType'];
-      $userID = $_SESSION['userID'];
+      $userID = $_SESSION['username'];
       include_once '../../src/view_inquiery.php';
       
 	?>
@@ -16,18 +16,18 @@
 <!DOCTYPE html>
 <html>
 
-
 <head>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Inquiries1</title>
+    <title>Inquiries</title>
     <script src="../js/jquery-1.9.1.min.js"></script>
     <script src="../js/nav.js"></script>
     <script src="../js/tabs.js"></script>
     <script src="../js/search.js"></script>
     <link type="text/css" rel="stylesheet" href="../css/main.css">
     <link type="text/css" rel="stylesheet" href="../css/tabs.css">
-   
+    <link type="text/css" rel="stylesheet" href="../css/button.css">
+    <!-- <link type="text/css" rel="stylesheet" href="../css/register.css"> -->
     
 
 
@@ -57,30 +57,35 @@ $sql = "SELECT * FROM inquiry WHERE reciever ='$userID' ORDER BY inquiryID DESC"
 
 ?>
 
-
     <div id="teacherNav"></div>
 
     <div class="content">
 
         <div class="feed">
 
+        <div class="card">
+        <form class="search" action="register_stu.html">
+                    <input type="text" id="Inputs" placeholder="Search.." name="search">
+                    <button type="submit">Search</button>
+                </form>
             <div class="btn-box">
                 <button id="button2" onclick="activated()">Sent Inquiries</button>
                 <button id="button1" onclick="notActivated()">Recieved Inquiries</button>
             </div>
+        </div>
 			</br>
 
 
             <div id="page1" class="page">
                 <div class="card" style="width: 90%; height:100%;">
-                    <?php
-						if (mysqli_num_rows($res2) == 0) {
+                <?php
+						if (mysqli_num_rows($res1) < 1) {
 						?>
-                    <h2><b>No Recieved Inquiries</b></h2>
+                    <h2><b>No Sent Inquiries</b></h2>
                     <img src="../../images/message.png">
                     <?php
 						} else {
-							while ($row = mysqli_fetch_assoc($res2)) {
+							while ($row = mysqli_fetch_assoc($res_sender)) {
 							?>
                     <div class="container" style="width: 95%; height:100%;">
                 
@@ -102,14 +107,15 @@ $sql = "SELECT * FROM inquiry WHERE reciever ='$userID' ORDER BY inquiryID DESC"
                     <?php
 						if (mysqli_num_rows($res) == 0) {
 						?>
-                    <h2><b>No Sent Inquiries</b></h2>
+                    <h2><b>No Recieved Inquiries</b></h2>
                     <img src="../../images/message.png">
                     <?php
 						} else {
-							while ($row = mysqli_fetch_assoc($res)) {
+							while ($row = mysqli_fetch_assoc($recieved_res)) {
 							?>
                     <div class="container" style="width: 95%; height:100%;">
                     
+                    <?php echo " <button type='submit' style='float:right' class='search'><a href=Tcr_AddInquiery.php?sender=" . $row['sender']  . '&reciever=' .  $row['reciever'] . '&title=' .  urlencode($row['title'])."  >Reply</a></button>" ?>
 
                         <h2><b><?php echo "From :" . $row['sender'] ?></b></h2>
                         <hr>

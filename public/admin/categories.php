@@ -30,7 +30,6 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 
 	<body>
 		<div id="nav2"></div>
-
 		<div class="content">
 
 			<h1 style="color: #6a7480;">CATEGORIES</h1>

@@ -10,6 +10,8 @@
       $dutyID = $_SESSION['dutyID'];
 
       if (in_array("d2", $dutyID)) {
+
+        include('../../src/view_subjects.php');
 	?>
 
 <!DOCTYPE html>
@@ -19,7 +21,7 @@
 include_once '../../config/conn.php';
 ?>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Grade Scholarship Results</title>
+    <title>Advanced Level Subject Streams</title>
     <link type="text/css" rel="stylesheet" href="../css/pop.css">
     <link rel="stylesheet" href="../css/view.css " type="text/css">
     <link type="text/css" rel="stylesheet" href="../css/users.css">
@@ -35,7 +37,7 @@ include_once '../../config/conn.php';
     
     <div class="content">
         <br>
-        <h1 style="color: #6a7480;">Grade 5 Scholarship Examination Results</h1>
+        <h1 style="color: #6a7480;">Advanced Level Subject Streams</h1>
         <form class="search" action="register_stu.html">
             <input type="text" placeholder="Search.." name="search">
             <button type="submit">Search</button>
@@ -47,19 +49,18 @@ include_once '../../config/conn.php';
 
         <div class="card">
             <div>
-                <button id="addExamBtn" class="btn editbtn" type="submit" formaction="o_addSchol.php">Add
-                    Exam</button>
+                <button id="addExamBtn" class="btn editbtn" type="submit" formaction="o_addSchol.php">Add New Stream</button>
                 <div id="addExamForm" class="model">
                     <div class="modal-content container">
-                        <form action="../../src/o_addschol.php" method="POST">
+                        <form action="../../src/o_addAl.php" method="POST">
                             <br>
-                            <h1 style="color: #6a7480;">Add Grade 5 Scholarship Exam Results</h1>
+                            <h1 style="color: #6a7480;">Advanced Level Subject Streams</h1>
                             <br>
                             <hr style="margin-left: 2%;">
-                            <label for="scholExamYear"><b>Enter Exam Year</b></label>
-                            <input type="text" placeholder="Enter Exam Year" name="scholExamYear" required>
-                            <button type="submit" class="registerbtn" name="savebtn">Save</button>
-                            <a href="o_viewSchol.php" class="cancel-btn">Cancel</a>
+                            <label for="scholExamYear"><b> Stream Name</b></label>
+                            <input type="text" placeholder="Enter Stream Name" name="alStreamName" required>
+                            <button type="submit" class="registerbtn" name="alstreams">Save</button>
+                            <a href="al_streams.php" class="cancel-btn">Cancel</a>
 
                         </form>
                     </div>
@@ -67,34 +68,27 @@ include_once '../../config/conn.php';
             </div>
             <br>
             <br>
-            <?php
-                    $sql = "SELECT * FROM addScholExam" ;
-                    $result = mysqli_query($conn,$sql);
-                    ?>
             <hr>
             <table>
                 <tr>
-                    <th>Exam ID</th>
-                    <th>Year</th>
-                    <th>Name of the Examination</th>
-                    <th>Add CSV</th>
-                    <th>View Details</th>
-
+                    <th>Stream ID</th>
+                    <th>Stream Name</th>
+                    <th>Add Subjects</th>
+                    <th>View Subjects</th>
 
                 </tr>
                 <tr>
                     <?php
                     
-                    while($row=mysqli_fetch_assoc($result)){
+                    while($row=mysqli_fetch_assoc($result_alstream)){
                     ?>
                 <tr>
-                    <td><?php echo $row['examID']?></td>
-                    <td><?php echo $row['examYear']?></td>
-                    <td><?php echo $row['examName']?></td>
-                    <?php echo "<td><a id='addcsv' class='btn editbtn' href = o_scholCsv.php?examID=".$row['examID']." > Add Results </a></td>"
+                    <td><?php echo $row['streamID']?></td>
+                    <td><?php echo $row['streamName']?></td>
+                    <?php echo "<td><a id='addcsv' class='btn editbtn' href = al_subjects.php?streamID=".$row['streamID']." > Add Subjects </a></td>"
                     ?>
                    
-                    <?php echo "<td><a class='btn viewbtn' href = o_schol.php?examID=".$row['examID'].">View Results</td>" ?>
+                    <?php echo "<td><a class='btn viewbtn' href = streamDetails.php?streamID=".$row['streamID'].">View Subjects</td>" ?>
                      
 
                 </tr>

@@ -41,7 +41,7 @@
                     <hr>
 
                     <label for="name"><b>Student Admission Number</b></label>
-                    <input type="text" placeholder="Enter admission number"  id="username" name="anumber"  onblur="validateUsername(username.value)"  required>
+                    <input type="text" placeholder="Enter admission number"  id="username" name="anumber"  onblur="validateUserID(username.value)"  required>
                   
                     
                     <label for="nic"><b>Category ID</b></label>

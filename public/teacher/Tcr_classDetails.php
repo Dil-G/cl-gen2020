@@ -96,12 +96,13 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                    
             </div>
 <br>
+          
+            <br>
+            <div class="card">
             <form class="search" action="Tcr_classDetails.php">
             <input type="text" ID="Inputs" placeholder="Search.." name="search">
             <button type="submit">Search</button>
         </form>
-            <br>
-            <div class="card">
                 <hr>
                 <table>
                     <tr>
@@ -143,13 +144,3 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 
 <?php }
 ?>
-
-
-
-
-
-
-
-
-
-

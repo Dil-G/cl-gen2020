@@ -3,7 +3,6 @@
 if (isset($_POST['add_inq'])){
     require_once '../config/conn.php';
     session_start();
-    echo "fff";
 
     if(!isset($_SESSION['userType']) && !isset($_SESSION['userType'])){
         $error = "Please Login!";
@@ -16,7 +15,7 @@ if (isset($_POST['add_inq'])){
     
         $title = $_POST['title'];
         $message = $_POST['msge'];
-        $reciever = $_POST['reciever'];
+        $reciever = $_POST['rID'];
         $sender= $_POST['sender'];
 
 

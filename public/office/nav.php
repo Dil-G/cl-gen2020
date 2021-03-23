@@ -18,7 +18,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
     <link rel="stylesheet" href="../../images/font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
-    
+
     <div>
         <button onclick="goBack()" class="backbtn" style="background-color: #1e8dd6;padding:1px;">Back</button>
     </div>
@@ -28,7 +28,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
         <ul>
             <li>
                 <form name="logout" action="../../src/logout.php" method="POST">
-                <input type="submit" value="LOGOUT" name="logout" style="font-family: 'Playfair Display', serif;">
+                    <input type="submit" value="LOGOUT" name="logout" style="font-family: 'Playfair Display', serif;">
                 </form>
             </li>
         </ul>
@@ -71,6 +71,18 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                         <ul>
                             <li><a href="../office/o_viewSchol.php">Grade 5 Scholarship</a></li>
                             <li><a href="../office/o_viewOl.php">G.C.E. O/L</a></li>
+                            <li><a href="../office/o_viewAl.php">G.C.E. A/L</a></li>
+                        </ul>
+                    </div>
+                    <?php }
+                if (in_array("d2", $dutyID)) { ?>
+                    <li class="drop">
+                        <div class="drop" id="drop6">Manage Subjects/Streams<i class="fa fa-angle-down" aria-hidden="true"></i> </div>
+                    </li>
+                    <div class="submenu6" id="submenu6">
+                        <ul>
+                            <li><a href="../office/subjects.php">Advanced Level Subjects</a></li>
+                            <li><a href="../office/al_streams.php">Advanced Level Streams</a></li>
                             <li><a href="../office/o_viewAl.php">G.C.E. A/L</a></li>
                         </ul>
                     </div>
@@ -128,6 +140,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
         <?php }
         if (in_array("d2", $dutyID)) { ?>
             var menu2 = document.getElementById("drop2");
+            var menu6 = document.getElementById("drop6");
         <?php }
         if (in_array("d3", $dutyID)) { ?>
             var menu3 = document.getElementById("drop3");
@@ -140,6 +153,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
         <?php }
         if (in_array("d2", $dutyID)) { ?>
             var submenu2 = document.getElementById("submenu2");
+            var submenu6 = document.getElementById("submenu6");
         <?php }
         if (in_array("d3", $dutyID)) { ?>
             var submenu3 = document.getElementById("submenu3");
@@ -170,11 +184,22 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
             }
         <?php }
         if (in_array("d2", $dutyID)) { ?>
+            
             menu2.onclick = function(event) {
                 if (submenu2.style.display === "none") {
                     submenu2.style.display = "block";
                 } else {
                     submenu2.style.display = "none";
+                }
+            }
+            <?php }
+        if (in_array("d2", $dutyID)) { ?>
+        submenu6.style.display = "none";
+            menu6.onclick = function(event) {
+                if (submenu6.style.display === "block") {
+                    submenu6.style.display = "none";
+                } else {
+                    submenu6.style.display = "block";
                 }
             }
         <?php }

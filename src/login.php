@@ -47,25 +47,31 @@ if (isset($_POST['login'])){
                     $_SESSION['username'] = $row['username'];
                     $_SESSION['userType'] = $row['userType'];
 
+
                     $sql = "SELECT * FROM teacher WHERE teacherID = '$userID'";
                     $result = mysqli_query($conn,$sql);
-
-                    $row = mysqli_fetch_assoc($result);
                     
-                    if($row['teacherType'] == "classTcr"){
-                        $_SESSION['teacherType'] = $row['teacherType'];
+                    // $duty = array();
+                    while($row=mysqli_fetch_assoc($result)){
+                        $teacherType=$row['teacherType'];
+                    }
+                    
+                    // $_SESSION['teacherType'] = $teacherType;
+                    // header('Location: ../public/teacher/Tcr_dashboard.php');
+
+                   
+                    
+                    if($teacherType == "classTcr" || $teacherType == "both"){
+                        $_SESSION['teacherType'] = $teacherType;
                         $teacher_sql = "SELECT classID from classes where teacherID='$userID'";
                         $teacher_result = mysqli_query($conn,$teacher_sql);
                         while($teacher_row = mysqli_fetch_assoc($teacher_result)) {
                             $_SESSION['classID'] = $teacher_row['classID'];
                         }
-                        header('Location: ../public/teacher/Tcr_dashboard1.php');
+                        header('Location: ../public/teacher/Tcr_dashboard.php');
                     }else if($row['teacherType'] == "TcrinCharge"){
                         $_SESSION['teacherType'] = $row['teacherType'];
-                        header('Location: ../public/teacher/Tcr_dashboard2.php');
-                    }else if($row['teacherType'] == "both"){
-                        $_SESSION['teacherType'] = $row['teacherType'];
-                        header('Location: ../public/teacher/Tcr_dashboard3.php');
+                        header('Location: ../public/teacher/Tcr_dashboard.php');
                     }
                                 
 
