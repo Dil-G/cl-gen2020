@@ -23,4 +23,8 @@ LEFT JOIN student ON student.admissionNo=alresults.studentID
 LEFT JOIN alstreams ON alstreams.streamID=alresults.streamID
 LEFT JOIN addalexam ON addalexam.examID=alresults.examID ";
 $result_alresults = mysqli_query($conn,$sql_alresults);
+
+
+
+
 ?>
