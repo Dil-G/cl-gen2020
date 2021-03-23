@@ -25,6 +25,7 @@
     <title>Add G.C.E. A/L Examination Results</title>
     <link type="text/css" rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/register.css " type="text/css">
+    <link rel="stylesheet" href="../css/view.css " type="text/css">
     <script src="../js/jquery-1.9.1.min.js"></script>
     <script src="../js/pop.js"></script>
     <script src="../js/nav.js"></script>
@@ -59,8 +60,41 @@ echo"failed";
                 <label for="examID"><b>Exam ID</b></label>
                 <input type="text" value= "<?php echo $row['examID']?>" name="examID" readonly>
 
-                <label for="myFile"><b>Enter CSV File</b></label>
-                <input type="file" id="myFile" name="filename" class="nextpgbtn" required></br>
+                <label><b>Enter CSV Files</b></label>
+
+                <br><br><br>
+
+               <table>
+                <tr>
+                    <th>Stream Name</th>
+                    <th>Stream Code</th>
+                    <th>Add CSV File</th>
+                </tr>
+                <tr>
+                    <td>Physical Science</td>
+                    <td>AL/PS/2016</td>
+                    <td><input type="file" id="maths-file" name="maths-file" class="nextpgbtn" required></br></td>
+                </tr>
+                <tr>
+                    <td>Biological Science</td>
+                    <td>AL/BS/2016</td>
+                    <td><input type="file" id="bio-file" name="bio-file" class="nextpgbtn" required></br></td>
+                </tr>
+                <tr>
+                    <td>Commerce and Accounting</td>
+                    <td>AL/CS/2016</td>
+                    <td><input type="file" id="commerce-file" name="commerce-file" class="nextpgbtn" required></br></td>
+                </tr>
+               </table> 
+               
+
+
+
+
+
+
+
+               
 
                 <button type="submit" class="registerbtn">Save</button>
                 <a href="o_viewAl.php" class="cancel-btn">Cancel</a>

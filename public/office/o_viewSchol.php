@@ -77,7 +77,7 @@ include_once '../../config/conn.php';
                     <th>Exam ID</th>
                     <th>Year</th>
                     <th>Name of the Examination</th>
-                    <th>Edit Details</th>
+                    <th>Add CSV</th>
                     <th>View Details</th>
 
 
@@ -91,10 +91,10 @@ include_once '../../config/conn.php';
                     <td><?php echo $row['examID']?></td>
                     <td><?php echo $row['examYear']?></td>
                     <td><?php echo $row['examName']?></td>
-                    <?php echo "<td><a id='addExamBtn' class='btn editbtn' href = o_scholCsv.php?examID=".$row['examID']." > Add Results </a></td>"
+                    <?php echo "<td><a id='addcsv' class='btn editbtn' href = o_scholCsv.php?examID=".$row['examID']." > Add Results </a></td>"
                     ?>
                    
-                    <?php echo "<td><a id='viewExamBtn' class='btn viewbtn' href = o_schol.php?examID=".$row['examID'].">View Results</td>" ?>
+                    <?php echo "<td><a class='btn viewbtn' href = o_schol.php?examID=".$row['examID'].">View Results</td>" ?>
                      
 
                 </tr>
@@ -109,8 +109,14 @@ include_once '../../config/conn.php';
     var form1 = document.getElementById("addExamForm");
     var addExam = document.getElementById("addExamBtn");
 
+    var form2 = document.getElementById("csv-form");
+    var addCsv = document.getElementById("addcsv");
+
     addExam.onclick = function() {
         form1.style.display = "block";
+    }
+    addCsv.onclick = function(){
+        form2.style.display = "block";
     }
     </script>
 </body>

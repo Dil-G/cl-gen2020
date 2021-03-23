@@ -14,8 +14,12 @@ include_once '../config/conn.php';
         $examID = $_POST['examID'];
         $examYear = $_POST['alExamYear'];
         $examName = $_POST['alExamName']; 
-        $alCsv = $_FILES['fileName']['name'];
-        $target = "../images/examResults".basename($alCsv);
+        $mathsCsv = $_FILES['fileName']['name'];
+        $bioCsv = $_FILES['fileName']['name'];
+        $commerceCsv = $_FILES['fileName']['name'];
+        $targetMaths = "../images/examResults".basename($alCsv);
+        $targetBio = "../images/examResults".basename($alCsv);
+        $targetCommerce = "../images/examResults".basename($alCsv);
 
         $sql = "INSERT INTO schol_RSheet (examID, examYear, examName, alCsv) VALUES
         ('$examID', '$examYear', '$examName', '$alCsv')";
