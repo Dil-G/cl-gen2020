@@ -29,15 +29,13 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
     <div id="nav2"></div>
 
     <div class="content">
-
+ <div class="card">
         <h1 style="color: #6a7480;">SOCIETIES</h1>
         <form class="search" action="register_stu.html">
             <input type="text" id="Inputs" placeholder="Search.." name="search">
             <button type="submit">Search</button>
         </form>
-        <br>
-        <br>
-        <br>
+        <br></div>
         <hr>
         <div class="card">
             <form>
@@ -61,14 +59,14 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                     ?>
                     <tbody id="Table">
                         <tr>
-                            <td><?php echo $row['societyID'] ?></td>
-                            <td><?php echo $row['societyName'] ?></td>
+                            <td><?php echo $row['SocietyID'] ?></td>
+                            <td><?php echo $row['SocietyName'] ?></td>
                             <td><?php echo $row['tcrID'] ?></td>
                             <?php
-                                echo "<td><a class='btn editbtn' href = updateSociety.php?societyID=" . $row['societyID'] . " > Update </a> </td>";
+                                echo "<td><a class='btn editbtn' href = updateSociety.php?societyID=" . $row['SocietyID'] . " > Update </a> </td>";
                                 ?>
                             <?php
-                                echo "<td><a class='btn dltbtn' href = # > Deactivate </a> </td>";
+                                echo "<td><a class='btn dltbtn' href = ../../src/deactivate_account.php?societyID=" . $row['SocietyID'] . "> Deactivate </a> </td>";
                                 ?>
                         </tr>
                     </tbody>
@@ -77,7 +75,6 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                     ?>
                 </table>
             </div>
-
 </body>
 
 </html>

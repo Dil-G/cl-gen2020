@@ -104,13 +104,18 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                     </tr>
                     <tbody id="Table">
                         <?php
-                            while ($row = mysqli_fetch_assoc($parent_result2)) {
+                            while ($row = mysqli_fetch_assoc($parent_result4)) {
+                                $parentID = $row ['userID'];
+                                $parent_sql2 = "SELECT * FROM parent where parentID= '$parentID'";
+                                $parent_result2 = $conn->query($parent_sql2);
+                                while ($rows = mysqli_fetch_assoc($parent_result2)) {
                             ?>
                         <tr>
-                            <td><?php echo $row['parentID'] ?></td>
-                            <td><?php echo $row['name']  ?></td>
+                            <td><?php echo $rows['parentID'] ?></td>
+                            <td><?php echo $rows['name']  ?></td>
                             <?php
-                                    echo "<td><a class='btn editbtn' href = SProfile.php?userID=" . $row['admissionNo'] . " > update </a> </td>" ?>
+                                    echo "<td><a class='btn editbtn' href = updateParent.php?userID=" . $rows['parentID'] . " > update </a> </td>" ?>
+                        <?php }?>   
 
                         </tr>
                         <?php

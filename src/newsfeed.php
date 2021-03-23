@@ -33,6 +33,24 @@ if (isset($_POST['view_news'])) {
         echo "failed";
     }
 }
+
+
+if (isset($_SESSION['newsID'])) {
+
+$newsID =$_SESSION['newsID'];
+
+$sql_news = "SELECT * FROM newsfeed WHERE newsID = $newsID";
+
+$res_news= mysqli_query($conn,$sql_news);
+$row_news=mysqli_fetch_assoc($res_news);
+
+if($res_news){
+//echo "Sucessfull";
+}
+else{
+echo"failed";	
+}
+}
 ?>
 
 

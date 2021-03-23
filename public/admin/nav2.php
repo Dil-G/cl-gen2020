@@ -49,6 +49,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                     <li><a href="parent.php">Parents</a></li>
                     <li><a href="teachers.php"> Teachers</a></li>
                     <li><a href="userlist.php">System Users</a></li>
+                    <li><a href="deactivated_userlist.php">Deactivated Users</a></li>
 
                     <!-- <li><a href="officerList.php">Add Officer</a></li> -->
                     <?php //if($user=="a"){ 

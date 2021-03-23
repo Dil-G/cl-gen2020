@@ -1,28 +1,16 @@
 <?php
-    session_start();
+session_start();
 
-    if(!isset($_SESSION['userType']) && !isset($_SESSION['userID'])){
+    if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
         $error = "Please Login!";
-        header('Location: ../common/loginFile.php?error='.$error);
-    }
-    else if($_SESSION['userType'] != 'officer'){
+        header('Location: ../common/loginFile.php?error=' . $error);
+    } else if ($_SESSION['userType'] != 'admin') {
         header('Location: ../common/error.html');
-    }
-    else{      
-      $dutyID = array();
-      $dutyID = $_SESSION['dutyID'];
+    } else {
 
 
-      if (!in_array("d2", $dutyID)) {
-         header('Location: o_dashboard.php');
-        }
-        if (in_array("d1", $dutyID)) {
-            $_SESSION['studentID']=$_GET['userID'];
+        $_SESSION['studentID']=$_GET['userID'];
         include '../../src/user_list.php';
-        
-      
-
-        
 
 	?>
 
@@ -45,7 +33,7 @@
 
 <body>
 
-    <div id="officeNav"></div>
+    <div id="nav2"></div>
 
 
     <div id="pg1">
@@ -91,16 +79,16 @@
 
                     <input type="text" name="stuAdDistrict" id="district"
                         value="<?php echo $row_student['adDistrict']?>" onblur="checkDistrict(district.value)">
-                    
+
 
 
                     <label for="stuReligion"><b>Religion</b></label>
-                    <input type="text" name="stuReligion" id="religion"
-                        value="<?php echo $row_student['religion']?>" onblur="checkReligion(religion.value)">
+                    <input type="text" name="stuReligion" id="religion" value="<?php echo $row_student['religion']?>"
+                        onblur="checkReligion(religion.value)">
 
-                        <label for="stuEnteredDate"><b>Entered Date</b></label>
+                    <label for="stuEnteredDate"><b>Entered Date</b></label>
                     <input type="text" placeholder="Enter Grade Entered" name="stuEnteredDate" id="date"
-                        value="<?php echo $row_student['enteredDate']?>"readonly required>
+                        value="<?php echo $row_student['enteredDate']?>" readonly required>
 
                     <label for="stuEnteredGrade"><b>Entered Grade</b></label>
                     <input type="text" placeholder="Enter Grade Entered" name="stuEnteredGrade" id="grade"
@@ -122,7 +110,7 @@
                     <div id="showNIC">
                         <label for="nic"><b>NIC </b></label>
                         <input type="text" placeholder="Add NIC Number" id="nic" name="nic" onblur="NIC(nic.value)"
-                        value="<?php if(isset($row_student['stuNic'])){ echo $row_student['stuNic'];}?>">
+                            value="<?php if(isset($row_student['stuNic'])){ echo $row_student['stuNic'];}?>">
                         <div id="noNIC" class="text"></div>
                     </div>
 
@@ -134,7 +122,8 @@
                     <div>
 
 
-                        <button type="submit" class="registerbtn" style="margin-left: 5px;" name="update_student">Save</button>
+                        <button type="submit" class="registerbtn" style="margin-left: 5px;"
+                            name="update_student">Save</button>
                         <a href="o_studentsList.php" class="cancel-btn">Cancel</a>
 
 
@@ -161,4 +150,4 @@
 
 </html>
 
-<?php } }?>
+<?php } ?>
