@@ -19,6 +19,7 @@
     <title>Inquieries 1</title>
     <script src="../js/jquery-1.9.1.min.js"></script>
     <script src="../js/nav.js"></script>
+    <script src="../js/errors.js"></script>
     <link type="text/css" rel="stylesheet" href="../css/main.css">
     <link type="text/css" rel="stylesheet" href="../css/register.css">
     <link type="text/css" rel="stylesheet" href="../css/register2.css">
@@ -42,22 +43,27 @@
 			<div class="container">
                                   
 				<hr>
-				<form action="../../src/add_inquiry.php" method="POST">
+				<form action="../../src/add_inquiery.php" method="POST"  onsubmit="return validateTeacher()">
+               
                 <h1 style="color: #6a7480;">INQUIERY FORM</h1>
+
+
+                    <label for="title"><b> Sender's ID</b></label>
+                    <input type="text" id="sender" name="sender" value = <?php  echo  $_SESSION['userID']?> readonly>
+                  
 
 					<label for="title"><b> Inquiry Title</b></label>
                     <input type="text" id="title" name="title" placeholder="Type Inquiry ID.." required>
                     
-                   
-					<input type="hidden" id="sender" name="sender" value="<?php echo $userID ?>" required>
 	
 					<label for="reciever"><b>Reciever's ID</b></label>
-					<input type="text" id="reciever" name="reciever" placeholder="Type Inquier ID.." required>
+					<input type="text" id="username" name="rID" placeholder="Type Reciever's ID.." onblur="validateUserID(rID.value)"  required>
+                    <div class="text" id="uName"></div>
 
 					<label for="msge"><b> Message </b></label>
                     <textarea id="msge" name="msge" placeholder="Write something.." style="height:200px" required></textarea>
                     
-                    <button type="submit" class="registerbtn" name="add_inq">Save</button>
+                    <button type="submit" class="registerbtn" name="add_inq" formaction="Tcr_dashboard.php">Save</button>
                 <a href="Tcr_ReplyInquiery.php" class="cancel-btn">Cancel</a>
 					<hr>
 					
