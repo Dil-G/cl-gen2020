@@ -93,7 +93,6 @@ if (isset($_POST['requestCharacter'])) {
 //issues in Character certificate
 if (isset($_POST['issueCharacter'])) {
 
-
     $userID = $_POST['userID'];
     $issue = $_POST['issue'];
     $date = date('Y-m-d H:i:s');
@@ -121,26 +120,26 @@ if (isset($_POST['issueCharacter'])) {
     }
 }
 
-if (isset($_GET['resolve'])) {
+// if (isset($_GET['resolve'])) {
 
 
-    $userID = $_GET['resolve'];
+//     $userID = $_GET['resolve'];
 
 
-    $_SESSION['studentID']=$userID;
+//     $_SESSION['studentID']=$userID;
 
-    $requestStatus = 1;
+//     $requestStatus = 1;
 
-    $sql = "DELETE FROM charactercertificate WHERE studentID ='$userID' ";
+//     $sql = "DELETE FROM charactercertificate WHERE studentID ='$userID' ";
 
-    if ($conn->query($sql) === TRUE ) {
-        echo '<script language = "javascript">';
-        echo 'alert("Details Added");';
-        header('Location: ../public/office/character.php?userID='.$userID);
-    } else {
-        echo "Error : " . $sql . "<br>" . $conn->error;
-    }
-}
+//     if ($conn->query($sql) === TRUE ) {
+//         echo '<script language = "javascript">';
+//         echo 'alert("Details Added");';
+//         header('Location: ../public/office/character.php?userID='.$userID);
+//     } else {
+//         echo "Error : " . $sql . "<br>" . $conn->error;
+//     }
+// }
 
 if (isset($_GET['accepted'])) {
 
@@ -177,5 +176,176 @@ if (isset($_GET['accepted'])) {
     }
 }
 
+
+//Leaving Document
+
+if (isset($_POST['requestLeaving'])) {
+
+
+    $userID = $_POST['userID'];
+    $reason = $_POST['reason'];
+    $imageName = $_FILES['image']['name'];
+    $imageData = addslashes(file_get_contents($_FILES['image']['tmp_name']));
+
+    $imageType = $_FILES['image']['type'];
+
+    $check_table = "SELECT * FROM leavingrequests WHERE userID='$userID'";
+    $check_result = mysqli_query($conn, $check_table);
+    $date = date('Y-m-d H:i:s');
+
+    if (mysqli_num_rows($check_result) > 0) {
+        
+        $retreive_data = "SELECT * FROM leavingrequests WHERE userID='$userID'";
+        $result_data = mysqli_query($conn, $retreive_data);
+        $row = mysqli_fetch_assoc($result_data);
+
+        $oldrequestID = $row['requestID'];
+
+        $retreive_data2 = "SELECT * FROM leavingdocumentWHERE studentID='$userID'";
+        $result_data2 = mysqli_query($conn, $retreive_data2);
+        $row1 = mysqli_fetch_assoc($result_data2);
+
+        $oldleavingID = $row1['leavingID'];
+
+        $requestStatus = '4';
+        $update = "UPDATE leavingrequests SET requestStatus=$requestStatus ";
+        $update_result = mysqli_query($conn, $update);
+
+        $sql1 = "INSERT INTO leavingregenerate (requestID,leavingID,userID, reason,reqDate) VALUES ('$oldrequestID','$oldleavingID','$userID','$reason','$date');";
+        $update = "UPDATE leavingrequests SET requestStatus=$requestStatus ";
+
+        
+        if ($conn->query($sql1) === TRUE && $conn->query($update) === TRUE) {
+            echo '<script language = "javascript">';
+            echo 'alert("Details Added");';
+            header('Location: ../public/student/character-form.php');
+        } else {
+            echo "Error : " . $sql . "<br>" . $conn->error;
+        }
+        exit();
+    
+    }
+
+    $prefix = "LV";
+    $retreive = "SELECT * FROM leavingrequests";
+    $result = mysqli_query($conn, $retreive);
+
+    $maxID = 0;
+
+    while ($row = mysqli_fetch_array($result)) {
+
+        $lastId = $row['requestID'];
+        $charID = substr($lastId, 2);
+        $intID = intval($charID);
+
+        if ($intID > $maxID) {
+            $maxID = $intID;
+        }
+    }
+    if (mysqli_num_rows($result) == 0) {
+        $requestID = $prefix .  "1";
+    } else {
+        $requestID = $prefix . ($maxID + 1);
+    }
+
+    $requestStatus = 0;
+    $sql = "INSERT INTO leavingrequests (requestID,userID,reason,proof,proofImage,requestStatus,date_time) VALUES ('$requestID','$userID','$reason','$imageName','$imageData','$requestStatus','$date');";
+
+    if ($conn->query($sql) === TRUE) {
+        echo '<script language = "javascript">';
+        echo 'alert("Details Added");';
+        header('Location: ../public/student/character-form.php');
+    } else {
+        echo "Error : " . $sql . "<br>" . $conn->error;
+    }
+}
+
+
+
+//issues in leaving certificate
+if (isset($_POST['issueLeaving'])) {
+
+    $userID = $_POST['userID'];
+    $issue = $_POST['issue'];
+    $date = date('Y-m-d H:i:s');
+    $imageName = $_FILES['image']['name'];
+    $imageData = addslashes(file_get_contents($_FILES['image']['tmp_name']));
+
+    $imageType = $_FILES['image']['type'];
+
+    $retreive = "SELECT * FROM leavingrequests WHERE userID='$userID'";
+    $result = mysqli_query($conn, $retreive);
+    $row = mysqli_fetch_assoc($result);
+
+    $requestID = $row['requestID'];
+    $requestStatus = 2;
+
+    $sql = "INSERT INTO leavingissues (issue,proof,proofImage,userID,requestID,date_time) VALUES ('$issue','$imageName','$imageData','$userID','$requestID','$date');";
+    $update = "UPDATE leavingrequests SET requestStatus=$requestStatus WHERE requestID='$requestID'";
+
+    if ($conn->query($sql) === TRUE && $conn->query($update) === TRUE) {
+        echo '<script language = "javascript">';
+        echo 'alert("Details Added");';
+        header('Location: ../public/student/newsfeed.php');
+    } else {
+        echo "Error : " . $sql . "<br>" . $conn->error;
+    }
+}
+
+// if (isset($_GET['resolve_leaving'])) {
+
+
+//     $userID = $_GET['resolve_leaving'];
+
+
+//     $_SESSION['studentID']=$userID;
+
+//     $requestStatus = 1;
+
+//     $sql = "DELETE FROM leavingDocument WHERE studentID ='$userID' ";
+
+//     if ($conn->query($sql) === TRUE ) {
+//         echo '<script language = "javascript">';
+//         echo 'alert("Details Added");';
+//         header('Location: ../public/office/leaving.php?userID='.$userID);
+//     } else {
+//         echo "Error : " . $sql . "<br>" . $conn->error;
+//     }
+// }
+
+if (isset($_GET['acceptedLeaving'])) {
+
+
+    $userID = $_GET['acceptedLeaving'];
+    echo $userID;
+    $retreive = "SELECT * FROM leavingrequests WHERE userID='$userID'";
+    $result = mysqli_query($conn, $retreive);
+    $row = mysqli_fetch_assoc($result);
+
+    if($row['requestStatus'] == '3'){
+        
+        $error = "Leaving Document Already acceptedLeaving";
+        header('Location: ../public/student/newsfeed.php?error='.$error);
+        exit();
+    }
+    else{
+        $requestID = $row['requestID'];
+
+        $_SESSION['studentID']=$userID;
+
+        $requestStatus = 3;
+
+        $update = "UPDATE leavingrequests SET requestStatus=$requestStatus WHERE requestID='$requestID'";
+
+        if ($conn->query($update) === TRUE ) {
+            echo '<script language = "javascript">';
+            echo 'alert("Details Added");';
+            header('Location: ../public/student/newsfeed.php?userID='.$userID);
+        } else {
+            $error = "Cannot be accepted";
+        header('Location: ../public/student/newsfeed.php?userID='.$error);
+        }
+    }
+}
 
 $conn->close();

@@ -83,8 +83,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                         </td>
 
                         <td>
-                            <?php $_SESSION['studentID'] = 'ST2000001';
-                                        echo "<a class='btn editbtn' href = 'character.php?userID=" . $row['userID'] . "'>Generate </a> " ?>
+                            <?php $_SESSION['studentID'] = 'ST2000001';echo "<a class='btn editbtn' href = '../../src/notifications.php?leaving=" . $row['userID'] . "'>Generate </a> " ?>
                         </td>
                         <td><button class="btn dltbtn" type="button">Reject</button></td>
                         <?php } ?>
@@ -114,7 +113,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 
                         <td>
                             <?php $_SESSION['studentID'] = 'ST2000001';
-                                        echo "<a class='btn editbtn' href = 'character.php?userID=" . $row['userID'] . "' >View </a> " ?>
+                                        echo "<a class='btn editbtn' href = 'leaving_document.php?userID=" . $row['userID'] . "' >View </a> " ?>
                         </td>
                         <?php } ?>
                     </tr>
@@ -134,7 +133,6 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                         <th>Student Name</th>
                         <th>Issue</th>
                         <th>Proof</th>
-                        <th>Character Certificate</th>
                         <th>Resolve and generate <br>new Character Certificate</th>
                     </tr>
                     <tr>
@@ -156,11 +154,9 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                             </div>
                         </td>
 
-                        <td><?php echo $rows['filename'] ?></td>
-
                         <td>
                             <?php $_SESSION['studentID'] = 'ST2000001';
-                                        echo "<a class='btn editbtn' href = '../../src/characterRequest.php?resolve=" . $rows['userID'] . "'>Regenerate </a> " ?>
+                                        echo "<a class='btn editbtn' href = '../../src/notifications.php?leaving=" . $rows['userID'] . "'>Regenerate </a> " ?>
                         </td>
                     </tr>
                     <?php } ?>
@@ -179,22 +175,17 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                     <tr>
                         <th>Student ID</th>
                         <th>Student Name</th>
-                        <th>Character Certificate</th>
-                        <th>Resolve and generate <br>new Character Certificate</th>
+                        <th>Download</th>
                     </tr>
                     <tr>
                         <?php while ($rows = mysqli_fetch_assoc($result_requestsAccepted)) {
                                 ?>
                         <td><?php echo $rows['userID'] ?></td>
                         <td><?php echo $rows['fName'] . " " . $rows['lName'] ?></td>
-                        <td><?php echo $rows['issue'] ?></td>
                        
-
-                        <td><?php echo $rows['filename'] ?></td>
-
                         <td>
                             <?php $_SESSION['studentID'] = 'ST2000001';
-                                        echo "<a class='btn editbtn' href = '../../src/characterRequest.php?resolve=" . $rows['userID'] . "'>Regenerate </a> " ?>
+                                        echo "<a class='btn editbtn' href = 'leaving.php?userID=" . $rows['userID'] . "'>Download </a> " ?>
                         </td>
                     </tr>
                     <?php } ?>
