@@ -43,11 +43,14 @@ $page = file_get_contents("SProfile.html");
 
 $connect = mysqli_connect("localhost", "root", "", "cl_gen");
 
-$query = "
- SELECT *
- FROM student 
- WHERE admissionNo='$userID'
-";
+$query = "SELECT st.*, ar.examID
+FROM
+     student st
+     LEFT JOIN
+     alresults ar on st.admissionNo = ar.studentID
+WHERE 
+st.admissionNo = '$userID'";
+
 $result = mysqli_query($connect, $query);
 
 $output = "
@@ -189,6 +192,10 @@ hr{
     <h3>COLOMBO, SRI LANKA</h3>
     <h1> CHARACTER CERTIFICATE</h1>";
 while ($row = mysqli_fetch_array($result)) {
+
+    
+
+
     $output .= '<p> This is to certify that Ms.' . $row["fName"] . " " . $row["mName"] . " " . $row["lName"] . ' attended Anonymous College Colombo from ' . substr($row["enteredDate"], 0, 4.) . ' to ' . date('Y') . ' 
 
 <table>
@@ -221,11 +228,15 @@ while ($row = mysqli_fetch_array($result)) {
     <td>' . $row["stuNic"] . '</td>
  </tr>
  <tr>
-    <td>Public Examinatios Passes</td>
-    <td>' . $row["stuNic"] . '</td>
+    <td>Public Examinations Passed</td>
+    <td>G.C.E. (Advanced Level) Examination '.substr($row["examID"],6)  .'</td>
+<tr>
+    <td style="text-align: right;" colspan="2">G.C.E. (Ordinary Level) Examination '.substr($row["examID"],6)  .'</td>
  </tr>
  </table>
  <hr>
+
+ 
 <p>I recomend Ms ' . $row["fName"] . " " . $row["mName"] . " " . $row["lName"] . '  as a student with good discipline, courage and strategies to shoulder any
 responsibility vested upon her. I wish Ms. ' . $row["fName"] . " " . $row["mName"] . " " . $row["lName"] . '  good luck in her future endeavours.</p>
 <br>

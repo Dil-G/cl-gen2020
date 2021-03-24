@@ -37,14 +37,15 @@ include_once '../../config/conn.php';
     <div id="officeNav"></div>
 
     <div class="content">
+      
+        <div class="card">
         <br>
         <h1 style="color: #6a7480;">G.C.E A/L Examination Results</h1>
         <form class="search">
             <input type="text" placeholder="Search.." name="search">
             <button type="submit">Search</button>
         </form>
-
-        <br>
+        </div>
         <br>
         <br>
 
@@ -68,8 +69,7 @@ include_once '../../config/conn.php';
                     </div>
                 </div>
             </div>
-            <br>
-            <br>
+            
             <?php
                     $sql = "SELECT * FROM addAlExam" ;
                     $result = mysqli_query($conn,$sql);
@@ -108,7 +108,6 @@ include_once '../../config/conn.php';
                 </table>
             </div>
         </div>
-
     </div>
     <script>
     var form1 = document.getElementById("addExamForm");
