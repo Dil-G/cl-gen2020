@@ -42,7 +42,7 @@ include_once '../../config/conn.php';
         <br>
         <?php $postfix = explode("/", $row['examID'])  ?>
         <h1 style="color:#6a7480;">G.C.E. O/L Examination Results - <?php print_r($postfix[1]) ?></h1>
-        <form class="search" action="of_addStudentDetails.html">
+        <form class="search" action="">
             <input type="text" placeholder="Search.." name="search">
             <button type="submit">Search</button>
         </form>
@@ -69,14 +69,21 @@ include_once '../../config/conn.php';
             <table>
                 <hr>
                 <tr>
-                    <th rowspan="2">Admission Number</th>
+                    <!-- <th rowspan="2">Admission Number</th>
                     <th rowspan="2">Index Number</th>
                     <th rowspan="2">Student Name</th>
-                    <th colspan="22">Subjects</th>
+                    <th colspan="22">Subject ID</th>
+                    <th>Grade</th> -->
+
+                    <th>Admission Number</th>
+                    <th>Index Number</th>
+                    <th>Student Name</th>
+                    <th>Subject ID</th>
+                    <th>Grade</th>
+
                 </tr>
 
-                <tr>
-
+                <!-- <tr>
                     <th>Buddhism</th>
                     <th>Saivaneri</th>
                     <th>Catholicism</th>
@@ -99,7 +106,7 @@ include_once '../../config/conn.php';
                     <th>ICT</th>
                     <th>Health</th>
                     <th>Media Studies</th>
-                </tr>
+                </tr>  -->
                 <tr>
                 <?php
                     while($row=mysqli_fetch_array($result2)){
@@ -108,29 +115,9 @@ include_once '../../config/conn.php';
                         <td><?php echo $row["admissionNo"]; ?></td>
                         <td><?php echo $row["studentIndex"]; ?></td>
                         <td><?php echo $row["studentName"]; ?></td>
-                        <td><?php echo $row["Buddhism"]; ?></td>
-                        <td><?php echo $row["Saivaneri"]; ?></td>
-                        <td><?php echo $row["Catholicism"]; ?></td>
-                        <td><?php echo $row["Christianity"]; ?></td>
-                        <td><?php echo $row["Islam"]; ?></td>
-                        <td><?php echo $row["Sinhala"]; ?></td>
-                        <td><?php echo $row["Tamil"]; ?></td>
-                        <td><?php echo $row["History"]; ?></td>
-                        <td><?php echo $row["Science"]; ?></td>
-                        <td><?php echo $row["Mathematics"]; ?></td>
-                        <td><?php echo $row["English"]; ?></td>
-                        <td><?php echo $row["BAStudies"]; ?></td>
-                        <td><?php echo $row["SLSinhala"]; ?></td>
-                        <td><?php echo $row["SLTamil"]; ?></td>
-                        <td><?php echo $row["French"]; ?></td>
-                        <td><?php echo $row["Art"]; ?></td>
-                        <td><?php echo $row["Oriental_Music"]; ?></td>
-                        <td><?php echo $row["Western_Music"]; ?></td>
-                        <td><?php echo $row["Oriental_Dancing"]; ?></td>
-                        <td><?php echo $row["ICT"]; ?></td>
-                        <td><?php echo $row["Health_Physical_Edu"]; ?></td>
-                        <td><?php echo $row["Media_Studies"]; ?></td>
-                       
+                        <td><?php echo $row["SubName"]; ?></td>
+                        <td><?php echo $row["SubID"]; ?></td>
+                        <td><?php echo $row["Grade"]; ?></td>
 
                         <?php
                         
