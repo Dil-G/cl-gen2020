@@ -83,7 +83,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                         <ul>
                             <li><a href="../office/subjects.php">Advanced Level Subjects</a></li>
                             <li><a href="../office/al_streams.php">Advanced Level Streams</a></li>
-                            <li><a href="../office/o_viewAl.php">G.C.E. A/L</a></li>
+                            <li><a href="../office/o_olsubjects.php">Ordinary Level Subjects</a></li>
                         </ul>
                     </div>
 
