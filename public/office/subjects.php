@@ -49,7 +49,7 @@ include_once '../../config/conn.php';
 
         <div class="card">
             <div>
-                <button id="addExamBtn" class="btn editbtn" type="submit" formaction="o_addSchol.php">Add New Subject</button>
+                <button id="addExamBtn" class="btn editbtn" type="submit" >Add New Subject</button>
                 <div id="addExamForm" class="model">
                     <div class="modal-content container">
                         <form action="../../src/o_addAl.php" method="POST">

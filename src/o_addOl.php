@@ -1,10 +1,7 @@
 <?php
     include_once '../config/conn.php';
 
-    if ($conn->connect_error){
-        die("Connection failed : " . $conn->connect_error);
-    }
-   // echo "Connected Successfully";
+    
 
     if(isset($_POST['savebtn'])){
 
@@ -30,3 +27,4 @@
     }
     $conn->close();
 ?>
+

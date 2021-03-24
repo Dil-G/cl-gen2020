@@ -55,22 +55,23 @@
                             <div class="modal-content" style="margin-left: 120px;">
                                 <span class="close1 close_character" onclick="closeCharacterForm()">&times;</span>
                                 <h2>Character Certificate Request Form</h2>
-                                <form>
+
+
+                                <form action="../../src/characterRequest.php" method="POST"   enctype="multipart/form-data">
                                     <hr>
-
-
+                                    <input type="hidden" name="userID" value="<?php echo $userID?>" required>
 
                                     <label for="reason"><b>Reason for request</b></label>
-                                    <textarea id="w3review" name="w3review" rows="4" cols="50"></textarea>
+                                    <textarea id="reason" name="reason" rows="4" cols="50"></textarea>
                                     <br>
-                                    <label for="image"><b>Proof Document</b></label>
-                                    <input type="hidden" name="size" value="1000000" required>
+                                    <label for="image"><b>Proof Document Image</b></label>
+                                    <!-- <input type="hidden" name="size" value="1000000" required> -->
 
                                     <div>
-                                        <input type="file" name="image" id="image" />
+                                        <input type="file" name="image" id="image" required />
                                     </div>
 
-                                    <button type="submit" class="registerbtn">Request</button>
+                                    <button type="submit" name="requestCharacter" class="registerbtn">Request</button>
                                     <hr>
                                 </form>
                             </div>
@@ -99,7 +100,7 @@
                                     <label for="reason"><b>Reason for request</b></label>
                                     <textarea id="w3review" name="w3review" rows="4" cols="50"></textarea>
                                     <br>
-                                    <label for="prrof"><b>Proof Document</b></label>
+                                    <label for="proof"><b>Proof Document</b></label>
                                     <input type="file" name="proof" required>
 
                                     <button type="submit" class="registerbtn">Request</button>

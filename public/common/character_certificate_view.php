@@ -1,7 +1,8 @@
 <?php
 require_once '../../config/conn.php';
 
-$userID = $_SESSION['studentID'];
+if(isset($_GET['userID'])){
+$userID = $_GET['userID'];
 ?>
 
 <!DOCTYPE html>
@@ -242,3 +243,4 @@ $userID = $_SESSION['studentID'];
 
 </body>
 </html>
+<?php } ?>

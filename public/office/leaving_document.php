@@ -1,7 +1,7 @@
 <?php
 require_once '../../config/conn.php';
 
-$userID = $_SESSION['studentID'];
+$userID = "ST2000001";
 ?>
 
 <!DOCTYPE html>
@@ -10,7 +10,6 @@ $userID = $_SESSION['studentID'];
 <head>
     <title>Character Certificate $userID</title>
     <style>
-        
     * {
         box-sizing: border-box;
     }
@@ -23,9 +22,6 @@ $userID = $_SESSION['studentID'];
         margin: 0;
         padding: 30px;
         border: solid 1px #ddd;
-        /* width: 21cm;
-        height: 29.7cm;
-        margin: 30mm 45mm 30mm 45mm;  */
     }
 
 
@@ -156,20 +152,29 @@ $userID = $_SESSION['studentID'];
 
         <h2><b>ABC SCHOOL</b></h2>
         <h3>COLOMBO, SRI LANKA</h3>
-        <h1> CHARACTER CERTIFICATE</h1>
+        <h1> PUPIL'S RECORD SHEET</h1>
         <?php
         $connect = mysqli_connect("localhost", "root", "", "cl_gen");
 
-        $query = "SELECT st.*, ar.examID
-        FROM
-             student st
+        $query = "SELECT st.*, ar.examID,pt.*
+        FROM student st
              LEFT JOIN
              alresults ar on st.admissionNo = ar.studentID
+             LEFT JOIN
+             parent pt on st.admissionNo = pt.admissionNo
         WHERE 
         st.admissionNo = '$userID'";
         
         $result = mysqli_query($connect, $query);
         while ($row = mysqli_fetch_array($result)) {
+
+            $enteredGrade = $row["enteredGrade"];
+            $enteredYear =substr($row["enteredDate"], 0, 4);
+            $now = substr(date("Y-m-d"), 0, 4); 
+           
+            $today=date("Y-m-d");
+            $duration = $now - $enteredYear;
+            $nowGrade = $enteredGrade + $duration;
         ?>
 
         <p> This is to certify that Ms.<?php echo $row["fName"] . " " . $row["mName"] . " " . $row["lName"] ?>
@@ -187,8 +192,12 @@ $userID = $_SESSION['studentID'];
                 <td><?php echo$row["adStreet"] . " " . $row["adCity"] . " " . $row["adDistrict"] ?></td>
             </tr>
             <tr>
-                <td>NIC</td>
-                <td><?php echo $row["stuNic"] ?></td>
+                <td>Religion</td>
+                <td><?php echo $row["religion"] ?></td>
+            </tr>
+            <tr>
+                <td>Guardian's Name</td>
+                <td><?php echo $row["name"] ?></td>
             </tr>
             <tr>
                 <td>Date of Birth</td>
@@ -199,31 +208,23 @@ $userID = $_SESSION['studentID'];
                 <td><?php echo $row["enteredDate"]?></td>
             </tr>
             <tr>
+                <td>Leaving Date</td>
+                <td><?php echo $today?></td>
+            </tr>
+            <tr>
+                <td>Entered Grade</td>
+                <td><?php echo "Grade ".$row["enteredGrade"] ?></td>
+            </tr>
+            <tr>
+                <td>Last passed Grade</td>
+                <td><?php echo "Grade ".$nowGrade?></td>
+            </tr>
+            <tr>
                 <td>Period in school</td>
                 <td><?php echo substr($row["enteredDate"], 0, 4.) . ' - ' . date('Y') ?> </td>
             </tr>
-            <tr>
-                <td>NIC</td>
-                <td><?php echo $row["stuNic"] ?></td>
-            </tr>
-            <tr>
-                <td>Public Examinations Passed</td>
-            </tr>
-            <tr>
-                <td colspan="2" style="text-align:right">G.C.E. (Advanced Level) Examination
-                    <?php if($row["examID"] == TRUE){
-                    echo " ".substr($row["examID"],6);
-                }else{
-                    echo "-not passed";
-                } ?></td>
-            <tr>
-                <td colspan="2" style="text-align:right">G.C.E. (Advanced Level) Examination
-                    <?php if($row["examID"] == TRUE){
-                    echo " ".substr($row["examID"],6);
-                }else{
-                    echo "-not passed";
-                } ?></td>
-            </tr>
+         
+           
         </table>
         <hr>
 

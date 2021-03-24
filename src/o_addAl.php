@@ -21,7 +21,6 @@
             }
         }
 
-
         if (mysqli_num_rows($result) == 0) {
             $prefix = "ST";
             $streamID = $prefix .  "1";

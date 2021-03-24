@@ -1,16 +1,18 @@
 <?php
-    session_start();
+session_start();
 
-    if(!isset($_SESSION['userType']) && !isset($_SESSION['userID'])){
-        $error = "Please Login!";
-        header('Location: ../common/loginFile.php?error='.$error);
-    }elseif($_SESSION['userType'] == 'officer'){
-      
-      $dutyID = array();
-      $dutyID = $_SESSION['dutyID'];
+if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
+    $error = "Please Login!";
+    header('Location: ../common/loginFile.php?error=' . $error);
+} elseif ($_SESSION['userType'] == 'officer') {
 
-      if (in_array("d3", $dutyID)) {
-	?>
+    $dutyID = array();
+    $dutyID = $_SESSION['dutyID'];
+
+    if (in_array("d3", $dutyID)) {
+
+        include_once('../../src/view_characterRequest.php');
+?>
 
 <!DOCTYPE html>
 
@@ -35,6 +37,7 @@
 
         <div class="btn-box" style="margin-top:10px!important;">
             <button id="button1" onclick="requests()">Requests</button>
+            <button id="button4" onclick="sent()">Sent</button>
             <button id="button2" onclick="issues()">Issues</button>
             <button id="button3" onclick="accepted()">Accepted</button>
         </div>
@@ -48,45 +51,72 @@
                     <tr>
                         <th>Student ID</th>
                         <th>Student Name</th>
-                        <th>Student NIC</th>
-                        <th>View Request</th>
-                        <th>Generate Character Certificate</th>
+                        <th>Requested Date and Time</th>
+                        <th>Reason</th>
+                        <th>Proof</th>
+                        <th>Generate <br>Character Certificate</th>
                         <th>Reject Request</th>
                         <th>Send to Student</th>
                     </tr>
                     <tr>
-                        <td>S1234</td>
-                        <td>A.B.C. Student</td>
-                        <td>123456789V</td>
-                        <td>Student@gmail.com</td>
+                        <?php while ($row = mysqli_fetch_assoc($result_requests)) {
+                                ?>
+                        <td><?php echo $row['userID'] ?></td>
+                        <td><?php echo $row['fName'] . " " . $row['lName'] ?></td>
+                        <td><?php echo $row['requestedDateTime'] ?></td>
+                        <td><?php echo $row['reason'] ?></td>
                         <td>
-                            <button id="requests-btn" class="btn editbtn">Open Form</button>
-                            <div id="requests-form" class="model">
-                                <div class="modal-content">
-                                    <span class="close1">&times;</span>
-                                    <h2>Character Certificate Request Form</h2>
-                                    <form>
-                                        <hr>
-                                        <label for="userID"><b>Student Admission Number</b></label>
-                                        <input type="text" value="ST2000001" name="id">
-
-                                        <label for="reason"><b>Reason for Requesting Character
-                                                Certificate</b></label>
-                                        <textarea id="w3review" name="w3review" rows="4" cols="50"></textarea>
-                                        <br>
+                            <button id="character-btn" onclick="openCharacterForm()">Open Image</button>
 
 
-                                        <button type="submit" class="registerbtn">Request</button>
-                                        <hr>
-                                    </form>
+                            <div id="character-form" class="model">
+
+
+                                <div class="modal-content" style="margin-left: 120px;">
+                                    <span class="close1 close_character" onclick="closeCharacterForm()">&times;</span>
+                                    <h2>Proof File</h2>
+                                    <?php echo '<img src="data:image/jpeg;base64,' . base64_encode($row['proofImage']) . '"/>'; ?>
                                 </div>
+
                             </div>
+
                         </td>
+
                         <td>
-                            <?php $_SESSION['studentID']='ST2000001'; echo "<a class='btn editbtn' href = 'character.php?userID=ST2000001' >Generate </a> " ?>
+                            <?php $_SESSION['studentID'] = 'ST2000001';
+                                        echo "<a class='btn editbtn' href = 'character.php?userID=" . $row['userID'] . "'>Generate </a> " ?>
                         </td>
                         <td><button class="btn dltbtn" type="button">Reject</button></td>
+                        <?php } ?>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div id="page4" class="page">
+            <div class="card" style="margin-left:4%;width:95%;">
+                <h2>Requests</h2>
+                <br>
+                <hr>
+                <table>
+                    <tr>
+                        <th>Student ID</th>
+                        <th>Student Name</th>
+                        <th>Proof</th>
+                        <th>Character Certificate</th>
+                    </tr>
+                    <tr>
+                        <?php while ($row = mysqli_fetch_assoc($result_requestsSent)) {
+                                ?>
+                        <td><?php echo $row['userID'] ?></td>
+                        <td><?php echo $row['fName'] . " " . $row['lName'] ?></td>
+                        <td><?php echo $row['proof'] ?></td>
+
                         <td>
+                            <?php $_SESSION['studentID'] = 'ST2000001';
+                                        echo "<a class='btn editbtn' href = '../common/character_certificate_view.php?userID=" . $row['userID'] . "' >View </a> " ?>
+                        </td>
+                        <?php } ?>
                     </tr>
                 </table>
             </div>
@@ -102,47 +132,39 @@
                     <tr>
                         <th>Student ID</th>
                         <th>Student Name</th>
-                        <th>Student NIC</th>
-                        <th>Student email</th>
-                        <th>View Request</th>
-                        <th>Generate Character Certificate</th>
-                        <th>Reject Request</th>
-                        <th>Send to Student</th>
+                        <th>Issue</th>
+                        <th>Proof</th>
+                        <th>Character Certificate</th>
+                        <th>Resolve and generate <br>new Character Certificate</th>
                     </tr>
                     <tr>
-                        <td>S1234</td>
-                        <td>A.B.C. Student</td>
-                        <td>123456789V</td>
-                        <td>Student@gmail.com</td>
-                        <td>
-                            <button id="issues-btn" class="btn editbtn">Open Form</button>
-                            <div id="issues-form" class="model">
-                                <div class="modal-content">
-                                    <span class="close2">&times;</span>
-                                    <h2>Character Certificate Issues</h2>
-                                    <form>
-                                        <hr>
-                                        <label for="userID"><b>Student Admission Number</b></label>
-                                        <input type="text" value="ST2000001" name="id">
-                                        <label for="reason"><b>Reason for Requesting Character Certificate</b></label>
-                                        <textarea id="w3review" name="w3review" rows="4" cols="50"></textarea>
-                                        <br>
+                        <?php while ($rows = mysqli_fetch_assoc($result_requestsIssue)) {
+                                ?>
+                        <td><?php echo $rows['userID'] ?></td>
+                        <td><?php echo $rows['fName'] . " " . $rows['lName'] ?></td>
+                        <td><?php echo $rows['issue'] ?></td>
+                        <td> 
+                            <button id="character-btn" onclick="openCharacterForm()">Open Image</button>
 
-
-                                        <button type="submit" class="registerbtn">Request</button>
-                                        <hr>
-                                    </form>
+                            <div id="character-form" class="model">
+                                <div class="modal-content" style="margin-left: 120px;">
+                                    <span class="close1 close_character" onclick="closeCharacterForm()">&times;</span>
+                                    <h2>Proof File</h2>
+                                    <?php echo '<img src="data:image/jpeg;base64,' . base64_encode($rows['proofImage']) . '"/>'; ?>
                                 </div>
+
                             </div>
                         </td>
-                        <td>
-                            <button class="btn editbtn" type="submit">Generate New Character
-                                Certificate</button>
-                        </td>
-                        <td><button class="btn dltbtn" type="button">Reject</button></td>
-                        <td>
 
+                        <td><?php echo $rows['filename'] ?></td>
+
+                        <td>
+                            <?php $_SESSION['studentID'] = 'ST2000001';
+                                        echo "<a class='btn editbtn' href = '../../src/characterRequest.php?resolve=" . $rows['userID'] . "'>Regenerate </a> " ?>
+                        </td>
                     </tr>
+                    <?php } ?>
+
                 </table>
             </div>
         </div>
@@ -153,22 +175,30 @@
                 <h2>Accepted</h2>
                 <br>
                 <hr>
-                <table>
+                 <table>
                     <tr>
                         <th>Student ID</th>
                         <th>Student Name</th>
-                        <th>Student NIC</th>
-                        <th>Student email</th>
-                        <th>Download</th>
+                        <th>Character Certificate</th>
+                        <th>Resolve and generate <br>new Character Certificate</th>
                     </tr>
                     <tr>
-                        <td>S1234</td>
-                        <td>A.B.C. Student</td>
-                        <td>123456789V</td>
-                        <td>Student@gmail.com</td>
-                        <td><button class="btn dltbtn" type="button">Download</button></td>
+                        <?php while ($rows = mysqli_fetch_assoc($result_requestsAccepted)) {
+                                ?>
+                        <td><?php echo $rows['userID'] ?></td>
+                        <td><?php echo $rows['fName'] . " " . $rows['lName'] ?></td>
+                        <td><?php echo $rows['issue'] ?></td>
+                       
 
+                        <td><?php echo $rows['filename'] ?></td>
+
+                        <td>
+                            <?php $_SESSION['studentID'] = 'ST2000001';
+                                        echo "<a class='btn editbtn' href = '../../src/characterRequest.php?resolve=" . $rows['userID'] . "'>Regenerate </a> " ?>
+                        </td>
                     </tr>
+                    <?php } ?>
+
                 </table>
             </div>
         </div>
@@ -179,28 +209,33 @@
     var page1 = document.getElementById("page1");
     var page2 = document.getElementById("page2");
     var page3 = document.getElementById("page3");
+    var page4 = document.getElementById("page4");
     var button1 = document.getElementById("button1");
     var button2 = document.getElementById("button2");
     var button3 = document.getElementById("button3");
+    var button4 = document.getElementById("button4");
 
     let url = window.location.href;
     if (url == window.location.href) {
         page1.style.display = "block";
         page2.style.display = "none";
         page3.style.display = "none";
+        page4.style.display = "none";
         button1.style.color = "#008080";
         button2.style.color = "#000";
         button3.style.color = "#000";
-
+        button4.style.color = "#000";
     }
 
     function requests() {
         page1.style.display = "block";
         page2.style.display = "none";
         page3.style.display = "none";
+        page4.style.display = "none";
         button1.style.color = "#008080";
         button2.style.color = "#000";
         button3.style.color = "#000";
+        button4.style.color = "#000";
 
     }
 
@@ -208,18 +243,33 @@
         page1.style.display = "none";
         page2.style.display = "block";
         page3.style.display = "none";
+        page4.style.display = "none";
         button1.style.color = "#000";
         button2.style.color = "#008080";
         button3.style.color = "#000";
+        button4.style.color = "#000";
     }
 
     function accepted() {
         page1.style.display = "none";
         page2.style.display = "none";
         page3.style.display = "block";
+        page4.style.display = "none";
         button1.style.color = "#000";
         button2.style.color = "#000";
         button3.style.color = "#008080";
+        button4.style.color = "#000";
+    }
+
+    function sent() {
+        page1.style.display = "none";
+        page2.style.display = "none";
+        page3.style.display = "none";
+        page4.style.display = "block";
+        button1.style.color = "#000";
+        button2.style.color = "#000";
+        button3.style.color = "#000";
+        button4.style.color = "#008080";
     }
     </script>
 
@@ -257,4 +307,5 @@
 
 </html>
 
-<?php }} ?>
+<?php }
+} ?>
