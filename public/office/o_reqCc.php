@@ -41,7 +41,6 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
             <button id="button2" onclick="issues()">Issues</button>
             <button id="button3" onclick="accepted()">Accepted</button>
         </div>
-
         <div id="page1" class="page">
             <div class="card" style="margin-left:4%;width:95%;">
                 <h2>Requests</h2>
@@ -84,7 +83,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 
                         <td>
                             <?php $_SESSION['studentID'] = 'ST2000001';
-                                        echo "<a class='btn editbtn' href = 'character.php?userID=" . $row['userID'] . "'>Generate </a> " ?>
+                                        echo "<a class='btn editbtn' href = '../../src/notifications.php?character=" . $row['userID'] . "'>Generate </a> " ?>
                         </td>
                         <td><button class="btn dltbtn" type="button">Reject</button></td>
                         <?php } ?>
@@ -160,7 +159,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 
                         <td>
                             <?php $_SESSION['studentID'] = 'ST2000001';
-                                        echo "<a class='btn editbtn' href = '../../src/characterRequest.php?resolve=" . $rows['userID'] . "'>Regenerate </a> " ?>
+                                        echo "<a class='btn editbtn' href = '../../src/notifications.php?character=" . $rows['userID'] . "'>Regenerate </a> " ?>
                         </td>
                     </tr>
                     <?php } ?>
@@ -179,22 +178,18 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                     <tr>
                         <th>Student ID</th>
                         <th>Student Name</th>
-                        <th>Character Certificate</th>
-                        <th>Resolve and generate <br>new Character Certificate</th>
-                    </tr>
+                        <th>Download</th>                    </tr>
                     <tr>
                         <?php while ($rows = mysqli_fetch_assoc($result_requestsAccepted)) {
                                 ?>
                         <td><?php echo $rows['userID'] ?></td>
                         <td><?php echo $rows['fName'] . " " . $rows['lName'] ?></td>
-                        <td><?php echo $rows['issue'] ?></td>
                        
 
-                        <td><?php echo $rows['filename'] ?></td>
 
                         <td>
                             <?php $_SESSION['studentID'] = 'ST2000001';
-                                        echo "<a class='btn editbtn' href = '../../src/characterRequest.php?resolve=" . $rows['userID'] . "'>Regenerate </a> " ?>
+                                        echo "<a class='btn editbtn' href = '../../src/character.php?userID=" . $rows['userID'] . "'>Download </a> " ?>
                         </td>
                     </tr>
                     <?php } ?>

@@ -16,10 +16,10 @@ use Dompdf\Dompdf;
 
 $document = new Dompdf();
 
-$_SESSION['studentID']=$userID;
+$_SESSION['studentID'] = $userID;
 //$document->loadHtml($html);
 
-ob_start(); 
+ob_start();
 require 'character_certificate.php';
 $page = ob_get_clean();
 
@@ -65,7 +65,7 @@ if ((mysqli_num_rows($result_sql) == 0)) {
     $data = file_put_contents($filePath, $files);
 
     $dbh = new PDO("mysql:host=localhost;dbname=cl_gen", "root", "");
-    $date= date('Y-m-d H:i:s');
+    $date = date('Y-m-d H:i:s');
     $stmt = $dbh->prepare("INSERT INTO characterCertificate VALUES (?,?,?,?,?)");
     $stmt->bindParam(1, $characterID);
     $stmt->bindParam(2, $userID);
@@ -74,15 +74,29 @@ if ((mysqli_num_rows($result_sql) == 0)) {
     $stmt->bindParam(5, $date);
     $stmt->execute();
 
-    $update = "UPDATE characterrequests SET requestStatus='1' WHERE userID='$userID'";
-    $result_update = mysqli_query($conn,$update);
-    
     $title = "Character Certificate";
-    $message = "You character certificate has been generated. Check for accuracy and accept or report error";
-    
-    $sql_noti = "INSERT into notifications(title,messages,document,reciever,dateTime) VALUES ('".$title."','".$message."','".$file."','".$userID."','".$date."')";
-    $result_noti = mysqli_query($conn,$sql_noti);
+    $message = "Your character certificate has been generated.You can colloect it from the school within a week";
 
+    $sql_noti = "INSERT into notifications(title,messages,reciever,dateTime) VALUES ('" . $title . "','" . $message . "','" . $userID . "','" . $date . "')";
+    $result_noti = mysqli_query($conn, $sql_noti);
+
+    $update = "UPDATE characterrequests SET requestStatus='1' WHERE userID='$userID'";
+    $result_update = mysqli_query($conn, $update);
+
+    if ($result_noti == TRUE && $result_update == TRUE ) {
+        echo '<script language = "javascript">';
+        echo 'alert("Details Added");';
+        header('Location: ../public/office/o_reqCc.php');
+    } else {
+        echo "Error : " . $sql . "<br>" . $conn->error;
+    }
+
+    if ($conn->query($sql) === TRUE && $stmt == TRUE ) {
+    } else {
+        $error = "Character certficate cannot be generated";
+        header('Location: o_reqCc.php?error=' . $error);
+        exit();
+    }
 } else {
 
     $error = "Character certficate already generated";

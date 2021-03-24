@@ -16,7 +16,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 <html>
 
 <head>
-    <title>Notification 1</title>
+    <title>Notification</title>
     <script src="../js/jquery-1.9.1.min.js"></script>
     <script src="../js/nav.js"></script>
     <script src="../js/pop.js"></script>
@@ -52,29 +52,15 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
             <hr>
             <p><?php echo $row['messages'] ?></p>
 
-
-            <?php if(strpos($row['sendID'], 'CR') !== false){?>
-<button id="character-btn" class="registerbtn"
-                name="accept"><?php echo "<a href = ../../src/characterRequest.php?accepted=" . $userID . " > Accept </a> " ?></button>
-                <button id="character-btn" class="registerbtn"
-                name="view_character"><?php echo "<a href = ../common/character_certificate_view.php?userID=" . $userID . " > View </a> " ?></button>
-                <br>
-            <button id="character-btn" class="cancel-btn" onclick="openCharacterForm()">Report Issue</button>
-                <?php
-            }else if(strpos($row['sendID'], 'LV') !== false){?>
-                <button id="character-btn" class="registerbtn"
+            <button id="character-btn" class="registerbtn"
                 name="accept"><?php echo "<a href = ../../src/characterRequest.php?acceptedLeaving=" . $userID . " > Accept </a> " ?></button>
-                <button id="character-btn" class="registerbtn"
+            <button id="character-btn" class="registerbtn"
                 name="view_character"><?php echo "<a href = ../common/leaving_document.php?userID=" . $userID . " > View </a> " ?></button>
-                <br>
+
+
+
+            <br>
             <button id="character-btn" class="cancel-btn" onclick="openCharacterForm()">Report Issue</button>
-                <?php
-            } ?>
-            
-
-
-
-            
 
 
             <div id="character-form" class="model">
@@ -99,7 +85,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                             <input type="file" name="image" id="image" required />
                         </div>
 
-                        <button type="submit" name="issueCharacter" class="registerbtn">Request</button>
+                        <button type="submit" name="issueLeaving" class="registerbtn">Request</button>
                         <hr>
                     </form>
                 </div>

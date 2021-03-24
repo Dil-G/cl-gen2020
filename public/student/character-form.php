@@ -94,16 +94,21 @@
                             <div class="modal-content" style="margin-left: 120px;">
                                 <span class="close2 close_leaving" onclick="closeLeavingForm()">&times;</span>
                                 <h2>Leaving Request Form</h2>
-                                <form>
+                                <form action="../../src/characterRequest.php" method="POST"   enctype="multipart/form-data">
                                     <hr>
+                                    <input type="hidden" name="userID" value="<?php echo $userID?>" required>
 
                                     <label for="reason"><b>Reason for request</b></label>
-                                    <textarea id="w3review" name="w3review" rows="4" cols="50"></textarea>
+                                    <textarea id="reason" name="reason" rows="4" cols="50"></textarea>
                                     <br>
-                                    <label for="proof"><b>Proof Document</b></label>
-                                    <input type="file" name="proof" required>
+                                    <label for="image"><b>Proof Document</b></label>
 
-                                    <button type="submit" class="registerbtn">Request</button>
+                                    <div>
+                                        <input type="file" name="image" id="image" required />
+                                    </div>
+                                    <!-- <input type="file" name="proof" required> -->
+
+                                    <button type="submit" name="requestLeaving" class="registerbtn">Request</button>
                                     <hr>
                                 </form>
                             </div>

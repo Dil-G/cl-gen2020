@@ -32,8 +32,7 @@ LEFT JOIN student ON student.admissionNo=characterrequests.userID WHERE characte
 $result_requestsIssue = mysqli_query($conn,$sql_requestsIssue);
 
 
-$sql_requestsAccepted="SELECT student.fName,student.lName, characterrequests.*,characterissues.*,charactercertificate.*  FROM characterrequests
-LEFT JOIN characterissues ON characterrequests.userID=characterrequests.userID
+$sql_requestsAccepted="SELECT student.fName,student.lName, characterrequests.*,charactercertificate.*  FROM characterrequests
 LEFT JOIN charactercertificate ON charactercertificate.studentID=characterrequests.userID
 LEFT JOIN student ON student.admissionNo=characterrequests.userID WHERE characterrequests.requestStatus = '3' ";
 $result_requestsAccepted = mysqli_query($conn,$sql_requestsAccepted);
