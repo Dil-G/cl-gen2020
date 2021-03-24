@@ -1,6 +1,7 @@
 <?php
 //index.php
 //include autoloader
+session_start();
 
 require_once '../../lib/dompdf/autoload.inc.php';
 require_once '../../config/conn.php';
@@ -15,31 +16,17 @@ use Dompdf\Dompdf;
 
 $document = new Dompdf();
 
-$html = '
- <style>
-table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-}
-
-td, th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-}
-
-tr:nth-child(even) {
-    background-color: #dddddd;
-}
-</style>
-
-';
-
+$_SESSION['studentID']=$userID;
 //$document->loadHtml($html);
-$page = file_get_contents("SProfile.html");
 
-//$document->loadHtml($page);
+ob_start(); 
+require 'character_certificate.php';
+$page = ob_get_clean();
+
+
+// $page = file_get_contents("character_certificate.php");
+
+$document->loadHtml($page);
 
 $connect = mysqli_connect("localhost", "root", "", "cl_gen");
 
@@ -229,7 +216,9 @@ while ($row = mysqli_fetch_array($result)) {
  </tr>
  <tr>
     <td>Public Examinations Passed</td>
-    <td>G.C.E. (Advanced Level) Examination '.substr($row["examID"],6)  .'</td>
+    <td>G.C.E. (Advanced Level) Examination '; if($row["examID"] == TRUE){
+        substr($row["examID"],6);
+    }  '</td>
 <tr>
     <td style="text-align: right;" colspan="2">G.C.E. (Ordinary Level) Examination '.substr($row["examID"],6)  .'</td>
  </tr>
@@ -266,7 +255,7 @@ $result_sql = mysqli_query($connect, $sql);
 
 if ((mysqli_num_rows($result_sql) == 0)) {
 
-    $document->loadHtml($output);
+    // $document->loadHtml($output);
 
     //set page size and orientation
 
