@@ -5,7 +5,7 @@
 require_once '../../lib/dompdf/autoload.inc.php';
 require_once '../../config/conn.php';
 
-$userID=$_GET['userID'];
+$userID = $_GET['userID'];
 
 // reference the Dompdf namespace
 
@@ -188,47 +188,46 @@ hr{
     <h2><b>ABC SCHOOL</b></h2>
     <h3>COLOMBO, SRI LANKA</h3>
     <h1> CHARACTER CERTIFICATE</h1>";
-    while($row = mysqli_fetch_array($result))
-    {
-    $output .='<p> This is to certify that Ms.'.$row["fName"]." ".$row["mName"]." ".$row["lName"].' attended Anonymous College Colombo from '.substr($row["enteredDate"],0,4.).' to '.date('Y').' 
+while ($row = mysqli_fetch_array($result)) {
+    $output .= '<p> This is to certify that Ms.' . $row["fName"] . " " . $row["mName"] . " " . $row["lName"] . ' attended Anonymous College Colombo from ' . substr($row["enteredDate"], 0, 4.) . ' to ' . date('Y') . ' 
 
 <table>
  <tr>
     <td>Full Name</td>
-    <td>'.$row["fName"]." ".$row["mName"]." ".$row["lName"].'</td>
+    <td>' . $row["fName"] . " " . $row["mName"] . " " . $row["lName"] . '</td>
  </tr>
  <tr>
     <td>Address</td>
-    <td>'.$row["adStreet"]." ".$row["adCity"]." ".$row["adDistrict"].'</td>
+    <td>' . $row["adStreet"] . " " . $row["adCity"] . " " . $row["adDistrict"] . '</td>
  </tr>
  <tr>
     <td>NIC</td>
-    <td>'.$row["stuNic"].'</td>
+    <td>' . $row["stuNic"] . '</td>
  </tr>
  <tr>
     <td>Date of Birth</td>
-    <td>'.$row["dob"].'</td>
+    <td>' . $row["dob"] . '</td>
  </tr>
  <tr>
     <td>Date admitted to the school</td>
-    <td>'.$row["enteredDate"].'</td>
+    <td>' . $row["enteredDate"] . '</td>
 </tr>
 <tr>
     <td>Period in school</td>
-    <td>'.substr($row["enteredDate"],0,4.).' - '.date('Y').' </td>
+    <td>' . substr($row["enteredDate"], 0, 4.) . ' - ' . date('Y') . ' </td>
  </tr>
  <tr>
     <td>NIC</td>
-    <td>'.$row["stuNic"].'</td>
+    <td>' . $row["stuNic"] . '</td>
  </tr>
  <tr>
     <td>Public Examinatios Passes</td>
-    <td>'.$row["stuNic"].'</td>
+    <td>' . $row["stuNic"] . '</td>
  </tr>
  </table>
  <hr>
-<p>I recomend Ms '.$row["fName"]." ".$row["mName"]." ".$row["lName"].'  as a student with good discipline, courage and strategies to shoulder any
-responsibility vested upon her. I wish Ms. '.$row["fName"]." ".$row["mName"]." ".$row["lName"].'  good luck in her future endeavours.</p>
+<p>I recomend Ms ' . $row["fName"] . " " . $row["mName"] . " " . $row["lName"] . '  as a student with good discipline, courage and strategies to shoulder any
+responsibility vested upon her. I wish Ms. ' . $row["fName"] . " " . $row["mName"] . " " . $row["lName"] . '  good luck in her future endeavours.</p>
 <br>
 <br>
 <p><b>Principal</b><br>
@@ -238,57 +237,68 @@ Anonymous College</p>
 ';
 
 
-//  $output .= '
-//   <tr>
-//    <td>'.$row["dutyID"].'</td>
-//    <td>'.$row["duty"].'</td>
-//   </tr>
-//  ';
- }
+    //  $output .= '
+    //   <tr>
+    //    <td>'.$row["dutyID"].'</td>
+    //    <td>'.$row["duty"].'</td>
+    //   </tr>
+    //  ';
+}
 
 //$output .= '</table>';
 
 //echo $output;
 
-$document->loadHtml($output);
+$characterID = "CHR" . substr($userID, 2);
+$sql = "SELECT * from charactercertificate WHERE characterID='$characterID'";
+$result_sql = mysqli_query($connect, $sql);
 
-//set page size and orientation
+if ((mysqli_num_rows($result_sql) == 0)) {
 
-$document->setPaper('A4', 'portrait');
+    $document->loadHtml($output);
 
-//Render the HTML as PDF
+    //set page size and orientation
 
-$document->render();
+    $document->setPaper('A4', 'portrait');
 
-//Get output of generated pdf in Browser
+    //Render the HTML as PDF
 
-//$document->stream("Character Certificate $userID", array("Attachment"=>0));
-//1  = Download
-//0 = Preview
+    $document->render();
 
-	// $dompdf->loadHtml($html);
-    $filePath = "../../pdf/character-certificate-$userID.pdf";
+    //Get output of generated pdf in Browser
+
+    $document->stream("Character Certificate $userID", array("Attachment" => 0));
+    //1  = Download
+    //0 = Preview
+    // $dompdf->loadHtml($html);
+    $filePath = "../../pdf/";
     $file = "character-certificate-$userID.pdf";
 
-	$files = $document->output();
-    
-	$data =file_put_contents($filePath, $files);
-
-    $dbh = new PDO("mysql:host=localhost;dbname=cl_gen","root","");
+    $files = $document->output();
     file_get_contents($files);
-    $stmt = $dbh->prepare("INSERT INTO characterCertificate VALUES ('',?,?,?)");
-    $stmt->bindParam(1,$userID);
-    $stmt->bindParam(2,$file);
-    $stmt->bindParam(3,$data);
+    $data = file_put_contents($filePath, $files);
+
+    $dbh = new PDO("mysql:host=localhost;dbname=cl_gen", "root", "");
+
+    $stmt = $dbh->prepare("INSERT INTO characterCertificate VALUES (?,?,?,?)");
+    $stmt->bindParam(1, $characterID);
+    $stmt->bindParam(2, $userID);
+    $stmt->bindParam(3, $file);
+    $stmt->bindParam(4, $data);
     $stmt->execute();
+} else {
+
+    $error = "Character certficate already generated";
+    header('Location: o_reqCc.php?error=' . $error);
+    exit();
 
 
-   // $sql = "INSERT INTO characterCertificate (characterID, studentID, characterCertificate) VALUES ('1','$userID','$file');";
 
-    if ($conn->query($sql) === TRUE ) {
-        header('Location: o_reqCc.php');
-    } else {
-        $error = "Cannot add Classes";
-        header('Location: o_reqCc.php?error=' . $error);
-    }
-?>
+    // $sql = "INSERT INTO characterCertificate (characterID, studentID, characterCertificate) VALUES ('1','$userID','$file');";
+}
+    // if ($conn->query($sql) === TRUE ) {
+    //     header('Location: o_reqCc.php');
+    // } else {
+    //     $error = "Cannot add Classes";
+    //     header('Location: o_reqCc.php?error=' . $error);
+    // }

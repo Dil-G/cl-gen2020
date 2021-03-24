@@ -84,7 +84,6 @@
                         </td>
                         <td>
                             <?php echo "<a class='btn editbtn' href = 'character.php?userID=ST2000001' >Generate </a> " ?>
-
                         </td>
                         <td><button class="btn dltbtn" type="button">Reject</button></td>
                         <td>

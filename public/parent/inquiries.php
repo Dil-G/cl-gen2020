@@ -9,7 +9,6 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 } else {
 
 	$userID = $_SESSION['userID'];
-	$username = $_SESSION['username'];
 	include_once '../../src/view_inquiery.php';
 
 ?>
@@ -31,7 +30,6 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 </head>
 
 <body>
-
 
     <div id="nav"></div>
 
@@ -74,13 +72,13 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
             <div id="page2" class="page">
                 <div class="card" style="width: 90%; height:100%;">
                     <?php
-						if (mysqli_num_rows($res) == 0) {
+						if (mysqli_num_rows($res1) == 0) {
 						?>
                     <h2><b>No Sent Inquiries</b></h2>
                     <img src="../../images/message.png">
                     <?php
 						} else {
-							while ($row = mysqli_fetch_assoc($res)) {
+							while ($row = mysqli_fetch_assoc($res_sender)) {
 							?>
                     <div class="container" style="width: 95%; height:100%;">
                         <?php echo " <button type='submit' style='float:right' class='search'><a href=AddInquiery.php?userID=" . $row['reciever'] . " >Reply</a></button>" ?>

@@ -63,37 +63,7 @@ echo"failed";
                 <label><b>Enter CSV Files</b></label>
 
                 <br><br><br>
-
-               <table>
-                <tr>
-                    <th>Stream Name</th>
-                    <th>Stream Code</th>
-                    <th>Add CSV File</th>
-                </tr>
-                <tr>
-                    <td>Physical Science</td>
-                    <td>AL/PS/2016</td>
-                    <td><input type="file" id="maths-file" name="maths-file" class="nextpgbtn" required></br></td>
-                </tr>
-                <tr>
-                    <td>Biological Science</td>
-                    <td>AL/BS/2016</td>
-                    <td><input type="file" id="bio-file" name="bio-file" class="nextpgbtn" required></br></td>
-                </tr>
-                <tr>
-                    <td>Commerce and Accounting</td>
-                    <td>AL/CS/2016</td>
-                    <td><input type="file" id="commerce-file" name="commerce-file" class="nextpgbtn" required></br></td>
-                </tr>
-               </table> 
-               
-
-
-
-
-
-
-
+                    <td><input type="file" id="maths-file" name="file" class="nextpgbtn" required></br></td>
                
 
                 <button type="submit" class="registerbtn">Save</button>

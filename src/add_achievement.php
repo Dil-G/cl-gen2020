@@ -68,7 +68,7 @@ if ($conn->query($sql) === TRUE) {
 	//echo 'window.location.href="../driver.php";';
     echo '</script>';
     echo "Succesfully Added Record";
-    header('Location: ../public/teacher/Tcr_achievement.php');
+    header('Location: ../public/teacher/Tcr_ach.php');
 
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;

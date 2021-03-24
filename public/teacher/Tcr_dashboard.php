@@ -15,6 +15,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 
 ?>
 
+
   <!DOCTYPE html>
   <html lang="en">
 
@@ -65,7 +66,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
         </tr>
         <tr>
           <td>
-            <div class="box ">
+            <div class="box">
               <?php
               while ($Nrow = $news_result->fetch_assoc()) {
                 echo "<h3>" . $Nrow["title"] . "<hr></h3>";

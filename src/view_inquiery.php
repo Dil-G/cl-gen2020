@@ -2,7 +2,7 @@
 
 require_once(realpath(dirname(__FILE__) . '/../config/conn.php'));
 
-$sql = "SELECT inquiryID,title,message,sender from inquiry where reciever = '$userID'";
+$sql = "SELECT * from inquiry where reciever = '$userID'";
 $result = mysqli_query($conn, $sql);
 
 if ($result) {
@@ -10,20 +10,20 @@ if ($result) {
 } else {
   echo "failed";
 }
-
+$username = $_SESSION['username'];
 $count = "SELECT COUNT(*) FROM inquiry WHERE sender= '$username'";
-$sql1 = "SELECT * FROM inquiry WHERE sender='$username' ORDER BY inquiryID DESC";
 
 
-$res = mysqli_query($conn, $sql1);
+$sql_sender = "SELECT * FROM inquiry WHERE sender='$username' ORDER BY inquiryID DESC";
+
+$res_sender = mysqli_query($conn, $sql_sender);
 $res1 = mysqli_query($conn, $count);
 
-if ($res) {
+if ($res_sender && $res1 ) {
   //echo "Sucessfull";
 } else {
   echo "failed";
 }
-
 
 
 $recieved_sql = "SELECT * FROM inquiry WHERE reciever='$username' ORDER BY inquiryID DESC";

@@ -1,10 +1,11 @@
-
+//Hide elements 'msg' and 'showNIC' when loading
 window.onload = function () {
     document.getElementById("msg").style.display = "none";
     document.getElementById("showNIC").style.display = "none";
 
 };
 
+//Validate password and confirm password
 function CheckPassword(password, confirmPassword) {
 
     var anUpperCase = /[A-Z]/;
@@ -15,21 +16,18 @@ function CheckPassword(password, confirmPassword) {
         password.search(aLowerCase) == -1 || password.search(aNumber) == -1) {
         document.getElementById("msg").style.display = "block";
         document.getElementById("msg").innerHTML = "Invalid Password";
-
         return false;
-
     }
     else if (password != confirmPassword) {
         document.getElementById("msg").style.display = "block";
         document.getElementById("msg").innerHTML = "Passwords not matched";
         return false;
-
     } else {
-
     }
 
 }
 
+//Validate password when loggin in
 function validatePassword(password) {
 
     var anUpperCase = /[A-Z]/;
@@ -51,7 +49,10 @@ function validatePassword(password) {
 
     }
 
-} function validateConPassword(password) {
+} 
+
+//Validate Confirm password
+function validateConPassword(password) {
 
     var anUpperCase = /[A-Z]/;
     var aLowerCase = /[a-z]/;
@@ -74,6 +75,7 @@ function validatePassword(password) {
 
 }
 
+//validate username
 function validateUsername(username) {
 
     var position = username.indexOf("/");
@@ -93,8 +95,6 @@ function validateUsername(username) {
         document.getElementById("uName").style.display = "none";
         return true;
     }
-
-
 }
 
 

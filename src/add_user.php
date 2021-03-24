@@ -21,7 +21,6 @@ if (isset($_GET['user_type'])){
         }
 
     }
-
     if(mysqli_num_rows($result) == 0){
         if($userType == "student"){
             $date = date("y");

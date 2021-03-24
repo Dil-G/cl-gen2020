@@ -16,7 +16,7 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Fees and Fines 1</title>
+    <title>Achievements</title>
     <script src="../js/jquery-1.9.1.min.js"></script>
     <script src="../js/nav.js"></script>
     <script src="../js/search.js"></script>

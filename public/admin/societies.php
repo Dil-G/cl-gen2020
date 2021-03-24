@@ -41,7 +41,6 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
             <form>
                 <button type="submit" formaction="add_society.php">Add Society</button>
             </form>
-            <h2><b>SOCIETIES</b></h2>
             <hr>
             <div class="scroll">
                 <table>

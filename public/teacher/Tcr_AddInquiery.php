@@ -9,7 +9,7 @@
       $teacherType = array();
       $teacherType = $_SESSION['teacherType'];
 
-     
+    //  echo $_SESSION['username'];
 	?>
 
 <!DOCTYPE html>
@@ -49,21 +49,20 @@
 
 
                     <label for="title"><b> Sender's ID</b></label>
-                    <input type="text" id="sender" name="sender" value = <?php  echo  $_SESSION['userID']?> readonly>
-                  
+                    <input type="text" id="sender" name="sender" value = "<?php  echo  $_SESSION['username']?>" readonly>
 
 					<label for="title"><b> Inquiry Title</b></label>
-                    <input type="text" id="title" name="title" placeholder="Type Inquiry ID.." required>
+                    <input type="text" id="title" name="title" placeholder="Type Inquiry ID.." value="<?php if(isset($_GET['title'])){echo $_GET['title'];} ?>" required>
                     
 	
 					<label for="reciever"><b>Reciever's ID</b></label>
-					<input type="text" id="username" name="rID" placeholder="Type Reciever's ID.." onblur="validateUserID(rID.value)"  required>
+					<input type="text" id="username" name="rID" placeholder="Type Reciever's ID.." value="<?php if(isset($_GET['sender'])){echo $_GET['sender'];} ?>" onblur="validateUsername(rID.value)"  required>
                     <div class="text" id="uName"></div>
 
 					<label for="msge"><b> Message </b></label>
                     <textarea id="msge" name="msge" placeholder="Write something.." style="height:200px" required></textarea>
                     
-                    <button type="submit" class="registerbtn" name="add_inq" formaction="Tcr_dashboard.php">Save</button>
+                    <button type="submit" class="registerbtn" name="add_inq">Save</button>
                 <a href="Tcr_ReplyInquiery.php" class="cancel-btn">Cancel</a>
 					<hr>
 					

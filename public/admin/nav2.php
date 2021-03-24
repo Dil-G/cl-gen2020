@@ -64,9 +64,9 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
             </li>
             <div class="submenu2" id="submenu2">
                 <ul>
-                    <li><a href="categories.php">Manage Categories</a></li>
                     <li><a href="sports.php">Sports</a></li>
                     <li><a href="societies.php"> Societies</a></li>
+                    <li><a href="deactivated_categories.php">Deactivated Categories</a></li>
                     <!-- <li><a href="educational.php">Educational </a></li> -->
                 </ul>
             </div>

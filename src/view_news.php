@@ -1,16 +1,17 @@
 <?php
+
 require_once(realpath(dirname(__FILE__) . '/../config/conn.php'));
 
+    require_once '../../config/conn.php';
+    $newsID = $_POST['newsID'];
+    $sql = "SELECT * FROM newsfeed WHERE newsID='$newsID'";
 
-    $sql = "SELECT * FROM newsfeed ORDER BY newsID DESC";
+    $res = mysqli_query($conn, $sql);
 
-	
-	$news_result= mysqli_query($conn,$sql);
-
-    if($news_result){
-    //echo "Sucessfull";
+    if ($res) {
+        //echo "Sucessfull";
+    } else {
+        echo "failed";
     }
-    else{
-    echo"failed";	
-    }
+
 ?>

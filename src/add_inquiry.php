@@ -3,7 +3,6 @@
 if (isset($_POST['add_inq'])){
     require_once '../config/conn.php';
     session_start();
-    echo "fff";
 
     if(!isset($_SESSION['userType']) && !isset($_SESSION['userType'])){
         $error = "Please Login!";

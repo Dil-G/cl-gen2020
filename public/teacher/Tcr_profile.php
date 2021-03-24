@@ -10,7 +10,6 @@
    
  $teacherType = $_SESSION['teacherType'];
     $userID = $_SESSION['userID'];
-    include('../../src/view_position.php');
 
          $query1 = "SELECT * FROM teacher WHERE teacherID = '$userID' ";
         

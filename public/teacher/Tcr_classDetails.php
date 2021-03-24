@@ -17,30 +17,33 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 
 ?>
 
-    <!DOCTYPE html>
-    <html>
 
-    <head>
+      <!DOCTYPE html>
+      <html>
 
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title> Classes</title>
-        <link rel="stylesheet" href="../css/view.css " type="text/css">
-        <link type="text/css" rel="stylesheet" href="../css/main.css">
-        <link type="text/css" rel="stylesheet" href="../css/users.css">
-        <link type="text/css" rel="stylesheet" href="../css/register.css">
-        <link type="text/css" rel="stylesheet" href="../css/messages.css">
-        <link type="text/css" rel="stylesheet" href="../css/class.css">
-        <script src="../js/jquery-1.9.1.min.js"></script>
-        <script src="../js/pop.js"></script>
-        <script src="../js/nav.js"></script>
-    </head>
+      <head>
 
-    <body>
-        <div id="teacherNav"></div>
 
-        <div class="content">
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+          <title> Classes</title>
+          <link rel="stylesheet" href="../css/view.css " type="text/css">
+          <link type="text/css" rel="stylesheet" href="../css/main.css">
+          <link type="text/css" rel="stylesheet" href="../css/users.css">
+          <link type="text/css" rel="stylesheet" href="../css/register.css">
+          <link type="text/css" rel="stylesheet" href="../css/messages.css">
+          <link type="text/css" rel="stylesheet" href="../css/class.css">
+          <script src="../js/jquery-1.9.1.min.js"></script>
+          <script src="../js/pop.js"></script>
+          <script src="../js/nav.js"></script>
+          <script src="../js/search.js"></script>
+      </head>
 
-            <div class="card">
+      <body>
+          <div id="teacherNav"></div>
+
+          <div class="content">
+
+          <div class="card">
                 <?php if (isset($_GET['error'])) { ?>
                     <div id="error"><?php echo $_GET['error']; ?></div>
                 <?php } ?>
@@ -86,12 +89,20 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                                                                                                             echo $row['medium'];
                                                                                                         } ?>" required> -->
                         </div>
+                      
                     <?php } ?>
 
                     </form>
+                   
             </div>
+<br>
+          
             <br>
             <div class="card">
+            <form class="search" action="Tcr_classDetails.php">
+            <input type="text" ID="Inputs" placeholder="Search.." name="search">
+            <button type="submit">Search</button>
+        </form>
                 <hr>
                 <table>
                     <tr>
@@ -103,6 +114,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                     <?php
                     while ($row = mysqli_fetch_assoc($students_result)) {
                     ?>
+                    <tbody id="Table"> 
                         <tr>
 
                             <td><?php $studentID = $row['studentID'];
@@ -119,6 +131,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                             <?php echo "<td><a class='btn editbtn' href = SProfile.php?userID=" . $row['studentID'] . " >View Profile </a> </td>" ?>
 
                         </tr>
+                        </tbody> 
                     <?php } ?>
 
 
