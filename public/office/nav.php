@@ -77,7 +77,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                     <?php }
                 if (in_array("d2", $dutyID)) { ?>
                     <li class="drop">
-                        <div class="drop" id="drop6">Manage Subjects/Streams<i class="fa fa-angle-down" aria-hidden="true"></i> </div>
+                        <div class="drop" id="drop6">Manage Subjects<i class="fa fa-angle-down" aria-hidden="true"></i> </div>
                     </li>
                     <div class="submenu6" id="submenu6">
                         <ul>

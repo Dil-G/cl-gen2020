@@ -109,6 +109,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                         <th>Admission number</th>
                         <th>Student name</th>
                         <th>View Profile</th>
+                        <th>Decipline</th>
                     </tr>
 
                     <?php
@@ -129,6 +130,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 
 
                             <?php echo "<td><a class='btn editbtn' href = SProfile.php?userID=" . $row['studentID'] . " >View Profile </a> </td>" ?>
+                            <?php echo "<td><a class='btn editbtn' href =Tcr_decipline.php?userID=" . $row['studentID'] . " >Add</a> </td>" ?>
 
                         </tr>
                         </tbody> 

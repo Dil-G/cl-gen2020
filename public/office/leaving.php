@@ -83,6 +83,7 @@ if ((mysqli_num_rows($result_sql) == 0)) {
     $sql_noti = "INSERT into notifications(title,messages,document,reciever,dateTime) VALUES ('".$title."','".$message."','".$file."','".$userID."','".$date."')";
     $result_noti = mysqli_query($conn,$sql_noti);
 
+
 } else {
 
     $error = "Character certficate already generated";

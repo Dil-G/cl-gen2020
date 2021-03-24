@@ -51,6 +51,31 @@ else{
 echo"failed";	
 }
 }
-?>
 
 
+$sql_notifications = "SELECT *  FROM notifications WHERE reciever='$userID' ORDER BY notificationID DESC";
+
+$res_notifications= mysqli_query($conn,$sql_notifications);
+
+if($res_notifications){
+ //echo "Sucessfull";
+}
+else{
+echo"failed";	
+}
+
+if (isset($_GET['view_notification'])) {
+
+    $notificationID =$_GET['view_notification'];
+    
+    $sql_noti = "SELECT *  FROM notifications WHERE reciever='$userID' AND notificationID=$notificationID ";
+    
+    $sql_noti= mysqli_query($conn,$sql_noti);
+    
+    if($sql_noti){
+    //echo "Sucessfull";
+    }
+    else{
+    echo"failed";	
+    }
+}
