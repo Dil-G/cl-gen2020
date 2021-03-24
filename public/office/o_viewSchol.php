@@ -58,6 +58,10 @@ include_once '../../config/conn.php';
                             <hr style="margin-left: 2%;">
                             <label for="scholExamYear"><b>Enter Exam Year</b></label>
                             <input type="text" placeholder="Enter Exam Year" name="scholExamYear" required>
+
+                            <label for="examID" ><b>Enter Pass Mark</b></label>
+                            <input type="text" name="pass-mark" placeholder="Enter Pass Mark" required> 
+
                             <button type="submit" class="registerbtn" name="savebtn">Save</button>
                             <a href="o_viewSchol.php" class="cancel-btn">Cancel</a>
 

@@ -38,17 +38,14 @@ if(isset($_POST['submit'])){
       
     echo "<script>alert('Import done');</script>";
     header('Location: ../public/office/o_viewSchol.php');
-    
+     }
     }
-    
-   }
   }
-
 }else{
   $error = "Cannot add the record";
   header('Location: ../public/office/o_viewSchol.php?error='.$error);
 }
 
- 
+
     $conn->close();
 ?>

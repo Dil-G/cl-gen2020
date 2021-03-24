@@ -5,6 +5,19 @@ require_once(realpath(dirname(__FILE__) . '/../config/conn.php'));
 
 if(isset($_POST['submit'])){
 
+    $examID = $_POST['examID'];
+
+    $year = explode("/","['examID']");
+
+        $prefix_maths = "AL/PS/";
+        $prefix_bio = "AL/BS/";
+        $prefix_commerce = "AL/CS/";
+        
+        $maths_streamID = $prefix_maths . $year[1] ;
+        $bio_streamID = $prefix_bio . $year[1] ;
+        $commerce_streamID = $prefix_commerce . $year[1] ;
+
+
   if($_FILES['file']['name'])
   {
    $filename = explode(".", $_FILES['file']['name']);
