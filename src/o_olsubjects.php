@@ -12,7 +12,7 @@
         $subName = $_POST['subject-name'];
         $catName = $_POST['subject-cat'];
 
-        $sql = "SELECT * From ol_subjetcs";
+        $sql = "SELECT * FROM ol_subjects ";
         $result = mysqli_query($conn, $sql);
         $maxID=0;
 

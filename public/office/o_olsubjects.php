@@ -59,10 +59,10 @@ include_once '../../config/conn.php';
                             <label for="subject-cat"><b>Category</b></label>
                             <select name="subject-cat" id="">
                                 <option disabled selected value> -- Select an option -- </option>
-                                <option value="main">Main Subjects Category</option>
-                                <option value="cat1">Category 1</option>
-                                <option value="cat2">Category 2</option>
-                                <option value="cat3">Category 3</option>
+                                <option value="Main">Main Subjects Category</option>
+                                <option value="Cat1">Category 1</option>
+                                <option value="Cat2">Category 2</option>
+                                <option value="Cat3">Category 3</option>
                             </select>
                             
 

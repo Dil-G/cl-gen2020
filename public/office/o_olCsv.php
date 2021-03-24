@@ -17,7 +17,7 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Add Scholarship Results</title>
+    <title>Add O/L Results</title>
     <link type="text/css" rel="stylesheet" href="../css/pop.css">
     <link rel="stylesheet" href="../css/register.css " type="text/css">
     <link type="text/css" rel="stylesheet" href="../css/main.css">
