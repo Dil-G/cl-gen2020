@@ -104,6 +104,14 @@ if (!$request_result) {
 } else {
 }
 
+$inquiry_sql = "SELECT * FROM inquiry ORDER BY inquiryID DESC LIMIT 4;";
+$inquiry_result = $conn->query($inquiry_sql);
+
+if (!$inquiry_result) {
+    $error = "ERROR";
+} else {
+}
+
 // $totUser = "SELECT COUNT(isActivated) FROM user where userType != 'superadmin' AND isActivated = 1"; 
 
 
