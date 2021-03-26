@@ -26,6 +26,7 @@
         <script src="../js/jquery-1.9.1.min.js"></script>
         <script src="../js/pop.js"></script>
         <script src="../js/nav.js"></script>
+        <script src="../js/serach.js"></script>
         <link type="text/css" rel="stylesheet" href="../css/pop.css">
         <link rel="stylesheet" href="../css/view.css " type="text/css">
         <link type="text/css" rel="stylesheet" href="../css/users.css">
@@ -38,10 +39,10 @@
     <div class="content">
 
         <h1 style="color: #6a7480;">O/L Examination Results</h1>
-        <form class="search" action="register_stu.html">
-            <input type="text" placeholder="Search.." name="search">
-            <button type="submit">Search</button>
-        </form>
+        <form class="search">
+                <input type="text" id="Inputs" placeholder="Search.." name="search">
+                <button type="submit">Search</button>
+            </form>
 
 
         <br>
@@ -77,6 +78,7 @@
                     $result = mysqli_query($conn,$sql);
                     ?>
             <hr>
+            <div class= "scroll">
             <table>
                 <tr>
                     <th>Exam ID</th>
@@ -104,6 +106,7 @@
                     }
                     ?>
             </table>
+            </div>
         </div>
 
     </div>

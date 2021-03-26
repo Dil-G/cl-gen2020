@@ -41,7 +41,7 @@
         <div class="card">
             <h1 style="margin-top:20px;">Students List</h1>
             <form class="search">
-                <input type="text" ID="Inputs" placeholder="Search.." name="search">
+                <input type="text" id="Inputs" placeholder="Search.." name="search">
                 <button type="submit">Search</button>
             </form>
             <div class="btn-box" style="margin-left:5px;">
@@ -67,12 +67,13 @@
 
                 <hr>
                 <div class="scroll">
+
                     <table>
                         <tr>
                             <th>User ID</th>
                             <th>User Name</th>
                             <th>Add Details</th>
-                            
+
                         </tr>
                         <?php
                         while($row=mysqli_fetch_assoc($student_result2)){
@@ -82,7 +83,7 @@
                                 <td><?php echo $row['userID'] ?></td>
                                 <td><?php echo $row['username'] ?></td>
                                 <?php echo "<td><a class='btn editbtn' href = o_addStudentDetails.php?studentID=".$row['userID']." > Add </a> </td>"?>
-                                
+
                             </tr>
                         </tbody>
                         <?php

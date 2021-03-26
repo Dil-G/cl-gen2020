@@ -20,26 +20,29 @@ include_once '../../config/conn.php';
 ?>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Grade Scholarship Results</title>
+    <script src="../js/search.js"></script> 
+    <script src="../js/jquery-1.9.1.min.js"></script>
+    <script src="../js/pop.js"></script>
+    <script src="../js/nav.js"></script>
     <link type="text/css" rel="stylesheet" href="../css/pop.css">
     <link rel="stylesheet" href="../css/view.css " type="text/css">
     <link type="text/css" rel="stylesheet" href="../css/users.css">
     <link type="text/css" rel="stylesheet" href="../css/main.css">
     <link type="text/css" rel="stylesheet" href="../css/register.css">
-    <script src="../js/jquery-1.9.1.min.js"></script>
-    <script src="../js/pop.js"></script>
-    <script src="../js/nav.js"></script>
+   
+    
 </head>
 
 <body>
     <div id="officeNav"></div>
-    
+
     <div class="content">
         <br>
         <h1 style="color: #6a7480;">Grade 5 Scholarship Examination Results</h1>
-        <form class="search" action="register_stu.html">
-            <input type="text" placeholder="Search.." name="search">
-            <button type="submit">Search</button>
-        </form>
+        <form class="search">
+                <input type="text" id="Inputs" placeholder="Search.." name="search">
+                <button type="submit">Search</button>
+            </form>
 
         <br>
         <br>
@@ -59,8 +62,8 @@ include_once '../../config/conn.php';
                             <label for="scholExamYear"><b>Enter Exam Year</b></label>
                             <input type="text" placeholder="Enter Exam Year" name="scholExamYear" required>
 
-                            <label for="examID" ><b>Enter Pass Mark</b></label>
-                            <input type="text" name="pass-mark" placeholder="Enter Pass Mark" required> 
+                            <label for="examID"><b>Enter Pass Mark</b></label>
+                            <input type="text" name="pass-mark" placeholder="Enter Pass Mark" required>
 
                             <button type="submit" class="registerbtn" name="savebtn">Save</button>
                             <a href="o_viewSchol.php" class="cancel-btn">Cancel</a>
@@ -76,36 +79,38 @@ include_once '../../config/conn.php';
                     $result = mysqli_query($conn,$sql);
                     ?>
             <hr>
-            <table>
-                <tr>
-                    <th>Exam ID</th>
-                    <th>Year</th>
-                    <th>Name of the Examination</th>
-                    <th>Add CSV</th>
-                    <th>View Details</th>
+            <div class="scroll">
+                <table>
+                    <tr>
+                        <th>Exam ID</th>
+                        <th>Year</th>
+                        <th>Name of the Examination</th>
+                        <th>Add CSV</th>
+                        <th>View Details</th>
 
 
-                </tr>
-                <tr>
-                    <?php
+                    </tr>
+                    <tr>
+                        <?php
                     
                     while($row=mysqli_fetch_assoc($result)){
                     ?>
-                <tr>
-                    <td><?php echo $row['examID']?></td>
-                    <td><?php echo $row['examYear']?></td>
-                    <td><?php echo $row['examName']?></td>
-                    <?php echo "<td><a id='addcsv' class='btn editbtn' href = o_scholCsv.php?examID=".$row['examID']." > Add Results </a></td>"
+                    <tr>
+                        <td><?php echo $row['examID']?></td>
+                        <td><?php echo $row['examYear']?></td>
+                        <td><?php echo $row['examName']?></td>
+                        <?php echo "<td><a id='addcsv' class='btn editbtn' href = o_scholCsv.php?examID=".$row['examID']." > Add Results </a></td>"
                     ?>
-                   
-                    <?php echo "<td><a class='btn viewbtn' href = o_schol.php?examID=".$row['examID'].">View Results</td>" ?>
-                     
 
-                </tr>
-                <?php
+                        <?php echo "<td><a class='btn viewbtn' href = o_schol.php?examID=".$row['examID'].">View Results</td>" ?>
+
+
+                    </tr>
+                    <?php
                     }
                     ?>
-            </table>
+                </table>
+            </div>
         </div>
 
     </div>
@@ -119,7 +124,7 @@ include_once '../../config/conn.php';
     addExam.onclick = function() {
         form1.style.display = "block";
     }
-    addCsv.onclick = function(){
+    addCsv.onclick = function() {
         form2.style.display = "block";
     }
     </script>
