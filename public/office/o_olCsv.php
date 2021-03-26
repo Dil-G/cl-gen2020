@@ -56,12 +56,12 @@
                 <hr>
 
                 <label for="examID" ><b>Exam ID</b></label>
-                <input type="text" value= "<?php echo $row['examID']?>" required>
+                <input type="text" name="examID" value= "<?php echo $row['examID']?>" required>
                 
                 <label name="file"><b>Enter CSV File</b></label>
                 <input type="file" id="myFile" name="file" class="nextpgbtn" required></br>
 
-                <button type="submit" class="registerbtn" name="submit" value="Import">Save</button>
+                <button type="submit" class="registerbtn" name="olResults" value="Import">Save</button>
                 <a href="o_viewOl.php" class="cancel-btn">Cancel</a>
 
 

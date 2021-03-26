@@ -69,7 +69,7 @@
 
                     <label for="stuID"><b>Admission Number</b></label>
                     <input type="text" placeholder="Enter ID"
-                        value="<?php if (isset ($_GET['userID'])){echo $_GET['userID'];}?>" name="stuID" required>
+                        value="<?php if (isset ($_GET['studentID'])){echo $_GET['studentID'];}?>" name="stuID" required>
 
                     <label for="stufName"><b>First Name</b></label>
                     <input type="text" placeholder="Enter First Name" name="stufName" id="fname"

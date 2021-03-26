@@ -133,7 +133,7 @@ $userID = $_SESSION['studentID'];
         </div>
         <table id='second'>
             <tr>
-                <td>Principal </td>
+                <td style>Principal </td>
             </tr>
             <tr>
                 <td>Anonymus College </td>
