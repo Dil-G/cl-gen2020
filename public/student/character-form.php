@@ -9,6 +9,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 } else {
 
     $userID = $_SESSION['userID'];
+    $userType = $_SESSION['userType'];
 
 
 ?>
@@ -62,6 +63,8 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                                     <form action="../../src/characterRequest.php" method="POST" enctype="multipart/form-data">
                                         <hr>
                                         <input type="hidden" name="userID" value="<?php echo $userID ?>" required>
+                                        <input type="hidden" name="userType" value="<?php echo $userType ?>" required>
+
 
                                         <label for="reason"><b>Reason for request</b></label>
                                         <textarea id="reason" name="reason" rows="4" cols="50"></textarea>
@@ -97,6 +100,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                                     <form action="../../src/characterRequest.php" method="POST" enctype="multipart/form-data">
                                         <hr>
                                         <input type="hidden" name="userID" value="<?php echo $userID ?>" required>
+                                        <input type="hidden" name="userType" value="<?php echo $userType ?>" required>
 
                                         <label for="reason"><b>Reason for request</b></label>
                                         <textarea id="reason" name="reason" rows="4" cols="50"></textarea>

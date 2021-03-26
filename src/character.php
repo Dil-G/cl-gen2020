@@ -3,8 +3,8 @@
 //include autoloader
 session_start();
 
-require_once '../../lib/dompdf/autoload.inc.php';
-require_once '../../config/conn.php';
+require_once '../lib/dompdf/autoload.inc.php';
+require_once '../config/conn.php';
 
 $userID = $_GET['userID'];
 
@@ -16,11 +16,11 @@ use Dompdf\Dompdf;
 
 $document = new Dompdf();
 
-$_SESSION['studentID']=$userID;
+$_SESSION['studentID'] = $userID;
 //$document->loadHtml($html);
 
-ob_start(); 
-require '../common/leaving_document.php';
+ob_start();
+require '../public/office/character_certificate.php';
 $page = ob_get_clean();
 
 
@@ -35,8 +35,8 @@ $connect = mysqli_connect("localhost", "root", "", "cl_gen");
 
 //echo $output;
 
-$leavingID = "LDC" . substr($userID, 2);
-$sql = "SELECT * from leavingdocument WHERE leavingID='$leavingID'";
+$characterID = "CHR" . substr($userID, 2);
+$sql = "SELECT * from charactercertificate WHERE characterID='$characterID'";
 $result_sql = mysqli_query($connect, $sql);
 
 if ((mysqli_num_rows($result_sql) == 0)) {
@@ -53,57 +53,53 @@ if ((mysqli_num_rows($result_sql) == 0)) {
 
     //Get output of generated pdf in Browser
 
-    $document->stream("Leaving Document".$userID, array("Attachment" => 0));
+    $document->stream("Character Certificate $userID", array("Attachment" => 0));
     //1  = Download
     //0 = Preview
     // $dompdf->loadHtml($html);
     $filePath = "../../pdf/";
-    $file = "leaving-document-$userID.pdf";
+    $file = "character-certificate-$userID.pdf";
 
     $files = $document->output();
     file_get_contents($files);
     $data = file_put_contents($filePath, $files);
 
     $dbh = new PDO("mysql:host=localhost;dbname=cl_gen", "root", "");
-    $date= date('Y-m-d H:i:s');
-    $stmt = $dbh->prepare("INSERT INTO leavingdocument VALUES (?,?,?,?,?)");
-    $stmt->bindParam(1, $leavingID);
+    $date = date('Y-m-d H:i:s');
+    $stmt = $dbh->prepare("INSERT INTO characterCertificate VALUES (?,?,?,?,?)");
+    $stmt->bindParam(1, $characterID);
     $stmt->bindParam(2, $userID);
     $stmt->bindParam(3, $file);
     $stmt->bindParam(4, $data);
     $stmt->bindParam(5, $date);
     $stmt->execute();
 
-    $title = "Leaving Document";
-    $message = "Your Leaving Document has been generated.You can colloect it from the school within a week";
+    $title = "Character Certificate";
+    $message = "Your character certificate has been generated.You can colloect it from the school within a week";
 
     $sql_noti = "INSERT into notifications(title,messages,reciever,dateTime) VALUES ('" . $title . "','" . $message . "','" . $userID . "','" . $date . "')";
     $result_noti = mysqli_query($conn, $sql_noti);
 
-    $requestStatus = 4;
-
-    $update = "UPDATE leavingrequests SET requestStatus=$requestStatus WHERE studentID='$userID'";
+    $update = "UPDATE characterrequests SET requestStatus='1' WHERE userID='$userID'";
     $result_update = mysqli_query($conn, $update);
 
     if ($result_noti == TRUE && $result_update == TRUE ) {
         echo '<script language = "javascript">';
         echo 'alert("Details Added");';
-        header('Location: ../public/office/o_reqLc.php');
+        header('Location: ../public/office/o_reqCc.php');
     } else {
-        echo "Error : " . $sql_noti . "<br>" . $conn->error;
+        echo "Error : " . $sql . "<br>" . $conn->error;
     }
-    
-    if ($conn->query($sql) === TRUE && $stmt == TRUE && $conn->query($update) === TRUE) {
+
+    if ($conn->query($sql) === TRUE && $stmt == TRUE ) {
     } else {
-        $error = "Leaving Document cannot be generated";
+        $error = "Character certficate cannot be generated";
         header('Location: o_reqCc.php?error=' . $error);
         exit();
     }
-
-
 } else {
 
-    $error = "Leaving Document already generated";
+    $error = "Character certficate already generated";
     header('Location: o_reqCc.php?error=' . $error);
     exit();
 
