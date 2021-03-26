@@ -8,6 +8,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 
   $userID = $_SESSION['userID'];
   include('../../src/dashboard2.php');
+  include('../../src/dashboard.php');
   include('../../config/conn.php');
 
   $user_sql = "SELECT * FROM teacher WHERE teacherID='$userID'";
@@ -26,7 +27,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
     <script src="../js/jquery-1.9.1.min.js"></script>
     <script src="../js/nav.js"></script>
     <link type="text/css" rel="stylesheet" href="../css/main.css">
-    <link type="text/css" rel="stylesheet" href="../css/dashboard.css">
+        <link type="text/css" rel="stylesheet" href="../css/dashboard.css">
     <title>Teacher Dashboard</title>
   </head>
 
@@ -48,40 +49,74 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
       </div>
       </table>
 
+     
 
 
+      <div class="pack">
+                <table class="statis three">
+                    <tr>
 
-      <table class="statis one">
-        <tr>
+                        <th>
+                            <a href=newsfeed.php>
+                                <div class="box ">
+                                    <h2 style=" float:left;margin-left:20px;">NEWS</h2>
+                                    <p style="float:right;line-height:35px;margin-right:25px;">View More<i class="fa fa-angle-right" style="float:right;margin-left:50%;line-height:120px;"></i></p>
+                                </div>
+                            </a>
 
-          <th>
-          <a href=newsfeed.php>
-            <div class="box "><h2 style=" float:left;margin-left:20px;">NEWS</h2>
-            <p style="float:right;line-height:35px;margin-right:25px;">View More<i class="fa fa-angle-right" style="float:right;margin-left:85%;line-height:120px;"></i></p>
-          </div>
-          </a>
-            
-          </th>
+                        </th>
 
-        </tr>
-        <tr>
-          <td>
-            <div class="box">
-              <?php
-              while ($Nrow = $news_result->fetch_assoc()) {
-                echo "<h3>" . $Nrow["title"] . "<hr></h3>";
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="box ">
+                                <?php
+                                while ($Nrow = $news_result->fetch_assoc()) {
+                                    echo "<h3>" . $Nrow["title"] . "<hr></h3>";
 
-                echo substr($Nrow['news'], 0, 200) . "...<br>";
-              ?>
-                <hr>
-              <?php
-              } ?>
+                                    echo substr($Nrow['news'], 0, 200) . "...<br>";
+                                ?>
+                                    <hr>
+                                <?php
+                                } ?>
 
+                            </div>
+                        </td>
+
+                    </tr>
+                </table>
+                <table class="statis four">
+                    <tr>
+
+                        <th>
+                            <a href=inquiries.php>
+                                <div class="box ">
+                                    <h2 style=" float:left;margin-left:20px;">Inquiries</h2>
+                                    <p style="float:right;line-height:35px;margin-right:25px;">View More<i class="fa fa-angle-right" style="float:right;margin-left:50%;line-height:120px;"></i></p>
+                                </div>
+                            </a>
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="box ">
+                                <?php
+                                while($Irow = $inquiry_result->fetch_assoc()) {
+                                
+                                    echo "<h3>" . $Irow["title"] . "<hr></h3>";
+
+                                    echo substr($Irow['message'], 0, 200) . "...<br>";
+                                ?>
+                                    <hr>
+                                <?php
+                                } ?>
+
+                            </div>
+                        </td>
+
+                    </tr>
+                </table>
             </div>
-          </td>
-
-        </tr>
-      </table>
 
 
      
