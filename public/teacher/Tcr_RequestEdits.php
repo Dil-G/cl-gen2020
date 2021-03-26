@@ -8,6 +8,9 @@
       
       $teacherType = array();
       $teacherType = $_SESSION['teacherType'];
+      $userID = $_SESSION['userID'];
+
+
 
      
 	?>
@@ -33,22 +36,13 @@
 
     <div id="teacherNav"></div>
 
-    
-    <div class="content">
-        <?php if (isset($_GET['message'])){?>
-        <div id="message"><?php echo $_GET['message']; ?></div>
-        <?php } ?>
-
-        <?php if (isset($_GET['error'])){?>
-        <div id="error"><?php echo $_GET['error']; ?></div>
-        <?php } ?>
 
 
         <div class="container">
 
            
 
-            <form action="../../src/request1.php" method="POST" enctype="multipart/form-data">
+            <form action="../../src/request1.php" method="POST" enctype="multipart/form-data" >
                 <hr>
 
 
@@ -65,14 +59,17 @@
                     <textarea id="request" name="request" rows="4" placeholder="News" cols="50" required></textarea>
                 
                     
-                    <label for="filename"><b>Upload a proof</b></label>
-                    <input type="file" placeholder="Add Your File" id="myFile" name="file" required>
+                    <label for="image"><b>Upload a proof</b></label>
+          <input type="hidden" name="size" value="1000000" required>
 
-               
-                <br>
-                <button type="submit" class="registerbtn" id="add_news" name="add_request" formaction="Tcr_dashboard.php">Submit</button>
-                <a href="Tcr_dashboard1.php" class="cancel-btn">Cancel</a>
+          <div>
+            <input type="file" name="image" id="image" required />
+          </div>
+          <br>
                 
+                <button type="submit" class="registerbtn" id="add_news" name="add_request">Submit</button>
+                 <a href="Tcr_dashboard.php" class="cancel-btn">Cancel</a>
+
                 
             </form>
          
