@@ -80,10 +80,13 @@ if ((mysqli_num_rows($result_sql) == 0)) {
     $sql_noti = "INSERT into notifications(title,messages,reciever,dateTime) VALUES ('" . $title . "','" . $message . "','" . $userID . "','" . $date . "')";
     $result_noti = mysqli_query($conn, $sql_noti);
 
-    $update = "UPDATE characterrequests SET requestStatus='1' WHERE userID='$userID'";
-    $result_update = mysqli_query($conn, $update);
 
-    if ($result_noti == TRUE && $result_update == TRUE ) {
+    $requestStatus = 4;
+
+    $update = "UPDATE characterrequests SET requestStatus=$requestStatus WHERE studentID='$userID'";
+    $result1 =mysqli_query($conn,$update);
+
+    if ($result_noti == TRUE && $result1 == TRUE ) {
         echo '<script language = "javascript">';
         echo 'alert("Details Added");';
         header('Location: ../public/office/o_reqCc.php');

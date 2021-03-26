@@ -14,28 +14,34 @@ while($row=mysqli_fetch_assoc($result)){
     
 }
 
+
 // $sql_alresults = "SELECT * FROM `alresults`" ;
 // $result_alresults = mysqli_query($conn,$sql_alresults);
 
 $sql_requests="SELECT student.fName,student.lName, characterrequests.*  FROM characterrequests
-LEFT JOIN student ON student.admissionNo=characterrequests.userID WHERE characterrequests.requestStatus = '0' ";
+LEFT JOIN parent ON parent.admissionNo=characterrequests.studentID 
+LEFT JOIN student ON student.admissionNo=characterrequests.studentID WHERE characterrequests.requestStatus = '0' ";
 $result_requests = mysqli_query($conn,$sql_requests);
 
 $sql_requestsSent="SELECT student.fName,student.lName, characterrequests.*  FROM characterrequests
-LEFT JOIN student ON student.admissionNo=characterrequests.userID WHERE characterrequests.requestStatus = '1' ";
+LEFT JOIN parent ON parent.admissionNo=characterrequests.studentID 
+LEFT JOIN student ON student.admissionNo=characterrequests.studentID WHERE characterrequests.requestStatus = '1' ";
 $result_requestsSent = mysqli_query($conn,$sql_requestsSent);
 
-$sql_requestsIssue="SELECT student.fName,student.lName, characterrequests.*,characterissues.*,charactercertificate.*  FROM characterrequests
+$sql_requestsIssue="SELECT student.fName,student.lName,student.admissionNo, characterrequests.*,characterissues.*,charactercertificate.*  FROM characterrequests
 LEFT JOIN characterissues ON characterissues.userID=characterrequests.userID
-LEFT JOIN charactercertificate ON charactercertificate.studentID=characterrequests.userID
-LEFT JOIN student ON student.admissionNo=characterrequests.userID WHERE characterrequests.requestStatus = '2' ";
+LEFT JOIN parent ON parent.admissionNo=characterrequests.studentID 
+LEFT JOIN charactercertificate ON charactercertificate.studentID=characterrequests.studentID
+LEFT JOIN student ON student.admissionNo=characterrequests.studentID WHERE characterrequests.requestStatus = '2' ";
 $result_requestsIssue = mysqli_query($conn,$sql_requestsIssue);
 
 
-$sql_requestsAccepted="SELECT student.fName,student.lName, characterrequests.*,charactercertificate.*  FROM characterrequests
-LEFT JOIN charactercertificate ON charactercertificate.studentID=characterrequests.userID
-LEFT JOIN student ON student.admissionNo=characterrequests.userID WHERE characterrequests.requestStatus = '3' ";
+$sql_requestsAccepted="SELECT student.fName,student.lName,student.admissionNo, characterrequests.*,charactercertificate.*  FROM characterrequests
+LEFT JOIN charactercertificate ON charactercertificate.studentID=characterrequests.studentID
+LEFT JOIN parent ON parent.admissionNo=characterrequests.studentID 
+LEFT JOIN student ON student.admissionNo=characterrequests.studentID WHERE characterrequests.requestStatus = '3' ";
 $result_requestsAccepted = mysqli_query($conn,$sql_requestsAccepted);
+
 
 
 

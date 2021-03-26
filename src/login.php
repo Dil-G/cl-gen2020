@@ -40,9 +40,15 @@ if (isset($_POST['login'])){
 
                 }else if($row['userType'] == "parent"){
                     $_SESSION['userID'] = $row['userID'];
+                    $userID = $row['userID'];
                     $_SESSION['username'] = $row['username'];
                     $_SESSION['userType'] = $row['userType'];
-                    header('Location: ../public/parent/SProfile.php');
+                    $parentsql = "SELECT * from parent where parentID='$userID'";
+                    $parent_result = mysqli_query($conn,$parentsql);
+                    while($parent_row = mysqli_fetch_assoc($parent_result)) {
+                        $_SESSION['studentID'] = $parent_row['admissionNo'];
+                    }
+                    header('Location: ../public/parent/newsfeed.php');
 
                 }else if($row['userType'] == "teacher"){
 

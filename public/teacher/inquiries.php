@@ -90,6 +90,8 @@ $sql = "SELECT * FROM inquiry WHERE reciever ='$userID' ORDER BY inquiryID DESC"
                     <div class="container" style="width: 95%; height:100%;">
                 
                         <h2><b><?php echo "To:" . $row['reciever'] ?></b></h2>
+                       
+                        <h2><b><?php echo "Reciever's Name:" . $row['recievername'] ?></b></h2>
                         <hr>
                         <h2><b><?php echo "Title :" . $row['title'] ?></b></h2>
                         <p> <?php echo $row['message'] ?></p>
@@ -115,9 +117,10 @@ $sql = "SELECT * FROM inquiry WHERE reciever ='$userID' ORDER BY inquiryID DESC"
 							?>
                     <div class="container" style="width: 95%; height:100%;">
                     
-                    <?php echo " <button type='submit' style='float:right' class='search'><a href=Tcr_AddInquiery.php?sender=" . $row['sender']  . '&reciever=' .  $row['reciever'] . '&title=' .  urlencode($row['title'])."  >Reply</a></button>" ?>
+                    <?php echo " <button type='submit' style='float:right' class='search'><a href=Tcr_AddInquiery.php?sender=" . $row['sender']  . '&sendername=' .  $row['sendername'] .'&reciever=' .  $row['reciever'] . '&recievername=' .  $row['recievername'] . '&title=' .  urlencode($row['title'])."  >Reply</a></button>" ?>
 
                         <h2><b><?php echo "From :" . $row['sender'] ?></b></h2>
+                        <h2><b><?php echo "Sender's Name:" . $row['sendername'] ?></b></h2>
                         <hr>
                         <h2><b><?php echo "Title :" . $row['title'] ?></b></h2>
                         <p> <?php echo $row['message'] ?></p>

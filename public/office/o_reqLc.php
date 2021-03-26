@@ -49,12 +49,13 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                         <hr>
                         <table>
                             <tr>
+
                                 <th>Student ID</th>
                                 <th>Student Name</th>
                                 <th>Requested Date and Time</th>
                                 <th>Reason</th>
                                 <th>Proof</th>
-                                <th>Generate <br>Character Certificate</th>
+                                <th>Generate <br>Leaving Document</th>
                                 <th>Reject Request</th>
                                 <th>Send to Student</th>
                             </tr>
@@ -72,7 +73,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                                         $result_q = mysqli_query($conn, $query);
                                         while ($row2 = mysqli_fetch_array($result_q)) {
                                         ?>
-                                            <?php echo "<a class='btn editbtn' href = 'view_proof.php?proofID=" . $row2['proofID'] . "'>View </a> " ;
+                                        <?php echo "<a class='btn editbtn' href = 'view_proof.php?proofID=" . $row2['proofID'] . "'>View </a> ";
                                         }
                                         ?>
                                     </td>
@@ -97,19 +98,17 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                             <tr>
                                 <th>Student ID</th>
                                 <th>Student Name</th>
-                                <th>Proof</th>
-                                <th>Character Certificate</th>
+                                <th>Leaving Document/th>
                             </tr>
                             <tr>
                                 <?php while ($row = mysqli_fetch_assoc($result_requestsSent)) {
                                 ?>
                                     <td><?php echo $row['userID'] ?></td>
                                     <td><?php echo $row['fName'] . " " . $row['lName'] ?></td>
-                                    <td><?php echo $row['proof'] ?></td>
 
                                     <td>
-                                        <?php $_SESSION['studentID'] = 'ST2000001';
-                                        echo "<a class='btn editbtn' href = 'leaving_document.php?userID=" . $row['userID'] . "' >View </a> " ?>
+                                        <?php
+                                        echo "<a class='btn editbtn' href = '../common/leaving_document.php?userID=" . $row['studentID'] . "' >View </a> " ?>
                                     </td>
                                 <?php } ?>
                             </tr>
@@ -129,6 +128,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                                 <th>Student Name</th>
                                 <th>Issue</th>
                                 <th>Proof</th>
+                                <th>Leaving Document</th>
                                 <th>Resolve and generate <br>new Character Certificate</th>
                             </tr>
                             <tr>
@@ -139,16 +139,17 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                                     <td><?php echo $rows['issue'] ?></td>
                                     <td>
                                         <?php
-                                        $requestID = $row['requestID'];
+                                        $requestID = $rows['requestID'];
                                         $query = "SELECT * FROM proofs WHERE requestID='$requestID'";
                                         $result_q = mysqli_query($conn, $query);
                                         while ($row2 = mysqli_fetch_array($result_q)) {
                                         ?>
-                                            <?php echo "<a class='btn editbtn' href = 'view_proof.php?proofID=" . $row2['proofID'] . "'>View </a> " ;
+                                        <?php echo "<a class='btn editbtn' href = 'view_proof.php?proofID=" . $row2['proofID'] . "'>View </a> ";
                                         }
                                         ?>
                                     </td>
-
+                                    <td><?php echo "<a class='btn editbtn' href = '../common/leaving_document.php?userID=" . $rows['admissionNo'] . "' >View </a> " ?>
+                                    </td>
                                     <td>
                                         <?php $_SESSION['studentID'] = 'ST2000001';
                                         echo "<a class='btn editbtn' href = '../../src/notifications.php?leaving=" . $rows['userID'] . "'>Regenerate </a> " ?>
@@ -159,6 +160,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                         </table>
                     </div>
                 </div>
+
                 <!--Page2 End-->
                 <!--Page3-->
                 <div id="page3" class="page">
@@ -179,8 +181,8 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                                     <td><?php echo $rows['fName'] . " " . $rows['lName'] ?></td>
 
                                     <td>
-                                        <?php $_SESSION['studentID'] = 'ST2000001';
-                                        echo "<a class='btn editbtn' href = 'leaving.php?userID=" . $rows['userID'] . "'>Download </a> " ?>
+                                        <?php
+                                        echo "<a class='btn editbtn' href = 'leaving.php?userID=" . $rows['admissionNo'] . "'>Download </a> " ?>
                                     </td>
                             </tr>
                         <?php } ?>

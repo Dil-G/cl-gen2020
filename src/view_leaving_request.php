@@ -17,24 +17,28 @@ while($row=mysqli_fetch_assoc($result)){
 // $sql_alresults = "SELECT * FROM `alresults`" ;
 // $result_alresults = mysqli_query($conn,$sql_alresults);
 
-$sql_requests="SELECT student.fName,student.lName, leavingrequests.*  FROM leavingrequests
-LEFT JOIN student ON student.admissionNo=leavingrequests.userID WHERE leavingrequests.requestStatus = '0' ";
+$sql_requests="SELECT student.fName,student.lName, leavingrequests.*,parent.admissionNo  FROM leavingrequests
+LEFT JOIN parent ON parent.admissionNo=leavingrequests.studentID 
+LEFT JOIN student ON student.admissionNo=leavingrequests.studentID WHERE leavingrequests.requestStatus = '0' ";
 $result_requests = mysqli_query($conn,$sql_requests);
 
-$sql_requestsSent="SELECT student.fName,student.lName, leavingrequests.*  FROM leavingrequests
-LEFT JOIN student ON student.admissionNo=leavingrequests.userID WHERE leavingrequests.requestStatus = '1' ";
+$sql_requestsSent="SELECT student.fName,student.lName,student.admissionNo, leavingrequests.*,parent.admissionNo  FROM leavingrequests
+LEFT JOIN parent ON parent.admissionNo=leavingrequests.studentID 
+LEFT JOIN student ON student.admissionNo=leavingrequests.studentID WHERE leavingrequests.requestStatus = '1' ";
 $result_requestsSent = mysqli_query($conn,$sql_requestsSent);
 
-$sql_requestsIssue="SELECT student.fName,student.lName, leavingrequests.*,leavingissues.*,leavingdocument.*  FROM leavingrequests
+$sql_requestsIssue="SELECT student.fName,student.lName,student.admissionNo, leavingrequests.*,leavingissues.*,leavingdocument.*,parent.admissionNo  FROM leavingrequests
+LEFT JOIN parent ON parent.admissionNo=leavingrequests.studentID 
 LEFT JOIN leavingissues ON leavingissues.userID=leavingrequests.userID
 LEFT JOIN leavingdocument ON leavingdocument.studentID=leavingrequests.userID
-LEFT JOIN student ON student.admissionNo=leavingrequests.userID WHERE leavingrequests.requestStatus = '2' ";
+LEFT JOIN student ON student.admissionNo=leavingrequests.studentID WHERE leavingrequests.requestStatus = '2' ";
 $result_requestsIssue = mysqli_query($conn,$sql_requestsIssue);
 
 
-$sql_requestsAccepted="SELECT student.fName,student.lName, leavingrequests.*,leavingdocument.*  FROM leavingrequests
+$sql_requestsAccepted="SELECT student.fName,student.lName,student.admissionNo, leavingrequests.*,leavingdocument.*,parent.admissionNo  FROM leavingrequests
+LEFT JOIN parent ON parent.admissionNo=leavingrequests.studentID 
 LEFT JOIN leavingdocument ON leavingdocument.studentID=leavingrequests.userID
-LEFT JOIN student ON student.admissionNo=leavingrequests.userID WHERE leavingrequests.requestStatus = '3' ";
+LEFT JOIN student ON student.admissionNo=leavingrequests.studentID WHERE leavingrequests.requestStatus = '3' ";
 $result_requestsAccepted = mysqli_query($conn,$sql_requestsAccepted);
 
 
