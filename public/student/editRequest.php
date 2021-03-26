@@ -13,7 +13,6 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 
 ?>
 
-
   <!DOCTYPE html>
   <html>
 
@@ -46,9 +45,6 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
           <label for="id">ID Number</label>
           <input type="text" name="id" value=<?php echo  $_SESSION['userID'] ?> readonly>
 
-          <label for="name">Name</label>
-          <input type="text" name="name" placeholder="Type the name here" required>
-
           <label for="request"><b>Request</b></label>
           <textarea id="request" name="request" rows="4" placeholder="News" cols="50" required></textarea>
 
@@ -56,7 +52,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
           <input type="hidden" name="size" value="1000000" required>
 
           <div>
-            <input type="file" name="image" id="image" required />
+            <input type="file" name="image[]" id="image" required multiple />
           </div>
           <br>
           <button type="submit" class="registerbtn" id="add_news" name="add_request">Submit</button>

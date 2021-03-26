@@ -26,6 +26,7 @@ include_once '../../config/conn.php';
     <script src="../js/jquery-1.9.1.min.js"></script>
     <script src="../js/pop.js"></script>
     <script src="../js/nav.js"></script>
+    <script src="../js/search.js"></script>
     <link type="text/css" rel="stylesheet" href="../css/pop.css">
     <link rel="stylesheet" href="../css/view.css " type="text/css">
     <link type="text/css" rel="stylesheet" href="../css/users.css">
@@ -37,14 +38,14 @@ include_once '../../config/conn.php';
     <div id="officeNav"></div>
 
     <div class="content">
-      
+
         <div class="card">
-        <br>
-        <h1 style="color: #6a7480;">G.C.E A/L Examination Results</h1>
-        <form class="search">
-            <input type="text" placeholder="Search.." name="search">
-            <button type="submit">Search</button>
-        </form>
+            <br>
+            <h1 style="color: #6a7480;">G.C.E A/L Examination Results</h1>
+            <form class="search">
+                <input type="text" ID="Inputs" placeholder="Search.." name="search">
+                <button type="submit">Search</button>
+            </form>
         </div>
         <br>
         <br>
@@ -69,7 +70,7 @@ include_once '../../config/conn.php';
                     </div>
                 </div>
             </div>
-            
+
             <?php
                     $sql = "SELECT * FROM addAlExam" ;
                     $result = mysqli_query($conn,$sql);
@@ -90,18 +91,15 @@ include_once '../../config/conn.php';
                     
                     while($row=mysqli_fetch_assoc($result)){
                     ?>
-                    <tr>
-                        <td><?php echo $row['examID']?></td>
-                        <td><?php echo $row['examYear']?></td>
-                        <td><?php echo $row['examName']?></td>
-                        <?php echo "<td><a id='addExamBtn' class='btn editbtn' href = o_alCsv.php?examID=".$row['examID']." > Add Results </a></td>"
-                    ?>
-                        <td>
-                            <form><button class="btn viewbtn" type="submit" formaction="o_al.php">View Results</button>
-                            </form>
-                        </td>
-
-                    </tr>
+                    <tbody id='Table'>
+                        <tr>
+                            <td><?php echo $row['examID']?></td>
+                            <td><?php echo $row['examYear']?></td>
+                            <td><?php echo $row['examName']?></td>
+                            <?php echo "<td><a id='addExamBtn' class='btn editbtn' href = o_alCsv.php?examID=".$row['examID']." > Add Results </a></td>" ?>
+                            <?php echo "<td><a id='addExamBtn' class='btn viewbtn' href = o_al.php?examID=".$row['examID']." > View Results </a></td>"?>
+                        </tr>
+                    </tbody>
                     <?php
                     }
                     ?>

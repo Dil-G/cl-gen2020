@@ -1,188 +1,159 @@
-<<<<<<< HEAD
 <?php
-    session_start();
+session_start();
 
-    if(!isset($_SESSION['userType']) && !isset($_SESSION['userID'])){
-        $error = "Please Login!";
-        header('Location: ../common/loginFile.php?error='.$error);
-    }elseif($_SESSION['userType'] == 'officer'){
-      
-      $dutyID = array();
-      $dutyID = $_SESSION['dutyID'];
+if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
+    $error = "Please Login!";
+    header('Location: ../common/loginFile.php?error=' . $error);
+} elseif ($_SESSION['userType'] == 'officer') {
 
-      if (in_array("d2", $dutyID)) {
+    $dutyID = array();
+    $dutyID = $_SESSION['dutyID'];
+
+    if (in_array("d2", $dutyID)) {
 
         include('../../src/view_subjects.php');
 
-	?>
-
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Add Subjects</title>
-    <link type="text/css" rel="stylesheet" href="../css/pop.css">
-    <link rel="stylesheet" href="../css/register.css " type="text/css">
-    <link type="text/css" rel="stylesheet" href="../css/main.css">
-    <script src="../js/jquery-1.9.1.min.js"></script>
-    <script src="../js/pop.js"></script>
-    <script src="../js/nav.js"></script>
-</head>
-
-<body>
-    <div id="officeNav"></div>
-    <?php
-
-        
-				require_once '../../config/conn.php';
-
-				$sql = "SELECT * FROM alstreams where streamID ='".$_GET['streamID']."'";
-
-                $res= mysqli_query($conn,$sql);
-                $row=mysqli_fetch_array($res);
-
-				if($res){
-
-				}
-				else{
-				echo"failed";	
-                }
-                    
-                
 ?>
-    <div class="content">
-        <div class="container" style="margin-left:250px;">
-            <form method="POST" enctype="multipart/form-data" action="../../src/o_addAl.php">
-                
-                <h1><?php echo $row['streamName']?></h1>
-                <hr>
 
-                <label for="examID" ><b>Stream ID</b></label>
-                <input type="text" name="streamID" value= "<?php echo $row['streamID']?>" required>
-                
-                <label><b>Subjects :</b></label>
-                <br>
-                <br>
-                <br>
-                <?php
-                    
-                    while($row=mysqli_fetch_assoc($result_subjects)){
-                ?>
-                <label> <input type="checkbox" name="checkbox[1]" id="t1" value="<?php echo $row['subjectID']?>"><?php echo $row['subjectName']?></label>
-                <br>
-                <br>
-                <?php } ?>
+        <!DOCTYPE html>
+        <html>
 
-                <button type="submit" class="registerbtn" name="streamSubjects"  >Save</button>
-                <a href="al_streams.php" class="cancel-btn">Cancel</a>
+        <head>
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title>Add Subjects</title>
+            <link type="text/css" rel="stylesheet" href="../css/pop.css">
+            <link type="text/css" rel="stylesheet" href="../css/register.css">
+            <link type="text/css" rel="stylesheet" href="../css/main.css">
+            <link type="text/css" rel="stylesheet" href="../css/messages.css">
+            <script src="../js/jquery-1.9.1.min.js"></script>
+            <script src="../js/pop.js"></script>
+            <script src="../js/nav.js"></script>
+            <script src="../js/errors.js"></script>
+
+        </head>
+
+        <body>
+            <div id="officeNav"></div>
+            <?php
 
 
+            require_once '../../config/conn.php';
 
-                </form>
+            $streamID = $_GET['streamID'];
 
-        </div>
+            $sql = "SELECT * FROM alstreams where streamID = '$streamID'";
 
-</div>
+            $res = mysqli_query($conn, $sql);
+            $row = mysqli_fetch_array($res);
 
-</body>
-
-</html>
-
-<?php }} ?>
-=======
-<?php
-    session_start();
-
-    if(!isset($_SESSION['userType']) && !isset($_SESSION['userID'])){
-        $error = "Please Login!";
-        header('Location: ../common/loginFile.php?error='.$error);
-    }elseif($_SESSION['userType'] == 'officer'){
-      
-      $dutyID = array();
-      $dutyID = $_SESSION['dutyID'];
-
-      if (in_array("d2", $dutyID)) {
-
-        include('../../src/view_subjects.php');
-
-	?>
-
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Add Subjects</title>
-    <link type="text/css" rel="stylesheet" href="../css/pop.css">
-    <link rel="stylesheet" href="../css/register.css " type="text/css">
-    <link type="text/css" rel="stylesheet" href="../css/main.css">
-    <script src="../js/jquery-1.9.1.min.js"></script>
-    <script src="../js/pop.js"></script>
-    <script src="../js/nav.js"></script>
-</head>
-
-<body>
-    <div id="officeNav"></div>
-    <?php
-
-        
-				require_once '../../config/conn.php';
-
-				$sql = "SELECT * FROM alstreams where streamID ='".$_GET['streamID']."'";
-
-                $res= mysqli_query($conn,$sql);
-                $row=mysqli_fetch_array($res);
-
-				if($res){
-
-				}
-				else{
-				echo"failed";	
-                }
-                    
-                
-?>
-    <div class="content">
-        <div class="container" style="margin-left:250px;">
-            <form method="POST" enctype="multipart/form-data" action="../../src/o_addAl.php">
-                
-                <h1><?php echo $row['streamName']?></h1>
-                <hr>
-
-                <label for="examID" ><b>Stream ID</b></label>
-                <input type="text" name="streamID" value= "<?php echo $row['streamID']?>" required>
-                
-                <label><b>Subjects :</b></label>
-                <br>
-                <br>
-                <br>
-                <?php
-                    $i=0;
-                    while($row=mysqli_fetch_assoc($result_subjects)){
-                        // $subject=array();
-                        
-                echo '
-                <label> <input type="checkbox" name="checkbox['.$i.']"  value="' .$row['subjectID'].'">' .$row['subjectName'].'</label><br><br>';
-                // array_push($subject,"blue");
-                $i = $i+1;
-                echo $i;
-             } ?>
-
-                <button type="submit" class="registerbtn" name="streamSubjects"  >Save</button>
-                <a href="al_streams.php" class="cancel-btn">Cancel</a>
+            if ($res) {
+            } else {
+                echo "failed";
+            }
 
 
+            ?>
+            <div class="content">
+                <div class="container" style="margin-left:250px;">
+                    <form method="POST" enctype="multipart/form-data" action="../../src/o_addAl.php" onsubmit="return validateStreamSubject(subject1.value,subject2.value,subject3.value)">
 
-                </form>
+                        <h1><?php echo $row['streamName'] ?></h1>
+                        <hr>
 
-        </div>
+                        <label for="examID"><b>Stream ID</b></label>
+                        <input type="text" name="streamID" value="<?php echo $row['streamID'] ?>" required>
 
-</div>
+                        Subjects :
+                        <select name='subject1'>
+                            <option value="">--- Select ---</option>
+                            <?php
+                            $select = "subject";
+                            if (isset($select) && $select != "") {
+                                $select = $_POST['subject'];
+                            }
+                            ?>
+                            <?php
+                            $sql = "SELECT * from subjects";
+                            $list = mysqli_query($conn, $sql);
+                            while ($row_list = mysqli_fetch_assoc($list)) {
+                            ?>
+                                <option value="<?php echo $row_list['subjectID']; ?>" <?php if ($row_list['subjectID'] == $select) {
+                                                                                            echo "selected";
+                                                                                        } ?>>
+                                    <?php echo $row_list['subjectName']; ?>
+                                </option>
+                            <?php
+                            }
+                            ?>
+                        </select>
 
-</body>
+                        <select name='subject2'>
+                            <option value="">--- Select ---</option>
+                            <?php
+                            $select = "subject";
+                            if (isset($select) && $select != "") {
+                                $select = $_POST['subject'];
+                            }
+                            ?>
+                            <?php
+                            $sql = "SELECT * from subjects";
+                            $list = mysqli_query($conn, $sql);
+                            while ($row_list = mysqli_fetch_assoc($list)) {
+                            ?>
+                                <option value="<?php echo $row_list['subjectID']; ?>" <?php if ($row_list['subjectID'] == $select) {
+                                                                                            echo "selected";
+                                                                                        } ?>>
+                                    <?php echo $row_list['subjectName']; ?>
+                                </option>
+                            <?php
+                            }
+                            ?>
+                        </select>
 
-</html>
+                        <select name='subject3'>
+                            <option value="">--- Select ---</option>
+                            <?php
+                            $select = "subject";
+                            if (isset($select) && $select != "") {
+                                $select = $_POST['subject'];
+                            }
+                            ?>
+                            <?php
+                            $sql = "SELECT * from subjects";
+                            $list = mysqli_query($conn, $sql);
+                            while ($row_list = mysqli_fetch_assoc($list)) {
+                            ?>
+                                <option value="<?php echo $row_list['subjectID']; ?>" <?php if ($row_list['subjectID'] == $select) {
+                                                                                            echo "selected";
+                                                                                        } ?>>
+                                    <?php echo $row_list['subjectName']; ?>
+                                </option>
+                            <?php
+                            }
+                            ?>
+                        </select>
 
-<?php }} ?>
->>>>>>> 842859cfd133b4d6b4548545cced388bd26b428f
+                        <?php if (isset($_GET['error'])) { ?>
+                            <div id="error"><?php echo $_GET['error']; ?></div>
+                        <?php } ?>
+
+                        <?php if (isset($_GET['message'])) { ?>
+                            <div id="message"><?php echo $_GET['message']; ?></div>
+                        <?php } ?>
+                        <button type="submit" class="registerbtn" name="streamSubjects">Save</button>
+                        <a href="al_streams.php" class="cancel-btn">Cancel</a>
+
+
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </body>
+
+        </html>
+
+<?php }
+} ?>

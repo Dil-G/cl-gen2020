@@ -23,6 +23,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
     <script src="../js/nav.js"></script>
     <script src="../js/search.js"></script>
     <script src="../js/tabs.js"></script>
+    <script src="../js/confirm.js"></script>
     <link rel="stylesheet" href="../css/view.css " type="text/css">
     <link type="text/css" rel="stylesheet" href="../css/main.css">
     <link type="text/css" rel="stylesheet" href="../css/users.css">
@@ -36,7 +37,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
     <div class="content">
 
         <div class="card">
-            <h1>Deactivated Catefory List</h1>
+            <h1>Deactivated Category List</h1>
             <form class="search">
                 <input type="text" id="Inputs" placeholder="Search.." name="search">
                 <button type="submit">Search</button>
@@ -71,8 +72,12 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                                 <td><?php echo $row['SportID'] ?></td>
                                 <td><?php echo $row['SportName'] ?></td>
 
-                                <?php echo "<td><a class='btn editbtn' href = ../../src/reactivate.php?sportID=".$row['SportID']." > Reactivate </a> </td>"?>
-                            </tr>
+                                <td>
+                                        <form action="../../src/reactivate.php" method="GET" onclick="return confirmation()">
+                                            <input type="hidden" name="sportID" value="<?php echo $row['SportID'] ?>" />
+                                            <button class='btn editbtn' input type="submit" name="reactivate">Reactivate</button>
+                                        </form>
+                                    </td>                            </tr>
                             <?php
 					}
 					?>
@@ -83,7 +88,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
         </div>
         <div id="page2" class="page">
             <div class="card">
-                
+
                 <hr>
                 <div class="scroll">
                     <table>
@@ -96,11 +101,19 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 					while($row=mysqli_fetch_assoc($result_society)){
                     ?>
                         <tbody id="Table">
-                        <tr>
+                            <tr>
                                 <td><?php echo $row['SocietyID'] ?></td>
                                 <td><?php echo $row['SocietyName'] ?></td>
 
-                                <?php echo "<td><a class='btn editbtn' href = ../../src/reactivate.php?societyID=".$row['SocietyID']." > Reactivate </a> </td>"?>
+                                <td>
+                                    <form action="../../src/reactivate.php" method="GET"
+                                        onclick="return confirmation()">
+                                        <input type="hidden" name="societyID" value="<?php echo $row['SocietyID'] ?>" />
+                                        <button class='btn editbtn' input type="submit" name="reactivate">Reactivate</button>
+
+                                    </form>
+                                </td>
+
                             </tr>
                             <?php
 					}

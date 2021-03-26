@@ -20,6 +20,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
         <title>Sports</title>
         <script src="../js/jquery-1.9.1.min.js"></script>
         <script src="../js/nav.js"></script>
+        <script src="../js/confirm.js"></script>
         <script src="../js/search.js"></script>
         <link rel="stylesheet" href="../css/view.css " type="text/css">
         <link type="text/css" rel="stylesheet" href="../css/main.css">
@@ -68,9 +69,14 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                                     <?php
                                     echo "<td><a class='btn editbtn' href = updateSport.php?sportID=" . $row['SportID'] . " > Update </a> </td>";
                                     ?>
-                                    <?php
-                                    echo "<td><a class='btn dltbtn' href = ../../src/deactivate_account.php?sportID=" . $row['SportID'] . " > Deactivate </a> </td>";
-                                    ?>
+
+                                    <td>
+                                        <form action="../../src/deactivate_account.php" method="GET" onclick="return confirmation()">
+                                            <input type="hidden" name="sportID" value="<?php echo $row['SportID'] ?>" />
+                                            <button class='btn dltbtn' input type="submit" name="deactivate">Deactivate</button>
+                                        </form>
+                                    </td>
+
 
                                 </tr>
                             <?php

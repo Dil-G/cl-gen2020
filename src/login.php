@@ -2,6 +2,7 @@
 if (isset($_POST['login'])){
     
     require_once '../config/conn.php';
+    include '../utils/helpers.php';
 
     $username = $_POST['username'];
     $pwd = $_POST['password'];
@@ -20,6 +21,9 @@ if (isset($_POST['login'])){
          if(mysqli_num_rows($result) == 1){
 
             $row = mysqli_fetch_assoc($result);
+
+            $logString = "user ".$row['userID']." logged in";
+            writeLog($logString);
             
             if($pwd == $row['userID'] ){
                 $message = "<a href='resetPass.php'>First time login in? Click here to Change your Password to Login</a> "  ;

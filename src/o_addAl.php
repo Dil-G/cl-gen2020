@@ -44,7 +44,6 @@
     }
 
 
-
     if (isset($_POST['alsubjects'])) {
 
 
@@ -95,10 +94,32 @@
 
         $streamID = $_POST['streamID'];
 
+        $subject1 = $_POST['subject1'];
+        $subject2 = $_POST['subject2'];
+        $subject3 = $_POST['subject3'];
+        echo $subject1;
+        echo $subject2;
+        echo $subject3;
+
+        if ($subject1 == $subject2 ){
+            $error = "Cannot select the same subjects";
+            echo $error;
+            header('Location: ../public/office/al_subjects.php?streamID=' . $streamID . '&error=' . $error );
+            exit();
+        }else if ($subject3 == $subject2 ){
+            $error = "Cannot select the same subjects";
+            echo $error;
+            header('Location: ../public/office/al_subjects.php?streamID=' . $streamID . '&error=' . $error );
+            exit();
+        }else if ($subject1 == $subject3 ){
+            $error = "Cannot select the same subjects";
+            echo $error;
+            header('Location: ../public/office/al_subjects.php?streamID=' . $streamID . '&error=' . $error );
+            exit();
+        }
         $subjects=array();
-        $subjects = $_POST['checkbox'];
-        $subject = "";
-        print_r($subjects);
+        array_push($subjects,$subject1,$subject2,$subject3);
+     
 
         foreach ($subjects as $sub) {
             $subject = $sub;
@@ -107,11 +128,11 @@
 
             $result = $conn->query($sql2);
             if ($result == False) {
-                $error = "Subject already Assigned";
-                header('Location: ../public/office/al_streams.php?error=' . $error . '?userID=' . $userID);
+                $error = "Stream already Assigned";
+                header('Location: ../public/office/al_streams.php?error=' . $error);
                 exit();
             }else{
-                // header('Location: ../public/office/al_streams.php');
+                header('Location: ../public/office/al_streams.php');
             }
         }
     }

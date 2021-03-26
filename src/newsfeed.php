@@ -2,6 +2,8 @@
 
 require_once(realpath(dirname(__FILE__) . '/../config/conn.php'));
 
+$userType = $_SESSION['userType'];
+
 $count = "SELECT COUNT(*)  FROM newsfeed";
 $sql = "SELECT * FROM newsfeed ORDER BY newsID DESC";
 
@@ -52,16 +54,17 @@ echo"failed";
 }
 }
 
+if($userType == 'student' ||$userType == 'parent' ){
+    $sql_notifications = "SELECT *  FROM notifications WHERE reciever='$userID' ORDER BY notificationID DESC";
 
-$sql_notifications = "SELECT *  FROM notifications WHERE reciever='$userID' ORDER BY notificationID DESC";
+    $res_notifications= mysqli_query($conn,$sql_notifications);
 
-$res_notifications= mysqli_query($conn,$sql_notifications);
-
-if($res_notifications){
- //echo "Sucessfull";
-}
-else{
-echo"failed";	
+    if($res_notifications){
+    //echo "Sucessfull";
+    }
+    else{
+    echo"failed";	
+    }
 }
 
 if (isset($_GET['view_notification'])) {

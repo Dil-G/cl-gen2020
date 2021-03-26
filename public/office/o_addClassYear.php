@@ -32,6 +32,7 @@
     <script src="../js/jquery-1.9.1.min.js"></script>
     <script src="../js/pop.js"></script>
     <script src="../js/nav.js"></script>
+    <script src="../js/confirm.js"></script>
 </head>
 
 <body>
@@ -54,7 +55,7 @@
         <div id="error" style="margin-left:-10px; line-height:20px;"><?php echo $_GET['error']; ?></div>
     <?php } ?>
             <form action="../../src/addClass.php">
-                <button type="submit" name="addYear" value=1>Add Year</button>
+                <button type="submit" name="addYear" value=1 onclick="confirmation()">Add Year</button>
             </form>
             <br>
             <br>

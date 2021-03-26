@@ -2,9 +2,9 @@
 
 require_once(realpath(dirname(__FILE__) . '/../config/conn.php'));
 
-if (isset($_GET['userID'])) {
+if (isset($_POST['userID'])) {
 
-    $userID=$_GET['userID'];
+    $userID=$_POST['userID'];
     $sql = "UPDATE user SET  isActivated='1' WHERE userID='$userID'";
 
 

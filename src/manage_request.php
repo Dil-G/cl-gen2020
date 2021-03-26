@@ -10,10 +10,13 @@ if (isset($_GET['requestID']) && $task == 'delete') {
     $requestID = $_GET['requestID'];
     echo $_GET['requestID'];
     $sql = "DELETE FROM request WHERE requestID = '$requestID'";
+    $sql1 = "DELETE FROM proofs WHERE requestID = '$requestID'";
 
     $result = mysqli_query($conn, $sql);
+    $result1 = mysqli_query($conn, $sql1);
 
-    if ($result) {
+
+    if ($result && $result1) {
         header('Location: ../public/office/o_viewReq.php');
     } else {
         $error = "Cannot delete the request";
@@ -40,3 +43,4 @@ if (isset($_GET['requestID']) && $task == 'delete') {
 }
 
 $conn->close();
+

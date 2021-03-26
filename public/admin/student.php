@@ -23,6 +23,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
     <script src="../js/nav.js"></script>
     <script src="../js/search.js"></script>
     <script src="../js/tabs.js"></script>
+    <script src="../js/confirm.js"></script>
     <link rel="stylesheet" href="../css/view.css " type="text/css">
     <link type="text/css" rel="stylesheet" href="../css/main.css">
     <link type="text/css" rel="stylesheet" href="../css/users.css">
@@ -114,7 +115,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                                 $student_result3 = $conn->query($student_sql3);
                                 while ($rows = mysqli_fetch_assoc($student_result3)) {
                             ?>
-                        
+
                         <tbody id="Table">
                             <tr>
                                 <td><?php echo $rows['admissionNo'] ?></td>
@@ -122,7 +123,17 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                                         echo $name; ?>
                                 </td>
                                 <?php echo "<td><a class='btn editbtn' href = updateStudent.php?userID=" . $rows['admissionNo'] . " > update </a> </td>" ?>
-                                <?php echo "<td><a class='btn dltbtn' href =  ../../src/deactivate_account.php?studentID=" . $rows['admissionNo'] . "  > Deactivate </a> </td>"; ?>
+                                <td>
+                                    <form action="../../src/deactivate_account.php" method="GET"
+                                        onclick="return confirmation()">
+                                        <input type="hidden" name="studentID"
+                                            value="<?php echo $rows['admissionNo'] ?>" />
+                                        <button class='btn dltbtn' input type="submit" name="deactivate"
+                                            value="Deactivate">Deactivate</button>
+                                    </form>
+                                </td>
+
+
                             </tr>
                             <?php } ?>
                         </tbody>

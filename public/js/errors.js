@@ -51,6 +51,8 @@ function validatePassword(password) {
 
 } 
 
+
+
 //Validate Confirm password
 function validateConPassword(password) {
 
@@ -1408,3 +1410,18 @@ function checkStreet(input) {
 
     }
 }
+
+// function validateStreamSubject(subject1,subject2,subject3) {
+
+
+//     if (subject1 == subject2 || subject1 == subject3 || subject2 || subject3){
+//         document.getElementById("msg").style.display = "block";
+//         document.getElementById("msg").innerHTML = "Cannot select the same subjects";
+//         return false;
+//     }
+
+// }
+
+
+
+

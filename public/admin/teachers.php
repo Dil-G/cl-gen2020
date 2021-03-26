@@ -25,6 +25,7 @@
     <script src="../js/nav.js"></script>
     <script src="../js/search.js"></script>
     <script src="../js/tabs.js"></script>
+    <script src="../js/confirm.js"></script>
     <link rel="stylesheet" href="../css/view.css " type="text/css">
     <link type="text/css" rel="stylesheet" href="../css/main.css">
     <link type="text/css" rel="stylesheet" href="../css/users.css">
@@ -120,7 +121,16 @@
                                 <td><?php echo $rows['teacherID'] ?></td>
                                 <td><?php $name = $rows['fName'] ." ".  $rows['lName'] ; echo $name; ?></td>
                                 <?php echo "<td><a class='btn editbtn' href = updateTeacher.php?userID=".$rows['teacherID']." > update </a> </td>"?>
-                                <?php echo "<td><a class='btn dltbtn' href =  ../../src/deactivate_account.php?teacherID=" . $rows['teacherID'] . "  > Deactivate </a> </td>"; ?>
+
+                                <td>
+                                    <form action="../../src/deactivate_account.php" method="GET"
+                                        onclick="return confirmation()">
+                                        <input type="hidden" name="teacherID"
+                                            value="<?php echo $rows['teacherID'] ?>" />
+                                        <button class='btn dltbtn' input type="submit" name="deactivate"
+                                            value="Deactivate">Deactivate</button>
+                                    </form>
+                                </td>
 
                             </tr>
                             <?php

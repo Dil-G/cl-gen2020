@@ -44,7 +44,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
         <?php } ?>
 
         <div class="card">
-            <h1 style="color: #6a7480;"> Request List "IMAGE DOWNLOAD WENNE NA"</h1>
+            <h1 style="color: #6a7480;"> Request List </h1>
             <br>
             <form class="search">
                 <input type="text" placeholder="Search.." name="search">
@@ -66,8 +66,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                 <table>
                     <tr>
                         <th>Request ID</th>
-                        <th>ID</th>
-                        <th>Name</th>
+                        <th>User ID</th>
                         <th>Request</th>
                         <th>Proof</th>
                         <th>Date</th>
@@ -79,24 +78,21 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                         ?>
                     <tr>
                         <td><?php echo $row['requestID'] ?></td>
-                        <td><?php echo $row['id'] ?></td>
-                        <td><?php echo $row['name'] ?></td>
+                        <td><?php echo $row['userID'] ?></td>
                         <td><?php echo $row['request'] ?></td>
                         <td>
-                            <?php
-                                        if ($row['image'] == TRUE) { ?>
-                            <a download="<?php echo $row['image'] ?>" href="../../images/" title="Image">
-                                <div class="news-image">
-                                    <?php echo "<img src='../../images/" . $row['image'] . "' height='100'  >"  ?></div>
-
-                            </a>
-                            <?php } else {
-                                            echo "No Image..";
-                                        } ?>
+                                        <?php
+                                        $requestID = $row['requestID'];
+                                        $query = "SELECT * FROM proofs WHERE requestID='$requestID'";
+                                        $result_q = mysqli_query($conn, $query);
+                                        while ($row2 = mysqli_fetch_array($result_q)) {
+                                        ?>
+                                            <?php echo "<a class='btn editbtn' href = 'view_proof.php?proofID=" . $row2['proofID'] . "'>View </a> " ;
+                                        }
+                                        ?>
                         </td>
                         <td><?php echo $row['requestDate'] ?></td>
                         <td><?php echo $row['requestTime'] ?></td>
-
 
                         <td><button
                                 class="dltbtn"><?php echo "<a href = ../../src/manage_request.php?requestID=" . $row['requestID']   . '&task=' . $task . " > Delete </a> " ?></button>
@@ -116,8 +112,8 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                 <table>
                     <tr>
                         <th>Request ID</th>
-                        <th>ID</th>
-                        <th>Name</th>
+                        <th>User ID</th>
+
                         <th>Request</th>
                         <th>Proof</th>
                         <th>Date</th>
@@ -129,21 +125,19 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                             ?>
                     <tr>
                         <td><?php echo $row1['requestID'] ?></td>
-                        <td><?php echo $row1['id'] ?></td>
-                        <td><?php echo $row1['name'] ?></td>
+                        <td><?php echo $row1['userID'] ?></td>
                         <td><?php echo $row1['request'] ?></td>
                         <td>
-                            <?php
-                                        if ($row1['image'] == TRUE) { ?>
-                            <a download="<?php echo $row1['image'] ?>" href="../../images/" title="Image">
-                                <div class="news-image">
-                                    <?php echo "<img src='../../images/" . $row1['image'] . "' height='100'  >"  ?>
-                                </div>
-
-                            </a>
-                            <?php } else {
-                                            echo "No Image..";
-                                        } ?>
+                                        <?php
+                                        
+                                        $requestID = $row1['requestID'];
+                                        $query = "SELECT * FROM proofs WHERE requestID='$requestID'";
+                                        $result_q = mysqli_query($conn, $query);
+                                        while ($row2 = mysqli_fetch_array($result_q)) {
+                                        ?>
+                                            <?php echo "<a class='btn editbtn' href = 'view_proof.php?proofID=" . $row2['proofID'] . "'>View </a> " ;
+                                        }
+                                        ?>
                         </td>
                         <td><?php echo $row1['requestDate'] ?></td>
                         <td><?php echo $row1['requestTime'] ?></td>

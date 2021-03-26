@@ -12,18 +12,22 @@
       if (in_array("d2", $dutyID)) {
 
         include('../../src/view_subjects.php');
-
 	?>
 
 <!DOCTYPE html>
-<html>
 
 <head>
+    <?php
+include_once '../../config/conn.php';
+?>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Add Subjects</title>
+    <title>Advanced Level Subject Streams</title>
     <link type="text/css" rel="stylesheet" href="../css/pop.css">
-    <link rel="stylesheet" href="../css/register.css " type="text/css">
+    <link rel="stylesheet" href="../css/view.css " type="text/css">
+    <link type="text/css" rel="stylesheet" href="../css/users.css">
     <link type="text/css" rel="stylesheet" href="../css/main.css">
+    <link type="text/css" rel="stylesheet" href="../css/messages.css">
+    <link type="text/css" rel="stylesheet" href="../css/register.css">
     <script src="../js/jquery-1.9.1.min.js"></script>
     <script src="../js/pop.js"></script>
     <script src="../js/nav.js"></script>
@@ -31,62 +35,93 @@
 
 <body>
     <div id="officeNav"></div>
-    <?php
-
-        
-				require_once '../../config/conn.php';
-
-				$sql = "SELECT * FROM alstreams where streamID ='".$_GET['streamID']."'";
-
-                $res= mysqli_query($conn,$sql);
-                $row=mysqli_fetch_array($res);
-
-				if($res){
-
-				}
-				else{
-				echo"failed";	
-                }
-                    
-                
-?>
+    
     <div class="content">
-        <div class="container" style="margin-left:250px;">
-            <form method="POST" enctype="multipart/form-data" action="../../src/o_addAl.php">
-                
-                <h1><?php echo $row['streamName']?></h1>
-                <hr>
+        <br>
+        <h1 style="color: #6a7480;">Advanced Level Subject Streams</h1>
+        <form class="search" action="register_stu.html">
+            <input type="text" placeholder="Search.." name="search">
+            <button type="submit">Search</button>
+        </form>
 
-                <label for="examID" ><b>Stream ID</b></label>
-                <input type="text" name="streamID" value= "<?php echo $row['streamID']?>" required>
-                
-                <label><b>Subjects :</b></label>
-                <br>
-                <br>
-                <br>
+        <br>
+        <br>
+        <br>
+
+        <div class="card">
+            
+        <?php if (isset($_GET['error'])) { ?>
+                            <div id="error"><?php echo $_GET['error']; ?></div>
+                        <?php } ?>
+
+                        <?php if (isset($_GET['message'])) { ?>
+                            <div id="message"><?php echo $_GET['message']; ?></div>
+                        <?php } ?>
+            <div>
+                <button id="addExamBtn" class="btn editbtn" type="submit" formaction="o_addSchol.php">Add New Stream</button>
+                <div id="addExamForm" class="model">
+                    <div class="modal-content container">
+                        <form action="../../src/o_addAl.php" method="POST">
+                            <br>
+                            <h1 style="color: #6a7480;">Advanced Level Subject Streams</h1>
+                            <br>
+                            <hr style="margin-left: 2%;">
+                            <label for="scholExamYear"><b> Stream Name</b></label>
+                            <input type="text" placeholder="Enter Stream Name" name="alStreamName" required>
+                            <button type="submit" class="registerbtn" name="alstreams">Save</button>
+                            <a href="al_streams.php" class="cancel-btn">Cancel</a>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+            <hr>
+            <table>
+                <tr>
+                    <th>Stream ID</th>
+                    <th>Stream Name</th>
+                    <th>Add Subjects</th>
+                    <th>View Subjects</th>
+
+                </tr>
+                <tr>
+                    <?php
+                    
+                    while($row=mysqli_fetch_assoc($result_alstream)){
+                    ?>
+                <tr>
+                    <td><?php echo $row['streamID']?></td>
+                    <td><?php echo $row['streamName']?></td>
+                    <?php echo "<td><a id='addcsv' class='btn editbtn' href = al_subjects.php?streamID=".$row['streamID']." > Add Subjects </a></td>"
+                    ?>
+                   
+                    <?php echo "<td><a class='btn viewbtn' href = streamDetails.php?streamID=".$row['streamID'].">View Subjects</td>" ?>
+                     
+
+                </tr>
                 <?php
-                    $i=0;
-                    while($row=mysqli_fetch_assoc($result_subjects)){
-                        // $subject=array();
-                        
-                echo '
-                <label> <input type="checkbox" name="checkbox['.$i.']"  value="' .$row['subjectID'].'">' .$row['subjectName'].'</label><br><br>';
-                // array_push($subject,"blue");
-                $i = $i+1;
-                echo $i;
-             } ?>
-
-                <button type="submit" class="registerbtn" name="streamSubjects"  >Save</button>
-                <a href="al_streams.php" class="cancel-btn">Cancel</a>
-
-
-
-                </form>
-
+                    }
+                    ?>
+            </table>
         </div>
 
-</div>
+    </div>
+    <script>
+    var form1 = document.getElementById("addExamForm");
+    var addExam = document.getElementById("addExamBtn");
 
+    var form2 = document.getElementById("csv-form");
+    var addCsv = document.getElementById("addcsv");
+
+    addExam.onclick = function() {
+        form1.style.display = "block";
+    }
+    addCsv.onclick = function(){
+        form2.style.display = "block";
+    }
+    </script>
 </body>
 
 </html>

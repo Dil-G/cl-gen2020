@@ -26,6 +26,7 @@
     <link type="text/css" rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/register.css " type="text/css">
     <link rel="stylesheet" href="../css/view.css " type="text/css">
+    <link rel="stylesheet" href="../css/messages.css " type="text/css">
     <script src="../js/jquery-1.9.1.min.js"></script>
     <script src="../js/pop.js"></script>
     <script src="../js/nav.js"></script>
@@ -56,7 +57,9 @@ echo"failed";
             <form enctype="multipart/form-data" action="../../src/add_alresults.php" method="POST">
                 <h1><?php echo $row['examName']?></h1>
                 <hr>
-
+                <?php if (isset($_GET['error'])) { ?>
+                <div id="error"><?php echo $_GET['error']; ?></div>
+                <?php } ?>
                 <label for="examID"><b>Exam ID</b></label>
                 <input type="text" value= "<?php echo $row['examID']?>" name="examID" readonly>
 
@@ -64,8 +67,6 @@ echo"failed";
                 <label for="filename"><b>Upload a CSV file </b></label>
                             <input type="file" placeholder="Add Your File" id="myFile" name="file" required>
 
-
-               
 
                 <button type="submit" class="registerbtn" name="alresults">Save</button>
                 <a href="o_viewAl.php" class="cancel-btn">Cancel</a>
