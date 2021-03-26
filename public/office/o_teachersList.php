@@ -96,6 +96,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                             <th>User ID</th>
                             <th>Name</th>
                             <th>Edit Details</th>
+                            <th>view Details</th>
                         </tr>
 
                         <?php
@@ -113,6 +114,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                                             }
                                             ?></td>
                                 <?php echo "<td><a class='btn editbtn' href = update_teacher.php?userID=" . $row['userID'] . " > update </a> </td>" ?>
+                                <?php echo "<td><a class='btn viewbtn' href = Tcr_profile.php?userID=" . $row['userID'] . " > View </a> </td>" ?>
                             </tr>
                         </tbody>
                         <?php
