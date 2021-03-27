@@ -10,9 +10,6 @@
       $dutyID = $_SESSION['dutyID'];
 
       if (in_array("d2", $dutyID)) {
-
-        include('../../src/view_subjects.php');
-
 	?>
 
 <!DOCTYPE html>
@@ -20,7 +17,7 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Add Subjects</title>
+    <title>Add O/L Results</title>
     <link type="text/css" rel="stylesheet" href="../css/pop.css">
     <link rel="stylesheet" href="../css/register.css " type="text/css">
     <link type="text/css" rel="stylesheet" href="../css/main.css">
@@ -30,13 +27,13 @@
 </head>
 
 <body>
-    <div id="officdeNav"></div>
+    <div id="officeNav"></div>
     <?php
 
         
 				require_once '../../config/conn.php';
 
-				$sql = "SELECT * FROM alstreams where streamID ='".$_GET['streamID']."'";
+				$sql = "SELECT * FROM addolexam where examID ='".$_GET['examID']."'";
 
                 $res= mysqli_query($conn,$sql);
                 $row=mysqli_fetch_array($res);
@@ -52,28 +49,20 @@
 ?>
     <div class="content">
         <div class="container" style="margin-left:250px;">
-            <form method="POST" enctype="multipart/form-data" action="../../src/o_addAl.php">
+            <form method="POST" enctype="multipart/form-data" action="../../src/office_add_OLCsv.php">
                 
-                <h1><?php echo $row['streamName']?></h1>
+                
+                <h1><?php echo $row['examName']?></h1>
                 <hr>
 
-                <label for="examID" ><b>Stream ID</b></label>
-                <input type="text" name="streamID" value= "<?php echo $row['streamID']?>" required>
+                <label for="examID" ><b>Exam ID</b></label>
+                <input type="text" name="examID" value= "<?php echo $row['examID']?>" required>
                 
-                <label><b>Subjects :</b></label>
-                <br>
-                <br>
-                <br>
-                <?php
-                    while($row_list=mysqli_fetch_assoc($result_subjects)){?>
-                        <option value="<? echo $row_list['subjectID']; ?>"<? if($row_list['subjectID']==$select){ echo "selected"; } ?>>  
-                                         <?echo $row_list['subjectName'];?>  
-                    </option>
+                <label name="file"><b>Enter CSV File</b></label>
+                <input type="file" id="myFile" name="file" class="nextpgbtn" required></br>
 
-            <?php } ?>
-
-                <button type="submit" class="registerbtn" name="streamSubjects"  >Save</button>
-                <a href="al_streams.php" class="cancel-btn">Cancel</a>
+                <button type="submit" class="registerbtn" name="olResults" value="Import">Save</button>
+                <a href="office_add_view_OL_exams.php" class="cancel-btn">Cancel</a>
 
 
 
