@@ -49,7 +49,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
         <table class="statis one">
             <tr>
                 <td>
-                    <a href=o_studentsList.php>
+                    <a href=office_studentsList.php>
                         <div class="box">
                             <i class="fa fa-users "></i>
                             <div class="info">
@@ -63,7 +63,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                     </a>
                 </td>
                 <td>
-                    <a href=o_teachersList.php>
+                    <a href=office_teachersList.php>
                         <div class="box">
                             <i class="fa fa-users"></i>
                             <div class="info">
@@ -77,7 +77,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                     </a>
                 </td>
                 <td>
-                    <a href=o_officersList.php>
+                    <a href=office_officersList.php>
                         <div class="box">
                             <i class="fa fa-users "></i>
                             <div class="info">
@@ -145,7 +145,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
             <tr>
 
                 <th>
-                    <a href=newsfeed.php>
+                    <a href=office_newsfeed.php>
                         <div class="box ">
                             <h2 style=" float:left;margin-left:20px;">NEWS</h2>
                             <p style="float:right;line-height:35px;margin-right:25px;">View More<i
@@ -180,7 +180,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
             <tr>
 
                 <th>
-                    <a href=o_viewReq.php>
+                    <a href=office_viewRequests.php>
                         <div class="box ">
                             <h2 style=" float:left;margin-left:20px;">Requests</h2>
                             <p style="float:right;line-height:35px;margin-right:25px;">View More<i

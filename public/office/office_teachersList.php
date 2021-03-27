@@ -10,7 +10,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
     $dutyID = $_SESSION['dutyID'];
 
     if (in_array("d1", $dutyID)) {
-        include('../../src/view_users.php');
+        include('../../src/office_view_users.php');
         include_once '../../config/conn.php';
 ?>
 
@@ -71,7 +71,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                             <tr>
                                 <td><?php echo $row['userID'] ?></td>
                                 <td><?php echo $row['username'] ?></td>
-                                <?php echo "<td><a class='btn editbtn' href = o_addTeacherDetails.php?userID=" . $row['userID'] . " > Add </a> </td>" ?>
+                                <?php echo "<td><a class='btn editbtn' href = office_addTeacherDetails.php?userID=" . $row['userID'] . " > Add </a> </td>" ?>
                             </tr>
                             <?php
                             }
@@ -113,7 +113,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                                                 echo $fname['lName'];
                                             }
                                             ?></td>
-                                <?php echo "<td><a class='btn editbtn' href = update_teacher.php?userID=" . $row['userID'] . " > update </a> </td>" ?>
+                                <?php echo "<td><a class='btn editbtn' href = office_update_teacher.php?userID=" . $row['userID'] . " > update </a> </td>" ?>
                                 <?php echo "<td><a class='btn viewbtn' href = Tcr_profile.php?userID=" . $row['userID'] . " > View </a> </td>" ?>
                             </tr>
                         </tbody>

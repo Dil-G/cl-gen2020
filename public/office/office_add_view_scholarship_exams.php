@@ -50,7 +50,7 @@ include_once '../../config/conn.php';
 
         <div class="card">
             <div>
-                <button id="addExamBtn" class="btn editbtn" type="submit" formaction="o_addSchol.php">Add
+                <button id="addExamBtn" class="btn editbtn" type="submit" formaction="office_add_view_scholarship_exams.php">Add
                     Exam</button>
                 <div id="addExamForm" class="model">
                     <div class="modal-content container">
@@ -66,7 +66,7 @@ include_once '../../config/conn.php';
                             <input type="text" name="pass-mark" placeholder="Enter Pass Mark" required>
 
                             <button type="submit" class="registerbtn" name="savebtn">Save</button>
-                            <a href="o_viewSchol.php" class="cancel-btn">Cancel</a>
+                            <a href="office_add_view_scholarship_exams.php" class="cancel-btn">Cancel</a>
 
                         </form>
                     </div>
@@ -99,10 +99,10 @@ include_once '../../config/conn.php';
                         <td><?php echo $row['examID']?></td>
                         <td><?php echo $row['examYear']?></td>
                         <td><?php echo $row['examName']?></td>
-                        <?php echo "<td><a id='addcsv' class='btn editbtn' href = o_scholCsv.php?examID=".$row['examID']." > Add Results </a></td>"
+                        <?php echo "<td><a id='addcsv' class='btn editbtn' href = office_add_scholarshipExamCsv.php?examID=".$row['examID']." > Add Results </a></td>"
                     ?>
 
-                        <?php echo "<td><a class='btn viewbtn' href = o_schol.php?examID=".$row['examID'].">View Results</td>" ?>
+                        <?php echo "<td><a class='btn viewbtn' href = office_view_scholarship_examResults.php?examID=".$row['examID'].">View Results</td>" ?>
 
 
                     </tr>

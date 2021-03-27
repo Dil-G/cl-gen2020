@@ -13,7 +13,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
         header('Location: o_dashboard.php');
     } else {
         include_once '../../config/conn.php';
-        include_once '../../src/view_users.php';
+        include_once '../../src/office_view_users.php';
 ?>
 
         <!DOCTYPE html>
@@ -73,7 +73,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                                         <tr>
                                             <td><?php echo $row['userID'] ?></td>
                                             <td><?php echo $row['username'] ?></td>
-                                            <?php echo "<td><a class='btn editbtn' href = o_addOfficerDetails.php?userID=" . $row['userID'] . " > Add </a> </td>" ?>
+                                            <?php echo "<td><a class='btn editbtn' href = office_addOfficerDetails.php?userID=" . $row['userID'] . " > Add </a> </td>" ?>
                                         </tr>
                                     </tbody>
                                 <?php
@@ -113,7 +113,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                                                     echo $fname['lName'];
                                                 }
                                                 ?></td>
-                                            <?php echo "<td><a class='btn editbtn' href = update_officer.php?userID=" . $row['userID'] . " > update </a> </td>" ?>
+                                            <?php echo "<td><a class='btn editbtn' href = office_update_officer.php?userID=" . $row['userID'] . " > update </a> </td>" ?>
                                         </tr>
                                     </tbody>
                                 <?php

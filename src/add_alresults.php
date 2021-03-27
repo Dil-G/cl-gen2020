@@ -71,13 +71,13 @@ if (isset($_POST["alresults"])) {
                 if ($import_result) {
                 } else {
                     $error = "Error in uploading";
-                    header('Location: ../public/office/o_al.php?Ggrades=' . $error);
+                    header('Location: ../public/office/office_viewAL_results.php?Ggrades=' . $error);
                 }
                 // $maxID = $maxID + 1;
             }
             fclose($handle);
             echo "<script>alert('Import done');</script>";
-            header('Location: ../public/office/o_al.php');
+            header('Location: ../public/office/office_viewAL_results.php');
         }
     }
 }

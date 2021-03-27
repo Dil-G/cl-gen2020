@@ -52,7 +52,7 @@ include_once '../../config/conn.php';
 
         <div class="card">
             <div>
-                <button id="addExamBtn" class="btn" type="submit" formaction="o_addAl.php">Add
+                <button id="addExamBtn" class="btn" type="submit" formaction="">Add
                     Exam</button>
                 <div id="addExamForm" class="model">
                     <div class="modal-content container">
@@ -64,7 +64,7 @@ include_once '../../config/conn.php';
                             <label for="alExamYear"><b>Enter Exam Year</b></label>
                             <input type="text" placeholder="Enter Exam Year" name="alExamYear" required>
                             <button type="submit" class="registerbtn" name="savebtn">Save</button>
-                            <a href="office_add_view_OL_exams.php" class="cancel-btn">Cancel</a>
+                            <a href="office_add_view_AL_exams.php" class="cancel-btn">Cancel</a>
 
                         </form>
                     </div>

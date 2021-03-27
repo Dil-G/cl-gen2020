@@ -11,7 +11,7 @@
 
       if (in_array("d1", $dutyID)) {
         include_once '../../config/conn.php';
-        include_once '../../src/view_users.php';
+        include_once '../../src/office_view_users.php';
 	?>
 
 <!DOCTYPE html>
@@ -110,7 +110,7 @@
                             echo $fname['name'] ;
                         }
                         ?></td>
-                                <?php echo "<td><a class='btn editbtn' href = update_parent.php?userID=".$row['userID']." > update </a> </td>"?>
+                                <?php echo "<td><a class='btn editbtn' href = office_update_parent.php?userID=".$row['userID']." > update </a> </td>"?>
                             </tr>
                         </tbody>
                         <?php

@@ -100,7 +100,7 @@ if (isset($_POST['login'])){
                     $_SESSION['userID'] =  $userID;
                     $_SESSION['username'] = $row['username'];
                     $_SESSION['userType'] = "officer";
-                    header('Location: ../public/office/o_dashboard.php');
+                    header('Location: ../public/office/office_dashboard.php');
 
                 }else if($row['userType'] == "admin"){
                     $_SESSION['userID'] = $row['userID'];

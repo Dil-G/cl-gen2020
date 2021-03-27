@@ -65,7 +65,7 @@
                             <label for="scholExamYear"><b>Enter Exam Year</b></label>
                             <input type="text" placeholder="Enter Exam Year" name="scholExamYear" required>
                             <button type="submit" class="registerbtn" name="savebtn">Save</button>
-                            <a href="o_viewSchol.php" class="cancel-btn">Cancel</a>
+                            <a href="office_add_view_OL_exams.php" class="cancel-btn">Cancel</a>
 
                         </form>
                     </div>
@@ -97,9 +97,9 @@
                     <td><?php echo $row['examID']?></td>
                     <td><?php echo $row['examYear']?></td>
                     <td><?php echo $row['examName']?></td>
-                    <?php echo "<td><a id='addExamBtn' class='btn editbtn' href = o_olCsv.php?examID=".$row['examID']." > Add Results </a></td>"
+                    <?php echo "<td><a id='addExamBtn' class='btn editbtn' href = office_add_OLCsv.php?examID=".$row['examID']." > Add Results </a></td>"
                     ?>
-                    <?php echo "<td><a class='btn viewbtn' href= o_ol.php?examID=".$row['examID'].">View Results</td>" ?>
+                    <?php echo "<td><a class='btn viewbtn' href= office_viewOL_Results.php?examID=".$row['examID'].">View Results</td>" ?>
 
                 </tr>
                 <?php
