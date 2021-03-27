@@ -43,7 +43,7 @@
         if($conn->query($sql)===TRUE){
             echo '<script language = "javascript">';
             echo 'alert("Details Added");';
-            header('Location: ../public/office/o_olsubjects.php');
+            header('Location: ../public/office/office_add_and_view_OL_subjects.php');
         }else{
             
             echo "Error : " . $sql . "<br>" . $conn->error;
