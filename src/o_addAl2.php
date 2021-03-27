@@ -37,7 +37,7 @@
         if ($conn->query($sql) === TRUE) {
             echo '<script language = "javascript">';
             echo 'alert("Details Added");';
-            header('Location: ../public/office/al_streams.php');
+            header('Location: ../public/office/office_al_streams.php');
         } else {
 
             echo "Error : " . $sql . "<br>" . $conn->error;
@@ -81,7 +81,7 @@
         if ($conn->query($sql) === TRUE) {
             echo '<script language = "javascript">';
             echo 'alert("Details Added");';
-            header('Location: ../public/office/subjects.php');
+            header('Location: ../public/office/office_al_subjects.php');
         } else {
 
             echo "Error : " . $sql . "<br>" . $conn->error;
@@ -107,10 +107,10 @@
             $result = $conn->query($sql2);
             if ($result == False) {
                 $error = "Subject already Assigned";
-                header('Location: ../public/office/al_streams.php?error=' . $error . '?userID=' . $userID);
+                header('Location: ../public/office/office_al_streams.php?error=' . $error . '?userID=' . $userID);
                 exit();
             }else{
-                header('Location: ../public/office/al_streams.php');
+                header('Location: ../public/office/office_al_streams.php');
             }
         }
     }

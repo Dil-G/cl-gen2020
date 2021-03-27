@@ -42,7 +42,7 @@ if ($conn->query($sql) === TRUE && $conn->query($update_query1) ) {
     echo '<script language="javascript">';
     echo 'alert("Details Added");';
     echo '</script>';
-	header('Location: ../public/office/o_teachersList.php');
+	header('Location: ../public/office/office_teachersList.php');
 
 
     }else{
