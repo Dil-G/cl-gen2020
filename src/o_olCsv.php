@@ -31,7 +31,7 @@ if (isset($_POST["olResults"])) {
                     $error = "Duplicate records in CSV file";
                     
                     echo $error;
-                    header('Location: ../public/office/o_olCsv.php?examID=' . $examID . '&error=' . $error);
+                    header('Location: ../public/office/office_add_OLCsv.php?examID=' . $examID . '&error=' . $error);
                     exit();
                    
                     
@@ -75,13 +75,13 @@ if (isset($_POST["olResults"])) {
                 if ($import_result) {
                 } else {
                     $error = "Error in uploading";
-                    header('Location: ../public/office/o_ol.php?Ggrades=' . $error);
+                    header('Location: ../public/office/office_viewOL_Results.php?Ggrades=' . $error);
                 }
                 // $maxID = $maxID + 1;
             }
             fclose($handle);
             echo "<script>alert('Import done');</script>";
-            header('Location: ../public/office/o_ol.php?examID='.$examID);
+            header('Location: ../public/office/office_viewOL_Results.php?examID='.$examID);
         }
     }
 }
