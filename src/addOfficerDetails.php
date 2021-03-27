@@ -21,7 +21,7 @@ if (isset($_POST['officerReg'])) {
 
     if (!isset($_POST['checkbox'])) {
         $error = "Assign atleast one duty";
-        header('Location: ../public/office/o_officersList.php?error=' . $error);
+        header('Location: ../public/office/office_officersList.php?error=' . $error);
     }
     $duties = $_POST['checkbox'];
     $count = count($duties);
@@ -36,7 +36,7 @@ if (isset($_POST['officerReg'])) {
     $reuslt1 = $conn->query($sql);
     if ($reuslt1 == false) {
         $error = "Error in entering data";
-        header('Location: ../public/office/o_officersList.php?error=' . $error);
+        header('Location: ../public/office/office_officersList.php?error=' . $error);
         exit();
     }
 
@@ -49,7 +49,7 @@ if (isset($_POST['officerReg'])) {
         $result = $conn->query($sql2);
         if ($result == False) {
             $error = "Duty already Assigned";
-            header('Location: ../public/office/o_officersList.php?error=' . $error);
+            header('Location: ../public/office/office_officersList.php?error=' . $error);
             exit();
         }
     }
@@ -60,7 +60,7 @@ if (isset($_POST['officerReg'])) {
         echo '<script language="javascript">';
         echo 'alert("Details Added");';
         echo '</script>';
-        header('Location: ../public/office/o_officersList.php');
+        header('Location: ../public/office/office_officersList.php');
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }

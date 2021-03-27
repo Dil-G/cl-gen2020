@@ -20,7 +20,7 @@ $_SESSION['studentID'] = $userID;
 //$document->loadHtml($html);
 
 ob_start();
-require '../public/office/character_certificate.php';
+require '../public/office/office_character_certificate.php';
 $page = ob_get_clean();
 
 

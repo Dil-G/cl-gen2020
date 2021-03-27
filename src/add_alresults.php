@@ -29,7 +29,7 @@ if (isset($_POST["alresults"])) {
                 {
                     $error = "Duplicate records in CSV file";
                     echo $error;
-                    header('Location: ../public/office/o_alCsv.php?examID=' . $examID . '&error=' . $error);
+                    header('Location: ../public/office/office_add_ALCsv.php?examID=' . $examID . '&error=' . $error);
                     exit();
                    
                     

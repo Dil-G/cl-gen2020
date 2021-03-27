@@ -11,7 +11,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 
     if (in_array("d3", $dutyID)) {
 
-        include_once('../../src/office_view_leaving_request.php');
+        include_once('../../src/view_leaving_request.php');
 ?>
 
         <!DOCTYPE html>
@@ -80,7 +80,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 
                                     <td>
                                         <?php $_SESSION['studentID'] = 'ST2000001';
-                                        echo "<a class='btn editbtn' href = '../../src/office_notifications.php?leaving=" . $row['userID'] . "'>Generate </a> " ?>
+                                        echo "<a class='btn editbtn' href = '../../src/notifications.php?leaving=" . $row['userID'] . "'>Generate </a> " ?>
                                     </td>
                                     <td><button class="btn dltbtn" type="button">Reject</button></td>
                                 <?php } ?>
@@ -152,7 +152,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                                     </td>
                                     <td>
                                         <?php $_SESSION['studentID'] = 'ST2000001';
-                                        echo "<a class='btn editbtn' href = '../../src/office_notifications.php?leaving=" . $rows['userID'] . "'>Regenerate </a> " ?>
+                                        echo "<a class='btn editbtn' href = '../../src/notifications.php?leaving=" . $rows['userID'] . "'>Regenerate </a> " ?>
                                     </td>
                             </tr>
                         <?php } ?>

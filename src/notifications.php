@@ -32,7 +32,7 @@ if (isset($_GET['leaving'])) {
     if ($result_noti == TRUE && $result_update == TRUE ) {
         echo '<script language = "javascript">';
         echo 'alert("Details Added");';
-        header('Location: ../public/office/o_reqLc.php');
+        header('Location: ../public/office/office_view_characher_certificate_requests.php');
     } else {
         echo "Error : " . $sql_noti . "<br>" . $conn->error;
     }
@@ -60,7 +60,7 @@ if (isset($_GET['character'])) {
     if ($result_noti == TRUE && $result_update == TRUE ) {
         echo '<script language = "javascript">';
         echo 'alert("Details Added");';
-        header('Location: ../public/office/o_reqCc.php');
+        header('Location: ../public/office/office_view_characher_certificate_requests.php');
     } else {
         echo "Error : " . $sql . "<br>" . $conn->error;
     }

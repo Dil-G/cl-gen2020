@@ -11,7 +11,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 
     if (in_array("d3", $dutyID)) {
 
-        include_once('../../src/office_view_characterRequest.php');
+        include_once('../../src/view_characterRequest.php');
 ?>
 
         <!DOCTYPE html>
@@ -80,7 +80,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                                     </td>
                                     <td>
                                         <?php $_SESSION['studentID'] = 'ST2000001';
-                                        echo "<a class='btn editbtn' href = '../../src/office_notifications.php?character=" . $row['userID'] . "'>Generate </a> " ?>
+                                        echo "<a class='btn editbtn' href = '../../src/notifications.php?character=" . $row['userID'] . "'>Generate </a> " ?>
                                     </td>
                                     <td><button class="btn dltbtn" type="button">Reject</button></td>
                                 <?php } ?>
@@ -154,7 +154,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 
                                     <td>
                                         <?php 
-                                        echo "<a class='btn editbtn' href = '../../src/office_notifications.php?character=" . $rows['userID'] . "'>Regenerate </a> " ?>
+                                        echo "<a class='btn editbtn' href = '../../src/notifications.php?character=" . $rows['userID'] . "'>Regenerate </a> " ?>
                                     </td>
                             </tr>
                         <?php } ?>
