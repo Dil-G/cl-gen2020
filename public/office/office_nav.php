@@ -81,7 +81,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                     </li>
                     <div class="submenu6" id="submenu6">
                         <ul>
-                            <li><a href="../office/office_al_subjects.php">Advanced Level Subjects</a></li>
+                            <li><a href="../office/office_view_AL_subjects.php">Advanced Level Subjects</a></li>
                             <li><a href="../office/office_al_streams.php">Advanced Level Streams</a></li>
                             <li><a href="../office/office_add_and_view_OL_subjects.php">Ordinary Level Subjects</a></li>
                         </ul>

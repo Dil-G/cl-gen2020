@@ -10,7 +10,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
     $dutyID = $_SESSION['dutyID'];
 
     if (in_array("d4", $dutyID)) {
-        include_once '../../src/office_View_requests.php';
+        include_once '../../src/View_requests.php';
 ?>
 
 <!DOCTYPE html>
@@ -95,7 +95,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                         <td><?php echo $row['requestTime'] ?></td>
 
                         <td><button
-                                class="dltbtn"><?php echo "<a href = ../../src/office_manage_request.php?requestID=" . $row['requestID']   . '&task=' . $task . " > Delete </a> " ?></button>
+                                class="dltbtn"><?php echo "<a href = ../../src/manage_request.php?requestID=" . $row['requestID']   . '&task=' . $task . " > Delete </a> " ?></button>
                         </td>
                     </tr>
                     <?php
@@ -142,7 +142,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                         <td><?php echo $row1['requestDate'] ?></td>
                         <td><?php echo $row1['requestTime'] ?></td>
                         <td><button
-                                class="viewbtn"><?php echo "<a href = ../../src/office_manage_request.php?requestID=" . $row1['requestID'] . '&task=' . $task . " > Mark as resolved </a> " ?></button>
+                                class="viewbtn"><?php echo "<a href = ../../src/manage_request.php?requestID=" . $row1['requestID'] . '&task=' . $task . " > Mark as resolved </a> " ?></button>
                         </td>
                     </tr>
                     <?php

@@ -63,9 +63,9 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                         <label for="examID"><b>Stream ID</b></label>
                         <input type="text" name="streamID" value="<?php echo $row['streamID'] ?>" required>
 
-                        Subjects :
+                        <label><b>Subjects</b></label>
                         <select name='subject1'>
-                            <option value="">--- Select ---</option>
+                            <option value="">--- Select Option ---</option>
                             <?php
                             $select = "subject";
                             if (isset($select) && $select != "") {
@@ -88,7 +88,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                         </select>
 
                         <select name='subject2'>
-                            <option value="">--- Select ---</option>
+                            <option value="">--- Select Option ---</option>
                             <?php
                             $select = "subject";
                             if (isset($select) && $select != "") {
@@ -111,7 +111,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                         </select>
 
                         <select name='subject3'>
-                            <option value="">--- Select ---</option>
+                            <option value="">--- Select Option ---</option>
                             <?php
                             $select = "subject";
                             if (isset($select) && $select != "") {

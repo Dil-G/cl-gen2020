@@ -17,7 +17,7 @@ if (isset($_POST["Import"])) {
 
   if ($NoOfStudents != $c) {
     $error = "Numbers do not match!";
-    header('Location: ../public/office/o_classes.php?Ggrades=' . $thisGrade . '&error=' . $error);
+    header('Location: ../public/office/office_classes.php?Ggrades=' . $thisGrade . '&error=' . $error);
     exit();
   }
 
@@ -25,7 +25,7 @@ if (isset($_POST["Import"])) {
   if (!in_array($ext, $allowed)) {
 
     $error = "Upload a CSV file";
-    header('Location: ../public/office/o_classes.php?Ggrades=' . $thisGrade . '&error=' . $error);
+    header('Location: ../public/office/office_classes.php?Ggrades=' . $thisGrade . '&error=' . $error);
     exit();
   }
   $retireve = "SELECT * from classstudent WHERE gradeID = '$thisGrade'";
@@ -41,7 +41,7 @@ if (isset($_POST["Import"])) {
     if ($result1 == FALSE) {
       $error = "Cannot delete the file";
       echo $error;
-      header('Location: ../public/office/o_classes.php?error=' . $error);
+      header('Location: ../public/office/office_classes.php?error=' . $error);
     }
   }
 
@@ -60,9 +60,9 @@ if (isset($_POST["Import"])) {
 
       if (!isset($result)) {
         $error = "Cannot Upload the file";
-        header('Location: ../public/office/o_classes.php?error=' . $error);
+        header('Location: ../public/office/office_classes.php?error=' . $error);
       } else {
-        header('Location: ../public/office/o_classes.php?Ggrades=' . $thisGrade);
+        header('Location: ../public/office/office_classes.php?Ggrades=' . $thisGrade);
       }
     }
     fclose($file);
@@ -109,7 +109,7 @@ if (isset($_POST['uploadClass'])) {
   if (mysqli_num_rows($result1) < 1) {
 
     $error = "Incorrect Teacher ID";
-    header('Location: ../public/office/o_class.php?class=' . $classID . '&error=' . $error);
+    header('Location: ../public/office/office_class.php?class=' . $classID . '&error=' . $error);
     exit();
   } else {
     while ($row1 = $result1->fetch_assoc()) {
@@ -121,10 +121,10 @@ if (isset($_POST['uploadClass'])) {
 
       if ($result2 == FALSE) {
         $error = "Cannot delete";
-        header('Location: ../public/office/o_class.php?class=' . $classID . '&error=' . $error);
+        header('Location: ../public/office/office_class.php?class=' . $classID . '&error=' . $error);
       } else {
 
-        header('Location: ../public/office/o_class.php?class=' . $classID);
+        header('Location: ../public/office/office_class.php?class=' . $classID);
       }
     }
   }
