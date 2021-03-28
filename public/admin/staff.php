@@ -16,7 +16,6 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
     <html>
 
     <head>
-
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Office staff User List</title>
         <script src="../js/jquery-1.9.1.min.js"></script>

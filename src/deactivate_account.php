@@ -13,9 +13,10 @@ if (isset($_GET['studentID'])) {
     echo $parentID;
     $sql2 = "UPDATE user SET  isActivated='2' WHERE userID='$parentID'";
 
-    $result = $conn->query($sql);
-    $result2 = $conn->query($sql2);
+    $result = mysqli_query($conn,$sql);
+    $result2 = mysqli_query($conn,$sql2);
 
+    
     if ($result == false|| $result2 == false){
         $error = "Error in Deactivating";
             header('Location: ../public/admin/student.php?error='.$error);
@@ -26,6 +27,7 @@ if (isset($_GET['studentID'])) {
     }
 
 }
+
 
 
 //Deactivate Officer account

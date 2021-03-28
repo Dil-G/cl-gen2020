@@ -5,7 +5,7 @@ require_once '../config/conn.php';
 
 if (isset($_POST["alresults"])) {
 
-    $examID=$_POST["examID"];
+    $examID = $_POST["examID"];
     $IDarray = array();
 
     $count = 0;
@@ -16,25 +16,41 @@ if (isset($_POST["alresults"])) {
             while ($datas = fgetcsv($handles)) {
 
                 $count++;
-                if ($count == 1) { continue; }
-                
+                if ($count == 1) {
+                    continue;
+                }
+
                 $items2 = mysqli_real_escape_string($conn, $datas[0]);
                 $items3 = mysqli_real_escape_string($conn, $datas[1]);
                 $items4 = mysqli_real_escape_string($conn, $datas[2]);
                 $items5 = mysqli_real_escape_string($conn, $datas[3]);
-    
-                $MIDs = substr($items2,2) . substr($items3,3);
-    
-                if(in_array($MIDs,$IDarray))
-                {
+
+                $retrieve_class = "SELECT * FROM classstudent WHERE studentID='$items2'";
+                $class_result =  mysqli_query($conn, $retrieve_class);
+                while ($row = mysqli_fetch_assoc($class_result)) {
+                    $gradeID = $row['gradeID'];
+                    $year = substr($gradeID, 0, 4);
+                    if ($year == date('Y')) {
+                        $error = "Student ".$items2." is not an A/L student";
+                        echo $error;
+                        header('Location: ../public/office/o_alCsv.php?examID=' . $examID . '&error=' . $error);
+                        exit();
+                    }
+                }
+
+
+                $retrieve_class = "SELECT * FROM grades WHERE studentID='$items2'";
+                $class_result =  mysqli_query($conn, $retrieve_class);
+
+                $MIDs = substr($items2, 2) . substr($items3, 3);
+
+                if (in_array($MIDs, $IDarray)) {
                     $error = "Duplicate records in CSV file";
                     echo $error;
                     header('Location: ../public/office/o_alCsv.php?examID=' . $examID . '&error=' . $error);
                     exit();
-                   
-                    
-                }else{
-                    array_push($IDarray,$MIDs);
+                } else {
+                    array_push($IDarray, $MIDs);
                 }
             }
         }
@@ -47,22 +63,24 @@ if (isset($_POST["alresults"])) {
         if ($filename[1] == 'csv') {
             $handle = fopen($_FILES['file']['tmp_name'], "r");
             while ($data = fgetcsv($handle)) {
-              
+
                 $c++;
-                if ($c == 1) { continue; }
+                if ($c == 1) {
+                    continue;
+                }
 
                 $item2 = mysqli_real_escape_string($conn, $data[0]);
                 $item3 = mysqli_real_escape_string($conn, $data[1]);
                 $item4 = mysqli_real_escape_string($conn, $data[2]);
                 $item5 = mysqli_real_escape_string($conn, $data[3]);
 
-                $MID = substr($item2,2) . substr($item3,3);
+                $MID = substr($item2, 2) . substr($item3, 3);
                 $retrieve = "SELECT * FROM alresults WHERE markID='$MID'";
                 $marks_result =  mysqli_query($conn, $retrieve);
 
                 if (mysqli_num_rows($marks_result) > 0) {
                     $query = "UPDATE alresults SET `grade` = '$item5',`examID` = '$examID' WHERE markID='$MID'";
-                }else{
+                } else {
                     $query = "INSERT into alresults(markID,studentID, subjectID, streamID,grade,examID) 
                 values('$MID','$item2','$item3','$item4','$item5','$examID')";
                 }
@@ -71,11 +89,11 @@ if (isset($_POST["alresults"])) {
                 if ($import_result) {
                 } else {
                     $error = "Error in uploading";
-                    header('Location: ../public/office/o_al.php?Ggrades=' . $error);
+                    header('Location: ../public/office/o_al.php?error=' . $error);
                 }
                 // $maxID = $maxID + 1;
             }
-            fclose($handle);
+            fclose($handles);
             echo "<script>alert('Import done');</script>";
             header('Location: ../public/office/o_al.php');
         }

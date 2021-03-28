@@ -26,7 +26,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
         <link type="text/css" rel="stylesheet" href="../css/main.css">
         <link type="text/css" rel="stylesheet" href="../css/dashboard.css">
 
-        <title>Office Dashboard</title>
+        <title>Admin Dashboard</title>
     </head>
 
     <body>

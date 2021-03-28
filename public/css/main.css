@@ -23,6 +23,26 @@ html body{
 	
 	
 }
+.search{
+	float:right;
+}
+.search input[type=text] {
+  width: 250px;
+  padding: 7px;
+  margin: 5px 0 20px 0;
+  display: inline-block;
+  border: 1px solid transparent;
+  background: #f1f1f1;
+}
+input[type=text], input[type=password], input[type="date"],textarea,input[type="file"],input[type="email"] {
+	width: 100%;
+	padding: 15px;
+	margin: 5px 0 22px 0;
+	display: inline-block;
+	border: 1px solid transparent;
+	background: #f1f1f1; 
+  }
+  
 .wrap img{
 	display:inline-flex;
 	font-weight: bold;

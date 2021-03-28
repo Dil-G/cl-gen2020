@@ -31,7 +31,6 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 <body>
     <div id="nav2"></div>
 
-
     <div class="content">
         <div class="container">
             <form action="../../src/editDuties.php" method="POST">

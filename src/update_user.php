@@ -133,21 +133,46 @@ if (isset($_POST['update_teacher'])) {
     $address = $_POST['stuAddress'];
     $contactNo = $_POST['contactNo'];
 
-    $checked_arr = $_POST['checkbox'];
-    $count = count($checked_arr);
-    echo "There are ".$count." checkboxe(s) are checked";
 
-    if($count == '2'){
-        $type="both";
-    }else{
-        foreach ($checked_arr as $checked_arr){ 
-            $type = $checked_arr;
-        }
-    }
+    echo $userID;
+
+    $sql = "DELETE FROM teacherType WHERE teacherID ='$teacherID'" ;
+
+    $result1= mysqli_query($conn,$sql);
+
     
+    if($result1 == FALSE){
+   $error="ERROR";
+       header('Location: ../public/admin/updateTeacher.php?error='.$error);
+    }
+
+    $duties = $_POST['checkbox'];
+    $count = count($duties);
+
+    $duty = "";  
+
+    foreach ($duties as $dut){ 
+        $duty = $dut;
+        $sql2 = "INSERT INTO teacherType (teacherID, teacherType) VALUES('$teacherID', '$duty')";
+         echo $duty;
+         echo $userID;
+ 
+         $result = $conn->query($sql2);
+         if($result == False){
+            $error = "Duty already Assigned";
+            if($_SESSION['userType'] == 'officer'){
+                header('Location: ../public/office/o_teachersList.php?error='.$error);
+                exit();
+             }else{
+                header('Location: ../public/admin/teachers.php?error='.$error);
+                exit();
+             }
+         }
+    }
+
 
     $sql = "UPDATE teacher
-    SET  fName='$fName', lName='$lname', dob='$dob', address='$address', email='$email', contactNo='$contactNo', gender='$gender', nic='$nic',teacherType='$type'
+    SET  fName='$fName', lName='$lname', dob='$dob', address='$address', email='$email', contactNo='$contactNo', gender='$gender', nic='$nic'
       WHERE teacherID='$teacherID'";
  
 

@@ -42,8 +42,8 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
             <h2 class="portal">OFFICE PORTAL</h2>
             <br>
             <ul>
-                <li><a href="../office/o_dashboard.php">Dashboard</a></li>
-                <li><a href="../office/newsfeed.php">Newsfeed</a></li>
+                <li><a href="../office/office_dashboard.php">Dashboard</a></li>
+                <li><a href="../office/office_newsfeed.php">Newsfeed</a></li>
 
                 <?php
                 if (in_array("d1", $dutyID)) {
@@ -54,10 +54,10 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                     <div class="submenu" id="submenu">
                         <ul>
 
-                            <li><a href="o_studentsList.php">Student</a></li>
-                            <li><a href="o_teachersList.php">Teacher</a></li>
-                            <li><a href="o_officersList.php">Officers</a></li>
-                            <li><a href="o_parentsList.php">Parents</a></li>
+                            <li><a href="office_studentsList.php">Student</a></li>
+                            <li><a href="office_teachersList.php">Teacher</a></li>
+                            <li><a href="office_officersList.php">Officers</a></li>
+                            <li><a href="office_parentsList.php">Parents</a></li>
                         </ul>
                     </div>
 
@@ -69,9 +69,9 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                     </li>
                     <div class="submenu2" id="submenu2">
                         <ul>
-                            <li><a href="../office/o_viewSchol.php">Grade 5 Scholarship</a></li>
-                            <li><a href="../office/o_viewOl.php">G.C.E. O/L</a></li>
-                            <li><a href="../office/o_viewAl.php">G.C.E. A/L</a></li>
+                            <li><a href="../office/office_add_view_scholarship_exams.php">Grade 5 Scholarship</a></li>
+                            <li><a href="../office/office_add_view_OL_exams.php">G.C.E. O/L</a></li>
+                            <li><a href="../office/office_add_view_AL_exams.php">G.C.E. A/L</a></li>
                         </ul>
                     </div>
                     <?php }
@@ -81,9 +81,9 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                     </li>
                     <div class="submenu6" id="submenu6">
                         <ul>
-                            <li><a href="../office/subjects.php">Advanced Level Subjects</a></li>
-                            <li><a href="../office/al_streams.php">Advanced Level Streams</a></li>
-                            <li><a href="../office/o_olsubjects.php">Ordinary Level Subjects</a></li>
+                            <li><a href="../office/office_al_subjects.php">Advanced Level Subjects</a></li>
+                            <li><a href="../office/office_al_streams.php">Advanced Level Streams</a></li>
+                            <li><a href="../office/office_add_and_view_OL_subjects.php">Ordinary Level Subjects</a></li>
                         </ul>
                     </div>
 
@@ -95,15 +95,15 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                     </li>
                     <div class="submenu3" id="submenu3">
                         <ul>
-                            <li><a href="../office/o_reqCc.php">Character Certificates</a>
-                            <li><a href="../office/o_reqLc.php">Leaving Certificates</a></li>
+                            <li><a href="../office/office_view_characher_certificate_requests.php">Character Certificates</a>
+                            <li><a href="../office/office_view_leaving_certificate_requests.php">Leaving Certificates</a></li>
                         </ul>
                     </div>
 
                 <?php }
                 if (in_array("d4", $dutyID)) { ?>
 
-                    <li><a href="../office/o_viewReq.php">Request Management</a></li>
+                    <li><a href="../office/office_viewRequests.php">Request Management</a></li>
 
 
                 <?php }
@@ -114,16 +114,16 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                     </li>
                     <div class="submenu5" id="submenu5">
                         <ul>
-                            <li><a href="../office/newsfeed.php"> Newsfeed</a>
-                            <li><a href="../office/edit_newsfeed.php">Add News</a></li>
-                            <li><a href="../office/news_list.php">News List</a></li>
+                            <li><a href="../office/office_newsfeed.php"> Newsfeed</a>
+                            <li><a href="../office/office_edit_newsfeed.php">Add News</a></li>
+                            <li><a href="../office/office_news_list.php">News List</a></li>
                         </ul>
                     </div>
 
                 <?php }
                 if (in_array("d6", $dutyID)) { ?>
 
-                    <li><a href="../office/o_addClassYear.php">Class Management</a></li>
+                    <li><a href="../office/office_addClassYear.php">Class Management</a></li>
 
 
                 <?php } ?>

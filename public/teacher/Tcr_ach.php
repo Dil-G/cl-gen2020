@@ -1,14 +1,22 @@
 <?php
     session_start();
-    
- 
+
     if(!isset($_SESSION['userType']) && !isset($_SESSION['userID'])){
         $error = "Please Login!";
         header('Location: ../common/loginFile.php?error='.$error);
-    }elseif($_SESSION['userType'] == 'teacher'){
+    }elseif($_SESSION['userType'] != 'teacher'){
+        header('Location: ../common/error.html');
+    }else{      
+        $teacherType = array();
+        $teacherType = $_SESSION['teacherType'];
+
+
+        if (!in_array("teacherIncharge", $teacherType)) {
+            header('Location: Tcr_dashboard.php');
+        }else{
       
         $userID = $_SESSION['userID'];
-      include('../../src/view_sportcategory.php');
+        include('../../src/view_sportcategory.php');
      
 	?>
 <!DOCTYPE html>
@@ -27,7 +35,6 @@
 </head>
 
 <body name=top>
-
     <body>
         <div id="teacherNav"></div>
 
@@ -52,24 +59,25 @@
         <th>Add</th> 
     </tr>
 
-    <?php
+    
+  <tbody id="Table">
+  <?php
             while($row=mysqli_fetch_assoc($result)){
 
-    ?>
-  <tbody id="Table"> 
+    ?> 
   <tr>
     <td><?php echo $row['SportID'] ?></td>
     <td><?php echo $row['SportName'] ?></td>
     <?php echo "<td><a class='btn editbtn' href = Tcr_achievement.php?SportID=".$row['SportID']." > Add </a> </td>"?>
   </tr>
-    
-  <tbody > 
-   
-    <?php
+  <?php
 }
 
 
-?>
+?> 
+  <tbody > 
+   
+
 <!-- End Add achievements -->
 
 
@@ -81,34 +89,34 @@
   
     <tr>
         <th>Society ID</th>
-        <th>Societyt Name </th>
+        <th>Society Name </th>
         <th>Add</th> 
     </tr>
 
-    <?php
+  
+<tbody id="Table"> 
+<?php
             while($row2=mysqli_fetch_assoc($result2)){
 
     ?>
-<tbody id="Table"> 
 <tr>
     <td><?php echo $row2['SocietyID'] ?></td>
     <td><?php echo $row2['SocietyName'] ?></td>
     <?php echo "<td><a class='btn editbtn' href = Tcr_achievement.php?SocietyID=".$row2['SocietyID']." > Add </a> </td>"?>
 </tr>
+<?php
+}
+?>  
 <tbody> 
 
 
-<?php
-}
-
-
-?>   
+ 
 
 
 </body>
 </html>
 
-<?php } ?>
+<?php } }?>
 
 
 

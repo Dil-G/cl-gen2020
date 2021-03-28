@@ -20,8 +20,8 @@ if (isset($_POST['regbtn'])) {
 
     
     if($result1 == FALSE){
-   
-       header('Location: ../public/admin/duty.php?errorrrrrr');
+   $error="ERROR";
+       header('Location: ../public/admin/duty.php?error='.$error);
     }
 
     $duties = $_POST['checkbox'];

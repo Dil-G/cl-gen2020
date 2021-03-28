@@ -81,6 +81,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                                         <td>
                                             <form action="../../src/reactivate.php" method="POST"  onclick="return confirmation()">
                                             <input type="hidden" name="userID" value="<?php echo $row['userID']?>" />
+                                            <input type="hidden" name="userType" value="<?php echo $row['userType']?>" />
                                                 <button class='btn editbtn' input type="submit"  name="reactivate" value="Reactivate" >Reactivate</button>
                                             </form>
                                         </td>

@@ -37,6 +37,7 @@ if (isset($_POST['view_news'])) {
 }
 
 
+
 if (isset($_SESSION['newsID'])) {
 
 $newsID =$_SESSION['newsID'];
@@ -56,8 +57,10 @@ echo"failed";
 
 if($userType == 'student' ||$userType == 'parent' ){
     $sql_notifications = "SELECT *  FROM notifications WHERE reciever='$userID' ORDER BY notificationID DESC";
+    $count_notifications = "SELECT COUNT(*)  FROM notifications WHERE activeStatus='0' AND reciever='$userID'";
 
     $res_notifications= mysqli_query($conn,$sql_notifications);
+    $res_count= mysqli_query($conn,$count_notifications);
 
     if($res_notifications){
     //echo "Sucessfull";
@@ -70,10 +73,12 @@ if($userType == 'student' ||$userType == 'parent' ){
 if (isset($_GET['view_notification'])) {
 
     $notificationID =$_GET['view_notification'];
-    
+
+    $update = "UPDATE notifications SET activeStatus='1' WHERE reciever='$userID' AND notificationID=$notificationID";
     $sql_noti = "SELECT *  FROM notifications WHERE reciever='$userID' AND notificationID=$notificationID ";
     
     $sql_noti= mysqli_query($conn,$sql_noti);
+    $update_noti= mysqli_query($conn,$update);
     
     if($sql_noti){
     //echo "Sucessfull";
@@ -82,3 +87,18 @@ if (isset($_GET['view_notification'])) {
     echo"failed";	
     }
 }
+// if (isset($_SESSION['userID'])) {
+
+//     $userID =$_SESSION['userID'];
+    
+//     $sql_notification = "SELECT * FROM notifications WHERE reciever = $userID";
+    
+//     $res_notification= mysqli_query($conn,$sql_notification);
+    
+//     if($res_notification){
+//     //echo "Sucessfull";
+//     }
+//     else{
+//     echo"failed ss";	
+//     }
+//     }

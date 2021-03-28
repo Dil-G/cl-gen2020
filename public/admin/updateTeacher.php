@@ -10,10 +10,10 @@
 		else{
 
             $_SESSION['teacherID']=$_GET['userID'];
+            $teacherID=$_GET['userID'];
          include '../../src/user_list.php';
 
 ?>
-
 <!DOCTYPE html>
 <html>
 
@@ -78,15 +78,37 @@
                 <input type="text" placeholder="Enter Contact Number" name="contactNo" id="contactNo"
                 value="<?php echo $row['contactNo']?>"  onblur="contact(contactNo.value)">
 
+   
 
-                <label><b>Teacher Type:</b></label>
+                <label for="duty"><b>Current Duties</b></label>
                 <br>
                 <br>
                 <br>
-                <label> <input type="checkbox" name="checkbox[1]" id="t1" value="classTcr" <?php if($row['teacherType'] == "classTcr" ||$row['teacherType'] == "both"){?> checked <?php } ?>> Class Teacher</label>
+
+                <?php ?>
+
+
+                <?php
+                            while ($rows = mysqli_fetch_assoc($result_type)) {
+                            ?>
+
+                <?php echo $rows['teacherType'] . "<br />" ?>
+
+                <?php }
+                        
+                     ?>
+                <hr>
+                <h1 style="color:#656565;">Select to re-assign Duties</h1>
+                <p>(Current Duties will be removed when Re-assigning)</p>
+                <label><b>User Duties :</b></label>
                 <br>
                 <br>
-                <label> <input type="checkbox" name="checkbox[2]" id="t2" value="TcrinCharge" <?php if($row['teacherType'] == "tcrinCharge" ||$row['teacherType'] == "both" ){?> checked <?php } ?>> Teacher In charge</label>
+                <br>
+                <label> <input type="checkbox" name="checkbox[1]" value="classTeacher">Class Teacher</label>
+                <br>
+                <br>
+                <label> <input type="checkbox" name="checkbox[2]" value="teacherIncharge">Teacher Incharge</label>
+                <br>
                 <br>
 
                 <hr>
@@ -98,12 +120,10 @@
                 </div>
                 <?php } ?>
             </form>
-            
         </div>
     </div>
 </body>
 
 </html>
-
 
 <?php } ?>

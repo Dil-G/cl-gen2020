@@ -4,10 +4,20 @@
     if(!isset($_SESSION['userType']) && !isset($_SESSION['userID'])){
         $error = "Please Login!";
         header('Location: ../common/loginFile.php?error='.$error);
-    }elseif($_SESSION['userType'] == 'teacher'){
+    }elseif($_SESSION['userType'] != 'teacher'){
+        header('Location: ../common/error.html');
+    }else{      
+        $teacherType = array();
+        $teacherType = $_SESSION['teacherType'];
+
+
+        if (!in_array("classTeacher", $teacherType)) {
+            header('Location: Tcr_dashboard.php');
+        }else{
       
-   
-      $teacherType = $_SESSION['teacherType'];
+
+    $classID = $_SESSION['classID'];
+    
 
      
 	?>
@@ -68,5 +78,5 @@
 </html>
 
 <?php 
-	 }
+	 }}
 ?>

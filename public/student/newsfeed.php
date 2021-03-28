@@ -37,15 +37,17 @@
 <div class="content">
     <div id="msg"></div>
 
-
-
     <div class="feed">
-
-
         <div class="btn-box">
-
             <button id="button2" onclick="NEWS()">News and Events</button>
-            <button id="button1" onclick="ABOUT()">Notifications</button>
+            <?php
+            $count = mysqli_fetch_assoc($res_count);
+            if($count["COUNT(*)"]==0){
+                echo '<button id="button1" onclick="ABOUT()">Notifications</button>';
+            }else{
+                echo '<button id="button1" onclick="ABOUT()">New Notifications <i class="fa fa-bell" style="color:#008080;"aria-hidden="true"></i></button>';
+            }
+            ?>
         </div>
         <?php if (isset($_GET['message'])) { ?>
         <div id="message"><?php echo $_GET['message']; ?></div>
@@ -58,27 +60,23 @@
             <div class="banner">
             </div>
 
-
             <table>
-
                 <?php
-$size = mysqli_fetch_assoc($res1);
-$c = $size['COUNT(*)'];
-$i = 1;
-$n=1;
+                $size = mysqli_fetch_assoc($res1);
+                $c = $size['COUNT(*)'];
+                $i = 1;
+                $n=1;
 
-
-
-for($i;$i <= $c;$i++){
-    ?>
+                for($i;$i <= $c;$i++){
+                    ?>
                 <tr>
                     <?php
-    for($j=1;$j<4 && $j < $c;$j++){
-        ?>
+                    for($j=1;$j<4 && $j < $c;$j++){
+                     ?>
                     <td>
                         <?php
-            $n++;
-                    $row=mysqli_fetch_array($res);?>
+                        $n++;
+                        $row=mysqli_fetch_array($res);?>
 
                         <table class="inner">
                             <tr>
@@ -103,8 +101,6 @@ for($i;$i <= $c;$i++){
                             </tr>
                             <tr>
                                 <td>
-
-								
                                     <form method="POST" action="news.php">
                                         <input type="hidden" name="newsID" value="<?php echo $row['newsID']; ?>" />
                                         <button class="view-btn" style="width:100px;" type="submit" id="view_news"
@@ -118,20 +114,15 @@ for($i;$i <= $c;$i++){
 
                     <?php if($n>$c ){
                                 break;
-                            } } ?>
+                        } 
+                    } ?>
                 </tr>
                 <?php
             if($n>$c ){
             break;
         }			
-
     } ?>
-
             </table>
-
-
-
-
 
         </div>
 
@@ -142,13 +133,22 @@ for($i;$i <= $c;$i++){
             <table>
 
                 <?php
-            
-                    while($row=mysqli_fetch_array($res_notifications)){?>
-
-                <table class="inner">
+                    while($row=mysqli_fetch_array($res_notifications)){
+                        
+                    if($row['activeStatus']==0){
+                        echo "<table class='inner' style='background-color:#d7d7c1;'>";
+                    } else{
+                        echo "<table class='inner' >";
+                    }   
+                        ?>
+                
                     <tr>
-
-                        <td class="time">
+                    
+                    <?php if($row['activeStatus']==0){
+                        echo "<td class='time' style='background-color:#d7d7c1;'>";
+                    } else{
+                        echo "<td class='time' >";
+                    } ?>
                             <p class="d"> <?php echo $row['dateTime']?>
                             </p>
                         </td>
@@ -156,18 +156,30 @@ for($i;$i <= $c;$i++){
 
                     </tr>
                     <tr>
-                        <th>
+                      <?php if($row['activeStatus']==0){
+                        echo "<th  style='background-color:#d7d7c1;'>";
+                    } else{
+                        echo "<th  >";
+                    } ?>
                             <h2><b><?php echo $row['title'] ?></b></h2>
                             <hr>
                         </th>
                     </tr>
                     <tr>
-                        <td>
+                    <?php if($row['activeStatus']==0){
+                        echo "<td  style='background-color:#d7d7c1;'>";
+                    } else{
+                        echo "<td  >";
+                    } ?>
                             <p> <?php echo $row['messages']?></p>
                         </td>
                     </tr>
                     <tr>
-                        <td>
+                    <?php if($row['activeStatus']==0){
+                        echo "<td  style='background-color:#d7d7c1;'>";
+                    } else{
+                        echo "<td  >";
+                    } ?>
 
 						<button id="view-btn" class="registerbtn" name="view_notification"><?php echo "<a href = notification.php?view_notification=" . $row['notificationID'] . " > View More </a> " ?></button>
 
@@ -205,8 +217,8 @@ let url = window.location.href;
 if (url == window.location.href) {
     page1.style.display = "none";
     page2.style.display = "block";
-    button1.style.color = "#000";
-    button2.style.color = "#008080";
+    button1.style.color = "#008080";
+    button2.style.color = "#000";
 }
 
 function ABOUT() {

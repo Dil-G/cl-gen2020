@@ -1,22 +1,32 @@
 <?php
-session_start();
+    session_start();
 
-if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
-    $error = "Please Login!";
-    header('Location: ../common/loginFile.php?error=' . $error);
-} elseif ($_SESSION['userType'] == 'teacher') {
+    if(!isset($_SESSION['userType']) && !isset($_SESSION['userID'])){
+        $error = "Please Login!";
+        header('Location: ../common/loginFile.php?error='.$error);
+    }elseif($_SESSION['userType'] != 'teacher'){
+        header('Location: ../common/error.html');
+    }else{      
+        $teacherType = array();
+        $teacherType = $_SESSION['teacherType'];
 
 
-    $teacherType = $_SESSION['teacherType'];
+        if (!in_array("classTeacher", $teacherType)) {
+            header('Location: Tcr_dashboard.php');
+        }else{
+      
+
+    $classID = $_SESSION['classID'];
+    $_SESSION['class'] = $classID;
     $userID = $_SESSION['userID'];
     include_once '../../config/conn.php';
     //include "function.php";
-    include_once '../../src/addClass.php';
-    include_once '../../src/uploadClasses.php';
     include_once '../../src/view_class.php';
 
-?>
+    include_once '../../src/uploadClasses.php';
+    include_once '../../src/addClass.php';
 
+?>
 
       <!DOCTYPE html>
       <html>
@@ -67,29 +77,20 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                         <div class="l-part">
                             <label for="name"><b>Class Teacher</b></label>
 
-                            <input type="text" placeholder="Add the class teacher" name="name" value="<?php if ($row['teacherIncharge'] == TRUE) {
-                                                                                                            echo $row['teacherIncharge'];
-                                                                                                        } ?>" readonly>
+                            <input type="text" placeholder="Add the class teacher" name="name" value="<?php if ($row['fName'] == TRUE) {
+                                                                                                                echo $row['fName']." ".$row['lName'];
+                                                                                                            } ?>" readonly>
+                        </div>
+                        <div class="r-part">
+                            <label for="Medium"><b>Medium</b></label>
+
+                            <input type="text" placeholder="Add the class teacher" name="name" value="<?php if ($row['name'] == TRUE) {
+                                                                                                                echo $row['medium'];
+                                                                                                            } ?>" readonly>
                         </div>
 
-                        <div class="r-part">
-                            <label for="medium"><b>Medium</b></label>
-                            <select name="medium" id="medium" required>
-                                <option value="<?php if ($row['name'] == TRUE) {
-                                                    echo $row['medium'];
-                                                } ?>"><?php if ($row['name'] == TRUE) {
-                                                                                                                echo $row['medium'];
-                                                                                                            } ?></option>
-                                <option value="English">English</option>
-                                <option value="Sinhala">Sinhala</option>
-                                <option value="Tamil">Tamil</option>
-                            </select>
-                            <br><br>
-                            <!-- <input type="text" placeholder="Add the medium" name="medium" value="<?php if ($row['name'] == TRUE) {
-                                                                                                            echo $row['medium'];
-                                                                                                        } ?>" required> -->
-                        </div>
-                      
+                  
+                    
                     <?php } ?>
 
                     </form>
@@ -99,11 +100,14 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
           
             <br>
             <div class="card">
+            <hr>
+
+                
+
             <form class="search" action="Tcr_classDetails.php">
             <input type="text" ID="Inputs" placeholder="Search.." name="search">
             <button type="submit">Search</button>
         </form>
-                <hr>
                 <table>
                     <tr>
                         <th>Admission number</th>
@@ -122,8 +126,8 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                                 echo $studentID; ?>
                             <td><?php
                                 $sql = "SELECT * FROM student WHERE admissionNo ='$studentID'";
-                                $result = $conn->query($sql);
-                                while ($rows = mysqli_fetch_assoc($result)) {
+                                $result = mysqli_query($conn,$sql);
+                                                                while ($rows = mysqli_fetch_assoc($result)) {
                                     echo $rows['fName'] . " " .  $rows['lName'];
                                 }
                                 ?></td>
@@ -144,5 +148,5 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 
     </html>
 
-<?php }
+<?php }}
 ?>

@@ -1,12 +1,23 @@
 <?php
 
-function writeLog($message){
-    $fp = fopen('../logs/log.txt', "a");
-    fwrite($fp,date("Y/m/d"));
-    fwrite($fp,"  ");
-    fwrite($fp,date("h:i:sa P "));
-    fwrite($fp," GMT ");
-    fwrite($fp,$message);
-    fwrite($fp,PHP_EOL);
+function writeLog($message, $path ){
+    $file_path = $path."/accessLog.txt";
+    $fp = fopen($file_path,'a'); //a is append mode
+    fwrite($fp, date("c  "));
+    fwrite($fp, $message);
+    fwrite($fp, PHP_EOL);
+    fclose($fp);
 }
+
+function writeApplicationLog($message, $path ){
+    $file_path = $path."/applicationLogs.txt";
+    $fp = fopen($file_path,'a'); //a is append mode
+    fwrite($fp, date("c  "));
+    fwrite($fp, $message);
+    fwrite($fp, PHP_EOL);
+    fclose($fp);
+}
+
+
+
 ?>

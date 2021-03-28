@@ -49,7 +49,7 @@ echo $societyID;
 if (isset($_POST['regbtn'])) {
 
     //$societyID = $_POST['Stid'];
-    $societyName = $_POST['Soname'];
+    $societyName = $_POST['societyName'];
     $tcrID = $_POST['TID'];
 
 $sql = "INSERT INTO csocieties (SocietyID,SocietyName, tcrID) VALUES

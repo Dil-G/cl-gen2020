@@ -78,15 +78,15 @@
                 <label for="contactNo"><b>Contact Number</b></label>
                 <input type="text" placeholder="Enter Contact Number" name="contactNo" id="contactNo"
                     onblur="contact(contactNo.value)">
-
+<!-- 
                 <label><b>Teacher Type:</b></label>
                 <br>
                 <br>
                 <br>
-                <label> <input type="checkbox" name="checkbox[1]" id="t1" value="classTcr"> Class Teacher</label>
+                <label> <input type="checkbox" name="checkbox[1]" id="t1" value="classTeacher"> Class Teacher</label>
                 <br>
                 <br>
-                <label> <input type="checkbox" name="checkbox[2]" id="t2" value="TcrinCharge"> Teacher In charge</label>
+                <label> <input type="checkbox" name="checkbox[2]" id="t2" value="teacherIncharge"> Teacher In charge</label> -->
 
                 <hr>
                 <div id="msg"></div>

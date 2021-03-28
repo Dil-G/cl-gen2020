@@ -53,8 +53,6 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                         <tr>
                             <th>Sport ID</th>
                             <th>Sport </th>
-                            <th>Teacher In Charge ID</th>
-                            <th>Update</th>
                             <th>Deactivate</th>
                         </tr>
                         <?php
@@ -65,9 +63,8 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                                 <tr>
                                     <td><?php echo $row['SportID'] ?></td>
                                     <td><?php echo $row['SportName'] ?></td>
-                                    <td><?php echo $row['tcrID'] ?></td>
                                     <?php
-                                    echo "<td><a class='btn editbtn' href = updateSport.php?sportID=" . $row['SportID'] . " > Update </a> </td>";
+                                    // echo "<td><a class='btn editbtn' href = updateSport.php?sportID=" . $row['SportID'] . " > Update </a> </td>";
                                     ?>
 
                                     <td>

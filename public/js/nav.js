@@ -9,14 +9,12 @@ $(function(){
 });
 
 function navFunction() {
-	return "nav.html";
+	return "nav.php";
 }
 
 function navFunction3() {
 	return "nav2.php";
 }
-
-
 
 function navFunction2() {
 	return "nav1.html";

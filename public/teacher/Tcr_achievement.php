@@ -4,12 +4,17 @@
     if(!isset($_SESSION['userType']) && !isset($_SESSION['userID'])){
         $error = "Please Login!";
         header('Location: ../common/loginFile.php?error='.$error);
-    }elseif($_SESSION['userType'] == 'teacher'){
-      
-   
-      $teacherType = $_SESSION['teacherType'];
+    }elseif($_SESSION['userType'] != 'teacher'){
+        header('Location: ../common/error.html');
+    }else{      
+        $teacherType = array();
+        $teacherType = $_SESSION['teacherType'];
 
-     
+
+        if (!in_array("teacherIncharge", $teacherType)) {
+            header('Location: Tcr_dashboard.php');
+        }else{
+      
 	?>
 <!DOCTYPE html>
 <html>
@@ -32,7 +37,6 @@
 
     <body>
 
-
         <div id="teacherNav"></div>
         <div class="content">
             <div class="container">
@@ -48,7 +52,7 @@
                     <input type="text" placeholder="Enter category ID" name="cID" required>
 
                     <label for="aDate"><b>Achievement Date</b></label>
-                    <input type="date" placeholder="Enter Date of Birth" name="stuDob" required>
+                    <input type="date" placeholder="Enter Date of Birth" id="date" name="aDate" onblur="checkDates(date.value)" required>
 
 
            
@@ -83,8 +87,8 @@
                 <div id="msg"></div>
                 <hr>
                 <div>
-                    <button type="submit" class="registerbtn" name="regbtn">Add</button>
-                    <a href="Tcr_dashboard2.php" class="cancel-btn">Cancel</a>
+                    <button type="submit" class="registerbtn" name="add_achievement">Add</button>
+                    <a href="Tcr_ach.php" class="cancel-btn">Cancel</a>
               
             </div>
         </div>
@@ -94,5 +98,5 @@
 </html>
 
 <?php 
-	 }
+	 }}
 ?>

@@ -31,13 +31,12 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 		<div id="nav2"></div>
 
 		<div class="content">
-
 			<div class="container">
 				<h2><b>Societies</b></h2>
 				<form action="../../src/A_addsocieties.php" method="POST">
 					<hr>
 					<label for="name"><b>Society</b></label>
-					<input type="text" name="Soname" pattern="[a-zA-Z]+" required>
+					<input type="text" name="societyName" pattern="[a-zA-Z]+" required>
 
 
 					<label for="TID"><b>Teacher in charge Username</b></label>

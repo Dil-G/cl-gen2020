@@ -5,7 +5,7 @@ require_once '../config/conn.php';
 
 
 if (isset($_POST['teacherReg'])) {
-
+ 
     $userID = $_POST['id'];
     $fName = $_POST['fname'];
     $lname = $_POST['lname'];
@@ -16,22 +16,45 @@ if (isset($_POST['teacherReg'])) {
     $address = $_POST['stuAddress'];
     $contactNo = $_POST['contactNo'];
 
-    $checked_arr = $_POST['checkbox'];
-    $count = count($checked_arr);
-    // echo . $count . " checkboxe(s)  checked";
+    // if (!isset($_POST['checkbox'])) {
+    //     $error = "Assign atleast one duty";
+    //     if ($_SESSION['userType'] == 'officer') {
+    //         header('Location: ../public/office/o_teachersList.php?error=' . $error . '?userID=' . $userID);
+    //         exit();
+    //     } elseif ($_SESSION['userType'] == 'admin') {
+    //         header('Location: ../public/admin/teachers.php?error=' . $error . '?userID=' . $userID);
+    //         exit();
+    //     }
+    // }
+    // $duties = $_POST['checkbox'];
+    // $count = count($duties);
+    // echo   $count . " checkboxes checked";
 
-    if ($count == '2') {
-        $type = "both";
-    } else {
-        foreach ($checked_arr as $checked_arr) {
-            $type = $checked_arr;
-        }
-    }
+    // $duty = "";
+    // foreach ($duties as $dut) {
+    //     $duty = $dut;
+    //     $sql2 = "INSERT INTO teacherType (teacherID, teacherType) VALUES('$userID', '$duty')";
+    //     echo $duty;
+    //     echo $userID;
 
-    $sql = "INSERT INTO teacher (teacherID, fName, lName,  nic, address,contactNo,email, dob,gender,teacherType) VALUES ('$userID', '$fName', '$lname', '$nic', '$address', '$contactNo', '$email', '$dob', '$gender','$type')";
+    //     $result = $conn->query($sql2);
+    //     if ($result == False) {
+    //         $error = "Duty already Assigned";
+    //         if ($_SESSION['userType'] == 'officer') {
+    //             header('Location: ../public/office/o_officersList.php?error=' . $error . '?userID=' . $userID);
+    //             exit();
+    //         } elseif ($_SESSION['userType'] == 'admin') {
+    //             header('Location: ../public/admin/staff.php?error=' . $error . '?userID=' . $userID);
+    //             exit();
+    //         }
+    //     }
+    // }
+
+    $sql = "INSERT INTO teacher(teacherID, fName, lName, nic, address,contactNo,email, dob,gender) VALUES ('$userID', '$fName', '$lname', '$nic', '$address', '$contactNo', '$email', '$dob', '$gender')";
 
 
     $update_query1 = "UPDATE user SET isActivated = '1' WHERE userID = '$userID'";
+    
 
     if ($conn->query($sql) === TRUE &&  $conn->query($update_query1)) {
 
@@ -42,11 +65,12 @@ if (isset($_POST['teacherReg'])) {
         }
     } else {
         $error = "Cannot add record";
+        echo "Error: " . $sql . "<br>" . $conn->error;
 
         if ($_SESSION['userType'] == 'officer') {
             header('Location: ../public/office/o_teachersList.php?error=' . $error);
         } elseif ($_SESSION['userType'] == 'admin') {
-            header('Location: ../public/office/teachers.php?error=' . $error);
+            header('Location: ../public/office/teacher.php?error=' . $error);
         }
     }
 
