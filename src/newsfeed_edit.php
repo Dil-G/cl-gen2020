@@ -18,17 +18,17 @@ if (isset($_POST['add_news'])){
         if(mysqli_query($conn,$sql)){
             if (move_uploaded_file($_FILES['image']['tmp_name'], $target)) {
                 $message = "News added successfully";
-                header('Location: ../public/office/news_list.php?message='.$message);
+                header('Location: ../public/office/office_news_list.php?message='.$message);
             }else{
-                header('Location: ../public/office/news_list.php');
+                header('Location: ../public/office/office_news_list.php');
             }
         }else{
             $error = "News not added.";
-            header('Location: ../public/office/edit_newsfeed.php?error='.$error);
+            header('Location: ../public/office/office_edit_newsfeed.php?error='.$error);
         }
   
     }else{
-        header('Location: ../public/office/edit_newsfeed.php?error='.$error);
+        header('Location: ../public/office/office_edit_newsfeed.php?error='.$error);
     }
 
 $conn->close();

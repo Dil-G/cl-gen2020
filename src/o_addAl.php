@@ -36,7 +36,7 @@
         if ($conn->query($sql) === TRUE) {
             echo '<script language = "javascript">';
             echo 'alert("Details Added");';
-            header('Location: ../public/office/al_streams.php');
+            header('Location: ../public/office/office_al_streams.php');
         } else {
 
             echo "Error : " . $sql . "<br>" . $conn->error;
@@ -79,7 +79,7 @@
         if ($conn->query($sql) === TRUE) {
             echo '<script language = "javascript">';
             echo 'alert("Details Added");';
-            header('Location: ../public/office/subjects.php');
+            header('Location: ../public/office/office_al_subjects.php');
         } else {
 
             echo "Error : " . $sql . "<br>" . $conn->error;
@@ -104,17 +104,17 @@
         if ($subject1 == $subject2 ){
             $error = "Cannot select the same subjects";
             echo $error;
-            header('Location: ../public/office/al_subjects.php?streamID=' . $streamID . '&error=' . $error );
+            header('Location: ../public/office/office_al_subjects.php?streamID=' . $streamID . '&error=' . $error );
             exit();
         }else if ($subject3 == $subject2 ){
             $error = "Cannot select the same subjects";
             echo $error;
-            header('Location: ../public/office/al_subjects.php?streamID=' . $streamID . '&error=' . $error );
+            header('Location: ../public/office/office_al_subjects.php?streamID=' . $streamID . '&error=' . $error );
             exit();
         }else if ($subject1 == $subject3 ){
             $error = "Cannot select the same subjects";
             echo $error;
-            header('Location: ../public/office/al_subjects.php?streamID=' . $streamID . '&error=' . $error );
+            header('Location: ../public/office/office_al_subjects.php?streamID=' . $streamID . '&error=' . $error );
             exit();
         }
         $subjects=array();
@@ -129,10 +129,10 @@
             $result = $conn->query($sql2);
             if ($result == False) {
                 $error = "Stream already Assigned";
-                header('Location: ../public/office/al_streams.php?error=' . $error);
+                header('Location: ../public/office/office_al_streams.php?error=' . $error);
                 exit();
             }else{
-                header('Location: ../public/office/al_streams.php');
+                header('Location: ../public/office/office_al_streams.php');
             }
         }
     }

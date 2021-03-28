@@ -14,7 +14,7 @@ if (isset($_POST['parentReg'])) {
     $res = mysqli_query($conn, $sql);
     if ($res != 0) {
         $error = "Duplicate records";
-        header('Location: ../public/office/o_studentsList.php?error=' . $error);
+        header('Location: ../public/office/office_studentsList.php?error=' . $error);
     } else {
 
         $admissionNo = $_POST['userID'];
@@ -36,10 +36,10 @@ if (isset($_POST['parentReg'])) {
             echo '<script language="javascript">';
             echo 'alert("Details Added");';
             echo '</script>';
-            header('Location: ../public/office/o_studentsList.php');
+            header('Location: ../public/office/office_studentsList.php');
         } else {
             $error = "Duplicate Record";
-            header('Location: ../public/office/o_studentsList.php?error=' . $error);
+            header('Location: ../public/office/office_studentsList.php?error=' . $error);
         }
     }
     /* else{
@@ -48,7 +48,7 @@ if (isset($_POST['parentReg'])) {
         }*/
 } else {
     $error = "Cannot add record";
-    header('Location: ../public/office/o_studentsList.php?error=' . $error);
+    header('Location: ../public/office/office_studentsList.php?error=' . $error);
 }
 
 $conn->close();

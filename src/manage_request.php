@@ -17,10 +17,10 @@ if (isset($_GET['requestID']) && $task == 'delete') {
 
 
     if ($result && $result1) {
-        header('Location: ../public/office/o_viewReq.php');
+        header('Location: ../public/office/office_view_characher_certificate_requests.php');
     } else {
         $error = "Cannot delete the request";
-        header('Location: ../public/office/o_viewReq.php?error');
+        header('Location: ../public/office/office_view_characher_certificate_requests.php?error');
     }
 
 } else if (isset($_GET['requestID']) && $task  == 'resolve') {
@@ -32,14 +32,14 @@ if (isset($_GET['requestID']) && $task == 'delete') {
     $result1 = mysqli_query($conn, $sql1);
 
     if ($result1) {
-       header('Location: ../public/office/o_viewReq.php');
+       header('Location: ../public/office/office_viewRequests.php');
     } else {
         $error = "Cannot resolve the request";
-       header('Location: ../public/office/o_viewReq.php?error');
+       header('Location: ../public/office/office_view_characher_certificate_requests.php?error');
     }
 } else {
     $error = "Cannot Connect";
-    header('Location: ../public/office/o_viewReq.php?error');
+    header('Location: ../public/office/office_view_characher_certificate_requests.php?error');
 }
 
 $conn->close();

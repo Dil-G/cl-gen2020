@@ -3,7 +3,6 @@
 if (isset($_POST['add_inq'])){
     require_once '../config/conn.php';
     session_start();
-  
 
     if(!isset($_SESSION['userType']) && !isset($_SESSION['userType'])){
         $error = "Please Login!";
@@ -16,21 +15,15 @@ if (isset($_POST['add_inq'])){
     
         $title = $_POST['title'];
         $message = $_POST['msge'];
-        $reciever = $_POST['reciever'];
+        $reciever = $_POST['rID'];
+        $recievername = $_POST['rname'];
         $sender= $_POST['sender'];
+        $sendername = $_POST['sname'];
 
 
  
-        $sql = "INSERT INTO inquiry(title,message,reciever,sender)VALUES ('$title','$message','$reciever','$sender')";
-        if ($sql) {
-            echo '<script language="javascript">';
-             echo 'alert("Details Added");';
-             //echo 'window.location.href="../driver.php";';
-             echo '</script>';
-             echo "Succesfully Added Record";
-             header('Location: ../public/teacher/Tcr_dashboard.php');
-        }
-         
+        $sql = "INSERT INTO inquiry(title,message,reciever,recievername,sender,sendername)VALUES ('$title','$message','$reciever','$recievername','$sender','$sendername')";
+
 
         if (mysqli_query($conn,$sql)) {
             if($userType == 'parent'){

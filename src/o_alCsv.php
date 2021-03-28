@@ -90,7 +90,7 @@ if(isset($_POST['submit'])){
 
 }else{
   $error = "Cannot add the record";
-  header('Location: ../public/office/o_viewSchol.php?error='.$error);
+  header('Location: ../public/office/office_add_view_AL_exams.php?error='.$error);
 }
 
  
@@ -152,21 +152,21 @@ include_once '../config/conn.php';
         if($conn->query($sql)===TRUE){
             if(move_uploaded_file($_FILES['fileName']['temp_name'],$target)){
                 $message = "File uploaded successfully";
-                header('Location: ../pulic/office/o_alCsv.php?message='.$message);
+                header('Location: ../pulic/office/office_add_ALCsv.php?message='.$message);
             }else{
-                header('Location: ../public/office/o_alCsv.php');
+                header('Location: ../public/office/office_add_ALCsv.php');
             }
 
-            header('Location: ../public/office/o_alCsv.php?userID='.$admissionNo);
+            header('Location: ../public/office/office_add_ALCsv.php?userID='.$admissionNo);
 
             }else{
                 $error = "Cannot add record";
-                header('Location: ../public/office/o_alCsv.php?error='.$error);
+                header('Location: ../public/office/office_add_ALCsv.php?error='.$error);
             }
 
     }else{
         $error = "Cannot add the record";
-        header('Location: ../public/office/o_alCsv.php?error='.$error);
+        header('Location: ../public/office/office_add_ALCsv.php?error='.$error);
     }
 
 

@@ -19,13 +19,13 @@ if (isset($_POST['add_request'])){
         if(mysqli_query($conn,$sql)){
             if (move_uploaded_file($_FILES['image']['tmp_name'], $target)) {
                 $message = "Image uploaded successfully";
-                header('Location: ../public/office/o_viewReq.php?message='.$message);
+                header('Location: ../public/office/office_viewRequests.php?message='.$message);
             }else{
-                header('Location: ../public/office/o_viewReq.php');
+                header('Location: ../public/office/office_viewRequests.php');
             }
         }else{
             $error = "News not added.";
-            header('Location: ../public/student/editRequest.php.php?error='.$error);
+            header('Location: ../public/student/editRequest.php?error='.$error);
         }
   
     }else{

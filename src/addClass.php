@@ -31,10 +31,17 @@ if (isset($_GET['addYear'])) {
 
         }
 
+<<<<<<< HEAD
         if ($result === TRUE) {
+=======
+        if ($conn->query($sql) === TRUE) {
+            echo '<script language = "javascript">';
+            echo 'alert("Details Added");';
+            header('Location: ../public/office/office_addClassYear.php');
+>>>>>>> 29f3e70bc5fc230c148413f61439af33a90a83b0
         } else {
             $error = "Cannot add record";
-            header('Location: ../public/office/o_addClassYear.php?error=' . $error);
+            header('Location: ../public/office/office_addClassYear.php?error=' . $error);
         }
     }
     header('Location: ../public/office/o_addClassYear.php');
@@ -113,10 +120,10 @@ if (isset($_POST['addclasses'])) {
         if ($conn->query($sql) === TRUE && $conn->query($sql2) === TRUE) {
             echo '<script language = "javascript">';
             echo 'alert("Details Added");';
-            header('Location: ../public/office/o_addClassGrades.php?Gyear=' . $date);
+            header('Location: ../public/office/office_addClassGrades.php?Gyear=' . $date);
         } else {
             $error = "Cannot add Classes";
-            header('Location: ../public/office/o_addClassGrades.php?Gyear=' . $date . '&error=' . $error);
+            header('Location: ../public/office/office_addClassGrades.php?Gyear=' . $date . '&error=' . $error);
         }
         $i = $i + 1;
     }
@@ -143,10 +150,10 @@ if (isset($_POST['addNewClass'])) {
     if ($conn->query($sql) === TRUE) {
         echo '<script language = "javascript">';
         echo 'alert("Details Added");';
-        header('Location: ../public/office/o_classes.php?Ggrades=' . $thisGrade);
+        header('Location: ../public/office/office_classes.php?Ggrades=' . $thisGrade);
     } else {
         $error = "Cannot add Classes";
-        header('Location: ../public/office/o_classes.php?error=' . $error);
+        header('Location: ../public/office/office_classes.php?error=' . $error);
     }
 } else {
 }

@@ -92,6 +92,21 @@ if (isset($_POST['login'])) {
                         $_SESSION['userType'] = $row['userType'];
                         header('Location: ../public/admin/dashboard.php');
                     }
+<<<<<<< HEAD
+=======
+                    
+                    $_SESSION['dutyID'] = $duty;
+                    $_SESSION['userID'] =  $userID;
+                    $_SESSION['username'] = $row['username'];
+                    $_SESSION['userType'] = "officer";
+                    header('Location: ../public/office/office_dashboard.php');
+
+                }else if($row['userType'] == "admin"){
+                    $_SESSION['userID'] = $row['userID'];
+                    $_SESSION['username'] = $row['username'];
+                    $_SESSION['userType'] = $row['userType'];
+                    header('Location: ../public/admin/dashboard.php');
+>>>>>>> 29f3e70bc5fc230c148413f61439af33a90a83b0
                 }
             }else{
                 $error = "Invalid Username or Password";

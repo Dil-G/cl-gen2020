@@ -20,7 +20,7 @@ $_SESSION['studentID'] = $userID;
 //$document->loadHtml($html);
 
 ob_start();
-require '../public/office/character_certificate.php';
+require '../public/office/office_character_certificate.php';
 $page = ob_get_clean();
 
 
@@ -86,7 +86,7 @@ if ((mysqli_num_rows($result_sql) == 0)) {
     if ($result_noti == TRUE && $result_update == TRUE ) {
         echo '<script language = "javascript">';
         echo 'alert("Details Added");';
-        header('Location: ../public/office/o_reqCc.php');
+        header('Location: ../public/office/office_view_characher_certificate_requests.php');
     } else {
         echo "Error : " . $sql . "<br>" . $conn->error;
     }
@@ -94,13 +94,13 @@ if ((mysqli_num_rows($result_sql) == 0)) {
     if ($conn->query($sql) === TRUE && $stmt == TRUE ) {
     } else {
         $error = "Character certficate cannot be generated";
-        header('Location: o_reqCc.php?error=' . $error);
+        header('Location: office_view_characher_certificate_requests.php?error=' . $error);
         exit();
     }
 } else {
 
     $error = "Character certficate already generated";
-    header('Location: o_reqCc.php?error=' . $error);
+    header('Location: office_view_characher_certificate_requests.php?error=' . $error);
     exit();
 
 
@@ -108,7 +108,7 @@ if ((mysqli_num_rows($result_sql) == 0)) {
     // $sql = "INSERT INTO characterCertificate (characterID, studentID, characterCertificate) VALUES ('1','$userID','$file');";
 }
     // if ($conn->query($sql) === TRUE ) {
-    //     header('Location: o_reqCc.php');
+    //     header('Location: office_view_characher_certificate_requests.php');
     // } else {
     //     $error = "Cannot add Classes";
     //     header('Location: o_reqCc.php?error=' . $error);

@@ -24,7 +24,7 @@ function navFunction4() {
 }
 
 function navFunction5() {
-	return "nav.php";
+	return "office_nav.php";
 }
 
 function navFunction6() {

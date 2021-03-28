@@ -49,7 +49,7 @@ while($row=mysqli_fetch_assoc($res1)){
       <td><?php echo $row['userID'] ?></td>
       <td><?php echo $row['username'] ?></td>
       <td><?php echo $row['userType'] ?></td>
-    <?php echo "<td><a href = addStudentDetails.php?userID=".$row['userID']." > update </a> </td>"?>
+    <?php echo "<td><a href = office_addStudentDetails.php?userID=".$row['userID']." > Update </a> </td>"?>
   </tr>
   <?php
 }

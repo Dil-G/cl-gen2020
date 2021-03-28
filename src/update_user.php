@@ -35,7 +35,7 @@ if ($conn->query($sql) === TRUE){
     if (move_uploaded_file($_FILES['stuPhoto']['tmp_name'], $target)) {
         $message = "Image uploaded successfully";
         if($_SESSION['userType'] == 'officer'){
-            header('Location: ../public/office/update_student.php?message='.$message);
+            header('Location: ../public/office/office_update_student.php?message='.$message);
         }else{
             header('Location: ../public/admin/updateStudent.php?message='.$message);
         }
@@ -43,13 +43,13 @@ if ($conn->query($sql) === TRUE){
         echo "nso";
         if($_SESSION['userType'] == 'officer'){
             
-            header('Location: ../public/office/o_studentsList.php');
+            header('Location: ../public/office/office_studentsList.php');
         }else{
             header('Location: ../public/admin/student.php');
         }
     }
     if($_SESSION['userType'] == 'officer'){
-        header('Location: ../public/office/o_studentsList.php');
+        header('Location: ../public/office/office_studentsList.php');
     }else{
         header('Location: ../public/admin/student.php');
     }
@@ -58,7 +58,7 @@ if ($conn->query($sql) === TRUE){
         $error = "Cannot add record";
         echo "nxo";
         if($_SESSION['userType'] == 'officer'){
-               header('Location: ../public/office/o_studentsList.php?error='.$error);
+               header('Location: ../public/office/office_studentsList.php?error='.$error);
         }else{
             header('Location: ../public/admin/student.php?error='.$error);
         }
@@ -67,7 +67,7 @@ if ($conn->query($sql) === TRUE){
 }else{
     $error = "Cannot add the record";
     if($_SESSION['userType'] == 'officer'){
-        header('Location: ../public/office/o_studentsList.php?error='.$error);
+        header('Location: ../public/office/office_studentsList.php?error='.$error);
     }else{
         header('Location: ../public/admin/student.php?error='.$error);
     }
@@ -99,7 +99,7 @@ if (isset($_POST['update_officer'])) {
     if ($reuslt1 == false){
         $error = "Error in entering data";
         if($_SESSION['userType'] == 'officer'){
-            header('Location: ../public/office/o_officersList.php?error='.$error);
+            header('Location: ../public/office/office_officersList.php?error='.$error);
             exit();
         }else{
             header('Location: ../public/admin/staff.php?error='.$error);
@@ -108,7 +108,7 @@ if (isset($_POST['update_officer'])) {
     }
 else{
     if($_SESSION['userType'] == 'officer'){
-        header('Location: ../public/office/o_officersList.php');
+        header('Location: ../public/office/office_officersList.php');
     }else{
         header('Location: ../public/admin/staff.php');
 
@@ -180,7 +180,7 @@ if (isset($_POST['update_teacher'])) {
  if ($result == false){
      $error = "Error in entering data";
      if($_SESSION['userType'] == 'officer'){
-        header('Location: ../public/office/o_teachersList.php?error='.$error);
+        header('Location: ../public/office/office_teachersList.php?error='.$error);
         exit();
      }else{
         header('Location: ../public/admin/teachers.php?error='.$error);
@@ -189,7 +189,7 @@ if (isset($_POST['update_teacher'])) {
  }
 else{
     if($_SESSION['userType'] == 'officer'){
-        header('Location: ../public/office/o_teachersList.php');
+        header('Location: ../public/office/office_teachersList.php');
     }else{
         header('Location: ../public/admin/teachers.php');
 
@@ -223,7 +223,7 @@ $result = $conn->query($sql);
 if ($result == false){
     $error = "Error in entering data";
     if($_SESSION['userType'] == 'officer'){
-        header('Location: ../public/office/o_parentsList.php?error='.$error);
+        header('Location: ../public/office/office_parentsList.php?error='.$error);
         exit();
     }else{
         header('Location: ../public/admin/parent.php?error='.$error);
@@ -232,7 +232,7 @@ if ($result == false){
 }
 else{
     if($_SESSION['userType'] == 'officer'){
-        header('Location: ../public/office/o_parentsList.php');
+        header('Location: ../public/office/office_parentsList.php');
     }else{
         header('Location: ../public/admin/parent.php');
 

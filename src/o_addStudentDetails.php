@@ -38,16 +38,16 @@ $sql = "INSERT INTO student (admissionNo, fName, mName, lName, dob, adStreet, ad
 if ($conn->query($sql) === TRUE &&  $conn->query($update_query1)){
     if (move_uploaded_file($_FILES['stuPhoto']['tmp_name'], $target)) {
         $message = "Image uploaded successfully";
-        header('Location: ../public/office/o_addStudentDetails.php?message='.$message);
+        header('Location: ../public/office/office_addStudentDetails.php?message='.$message);
     }else{
-        header('Location: ../public/office/o_addStudentDetails.php');
+        header('Location: ../public/office/office_addStudentDetails.php');
     }
 
-    header('Location: ../public/office/o_addParentDetails.php?userID='.$admissionNo);
+    header('Location: ../public/office/office_addParentDetails.php?userID='.$admissionNo);
 
     }else{
         $error = "Cannot add record";
-               header('Location: ../public/office/o_addStudentDetails.php?error='.$error);
+               header('Location: ../public/office/office_addStudentDetails.php?error='.$error);
    }
    /* else{
         $error="Invalid Email or NIC";
@@ -56,7 +56,7 @@ if ($conn->query($sql) === TRUE &&  $conn->query($update_query1)){
 
 }else{
     $error = "Cannot add the record";
-    header('Location: ../public/office/o_addStudentDetails.php?error='.$error);
+    header('Location: ../public/office/office_addStudentDetails.php?error='.$error);
 }
 
 $conn->close();

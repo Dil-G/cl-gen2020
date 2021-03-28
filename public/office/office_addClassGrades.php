@@ -15,78 +15,71 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
         include_once '../../src/addClass.php';
 ?>
 
-        <!DOCTYPE html>
-        <html>
+<!DOCTYPE html>
+<html>
 
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Assign Classes</title>
+    <link type="text/css" rel="stylesheet" href="../css/main.css">
+    <link type="text/css" rel="stylesheet" href="../css/users.css">
+    <link type="text/css" rel="stylesheet" href="../css/register.css">
+    <link type="text/css" rel="stylesheet" href="../css/view.css">
+    <script src="../js/jquery-1.9.1.min.js"></script>
+    <script src="../js/pop.js"></script>
+    <script src="../js/nav.js"></script>
+</head>
 
-        <head>
-            <meta name="viewport" content="width=device-width, initial-scale=1">
-            <title>Assign Classes</title>
-            <link type="text/css" rel="stylesheet" href="../css/main.css">
-            <link type="text/css" rel="stylesheet" href="../css/users.css">
-            <link type="text/css" rel="stylesheet" href="../css/register.css">
-            <link type="text/css" rel="stylesheet" href="../css/view.css">
-            <script src="../js/jquery-1.9.1.min.js"></script>
-            <script src="../js/pop.js"></script>
-            <script src="../js/nav.js"></script>
-            <script src="../js/search.js"></script>
+<body>
+    <div id="officeNav"></div>
 
-        </head>
+    <div class="content">
+        <br>
+        <div class="card">
+            <h1 style="color:#6a7480;"><?php echo $_GET['Gyear'] ?> Grades</h1>
+            <hr>
+            <form class="search" action="register_stu.html">
+                <input type="text" placeholder="Search.." name="search">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+        <br>
 
-        <body>
-            <div id="officeNav"></div>
+        <div class="card">
+            <hr>
 
-            <div class="content">
-                <br>
-                <div class="card">
-                    <h1 style="color:#6a7480;"><?php echo $_GET['Gyear'] ?> Grades</h1>
-                    <hr>
-                    <form class="search">
-                        <input type="text" ID="Inputs" placeholder="Search.." name="search">
-                        <button type="submit">Search</button>
-                    </form>
-                </div>
-                <br>
+            <table>
+                <tr>
+                    <th>Grade ID </th>
+                    <th>Grade</th>
+                    <th>Classes</th>
 
-                <div class="card">
-                    <hr>
-                    <div class="scroll">
+                </tr>
+                <?php
+                    while ($row = mysqli_fetch_assoc($grade_result)) {
+                        $gradeID = $row['GradeID'];
+                ?>
+                <tr>
 
-                    <table>
-                            <tr>
-                                <th>Grade ID </th>
-                                <th>Grade</th>
-                                <th>Classes</th>
+                    <td><?php echo $gradeID ?></td>
+                    <td><?php echo $row['Grade'] ?></td>
 
-                            </tr>
-                        <?php
-                        while ($row = mysqli_fetch_assoc($grade_result)) {
-                            $gradeID = $row['GradeID'];
-                        ?>
-                            <tbody id="Table">
-                                <tr>
+                    <?php if ($row['gradeActive'] == 0) {
+                            echo "<td><a class='btn viewbtn' href = o_addClasses.php?grade=" . $gradeID . " >Add Classes </a> </td>";
+                        } else {
+                            echo "<td><a class='btn editbtn' href = o_classes.php?Ggrades=" . $gradeID . " >View Grade </a> </td>";
+                        } ?>
+                </tr>
+                <?php } ?>
+            </table>
 
-                                    <td><?php echo $gradeID ?></td>
-                                    <td><?php echo $row['Grade'] ?></td>
+        </div>
 
-                                    <?php if ($row['gradeActive'] == 0) {
-                                        echo "<td><a class='btn viewbtn' href = o_addClasses.php?grade=" . $gradeID . " >Add Classes </a> </td>";
-                                    } else {
-                                        echo "<td><a class='btn editbtn' href = o_classes.php?Ggrades=" . $gradeID . " >View Grade </a> </td>";
-                                    } ?>
-                                </tr>
-                            </tbody>
-                        <?php } ?>
-                    </table>
-                    </div>
+    </div>
 
-                </div>
+</body>
 
-            </div>
-
-        </body>
-
-        </html>
+</html>
 
 <?php }
 } ?>

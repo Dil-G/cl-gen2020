@@ -47,7 +47,7 @@ if (isset($_POST["alresults"])) {
                 if (in_array($MIDs, $IDarray)) {
                     $error = "Duplicate records in CSV file";
                     echo $error;
-                    header('Location: ../public/office/o_alCsv.php?examID=' . $examID . '&error=' . $error);
+                    header('Location: ../public/office/office_add_ALCsv.php?examID=' . $examID . '&error=' . $error);
                     exit();
                 } else {
                     array_push($IDarray, $MIDs);
@@ -89,13 +89,17 @@ if (isset($_POST["alresults"])) {
                 if ($import_result) {
                 } else {
                     $error = "Error in uploading";
+<<<<<<< HEAD
                     header('Location: ../public/office/o_al.php?error=' . $error);
+=======
+                    header('Location: ../public/office/office_viewAL_results.php?Ggrades=' . $error);
+>>>>>>> 29f3e70bc5fc230c148413f61439af33a90a83b0
                 }
                 // $maxID = $maxID + 1;
             }
             fclose($handles);
             echo "<script>alert('Import done');</script>";
-            header('Location: ../public/office/o_al.php');
+            header('Location: ../public/office/office_viewAL_results.php');
         }
     }
 }

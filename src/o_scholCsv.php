@@ -37,13 +37,13 @@ if(isset($_POST['submit'])){
    
       
     echo "<script>alert('Import done');</script>";
-    header('Location: ../public/office/o_viewSchol.php');
+    header('Location: ../public/office/office_add_view_scholarship_exams.php');
      }
     }
   }
 }else{
   $error = "Cannot add the record";
-  header('Location: ../public/office/o_viewSchol.php?error='.$error);
+  header('Location: ../public/office/office_add_view_scholarship_exams.php?error='.$error);
 }
 
 

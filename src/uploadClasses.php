@@ -11,8 +11,17 @@ if (isset($_POST["Import"])) {
   $ext = pathinfo($checkFile, PATHINFO_EXTENSION);
   if (!in_array($ext, $allowed)) {
 
+<<<<<<< HEAD
     $error = "Upload a CSV file";
     header('Location: ../public/office/o_classes.php?Ggrades=' . $thisGrade . '&error=' . $error);
+=======
+  $fp = file($filename);
+  $c =  count($fp) - 1;
+
+  if ($NoOfStudents != $c) {
+    $error = "Numbers do not match!";
+    header('Location: ../public/office/office_classes.php?Ggrades=' . $thisGrade . '&error=' . $error);
+>>>>>>> 29f3e70bc5fc230c148413f61439af33a90a83b0
     exit();
   } else {
 
@@ -91,10 +100,20 @@ if (isset($_POST["Import"])) {
         $handle = fopen($_FILES['file']['tmp_name'], "r");
         while ($data = fgetcsv($handle)) {
 
+<<<<<<< HEAD
           $c++;
           if ($c == 1) {
             continue;
           }
+=======
+    $error = "Upload a CSV file";
+    header('Location: ../public/office/office_classes.php?Ggrades=' . $thisGrade . '&error=' . $error);
+    exit();
+  }
+  $retireve = "SELECT * from classstudent WHERE gradeID = '$thisGrade'";
+  $resultRetrieve = mysqli_query($conn, $retireve);
+  echo $thisGrade . " ";
+>>>>>>> 29f3e70bc5fc230c148413f61439af33a90a83b0
 
           
           $data2 = mysqli_real_escape_string($conn, $data[0]);
@@ -102,9 +121,18 @@ if (isset($_POST["Import"])) {
 
           $id = substr($data3,2).substr($data2,0,6);
 
+<<<<<<< HEAD
           // echo $MID." /-";
           $retrieve = "SELECT * FROM classStudent WHERE id='$id'";
           $marks_result =  mysqli_query($conn, $retrieve);
+=======
+    if ($result1 == FALSE) {
+      $error = "Cannot delete the file";
+      echo $error;
+      header('Location: ../public/office/office_classes.php?error=' . $error);
+    }
+  }
+>>>>>>> 29f3e70bc5fc230c148413f61439af33a90a83b0
 
 
           if (mysqli_num_rows($marks_result) > 0) {
@@ -114,6 +142,7 @@ if (isset($_POST["Import"])) {
             $sql = "INSERT into classStudent (gradeID,classID,studentID,id) values ('$thisGrade','$data2','$data3','$id')";
           }
 
+<<<<<<< HEAD
           $import_result = mysqli_query($conn, $sql);
 
           if ($import_result) {
@@ -126,6 +155,13 @@ if (isset($_POST["Import"])) {
         }
         fclose($handle);
         header('Location: ../public/office/o_classes.php?Ggrades=' . $thisGrade);
+=======
+      if (!isset($result)) {
+        $error = "Cannot Upload the file";
+        header('Location: ../public/office/office_classes.php?error=' . $error);
+      } else {
+        header('Location: ../public/office/office_classes.php?Ggrades=' . $thisGrade);
+>>>>>>> 29f3e70bc5fc230c148413f61439af33a90a83b0
       }
     }
   }
@@ -175,7 +211,7 @@ if (isset($_POST['uploadClass'])) {
   if (mysqli_num_rows($result1) < 1) {
 
     $error = "Incorrect Teacher ID";
-    header('Location: ../public/office/o_class.php?class=' . $classID . '&error=' . $error);
+    header('Location: ../public/office/office_class.php?class=' . $classID . '&error=' . $error);
     exit();
   } else {
     while ($row1 = $result1->fetch_assoc()) {
@@ -187,10 +223,10 @@ if (isset($_POST['uploadClass'])) {
 
       if ($result2 == FALSE) {
         $error = "Cannot delete";
-        header('Location: ../public/office/o_class.php?class=' . $classID . '&error=' . $error);
+        header('Location: ../public/office/office_class.php?class=' . $classID . '&error=' . $error);
       } else {
 
-        header('Location: ../public/office/o_class.php?class=' . $classID);
+        header('Location: ../public/office/office_class.php?class=' . $classID);
       }
     }
   }

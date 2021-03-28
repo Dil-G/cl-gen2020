@@ -59,7 +59,7 @@ if (isset($_POST['teacherReg'])) {
     if ($conn->query($sql) === TRUE &&  $conn->query($update_query1)) {
 
         if ($_SESSION['userType'] == 'officer') {
-            header('Location: ../public/office/o_teachersList.php');
+            header('Location: ../public/office/office_teachersList.php');
         } elseif ($_SESSION['userType'] == 'admin') {
             header('Location: ../public/admin/teachers.php');
         }
@@ -68,9 +68,13 @@ if (isset($_POST['teacherReg'])) {
         echo "Error: " . $sql . "<br>" . $conn->error;
 
         if ($_SESSION['userType'] == 'officer') {
-            header('Location: ../public/office/o_teachersList.php?error=' . $error);
+            header('Location: ../public/office/office_teachersList.php?error=' . $error);
         } elseif ($_SESSION['userType'] == 'admin') {
+<<<<<<< HEAD
             header('Location: ../public/office/teacher.php?error=' . $error);
+=======
+            header('Location: ../public/office/office_teachersList.php?error=' . $error);
+>>>>>>> 29f3e70bc5fc230c148413f61439af33a90a83b0
         }
     }
 
@@ -111,23 +115,23 @@ if (isset($_POST['teacherReg'])) {
         if (move_uploaded_file($_FILES['stuPhoto']['tmp_name'], $target)) {
             $message = "Image uploaded successfully";
             if ($_SESSION['userType'] == 'officer') {
-                header('Location: ../public/office/o_addStudentDetails.php?message=' . $message);
+                header('Location: ../public/office/office_addStudentDetails.php?message=' . $message);
             }elseif ($_SESSION['userType'] == 'admin'){
                 header('Location: ../public/admin/addStudentDetails.php?message=' . $message);
             }
         } else {
-            header('Location: ../public/office/o_addStudentDetails.php');
+            header('Location: ../public/office/office_addStudentDetails.php');
         }
         echo  $_SESSION['userType'];
         if ($_SESSION['userType'] == 'officer') {
-            header('Location: ../public/office/o_addParentDetails.php?parentID=' . $admissionNo);
+            header('Location: ../public/office/office_addParentDetails.php?parentID=' . $admissionNo);
         } elseif ($_SESSION['userType'] == 'admin') {
             header('Location: ../public/admin/addParentDetails.php?parentID=' . $admissionNo);
         }
     } else {
         $error = "Cannot add record";
         if ($_SESSION['userType'] == 'officer') {
-            // header('Location: ../public/office/o_addStudentDetails.php?message=' . $error);
+            // header('Location: ../public/office/office_addStudentDetails.php?message=' . $error);
         }elseif ($_SESSION['userType'] == 'admin'){
             // header('Location: ../public/admin/addStudentDetails.php?message=' . $error);
         }
@@ -143,9 +147,9 @@ if (isset($_POST['teacherReg'])) {
         $error = "Duplicate records";
 
         if ($_SESSION['userType'] == 'officer') {
-            header('Location: ../public/office/o_parentsList.php?error=' . $error);
+            header('Location: ../public/office/office_parentsList.php?error=' . $error);
         } elseif ($_SESSION['userType'] == 'admin') {
-            header('Location: ../public/office/parent.php?error=' . $error);
+            header('Location: ../public/office/office_parentsList.php?error=' . $error);
         }
 
     } else {
@@ -167,7 +171,7 @@ if (isset($_POST['teacherReg'])) {
         if ($conn->query($sql1) === TRUE &&  $conn->query($update_query2)) {
 
             if ($_SESSION['userType'] == 'officer') {
-                header('Location: ../public/office/o_parentsList.php');
+                header('Location: ../public/office/office_parentsList.php');
             } elseif ($_SESSION['userType'] == 'admin') {
                 header('Location: ../public/admin/parent.php');
             }
@@ -175,9 +179,9 @@ if (isset($_POST['teacherReg'])) {
             $error = "Cannot add record";
 
             if ($_SESSION['userType'] == 'officer') {
-                header('Location: ../public/office/o_parentsList.php?error=' . $error);
+                header('Location: ../public/office/office_parentsList.php?error=' . $error);
             } elseif ($_SESSION['userType'] == 'admin') {
-                header('Location: ../public/office/parent.php?error=' . $error);
+                header('Location: ../public/office/office_parentsList.php?error=' . $error);
             }
         }
     }
@@ -198,7 +202,7 @@ if (isset($_POST['teacherReg'])) {
     if (!isset($_POST['checkbox'])) {
         $error = "Assign atleast one duty";
         if ($_SESSION['userType'] == 'officer') {
-            header('Location: ../public/office/o_officersList.php?error=' . $error . '?userID=' . $userID);
+            header('Location: ../public/office/office_officersList.php?error=' . $error . '?userID=' . $userID);
             exit();
         } elseif ($_SESSION['userType'] == 'admin') {
             header('Location: ../public/admin/staff.php?error=' . $error . '?userID=' . $userID);
@@ -219,7 +223,7 @@ if (isset($_POST['teacherReg'])) {
     if ($reuslt1 == false) {
         $error = "Error in entering data";
         if ($_SESSION['userType'] == 'officer') {
-           // header('Location: ../public/office/o_officersList.php?error=' . $error . '?userID=' . $userID);
+           // header('Location: ../public/office/office_officersList.php?error=' . $error . '?userID=' . $userID);
           //  exit();
         } elseif ($_SESSION['userType'] == 'admin') {
            // header('Location: ../public/admin/staff.php?error=' . $error . '?userID=' . $userID);
@@ -237,7 +241,7 @@ if (isset($_POST['teacherReg'])) {
         if ($result == False) {
             $error = "Duty already Assigned";
             if ($_SESSION['userType'] == 'officer') {
-                header('Location: ../public/office/o_officersList.php?error=' . $error . '?userID=' . $userID);
+                header('Location: ../public/office/office_officersList.php?error=' . $error . '?userID=' . $userID);
                 exit();
             } elseif ($_SESSION['userType'] == 'admin') {
                 header('Location: ../public/admin/staff.php?error=' . $error . '?userID=' . $userID);
@@ -260,7 +264,7 @@ if (isset($_POST['teacherReg'])) {
         $error = "Cannot add record";
 
         if ($_SESSION['userType'] == 'officer') {
-            header('Location: ../public/office/o_officersList.php?error=' . $error);
+            header('Location: ../public/office/office_officersList.php?error=' . $error);
         } elseif ($_SESSION['userType'] == 'admin') {
             header('Location: ../public/office/staff.php?error=' . $error);
         }
