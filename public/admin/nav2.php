@@ -7,6 +7,13 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 } else if (($_SESSION['userType'] == 'admin')) {
 
     $userID = $_SESSION['userID'];
+    include '../../config/conn.php';
+
+    $sql= "SELECT FROM office WHERE `officerID`='$userID'";
+    $result = mysqli_query($conn,$sql);
+    $row = mysqli_fetch_assoc($result);
+    echo $userID;
+
 ?>
 
 <link rel="stylesheet" href="../../images/font-awesome-4.7.0/css/font-awesome.min.css">
@@ -14,10 +21,15 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
 <div>
     <button onclick="goBack()" class="backbtn" style="background-color: #1e8dd6;padding:1px;">Back</button>
+    <h1><?php echo $row['userID']; ?></h1>
+
 </div>
 <?php// $user = "n" ?>
 <div class="navbar">
     <ul>
+        <li>
+            <h1><?php echo "ddd".$row['fName']." ". $row['lName']; ?></h1>
+        </li>
         <li>
             <form name="logout" action="../../src/logout.php" method="POST">
                 <input type="submit" value="LOGOUT" name="logout" style="font-family: 'Playfair Display', serif;">
@@ -34,8 +46,8 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 
         <ul>
             <br>
-            <li><a href="dashboard.php">Dashboard</a></li>
-            <li><a href="newsfeed.php">Newsfeed</a></li>
+            <li><a href="admin_dashboard.php">Dashboard</a></li>
+            <li><a href="admin_newsfeed.php">Newsfeed</a></li>
 
             <li class="drop">
                 <div class="drop" id="drop">User Management<i class="fa fa-angle-down"></i></div>
@@ -43,13 +55,13 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
             <div class="submenu" id="submenu">
                 <ul>
 
-                    <li><a href="users.php">Add Users</a></li>
-                    <li><a href="staff.php">Office staff </a></li>
-                    <li><a href="student.php">Students</a></li>
-                    <li><a href="parent.php">Parents</a></li>
-                    <li><a href="teachers.php"> Teachers</a></li>
-                    <li><a href="userlist.php">System Users</a></li>
-                    <li><a href="deactivated_userlist.php">Deactivated Users</a></li>
+                    <li><a href="admin_users.php">Add Users</a></li>
+                    <li><a href="admin_staff.php">Office staff </a></li>
+                    <li><a href="admin_student.php">Students</a></li>
+                    <li><a href="admin_parent.php">Parents</a></li>
+                    <li><a href="admin_teachers.php"> Teachers</a></li>
+                    <li><a href="admin_userlist.php">System Users</a></li>
+                    <li><a href="admin_deactivatedUserlist.php">Deactivated Users</a></li>
 
                     <!-- <li><a href="officerList.php">Add Officer</a></li> -->
                     <?php //if($user=="a"){ 
@@ -58,15 +70,15 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                         ?>
                 </ul>
             </div>
-            <li><a href="duty.php">Duty Management</a></li>
+            <li><a href="admin_duty.php">Duty Management</a></li>
             <li class="drop">
                 <div class="drop" id="drop2">Category Management<i class="fa fa-angle-down"></i></div>
             </li>
             <div class="submenu2" id="submenu2">
                 <ul>
-                    <li><a href="sports.php">Sports</a></li>
-                    <li><a href="societies.php"> Societies</a></li>
-                    <li><a href="deactivated_categories.php">Deactivated Categories</a></li>
+                    <li><a href="admin_sports.php">Sports</a></li>
+                    <li><a href="admin_societies.php"> Societies</a></li>
+                    <li><a href="admin_deactivatedCategories.php">Deactivated Categories</a></li>
                     <!-- <li><a href="educational.php">Educational </a></li> -->
                 </ul>
             </div>

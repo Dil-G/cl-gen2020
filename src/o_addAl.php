@@ -6,11 +6,22 @@
 
         $alStreamName = $_POST['alStreamName'];
 
-        $sql = "SELECT * from alstreams";
-        $result = mysqli_query($conn, $sql);
+        $read = "SELECT * from alstreams where streamName='$alStreamName'";
+        $results = mysqli_query($conn, $read);
+
+        if(mysqli_num_rows($results)>0){
+            $error = "Stream already exists";
+            header('Location: ../public/office/office_al_streams.php?error=' . $error);
+            exit();
+        }
+
+        $sql2 = "SELECT * from alstreams";
+        $result2 = mysqli_query($conn, $sql2);
+
+        
         $maxID = 0;
 
-        while ($row = mysqli_fetch_array($result)) {
+        while ($row = mysqli_fetch_array($result2)) {
 
             $lastId = $row['streamID'];
             $charID = substr($lastId, 2);
@@ -21,7 +32,7 @@
             }
         }
 
-        if (mysqli_num_rows($result) == 0) {
+        if (mysqli_num_rows($result2) == 0) {
             $prefix = "ST";
             $streamID = $prefix .  "1";
         } else {
@@ -32,14 +43,17 @@
 
 
         $sql = "INSERT INTO alstreams (streamID, streamName) VALUES ('$streamID','$alStreamName');";
+$result = mysqli_query($conn,$sql);
 
-        if ($conn->query($sql) === TRUE) {
+        if ($result) {
             echo '<script language = "javascript">';
             echo 'alert("Details Added");';
             header('Location: ../public/office/office_al_streams.php');
         } else {
 
-            echo "Error : " . $sql . "<br>" . $conn->error;
+            $error = "Error in adding";
+            header('Location: ../public/office/office_al_streams.php?error=' . $error);
+            exit();
         }
     }
 
@@ -49,16 +63,25 @@
 
         $subjectName = $_POST['alSubjectName'];
 
-        $sql = "SELECT * from subjects WHERE subjectType='advanced'";
-        $result = mysqli_query($conn, $sql);
+        $read = "SELECT * from subjects where subjectsName='$subjectName'";
+        $results = mysqli_query($conn, $read);
+
+        if(mysqli_num_rows($results)>0){
+            $error = "Subject already exists";
+            header('Location: ../public/office/office_al_streams.php?error=' . $error);
+            exit();
+        }
+
+        $sql2 = "SELECT * from subjects WHERE subjectType='advanced'";
+        $result2 = mysqli_query($conn, $sql2);
         $maxID = 0;
 
-        if (mysqli_num_rows($result) == 0) {
+        if (mysqli_num_rows($result2) == 0) {
             $prefix = "SAL";
             $subjectID = $prefix .  "1";
         } else {
 
-            while ($row = mysqli_fetch_array($result)) {
+            while ($row = mysqli_fetch_array($result2)) {
 
                 $lastId = $row['subjectID'];
                 $charID = substr($lastId, 3);
@@ -75,17 +98,21 @@
 
         $subjectType = 'advanced';
         $sql = "INSERT INTO subjects (subjectID, subjectName,subjectType) VALUES ('$subjectID','$subjectName','$subjectType');";
+        $result = mysqli_query($conn,$sql);
 
-        if ($conn->query($sql) === TRUE) {
+        if ($result) {
             echo '<script language = "javascript">';
             echo 'alert("Details Added");';
             header('Location: ../public/office/office_al_subjects.php');
         } else {
 
-            echo "Error : " . $sql . "<br>" . $conn->error;
+            $error = "Error in adding";
+            header('Location: ../public/office/office_al_subjects.php?error=' . $error);
+            exit();
         }
+
     }
-    
+
 
 
     if (isset($_POST['streamSubjects'])) {
@@ -101,37 +128,37 @@
         echo $subject2;
         echo $subject3;
 
-        if ($subject1 == $subject2 ){
+        if ($subject1 == $subject2) {
             $error = "Cannot select the same subjects";
             echo $error;
-            header('Location: ../public/office/office_al_subjects.php?streamID=' . $streamID . '&error=' . $error );
+            header('Location: ../public/office/office_al_subjects.php?streamID=' . $streamID . '&error=' . $error);
             exit();
-        }else if ($subject3 == $subject2 ){
+        } else if ($subject3 == $subject2) {
             $error = "Cannot select the same subjects";
             echo $error;
-            header('Location: ../public/office/office_al_subjects.php?streamID=' . $streamID . '&error=' . $error );
+            header('Location: ../public/office/office_al_subjects.php?streamID=' . $streamID . '&error=' . $error);
             exit();
-        }else if ($subject1 == $subject3 ){
+        } else if ($subject1 == $subject3) {
             $error = "Cannot select the same subjects";
             echo $error;
-            header('Location: ../public/office/office_al_subjects.php?streamID=' . $streamID . '&error=' . $error );
+            header('Location: ../public/office/office_al_subjects.php?streamID=' . $streamID . '&error=' . $error);
             exit();
         }
-        $subjects=array();
-        array_push($subjects,$subject1,$subject2,$subject3);
-     
+        $subjects = array();
+        array_push($subjects, $subject1, $subject2, $subject3);
+
 
         foreach ($subjects as $sub) {
             $subject = $sub;
             $sql2 = "INSERT INTO streamsubject (streamID, subjectID) VALUES('$streamID', '$subject')";
-            
+
 
             $result = $conn->query($sql2);
             if ($result == False) {
                 $error = "Stream already Assigned";
                 header('Location: ../public/office/office_al_streams.php?error=' . $error);
                 exit();
-            }else{
+            } else {
                 header('Location: ../public/office/office_al_streams.php');
             }
         }

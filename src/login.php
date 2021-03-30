@@ -39,6 +39,7 @@ if (isset($_POST['login'])) {
                         $_SESSION['username'] = $row['username'];
                         $_SESSION['userType'] = $row['userType'];
                         header('Location: ../public/student/newsfeed.php');
+
                     } else if ($row['userType'] == "parent") {
                         $_SESSION['userID'] = $row['userID'];
                         $userID = $row['userID'];
@@ -50,6 +51,7 @@ if (isset($_POST['login'])) {
                             $_SESSION['studentID'] = $parent_row['admissionNo'];
                         }
                         header('Location: ../public/parent/newsfeed.php');
+
                     } else if ($row['userType'] == "teacher") {
 
 
@@ -57,11 +59,11 @@ if (isset($_POST['login'])) {
                         $sql = "SELECT * FROM teachertype WHERE teacherID = '$userID'";
                         $result = mysqli_query($conn, $sql);
 
-                        $roles = array();
-                        while ($row = mysqli_fetch_assoc($result)) {
-                            $teacherType[] = $row['teacherType'];
-                            if ($row['teacherType'] == 'classTeacher') {
-                                $_SESSION['classID'] = $row['entityAssigned'];
+                        $teacherType = array();
+                        while ($rows = mysqli_fetch_assoc($result)) {
+                            $teacherType[] = $rows['teacherType'];
+                            if ($rows['teacherType'] == 'classTeacher') {
+                                $_SESSION['classID'] = $rows['entityAssigned'];
                             }
                         }
 
@@ -85,28 +87,13 @@ if (isset($_POST['login'])) {
                         $_SESSION['userID'] =  $userID;
                         $_SESSION['username'] = $row['username'];
                         $_SESSION['userType'] = "officer";
-                        header('Location: ../public/office/o_dashboard.php');
+                        header('Location: ../public/office/office_dashboard.php');
                     } else if ($row['userType'] == "admin") {
                         $_SESSION['userID'] = $row['userID'];
                         $_SESSION['username'] = $row['username'];
                         $_SESSION['userType'] = $row['userType'];
-                        header('Location: ../public/admin/dashboard.php');
+                        header('Location: ../public/admin/admin_dashboard.php');
                     }
-<<<<<<< HEAD
-=======
-                    
-                    $_SESSION['dutyID'] = $duty;
-                    $_SESSION['userID'] =  $userID;
-                    $_SESSION['username'] = $row['username'];
-                    $_SESSION['userType'] = "officer";
-                    header('Location: ../public/office/office_dashboard.php');
-
-                }else if($row['userType'] == "admin"){
-                    $_SESSION['userID'] = $row['userID'];
-                    $_SESSION['username'] = $row['username'];
-                    $_SESSION['userType'] = $row['userType'];
-                    header('Location: ../public/admin/dashboard.php');
->>>>>>> 29f3e70bc5fc230c148413f61439af33a90a83b0
                 }
             }else{
                 $error = "Invalid Username or Password";

@@ -1,5 +1,3 @@
-
-
 <?php
 session_start();
 
@@ -12,15 +10,21 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 
 
     $userID = $_SESSION['userID'];
-    $teacherType = $_SESSION['teacherType'];
+    // $teacherType = $_SESSION['teacherType'];
     $teacherType = array();
     $teacherType = $_SESSION['teacherType'];
+    include '../../config/conn.php';
+
+    $sql = "SELECT * FROM teacher WHERE `teacherID`='$userID'";
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($result);
 
     //   foreach($teacherType as $result) {
     //     echo $result;
     // }
 
 ?>
+
 
     <link rel="stylesheet" href="../../images/font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -35,8 +39,11 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
         <ul>
             <li>
                 <form name="logout" action="../../src/logout.php" method="POST">
-                    <input type="submit" value="LOGOUT" name="logout" style="font-family: 'Playfair Display', serif;">
+                <input type="submit" value="LOGOUT" name="logout" style="font-family: 'Ubuntu', sans-serif;float:right;margin-left:180px;margin-right:1px;">
                 </form>
+            </li>
+            <li>
+            <h4 style="float:right; margin:3px -180px 2px 5px;color:rgb(193, 187, 187);font-family: 'Ubuntu', sans-serif;"><i class="fa fa-user-o" aria-hidden="true" style="margin-right: 3px;"></i><?php echo $row['fName'] . " " . $row['lName']; ?></h4>
             </li>
         </ul>
     </div>
@@ -82,9 +89,9 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                     </li>
                     <div class="submenu2" id="submenu2">
                         <ul>
-                            <li><a href="../teacher/Tcr_ach.php"> Add achievement</a>
-                            <li><a href="../teacher/Tcr_AddInquiery.php">View Sports</a></li>
-                            <li><a href="../teacher/Tcr_AddInquiery.php">View Societies</a></li>
+                            <li><a href="../teacher/Tcr_AddAchievement.php"> Add achievement</a>
+                            <li><a href="../teacher/Tcr_ViewSports.php"> Sport Achievements</a></li>
+                            <li><a href="../teacher/Tcr_ViewSocieties.php">Society Achievements</a></li>
                         </ul>
                     </div>
 

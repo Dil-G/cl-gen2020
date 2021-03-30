@@ -51,6 +51,7 @@
         <div id="teacherNav"></div>
 
 
+
         <div class="content">
             <div class="feed">
 
@@ -60,9 +61,6 @@
                     <hr>
                     <div class="card">
                         <form>
-                            <div class="photo">
-                                <img src="../../images/5.jpg" width="160px" height="160px">
-                            </div>
                             <div class="first">
                                 <div class="first">
                                     <div class="first">

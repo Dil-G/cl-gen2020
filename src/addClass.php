@@ -31,20 +31,13 @@ if (isset($_GET['addYear'])) {
 
         }
 
-<<<<<<< HEAD
         if ($result === TRUE) {
-=======
-        if ($conn->query($sql) === TRUE) {
-            echo '<script language = "javascript">';
-            echo 'alert("Details Added");';
-            header('Location: ../public/office/office_addClassYear.php');
->>>>>>> 29f3e70bc5fc230c148413f61439af33a90a83b0
         } else {
             $error = "Cannot add record";
             header('Location: ../public/office/office_addClassYear.php?error=' . $error);
         }
     }
-    header('Location: ../public/office/o_addClassYear.php');
+    header('Location: ../public/office/office_addClassYear.php');
 
 }
 
@@ -113,7 +106,6 @@ if (isset($_POST['addclasses'])) {
             $ascii = $ascii + 1;
             $medium = 'Sinhala';
         }
-
         $sql = "INSERT INTO classes (gradeID, classID, name, medium) VALUES ('$grades','$classID','$name','$medium');";
         $sql2 = "UPDATE grades SET gradeActive = 1 WHERE gradeID = '$grades';";
 
@@ -158,7 +150,7 @@ if (isset($_POST['addNewClass'])) {
 } else {
 }
 
-if(isset($_GET['class']) || ($_SESSION['class'])) {
+if(isset($_GET['class']) || isset($_SESSION['class'])) {
     if(isset($_GET['class'])){
         $thisClass = $_GET['class'];
     }
@@ -166,6 +158,8 @@ if(isset($_GET['class']) || ($_SESSION['class'])) {
         $thisClass = $_SESSION['class'];
     }
     $classOne_sql = "SELECT * FROM classstudent WHERE classID='$thisClass'";
+
+    
     $class_sql = "SELECT classes.*,teacher.* FROM classes
     LEFT JOIN teacher ON classes.teacherID=teacher.teacherID  where classID = '$thisClass'";
 

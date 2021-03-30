@@ -52,7 +52,7 @@
                     <hr>
 
                     <label for="name"><b>Student Admission Number</b></label>
-                    <input type="text" placeholder="Enter admission number"  id="username" name="sAd" required>
+                    <input type="text" placeholder="Enter admission number"  id="username" name="sAd" value="<?php echo $_GET['userID']; ?>"required>
                   
                   
                    
@@ -68,7 +68,7 @@
               
                 <div>
                 <button type="submit" class="registerbtn" name="regbtn" >Add</button>
-                    <a href="Tcr_dashboard.php" class="cancel-btn">Cancel</a>
+                    <a href="Tcr_classDetails.php" class="cancel-btn">Cancel</a>
               
             </div>
         </div>

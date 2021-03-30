@@ -100,7 +100,7 @@ if (isset($_POST['userid'])) {
 
     if ($rows > 0) {
         $error = "User ID already existing";
-        header('Location: ../public/admin/users.php?error=' . $error);
+        header('Location: ../public/admin/admin_users.php?error=' . $error);
         exit();
     } else {
 
@@ -109,19 +109,24 @@ if (isset($_POST['userid'])) {
             $sql = "INSERT INTO user(username,password,userID,userType,isActivated)VALUES ('" . $username . "','" . $pwd . "','" . $userid . "','" . $userType . "','1')";
             $sql1 = "INSERT INTO admin(userID,email) VALUES ('" . $userid . "','" . $email . "')";
 
-            if ($conn->query($sql) == TRUE && $conn->query($sql1) == TRUE) {
-
-                header('Location: ../public/admin/users.php');
+            $result2 = mysqli_query($conn, $sql);
+            $result3 = mysqli_query($conn, $sql1);
+            if (!$result2 || $result3) {
+                $error = "Cannot add user";
+                header('Location: ../public/admin/admin_users.php?error=' . $error);
+                exit();
             } else {
-                header('Location: ../public/admin/add_admin.php?error');
+                header('Location: ../public/admin/admin_users.php');
             }
+
+
 
             exit();
         } else {
 
             $pwd = md5($userid);
-            $sql = "INSERT INTO user(username,password,userID,userType)VALUES ('" . $username . "','" . $pwd . "','" . $userid . "','" . $userType . "')";
-
+            $sql2 = "INSERT INTO user(username,password,userID,userType)VALUES ('" . $username . "','" . $pwd . "','" . $userid . "','" . $userType . "')";
+            $result2 = mysqli_query($conn, $sql2);
             if ($userType == "student") {
                 $intID = substr($userid, 2);
                 $userid = "PR" . $intID;
@@ -133,26 +138,30 @@ if (isset($_POST['userid'])) {
 
 
 
-
-                if ($conn->query($sql) == TRUE && $conn->query($sql1) == TRUE) {
-
-
-                    header('Location: ../public/admin/users.php');
+                $result3 = mysqli_query($conn, $sql1);
+                if (!$result2 || !$result3) {
+                    $error = "Cannot add user";
+                    header('Location: ../public/admin/admin_users.php?error=' . $error);
                     exit();
                 } else {
-                    header('Location: ../public/admin/users.php?error');
-                    exit();
+                    $logString = "Admin Added a user";
+                    echo $logString;
+                    writeApplicationLog($logString, '../logs');
+                    header('Location: ../public/admin/admin_users.php');
                 }
             }
         }
 
-        if ($conn->query($sql) == TRUE) {
+
+        if (!$result2) {
+            $error = "Cannot add user";
+            header('Location: ../public/admin/admin_users.php?error=' . $error);
+            exit();
+        } else {
             $logString = "Admin Added a user";
             echo $logString;
             writeApplicationLog($logString, '../logs');
-            header('Location: ../public/admin/users.php');
-        } else {
-            header('Location: ../public/admin/register_user.php?error');
+            header('Location: ../public/admin/admin_users.php');
         }
     }
 

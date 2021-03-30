@@ -23,6 +23,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
     <title>News list</title>
     <script src="../js/jquery-1.9.1.min.js"></script>
     <script src="../js/nav.js"></script>
+    <script src="../js/search.js"></script>
     <link rel="stylesheet" href="../css/view.css " type="text/css">
     <link type="text/css" rel="stylesheet" href="../css/main.css">
     <link type="text/css" rel="stylesheet" href="../css/users.css">
@@ -50,7 +51,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
             <h1> News List</h1>
             <hr>
             <form class="search">
-                <input type="text" placeholder="Search.." name="search">
+                <input type="text" ID="Inputs" placeholder="Search.." name="search">
                 <button type="submit">Search</button>
             </form>
         </div>
@@ -60,7 +61,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 
         <div class="card">
             <form>
-                <button type="submit" formaction="edit_newsfeed.php">Add News</button>
+                <button type="submit" formaction="office_edit_newsfeed.php">Add News</button>
             </form>
             <br>
             <br>
@@ -75,8 +76,10 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                     <th>Time</th>
                     <th>Image</th>
                 </tr>
+                <tbody id="Table">
+
                 <?php
-                        while ($row = mysqli_fetch_assoc($res)) {
+                        while ($row = mysqli_fetch_assoc($number_result)) {
                         ?>
                 <tr>
                     <td><?php echo $row['newsID'] ?></td>
@@ -93,7 +96,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                                     } ?>
                     </td>
                     <td><button
-                            class="viewbtn"><?php echo "<a href = update_newsfeed.php?newsID='" . $row['newsID'] . "' > Update </a> " ?></button>
+                            class="viewbtn"><?php echo "<a href = office_update_newsfeed.php?newsID='" . $row['newsID'] . "' > Update </a> " ?></button>
                     </td>
                     <td><button
                             class="dltbtn"><?php echo "<a href = ../../src/delete_news.php?newsID='" . $row['newsID'] . "' > Delete </a> " ?></button>
@@ -103,6 +106,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                 <?php
                         }
                         ?>
+                </tbody>
             </table>
             </div>
         </div>

@@ -61,7 +61,7 @@ if (isset($_POST['teacherReg'])) {
         if ($_SESSION['userType'] == 'officer') {
             header('Location: ../public/office/office_teachersList.php');
         } elseif ($_SESSION['userType'] == 'admin') {
-            header('Location: ../public/admin/teachers.php');
+            header('Location: ../public/admin/admin_teachers.php');
         }
     } else {
         $error = "Cannot add record";
@@ -70,11 +70,7 @@ if (isset($_POST['teacherReg'])) {
         if ($_SESSION['userType'] == 'officer') {
             header('Location: ../public/office/office_teachersList.php?error=' . $error);
         } elseif ($_SESSION['userType'] == 'admin') {
-<<<<<<< HEAD
-            header('Location: ../public/office/teacher.php?error=' . $error);
-=======
             header('Location: ../public/office/office_teachersList.php?error=' . $error);
->>>>>>> 29f3e70bc5fc230c148413f61439af33a90a83b0
         }
     }
 
@@ -85,7 +81,7 @@ if (isset($_POST['teacherReg'])) {
     }*/
 } else if (isset($_POST['studentReg'])) {
 
-    $admissionNo = $_POST['studentID'];
+    $admissionNo = $_POST['stuID'];
     $fName = $_POST['stufName'];
     $mName = $_POST['stumName'];
     $lName = $_POST['stulName'];
@@ -104,7 +100,7 @@ if (isset($_POST['teacherReg'])) {
     $target = "../images/" . basename($stuPhoto);
 
 
-    $sql = "INSERT INTO student (admissionNo, fName, mName, lName, dob, adStreet, adCity, adDistrict, religion, enteredDate, enteredGrade, email, contactNo, gender, stuNic, stuPhoto) VALUES
+    $sql = "INSERT INTO`student`(`admissionNo`, `fName`, `mName`, `lName`, `dob`, `adStreet`, `adCity`, `adDistrict`, `religion`, `enteredDate`, `enteredGrade`, `email`, `contactNo`, `gender`, `stuNic`, `stuPhoto`) VALUES
  ('$admissionNo', '$fName', '$mName', '$lName', '$dob', '$adStreet', '$adCity', '$adDistrict', '$religion', '$enteredDate', '$enteredGrade', '$email', '$contactNo', '$gender', '$nic', '$stuPhoto')";
 
 
@@ -117,7 +113,7 @@ if (isset($_POST['teacherReg'])) {
             if ($_SESSION['userType'] == 'officer') {
                 header('Location: ../public/office/office_addStudentDetails.php?message=' . $message);
             }elseif ($_SESSION['userType'] == 'admin'){
-                header('Location: ../public/admin/addStudentDetails.php?message=' . $message);
+                header('Location: ../public/admin/admin_addStudentDetails.php?message=' . $message);
             }
         } else {
             header('Location: ../public/office/office_addStudentDetails.php');
@@ -126,14 +122,14 @@ if (isset($_POST['teacherReg'])) {
         if ($_SESSION['userType'] == 'officer') {
             header('Location: ../public/office/office_addParentDetails.php?parentID=' . $admissionNo);
         } elseif ($_SESSION['userType'] == 'admin') {
-            header('Location: ../public/admin/addParentDetails.php?parentID=' . $admissionNo);
+            header('Location: ../public/admin/admin_addParentDetails.php?parentID=' . $admissionNo);
         }
     } else {
         $error = "Cannot add record";
         if ($_SESSION['userType'] == 'officer') {
-            // header('Location: ../public/office/office_addStudentDetails.php?message=' . $error);
+            header('Location: ../public/office/office_addStudentDetails.php?message=' . $error);
         }elseif ($_SESSION['userType'] == 'admin'){
-            // header('Location: ../public/admin/addStudentDetails.php?message=' . $error);
+            header('Location: ../public/admin/admin_addStudentDetails.php?message=' . $error);
         }
         
     }
@@ -149,7 +145,7 @@ if (isset($_POST['teacherReg'])) {
         if ($_SESSION['userType'] == 'officer') {
             header('Location: ../public/office/office_parentsList.php?error=' . $error);
         } elseif ($_SESSION['userType'] == 'admin') {
-            header('Location: ../public/office/office_parentsList.php?error=' . $error);
+            header('Location: ../public/admin/admin_parent.php?error=' . $error);
         }
 
     } else {
@@ -173,7 +169,7 @@ if (isset($_POST['teacherReg'])) {
             if ($_SESSION['userType'] == 'officer') {
                 header('Location: ../public/office/office_parentsList.php');
             } elseif ($_SESSION['userType'] == 'admin') {
-                header('Location: ../public/admin/parent.php');
+                header('Location: ../public/admin/admin_parent.php');
             }
         } else {
             $error = "Cannot add record";
@@ -181,7 +177,7 @@ if (isset($_POST['teacherReg'])) {
             if ($_SESSION['userType'] == 'officer') {
                 header('Location: ../public/office/office_parentsList.php?error=' . $error);
             } elseif ($_SESSION['userType'] == 'admin') {
-                header('Location: ../public/office/office_parentsList.php?error=' . $error);
+                header('Location: ../public/admin/admin_parent.php?error=' . $error);
             }
         }
     }
@@ -205,11 +201,12 @@ if (isset($_POST['teacherReg'])) {
             header('Location: ../public/office/office_officersList.php?error=' . $error . '?userID=' . $userID);
             exit();
         } elseif ($_SESSION['userType'] == 'admin') {
-            header('Location: ../public/admin/staff.php?error=' . $error . '?userID=' . $userID);
+            header('Location: ../public/admin/admin_staff.php?error=' . $error . '?userID=' . $userID);
             exit();
         }
     }
 
+    
     $duties = $_POST['checkbox'];
     $count = count($duties);
     echo   $count . " checkboxes checked";
@@ -223,10 +220,10 @@ if (isset($_POST['teacherReg'])) {
     if ($reuslt1 == false) {
         $error = "Error in entering data";
         if ($_SESSION['userType'] == 'officer') {
-           // header('Location: ../public/office/office_officersList.php?error=' . $error . '?userID=' . $userID);
+           header('Location: ../public/office/office_officersList.php?error=' . $error . '?userID=' . $userID);
           //  exit();
         } elseif ($_SESSION['userType'] == 'admin') {
-           // header('Location: ../public/admin/staff.php?error=' . $error . '?userID=' . $userID);
+           header('Location: ../public/admin/admin_staff.php?error=' . $error . '?userID=' . $userID);
            // exit();
         }
     }
@@ -244,7 +241,7 @@ if (isset($_POST['teacherReg'])) {
                 header('Location: ../public/office/office_officersList.php?error=' . $error . '?userID=' . $userID);
                 exit();
             } elseif ($_SESSION['userType'] == 'admin') {
-                header('Location: ../public/admin/staff.php?error=' . $error . '?userID=' . $userID);
+                header('Location: ../public/admin/admin_staff.php?error=' . $error . '?userID=' . $userID);
                 exit();
             }
         }
@@ -256,9 +253,9 @@ if (isset($_POST['teacherReg'])) {
     if ($conn->query($update_query1) == TRUE && $result == TRUE &&  $reuslt1 == TRUE) {
 
         if ($_SESSION['userType'] == 'officer') {
-            header('Location: ../public/office/o_officersList.php');
+            header('Location: ../public/office/office_officersList.php');
         } elseif ($_SESSION['userType'] == 'admin') {
-            header('Location: ../public/admin/staff.php');
+            header('Location: ../public/admin/admin_staff.php');
         }
     } else {
         $error = "Cannot add record";
@@ -266,7 +263,7 @@ if (isset($_POST['teacherReg'])) {
         if ($_SESSION['userType'] == 'officer') {
             header('Location: ../public/office/office_officersList.php?error=' . $error);
         } elseif ($_SESSION['userType'] == 'admin') {
-            header('Location: ../public/office/staff.php?error=' . $error);
+            header('Location: ../public/admin/admin_staff.php?error=' . $error);
         }
     }
 }

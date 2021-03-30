@@ -31,7 +31,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 
 <body>
 
-    <div id="nav"></div>
+    <div id="nav1"></div>
 
     <div class="content">
 

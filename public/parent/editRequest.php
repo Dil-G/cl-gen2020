@@ -28,7 +28,7 @@
   </head>
 
   <body>
-    <div id="nav"></div>
+    <div id="nav1"></div>
 
     <div class="content">
       <h1>Edit Request Form</h1>

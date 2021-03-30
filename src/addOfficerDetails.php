@@ -22,6 +22,7 @@ if (isset($_POST['officerReg'])) {
     if (!isset($_POST['checkbox'])) {
         $error = "Assign atleast one duty";
         header('Location: ../public/office/office_officersList.php?error=' . $error);
+        exit();
     }
     $duties = $_POST['checkbox'];
     $count = count($duties);
@@ -33,12 +34,14 @@ if (isset($_POST['officerReg'])) {
     $sql = "INSERT INTO office (officerID, fName, lName,  nic, contactNo, address, email, gender,dob) VALUES
     ('$userID', '$fName', '$lname', '$nic', '$ContactNo', '$address', '$email','$gender','$dob')";
 
-    $reuslt1 = $conn->query($sql);
-    if ($reuslt1 == false) {
+    $result1=mysqli_query($conn,$sql);
+    if (!$result1) {
         $error = "Error in entering data";
         header('Location: ../public/office/office_officersList.php?error=' . $error);
         exit();
     }
+
+   
 
     foreach ($duties as $dut) {
         $duty = $dut;
@@ -46,8 +49,8 @@ if (isset($_POST['officerReg'])) {
         echo $duty;
         echo $userID;
 
-        $result = $conn->query($sql2);
-        if ($result == False) {
+        $result2=mysqli_query($conn,$sql2);
+        if ($result2 == False) {
             $error = "Duty already Assigned";
             header('Location: ../public/office/office_officersList.php?error=' . $error);
             exit();
@@ -56,13 +59,14 @@ if (isset($_POST['officerReg'])) {
 
     $update_query1 = "UPDATE user SET isActivated = '1' WHERE userID = '$userID'";
 
-    if ($conn->query($update_query1) == TRUE && $result == TRUE &&  $reuslt1 == TRUE) {
-        echo '<script language="javascript">';
-        echo 'alert("Details Added");';
-        echo '</script>';
-        header('Location: ../public/office/office_officersList.php');
+    $update = mysqli_query($conn,$update_query1);
+
+    if (!$result2||!$update||!!$result1) {
+        $error = "Cannot Add Users";
+        header('Location: ../public/office/office_officersList.php?error=' . $error);
+        exit();
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        header('Location: ../public/office/office_officersList.php');
     }
     /* else{
         $error="Invalid Email or NIC";

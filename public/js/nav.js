@@ -17,7 +17,7 @@ function navFunction3() {
 }
 
 function navFunction2() {
-	return "nav1.html";
+	return "navParent.php";
 }
 function navFunction4() {
 	return "nav3.html";

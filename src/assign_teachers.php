@@ -75,7 +75,7 @@ if (isset($_POST['assign_teachers'])) {
                     exit();
                 }
 
-                $categoryType = substr($item3, 0, 2);
+                $categoryType = substr($items3, 0, 2);
                 if ($categoryType == 'SP') {
                     $retrieve_entity = "SELECT * FROM csports WHERE SportID='$items3'";
                 } else if ($categoryType == 'SO') {
@@ -158,10 +158,22 @@ if (isset($_POST['assign_teachers'])) {
 
 
                 $categoryType = substr($item3, 0, 2);
-                if ($categoryType == 'SP' || $categoryType == 'SO') {
+                if ($categoryType == 'SP') {
                     $teacherType = "teacherIncharge";
+                    $update = "UPDATE csports SET `tearcherID`='$item2' WHERE SportID='$item3'";
+                    $update_result = mysqli_query($conn, $update);
+                    echo " sport";
+                    echo "Error: " . $update . "<br>" . $conn->error;
+                } else if ($categoryType == 'SO') {
+                    $teacherType = "teacherIncharge";
+                    $update = "UPDATE csocieties SET `tearcherID`='$item2' WHERE SocietyID='$item3'";
+                    $update_result = mysqli_query($conn, $update);
+                    echo " soc";
                 } else {
                     $teacherType = "classTeacher";
+                    $update = "UPDATE classes SET teacherID='$item2' WHERE classID='$item3'";
+                    $update_result = mysqli_query($conn, $update);
+                    echo "ASA";
                 }
 
                 $query = "INSERT into teacherType(teacherID,teacherType,entityAssigned,id) 
@@ -177,119 +189,134 @@ if (isset($_POST['assign_teachers'])) {
                 // $maxID = $maxID + 1;
             }
             fclose($handle);
-            header('Location: ../public/office/office_assignTeachers.php');
+            $msg = "User Allocated";
+            header('Location: ../public/office/office_assignTeachers.php?msg=' . $msg);
         }
     }
 }
 
-if(isset($_GET['delete'])){
+if (isset($_GET['delete'])) {
 
     $sql = "DELETE FROM teacherType";
-    $result = mysqli_query($conn,$sql);
+    $result = mysqli_query($conn, $sql);
 
-    if(!$result){
+    if (!$result) {
         $error = "Error in Deleting";
         header('Location: ../public/office/office_assignTeachers.php?error=' . $error);
-    }else{
-        header('Location: ../public/office/office_assignTeachers.php');
-    }
+    } else {
+        $msg = "Users Deallocated";
+        header('Location: ../public/office/office_assignTeachers.php?msg=' . $msg);    }
 }
 
 
-if(isset($_GET['deleteuser'])){
+if (isset($_GET['deleteuser'])) {
 
     $userID = $_GET['deleteuser'];
     $sql = "DELETE FROM teachertype WHERE teacherID='$userID'";
-    $result = mysqli_query($conn,$sql);
+    $result = mysqli_query($conn, $sql);
 
-    if(!$result){
+    if (!$result) {
         $error = "Error in Deleting";
         header('Location: ../public/office/office_assignTeachers.php?error=' . $error);
-    }else{
-        header('Location: ../public/office/office_assignTeachers.php');
+    } else {
+        $msg = "User Deallocated";
+            header('Location: ../public/office/office_assignTeachers.php?msg=' . $msg);
     }
 }
 
-if(isset($_POST['assign_teacher'])){
+if (isset($_POST['assign_teacher'])) {
 
     $userID = $_POST['teacherID'];
 
-    if(isset($_POST['classID'])){
+    if (isset($_POST['classID'])) {
         $classID = $_POST['classID'];
         $sql = "SELECT * from teachertype WHERE entityAssigned='$classID'";
-        $result = mysqli_query($conn,$sql);
-        if(mysqli_num_rows($result) > 0){
+        $result = mysqli_query($conn, $sql);
+        if (mysqli_num_rows($result) > 0) {
             $error = "Class already Assigned";
             header('Location: ../public/office/office_assignNewTeachers.php?error=' . $error);
-        }else{
+        } else {
+
+            $retrieve_entity = "SELECT * FROM classes WHERE classID='$classID'";
+            $ret_res = mysqli_query($conn, $retrieve_entity);
+            if (mysqli_num_rows($ret_res) == 0) {
+                $error = "Invalid Class ID " . $classID ;
+                echo $error;
+                header('Location: ../public/office/office_assignNewTeachers.php?error=' . $error);
+                exit();
+            }else{
+
             $id = $classID . substr($userID, 2);
             $update = "INSERT INTO teachertype(teacherID,teacherType,entityAssigned,id) values('$userID','classTeacher','$classID','$id')";
+            $update2 = "UPDATE `classes` SET `teacherID`='$userID' WHERE `classID`='$classID'";
+            $result_update = mysqli_query($conn, $update);
+            $result_update2 = mysqli_query($conn, $update2);
+            $msg = "Class " . $classID . " assigned to " . $userID;
+            header('Location: ../public/office/office_assignTeachers.php?msg=' . $msg);
+            }
         }
-
-    }else if(isset($_POST['categoryID'])){
+    } else if (isset($_POST['categoryID'])) {
         $category = strtoupper($_POST['categoryID']);
         $categoryName = str_replace(' ', '', $category);
         echo $categoryName;
         $sql = "SELECT * from csports WHERE upper(SportName)='$categoryName'";
-        $result = mysqli_query($conn,$sql);
+        $result = mysqli_query($conn, $sql);
 
-        if(mysqli_num_rows($result) > 0){
-            $row=mysqli_fetch_assoc($result);
+        if (mysqli_num_rows($result) > 0) {
+            $row = mysqli_fetch_assoc($result);
             $sportID = $row['SportID'];
 
             $sql = "SELECT * from teachertype WHERE entityAssigned='$sportID'";
-            $result = mysqli_query($conn,$sql);
-            if(mysqli_num_rows($result) > 0){
+            $result = mysqli_query($conn, $sql);
+            if (mysqli_num_rows($result) > 0) {
                 $error = "Sport already Assigned";
                 header('Location: ../public/office/office_assignNewTeachers.php?error=' . $error);
-            }else{
-
+            } else {
 
                 $id = $sportID . substr($userID, 2);
                 $update = "INSERT INTO teachertype(teacherID,teacherType,entityAssigned,id) values('$userID','teacherIncharge','$sportID','$id')";
-                $result2 = mysqli_query($conn,$update);
-                if(!$result2){
+                $result2 = mysqli_query($conn, $update);
+                if (!$result2) {
                     $error = "Error in Assigning";
                     header('Location: ../public/office/office_assignNewTeachers.php?error=' . $error);
-                }else{
-                    header('Location: ../public/office/office_assignTeachers.php');
+                } else {
+                    $msg = "Sport " . $sportID . " assigned to " . $userID;
+                    header('Location: ../public/office/office_assignTeachers.php?msg=' . $msg);
                 }
             }
-        }else if(mysqli_num_rows($result) == 0){
+        } else if (mysqli_num_rows($result) == 0) {
             $sql1 = "SELECT * from csocieties WHERE upper(REPLACE(`SocietyName`, ' ', ''))='$categoryName'";
-            $result1 = mysqli_query($conn,$sql1);
-            if(mysqli_num_rows($result1) > 0){
-                $row=mysqli_fetch_assoc($result1);
+            $result1 = mysqli_query($conn, $sql1);
+            if (mysqli_num_rows($result1) > 0) {
+                $row = mysqli_fetch_assoc($result1);
                 $societyID = $row['SocietyID'];
-                
+
                 $sql = "SELECT * from teachertype WHERE entityAssigned='$societyID'";
-                $result = mysqli_query($conn,$sql);
-                if(mysqli_num_rows($result) > 0){
+                $result = mysqli_query($conn, $sql);
+                if (mysqli_num_rows($result) > 0) {
                     $error = "Society already Assigned";
                     header('Location: ../public/office/office_assignNewTeachers.php?error=' . $error);
-                }else{
+                } else {
 
 
                     $id = $societyID . substr($userID, 2);
                     $update = "INSERT INTO teachertype(teacherID,teacherType,entityAssigned,id) values('$userID','teacherIncharge','$societyID','$id')";
-                    $result2 = mysqli_query($conn,$update);
-                    if(!$result2){
+                    $result2 = mysqli_query($conn, $update);
+                    if (!$result2) {
                         $error = "Error in Assigning";
                         header('Location: ../public/office/office_assignNewTeachers.php?error=' . $error);
-                    }else{
-                        header('Location: ../public/office/office_assignTeachers.php');
+                    } else {
+                        $msg = "Society " . $societyID . " assigned to " . $userID;
+                        header('Location: ../public/office/office_assignTeachers.php?msg=' . $msg);
                     }
                 }
-            }else if(mysqli_num_rows($result1) == 0){
-            $error = "Invalid Category Name";
-            header('Location: ../public/office/office_assignNewTeachers.php?error=' . $error);
-        }
-        }else{
+            } else if (mysqli_num_rows($result1) == 0) {
+                $error = "Invalid Category Name";
+                header('Location: ../public/office/office_assignNewTeachers.php?error=' . $error);
+            }
+        } else {
             $error = "Invalid Category Name";
             header('Location: ../public/office/office_assignNewTeachers.php?error=' . $error);
         }
     }
-
-
-    
 }

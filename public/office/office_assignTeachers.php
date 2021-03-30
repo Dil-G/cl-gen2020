@@ -44,6 +44,9 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                     <?php if (isset($_GET['error'])) { ?>
                         <div id="error"><?php echo $_GET['error']; ?></div>
                     <?php } ?>
+                    <?php if (isset($_GET['msg'])) { ?>
+                        <div id="message"><?php echo $_GET['msg']; ?></div>
+                    <?php } ?>
                     <h1 style="margin-top:20px;">Teachers List</h1>
 
                     <form class="search">
@@ -74,7 +77,6 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                                     <a href="office_assignTeachers.php" class="cancel-btn">Cancel</a>
 
 
-
                                 </form>
                             </div>
                         </div>
@@ -95,8 +97,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                         <div class="scroll">
                             <table>
                                 <tr>
-                                    <th>User ID</th>
-                                    <th>UserName</th>
+                                    <th>Name</th>
                                     <th>Sport/Society</th>
                                     <th>Assign Category</th>
                                 </tr>
@@ -105,7 +106,6 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                                 ?>
                                     <tbody id="Table">
                                         <tr>
-                                            <td><?php echo $row['teacherID'] ?></td>
                                             <td><?php echo $row['fName'] . " " . $row['lName'] ?></td>
 
                                             <td><?php if ($row['SportID']) {

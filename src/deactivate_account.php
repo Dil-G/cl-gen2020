@@ -19,10 +19,10 @@ if (isset($_GET['studentID'])) {
     
     if ($result == false|| $result2 == false){
         $error = "Error in Deactivating";
-            header('Location: ../public/admin/student.php?error='.$error);
+            header('Location: ../public/admin/admin_student.php?error='.$error);
             exit();
     } else{
-            header('Location: ../public/admin/student.php');
+            header('Location: ../public/admin/admin_student.php');
     
     }
 
@@ -39,11 +39,11 @@ if (isset($_GET['officerID'])) {
 
     if ($result == false){
         $error = "Error in Deactivating";
-            header('Location: ../public/admin/staff.php?error='.$error);
+            header('Location: ../public/admin/admin_staff.php?error='.$error);
             exit();
     }
     else{
-            header('Location: ../public/admin/staff.php');
+            header('Location: ../public/admin/admin_staff.php');
     
     }
 
@@ -59,12 +59,12 @@ if (isset($_GET['teacherID'])) {
 
     if ($result == false){
         $error = "Error in Deactivating";
-            header('Location: ../public/admin/teachers.php?error='.$error);
+            header('Location: ../public/admin/admin_teachers.php?error='.$error);
             exit();
         }
     
     else{
-            header('Location: ../public/admin/teachers.php');
+            header('Location: ../public/admin/admin_teachers.php');
     
     }
 
@@ -78,11 +78,11 @@ if (isset($_GET['sportID'])) {
 
     if ($result == false){
         $error = "Error in Deactivating";
-            header('Location: ../public/admin/sports.php?error='.$error);
+            header('Location: ../public/admin/admin_sports.php?error='.$error);
             exit();
         }
     else{
-            header('Location: ../public/admin/sports.php');
+            header('Location: ../public/admin/admin_sports.php');
     
     }
 
@@ -96,12 +96,12 @@ if (isset($_GET['societyID'])) {
 
     if ($result == false){
         $error = "Error in Deactivating";
-            header('Location: ../public/admin/societies.php?error='.$error);
+            header('Location: ../public/admin/admin_societies.php?error='.$error);
             exit();
         }
     
     else{
-            header('Location: ../public/admin/societies.php');
+            header('Location: ../public/admin/admin_societies.php');
     
     }
 

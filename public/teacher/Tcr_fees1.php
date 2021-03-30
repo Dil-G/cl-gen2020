@@ -65,19 +65,19 @@
             </form>
          
             <hr>
-
+            <div class="scroll">
             <table>
     
 
   
     <tr>
                     <th>Fees ID</th>
-                    <th>Teacher ID </th>
+                   
                     <th>Student ID</th>
                     <th>Student Name</th>
                     <th>Fee Type </th>
                     <th>Amount</th>
-                    <th>Status </th>
+                  
                     <th>Date</th>
                     <th>Time</th>
                     
@@ -91,12 +91,12 @@
  <tbody id="Table"> 
   <tr>
     <td><?php echo $row['FeesID'] ?></td>
-            <td><?php echo $row['TeacherID'] ?></td>
+           
             <td><?php echo $row['StudentID'] ?></td>
             <td><?php echo $row['StudentName'] ?></td>
             <td><?php echo $row['FeeType'] ?></td>
             <td><?php echo $row['Amount'] ?></td>
-            <td><?php echo $row['Status'] ?></td>
+           
             <td><?php echo $row['Date'] ?></td>
             <td><?php echo $row['Time'] ?></td>
            

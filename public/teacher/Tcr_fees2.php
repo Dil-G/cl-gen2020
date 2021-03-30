@@ -39,6 +39,7 @@
 
 </head>
 
+
 <body name=top>
 
     <body>
@@ -50,7 +51,7 @@
             <div class="container">
                 <h2><b>Fees and Fines</b></h2>
 
-                <form action="../../src/add_fees.php" method="POST" onsubmit="return validateFees()" method="POST" enctype="multipart/form-data">
+                <form action="../../src/add_fees.php" method="POST" onsubmit="return validateteacher()" method="POST" enctype="multipart/form-data">
 
                     <hr>
 
@@ -85,10 +86,7 @@
 						<input type="text"  id="username" name="Stats"  required> -->
 
 
-                    <label><b>Status:</b></label>
-                    <br></br>
-                    <label> <input type="radio" name="Stats" value="Paid" required>Paid</label>
-                    <label> <input type="radio" name="Stats" value="Not Paid" required>Not Paid</label>
+                    
 <br>
 
 

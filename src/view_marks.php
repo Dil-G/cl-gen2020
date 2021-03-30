@@ -60,16 +60,24 @@ if (!$students_result) {
 if(isset($_GET['studentID'])){
   $studentID=$_GET['studentID'];
 
-$student_sql="SELECT marks.*,student.* from marks 
-LEFT JOIN student ON marks.admissionNumber=student.admissionNo where admissionNumber = '$studentID'";
-$student_result = mysqli_query($conn,$student_sql);
-
-$passed_sql = "SELECT marks.*,subjectGeneral.* from marks 
-LEFT JOIN subjectGeneral ON marks.subjectID=subjectGeneral.subjectID  where admissionNumber = '$studentID'";
-$passed_result = mysqli_query($conn,$passed_sql);
+$student_sql1="SELECT * from `student` where `admissionNo` = '$studentID'";
+$student_result1 = mysqli_query($conn,$student_sql1);
 
 
-if($passed_result||$student_result){
+$passed_sql1 = "SELECT marks.*,subjectGeneral.* from marks 
+LEFT JOIN subjectGeneral ON marks.subjectID=subjectGeneral.subjectID  where admissionNumber = '$studentID' AND term = 1";
+$passed_result1 = mysqli_query($conn,$passed_sql1);
+
+$passed_sql2 = "SELECT marks.*,subjectGeneral.* from marks 
+LEFT JOIN subjectGeneral ON marks.subjectID=subjectGeneral.subjectID  where admissionNumber = '$studentID' AND term = 2";
+$passed_result2 = mysqli_query($conn,$passed_sql2);
+
+$passed_sql3 = "SELECT marks.*,subjectGeneral.* from marks 
+LEFT JOIN subjectGeneral ON marks.subjectID=subjectGeneral.subjectID  where admissionNumber = '$studentID' AND term = 3";
+$passed_result3 = mysqli_query($conn,$passed_sql3);
+
+
+if($passed_result1||$student_result1 || $passed_result2|| $passed_result3){
   //echo "Sucessfull";
 }
 else{

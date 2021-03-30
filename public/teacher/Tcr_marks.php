@@ -44,11 +44,12 @@
             <div id="teacherNav"></div>
             <div class="content">
                 <div class="card">
-                <?php $rows = mysqli_fetch_assoc($student_result); ?>
+                <?php $rows = mysqli_fetch_assoc($student_result1); ?>
                 <h2 style="color: #6a7480;margin-top:0px;"><?php echo $rows['fName'] . " " . $rows['lName'] ?> Marks</h2>
                 </div>
                 <br>
                 <div class="card">
+                    <h3> First Term</h3>
                     <hr>
                     <!-- <form class="search" action="Tcr_marks.php">
                         <button type="submit" name="submit" method="POST">Calculate Total Marks</button> -->
@@ -61,7 +62,7 @@
                             <?php
                             $total = 0;
                             $c=0;
-                            while ($row = mysqli_fetch_assoc($passed_result)) {
+                            while ($row = mysqli_fetch_assoc($passed_result1)) {
                                 $total = $total + $row['mark'];
                                 $c=$c+1;
                             ?>
@@ -84,6 +85,91 @@
                             </tr>
                         </table>
                 </div>
+
+                
+                <br>
+                <br>
+                <div class="card">
+                <h3> Second Term</h3>
+                    <hr>
+                    <!-- <form class="search" action="Tcr_marks.php">
+                        <button type="submit" name="submit" method="POST">Calculate Total Marks</button> -->
+                        <table  style="margin-left: -20px;">
+                            <tr>
+
+                                <th>Subject</th>
+                                <th>Student Name</th>
+                            </tr>
+                            <?php
+                            $total = 0;
+                            $c=0;
+                            while ($row = mysqli_fetch_assoc($passed_result2)) {
+                                $total = $total + $row['mark'];
+                                $c=$c+1;
+                            ?>
+                            
+                                <tr>
+                                    <td><?php echo $row['subjectName'] ?></td>
+                                    <td><?php echo $row['mark'] ?></td>
+                                </tr>
+
+                            <?php
+                            }
+                            ?>
+                            <tr>
+                                <td><b>Total Marks</b></td>
+                                <td><?php echo $total ?></td>
+                            </tr>
+                            <tr>
+                                <td><b>Average Mark from <?php echo $c ?> Subjects</b></td>
+                                <td><?php if($c != 0){echo ($total/$c);}else{echo $c;} ?></td>
+                            </tr>
+                        </table>
+                </div>
+
+                
+                <br>
+                <br>
+
+                <div class="card">
+                <h3> Third Term</h3>
+                    <hr>
+                    <!-- <form class="search" action="Tcr_marks.php">
+                        <button type="submit" name="submit" method="POST">Calculate Total Marks</button> -->
+                        <table  style="margin-left: -20px;">
+                            <tr>
+
+                                <th>Subject</th>
+                                <th>Student Name</th>
+                            </tr>
+                            <?php
+                            $total = 0;
+                            $c=0;
+                            while ($row = mysqli_fetch_assoc($passed_result3)) {
+                                $total = $total + $row['mark'];
+                                $c=$c+1;
+                            ?>
+                            
+                                <tr>
+                                    <td><?php echo $row['subjectName'] ?></td>
+                                    <td><?php echo $row['mark'] ?></td>
+                                </tr>
+
+                            <?php
+                            }
+                            ?>
+                            <tr>
+                                <td><b>Total Marks</b></td>
+                                <td><?php echo $total ?></td>
+                            </tr>
+                            <tr>
+                                <td><b>Average Mark from <?php echo $c ?> Subjects</b></td>
+                                <td><?php if($c != 0){echo ($total/$c);}else{echo $c;} ?></td>
+                            </tr>
+                        </table>
+                </div>
+
+                
                 <br>
                 <br>
 

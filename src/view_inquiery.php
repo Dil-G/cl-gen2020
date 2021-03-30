@@ -1,6 +1,19 @@
 <?php
 
+
 require_once(realpath(dirname(__FILE__) . '/../config/conn.php'));
+
+
+$username = $_SESSION['username'];
+
+$sql_sender = "SELECT * FROM inquiry WHERE `sender`='$username'";
+$res_sender = mysqli_query($conn, $sql_sender);
+
+
+
+$sender_count = "SELECT COUNT(*) FROM inquiry WHERE sender= '$username'";
+$resSender_count = mysqli_query($conn, $sender_count);
+
 
 $sql = "SELECT * from inquiry where reciever = '$userID'";
 $result = mysqli_query($conn, $sql);
@@ -10,13 +23,11 @@ if ($result) {
 } else {
   echo "failed";
 }
-$username = $_SESSION['username'];
 $count = "SELECT COUNT(*) FROM inquiry WHERE sender= '$username'";
 
 
-$sql_sender = "SELECT * FROM inquiry WHERE sender='$username' ORDER BY inquiryID DESC";
+$sql_sender = "SELECT * FROM `inquiry` WHERE sender='$username'";
 
-$res_sender = mysqli_query($conn, $sql_sender);
 $res1 = mysqli_query($conn, $count);
 
 if ($res_sender && $res1 ) {

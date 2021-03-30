@@ -6,7 +6,6 @@ require_once '../config/conn.php';
 
 if (isset($_POST["upload_marks"])) {
 
-
     $teacherID = $_POST["teacherID"];
     $classID = $_POST["classID"];
     $term = $_POST["term"];
@@ -34,19 +33,34 @@ if (isset($_POST["upload_marks"])) {
                         continue;
                     }
 
+                    $c = 0;
                     $items2 = mysqli_real_escape_string($conn, $datas[0]);
                     $items3 = mysqli_real_escape_string($conn, $datas[1]);
                     $items4 = mysqli_real_escape_string($conn, $datas[2]);
 
-                    $retrieve_class = "SELECT * FROM classstudent WHERE classID='$classID'";
+                    $retrieve_class = "SELECT * FROM classstudent WHERE studentID='$items2'";
                     $class_result =  mysqli_query($conn, $retrieve_class);
 
-                    if(mysqli_num_rows($class_result)==0){
-                        $error = "Student ".$items3." not assigned to the class ";
+                    if (mysqli_num_rows($class_result) == 0) {
+                        $error = "Student " . $items2 . " not assigned to the class ";
                         echo $error;
-                        header('Location: ../public/teacher/Tcr_class.php?examID=' . $examID . '&error=' . $error);
+                        header('Location: ../public/teacher/Tcr_class.php?error=' . $error);
                         exit();
-                      }
+                    } else {
+                        while ($row = mysqli_fetch_assoc($class_result)) {
+                            if ($row['classID'] == $classID) {
+                                $c=$c + 1;
+                            }else{
+                                continue;
+                            }
+                        }
+                    }
+                    if ($c == 0) {
+                        $error = "Student " . $items2 . " not assigned to the class ";
+                        echo $error;
+                        header('Location: ../public/teacher/Tcr_class.php?error=' . $error);
+                        exit();
+                    }
 
                     $MIDs = "T" . $term . substr($items2, 2) . substr($items3, 1);
                     echo $MIDs . " / ";

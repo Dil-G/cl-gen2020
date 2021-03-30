@@ -49,28 +49,23 @@
 
                     <label for="title"><b> Sender's ID</b></label>
                     <input type="text" id="sender" name="sender" value = "<?php  echo  $_SESSION['username']?>" readonly>
-
-                    <label for="title"><b> Sender's Name</b></label>
-                    <input type="text" id="sname" name="sname"  placeholder="Type the name"  value="<?php if(isset($_GET['recievername'])){echo $_GET['recievername'];} ?>" required>
-
-					<label for="title"><b> Inquiry Title</b></label>
-                    <input type="text" id="title" name="title" placeholder="Type Inquiry ID.." value="<?php if(isset($_GET['title'])){echo $_GET['title'];} ?>" required>
                     
-	
+                    <label for="title"><b> Inquiry Title</b></label>
+                    <input type="text" id="Tit" name="Tit" placeholder="Type title" value=" <?php if(isset($_GET['title'])){echo 'Re-:'.$_GET['title'];} ?>" required>
+
 					<label for="reciever"><b>Reciever's ID</b></label>
-					<input type="text" id="rID" name="rID" placeholder="Type Reciever's ID.." value="<?php if(isset($_GET['sender'])){echo $_GET['sender'];} ?>" onblur="validateUsername(rID.value)"  required>
+					<input type="text" id="rID" name="rID" placeholder="Type Reciever's ID.." value="<?php if(isset($_GET['reciever'])){echo $_GET['reciever'];} ?>" onblur="validateUsername(rID.value)"  required>
                     <div class="text" id="uName"></div>
 
-                    <label for="title"><b>Reciever's Name</b></label>
-                    <input type="text" id="rname" name="rname"  placeholder="Type the name"  value="<?php if(isset($_GET['sendername'])){echo $_GET['sendername'];} ?>" required>
-                    
-                  
+                    <?php if(isset($_GET['recievername'])){
+                    echo "<label for='title'><b>Reciever's Name</b></label>
+                    <input type='text' id='rname' name='rname'  placeholder='Type the name'  value=". $_GET['recievername'] ." required>"; }?>
 
 					<label for="msge"><b> Message </b></label>
                     <textarea id="msge" name="msge" placeholder="Write something.." style="height:200px" required></textarea>
                     
                     <button type="submit" class="registerbtn" name="add_inq">Save</button>
-                <a href="Tcr_ReplyInquiery.php" class="cancel-btn">Cancel</a>
+                <a href="inquiries.php" class="cancel-btn">Cancel</a>
 					<hr>
 					
 					

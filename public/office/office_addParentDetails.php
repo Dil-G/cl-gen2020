@@ -40,7 +40,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 
         require_once '../../config/conn.php';
 
-        $stuID = $_GET['userID'];
+        $stuID = $_GET['parentID'];
         $charID = substr($stuID, 2);
         $pID = "PR" . $charID;
 
@@ -57,7 +57,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 
                     <h1>Parent's / Guardian's Details</h1>
                     <hr>
-                    <input type="hidden"  name="userID" id="userID" value = "<?php if (isset ($_GET['userID'])){echo $_GET['userID'];}?>"  >
+                    <input type="hidden"  name="userID" id="userID" value = "<?php if (isset ($_GET['parentID'])){echo $_GET['parentID'];}?>"  >
 
                     <label for="pID"><b>User ID</b></label>
                     <input type="text" placeholder="Enter ID" value="<?php echo $pID; ?>" name="pID" readonly>
@@ -84,7 +84,6 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                     <div>
                         <button type="submit" style="margin-left: 5px;" class="registerbtn" name="parentReg">Save</button>
 
-                        <a href="o_studentsList.php" class="cancel-btn">Cancel</a>
                     </div>
                     <hr>
                 </form>

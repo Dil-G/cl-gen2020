@@ -21,7 +21,7 @@ if (isset($_POST['regbtn'])) {
     
     if($result1 == FALSE){
    $error="ERROR";
-       header('Location: ../public/admin/duty.php?error='.$error);
+       header('Location: ../public/admin/admin_duty.php?error='.$error);
     }
 
     $duties = $_POST['checkbox'];
@@ -38,7 +38,7 @@ if (isset($_POST['regbtn'])) {
          $result = $conn->query($sql2);
          if($result == False){
             $error = "Duty already Assigned";
-            header('Location: ../public/admin/duty.php?error='.$error);
+            header('Location: ../public/admin/admin_duty.php?error='.$error);
          }
     }
 
@@ -47,11 +47,12 @@ if ( $result ==TRUE &&  $result1==TRUE){
     echo '<script language="javascript">';
     echo 'alert("Details Added");';
     echo '</script>';
-	header('Location: ../public/admin/duty.php');
+	header('Location: ../public/admin/admin_duty.php');
 
 
     }else{
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        $error="ERROR";
+       header('Location: ../public/admin/admin_duty.php?error='.$error);
     }
    /* else{
         $error="Invalid Email or NIC";

@@ -13,9 +13,9 @@ if (isset($_POST['updateSociety'])){
        
 
             if ($conn->query($sql) == TRUE) {
-               header('Location: ../public/admin/societies.php');
+               header('Location: ../public/admin/admin_societies.php');
             } else {
-            header('Location: ../public/admin/societies.php?error');
+            header('Location: ../public/admin/admin_societies.php?error');
             }
 }  
 
@@ -30,9 +30,9 @@ if (isset($_POST['updateSport'])){
    
 
         if ($conn->query($sql) == TRUE) {
-           header('Location: ../public/admin/sports.php');
+           header('Location: ../public/admin/admin_sports.php');
         } else {
-        header('Location: ../public/admin/sports.php?error');
+        header('Location: ../public/admin/admin_sports.php?error');
         }
 }  
 

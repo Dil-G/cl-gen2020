@@ -102,10 +102,10 @@ echo $initialID;
         if ( $result == TRUE ) {
             echo '<script language = "javascript">';
             echo 'alert("Details Added");';
-            header('Location: ../public/teacher/Tcr_ach.php');
+            header('Location: ../public/teacher/Tcr_AddAchievement.php');
         } else {
             $error = "Error in Inserting Data ";
-            header('Location:../public/teacher/Tcr_ach.php?error=' . $error);
+            header('Location:../public/teacher/Tcr_AddAchievement.php?error=' . $error);
             exit();     
            }
 

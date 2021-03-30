@@ -12,12 +12,10 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
     if (in_array("d5", $dutyID)) {
         include_once '../../src/newsfeed.php';
 ?>
-
 <!DOCTYPE html>
 <html>
 
 <head>
-
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>News Feed</title>
     <script src="../js/jquery-1.9.1.min.js"></script>
@@ -32,10 +30,20 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
     <div class="feed">
         <div class="banner">
         </div>
-
+<br>
+<h5>Pages</h5>
         <?php
-                while ($row = mysqli_fetch_assoc($res)) {
-                ?>
+        $totsl_records = mysqli_num_rows($number_result);
+        $total_page = ceil($totsl_records/$num_per_page);
+
+         for($i=1;$i<=$total_page;$i++){
+            echo "<a href='office_newsfeed.php?page=".$i."' id='pagebtn'>$i</a>";
+        }
+        
+
+		while($row=mysqli_fetch_assoc($res)){
+			?>
+            
         <div class="container">
             <table>
                 <tr>
@@ -48,10 +56,10 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                     <td width="60%">
                         <p> <?php echo $row['news'] ?></p>
                     </td>
-                    <?php if ($row['image'] == TRUE) { ?>
+                    <?php if($row['image']==TRUE){ ?>
                     <td width="30%">
                         <div class="image">
-                            <?php echo "<img src='../../images/" . $row['image'] . "'>"; ?>
+                            <?php echo "<img src='../../images/".$row['image']."'>"; ?>
 
                         </div>
                     </td>
@@ -60,13 +68,21 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
             </table>
         </div>
         <?php
-                }
-                ?>
+		}
+		?>
     </div>
+    <br>
+    <?php
+        $totsl_records = mysqli_num_rows($number_result);
+        $total_page = ceil($totsl_records/$num_per_page);
+
+         for($i=1;$i<=$total_page;$i++){
+            echo "<a href='office_newsfeed.php?page=".$i."' id='pagebtn' style='background-color:black;'>$i</a>";
+        }
+?>
 </div>
 </body>
 
 </html>
-
 <?php }
 } ?>

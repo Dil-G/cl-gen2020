@@ -16,47 +16,37 @@ if (isset($_POST['add_inq'])){
         $title = $_POST['title'];
         $message = $_POST['msge'];
         $reciever = $_POST['rID'];
-        $recievername = $_POST['rname'];
         $sender= $_POST['sender'];
-        $sendername = $_POST['sname'];
 
 
  
-        $sql = "INSERT INTO inquiry(title,message,reciever,recievername,sender,sendername)VALUES ('$title','$message','$reciever','$recievername','$sender','$sendername')";
+        $sql = "INSERT INTO inquiry(title,message,reciever,sender)VALUES ('$title','$message','$reciever','$sender')";
 
 
         if (mysqli_query($conn,$sql)) {
             if($userType == 'parent'){
                 header('Location: ../public/parent/inquiries.php');
-            }else if($userType == 'teacher' && $_SESSION['teacherType'] == 'both'){
-                header('Location: ../public/teacher/inquiries3.php');   
-            }else if($userType == 'teacher' && $_SESSION['teacherType'] == 'TcrinCharge'){
-                header('Location: ../public/teacher/inquiries2.php');   
-            }else if($userType == 'teacher' && $_SESSION['teacherType'] == 'classTcr'){
-                header('Location: ../public/teacher/inquiries.php');   
+            }else if($userType == 'teacher'){
+                header('Location: ../public/teacher/inquiries.php');      
             }
         }else{
             $error = "Inquiry cannot be sent";
             if($userType == 'parent'){
                 header('Location: ../public/parent/inquiries.php?error='.$error);
-            }else if($userType == 'teacher' && $_SESSION['teacherType'] == 'both'){
-                header('Location: ../public/teacher/inquiries3.php?error='.$error);   
-            }else if($userType == 'teacher' && $_SESSION['teacherType'] == 'TcrinCharge'){
-                header('Location: ../public/teacher/inquiries2.php?error='.$error);   
-            }else if($userType == 'teacher' && $_SESSION['teacherType'] == 'classTcr'){
+            }else if($userType == 'teacher'){
                 header('Location: ../public/teacher/inquiries.php?error='.$error);   
             }
             
         }
     }
-    $conn->close();      
+          
     }else{
-        //$error = "Please Login!";
-        //header('Location: ../public/common/loginFile.php?error='.$error);
+        $error = "Please Login!";
+        header('Location: ../public/common/loginFile.php?error='.$error);
     }
 
 
-
+    $conn->close();
 
 
 

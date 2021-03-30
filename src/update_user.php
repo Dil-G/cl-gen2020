@@ -37,7 +37,7 @@ if ($conn->query($sql) === TRUE){
         if($_SESSION['userType'] == 'officer'){
             header('Location: ../public/office/office_update_student.php?message='.$message);
         }else{
-            header('Location: ../public/admin/updateStudent.php?message='.$message);
+            header('Location: ../public/admin/admin_updateStudent.php?message='.$message);
         }
     }else{
         echo "nso";
@@ -45,13 +45,13 @@ if ($conn->query($sql) === TRUE){
             
             header('Location: ../public/office/office_studentsList.php');
         }else{
-            header('Location: ../public/admin/student.php');
+            header('Location: ../public/admin/admin_student.php');
         }
     }
     if($_SESSION['userType'] == 'officer'){
         header('Location: ../public/office/office_studentsList.php');
     }else{
-        header('Location: ../public/admin/student.php');
+        header('Location: ../public/admin/admin_student.php');
     }
 
     }else{
@@ -60,7 +60,7 @@ if ($conn->query($sql) === TRUE){
         if($_SESSION['userType'] == 'officer'){
                header('Location: ../public/office/office_studentsList.php?error='.$error);
         }else{
-            header('Location: ../public/admin/student.php?error='.$error);
+            header('Location: ../public/admin/admin_student.php?error='.$error);
         }
    }
 
@@ -69,7 +69,7 @@ if ($conn->query($sql) === TRUE){
     if($_SESSION['userType'] == 'officer'){
         header('Location: ../public/office/office_studentsList.php?error='.$error);
     }else{
-        header('Location: ../public/admin/student.php?error='.$error);
+        header('Location: ../public/admin/admin_student.php?error='.$error);
     }
 }
 
@@ -102,7 +102,7 @@ if (isset($_POST['update_officer'])) {
             header('Location: ../public/office/office_officersList.php?error='.$error);
             exit();
         }else{
-            header('Location: ../public/admin/staff.php?error='.$error);
+            header('Location: ../public/admin/admin_staff.php?error='.$error);
             exit();
         }
     }
@@ -110,7 +110,7 @@ else{
     if($_SESSION['userType'] == 'officer'){
         header('Location: ../public/office/office_officersList.php');
     }else{
-        header('Location: ../public/admin/staff.php');
+        header('Location: ../public/admin/admin_staff.php');
 
     }
     }
@@ -143,7 +143,7 @@ if (isset($_POST['update_teacher'])) {
     
     if($result1 == FALSE){
    $error="ERROR";
-       header('Location: ../public/admin/updateTeacher.php?error='.$error);
+       header('Location: ../public/admin/admin_updateTeacher.php?error='.$error);
     }
 
     $duties = $_POST['checkbox'];
@@ -164,7 +164,7 @@ if (isset($_POST['update_teacher'])) {
                 header('Location: ../public/office/o_teachersList.php?error='.$error);
                 exit();
              }else{
-                header('Location: ../public/admin/teachers.php?error='.$error);
+                header('Location: ../public/admin/admin_teachers.php?error='.$error);
                 exit();
              }
          }
@@ -183,7 +183,7 @@ if (isset($_POST['update_teacher'])) {
         header('Location: ../public/office/office_teachersList.php?error='.$error);
         exit();
      }else{
-        header('Location: ../public/admin/teachers.php?error='.$error);
+        header('Location: ../public/admin/admin_teachers.php?error='.$error);
         exit();
      }
  }
@@ -191,7 +191,7 @@ else{
     if($_SESSION['userType'] == 'officer'){
         header('Location: ../public/office/office_teachersList.php');
     }else{
-        header('Location: ../public/admin/teachers.php');
+        header('Location: ../public/admin/admin_teachers.php');
 
     }
  }
@@ -226,7 +226,7 @@ if ($result == false){
         header('Location: ../public/office/office_parentsList.php?error='.$error);
         exit();
     }else{
-        header('Location: ../public/admin/parent.php?error='.$error);
+        header('Location: ../public/admin/admin_parent.php?error='.$error);
         exit();
     }
 }
@@ -234,7 +234,7 @@ else{
     if($_SESSION['userType'] == 'officer'){
         header('Location: ../public/office/office_parentsList.php');
     }else{
-        header('Location: ../public/admin/parent.php');
+        header('Location: ../public/admin/admin_parent.php');
 
     }
 }

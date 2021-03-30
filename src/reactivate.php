@@ -16,10 +16,10 @@ if (isset($_POST['userID']) && ($_POST['userType'])) {
 
         if ($result == false || $result1 == false){
             $error = "Error in Reactivating";
-                header('Location: ../public/admin/deactivated_userlist.php?error='.$error);
+                header('Location: ../public/admin/admin_deactivatedUserlist.php?error='.$error);
                 exit();
         } else{
-                header('Location: ../public/admin/deactivated_userlist.php');
+                header('Location: ../public/admin/admin_deactivatedUserlist.php');
         
         }
 
@@ -32,10 +32,10 @@ if (isset($_POST['userID']) && ($_POST['userType'])) {
 
         if ($result == false || $result1 == false){
             $error = "Error in Reactivating";
-                header('Location: ../public/admin/deactivated_userlist.php?error='.$error);
+                header('Location: ../public/admin/admin_deactivatedUserlist.php?error='.$error);
                 exit();
         } else{
-                header('Location: ../public/admin/deactivated_userlist.php');
+                header('Location: ../public/admin/admin_deactivatedUserlist.php');
         
         }
 
@@ -45,10 +45,10 @@ if (isset($_POST['userID']) && ($_POST['userType'])) {
 
         if ($result == false){
             $error = "Error in Reactivating";
-                header('Location: ../public/admin/deactivated_userlist.php?error='.$error);
+                header('Location: ../public/admin/admin_deactivatedUserlist.php?error='.$error);
                 exit();
         } else{
-                header('Location: ../public/admin/deactivated_userlist.php');
+                header('Location: ../public/admin/admin_deactivatedUserlist.php');
         
         }
     }
@@ -69,10 +69,10 @@ if (isset($_GET['sportID'])) {
 
     if ($result == false){
         $error = "Error in Reactivating";
-            header('Location: ../public/admin/deactivated_categories.php?error='.$error);
+            header('Location: ../public/admin/admin_deactivatedCategories.php?error='.$error);
             exit();
     } else{
-            header('Location: ../public/admin/deactivated_categories.php');
+            header('Location: ../public/admin/admin_deactivatedCategories.php');
     
     }
 
@@ -88,10 +88,10 @@ if (isset($_GET['societyID'])) {
 
     if ($result == false){
         $error = "Error in Reactivating";
-            header('Location: ../public/admin/deactivated_categories.php?error='.$error);
+            header('Location: ../public/admin/admin_deactivatedCategories.php?error='.$error);
             exit();
     } else{
-            header('Location: ../public/admin/deactivated_categories.php');
+            header('Location: ../public/admin/admin_deactivatedCategories.php');
     
     }
 

@@ -13,8 +13,11 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 
   $user_sql = "SELECT * FROM teacher WHERE teacherID='$userID'";
   $user_res = $conn->query($user_sql);
+//   echo $_SESSION['userID'];
+//   print_r( $_SESSION['teacherType']);
 
 ?>
+
 
 
   <!DOCTYPE html>

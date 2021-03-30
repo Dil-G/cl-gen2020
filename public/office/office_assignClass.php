@@ -44,7 +44,7 @@
                 ?>
                 <label ><b>Enter the Class ID</b></label>
                 
-                <input type="text" name="categoryID" placeholder='Enter the Class ID'  required>
+                <input type="text" name="classID" placeholder='Enter the Class ID'  required>
                 <?php }else{
                     echo "<label ><b>Enter the ".  $_GET['entity'] ." Name</b></label>";
                     echo" <input type='text' name='categoryID' placeholder='Enter the Category ID' required>";
@@ -56,8 +56,6 @@
 
                 <button type="submit" class="registerbtn" name="assign_teacher"  >Save</button>
                 <a href="office_assignNewTeachers.php" class="cancel-btn">Cancel</a>
-
-
 
                 </form>
 

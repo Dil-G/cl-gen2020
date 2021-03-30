@@ -33,7 +33,7 @@ if (isset($_POST["alresults"])) {
                     if ($year == date('Y')) {
                         $error = "Student ".$items2." is not an A/L student";
                         echo $error;
-                        header('Location: ../public/office/o_alCsv.php?examID=' . $examID . '&error=' . $error);
+                        header('Location: ../public/office/office_add_ALCsv.php?examID=' . $examID . '&error=' . $error);
                         exit();
                     }
                 }
@@ -89,11 +89,7 @@ if (isset($_POST["alresults"])) {
                 if ($import_result) {
                 } else {
                     $error = "Error in uploading";
-<<<<<<< HEAD
-                    header('Location: ../public/office/o_al.php?error=' . $error);
-=======
                     header('Location: ../public/office/office_viewAL_results.php?Ggrades=' . $error);
->>>>>>> 29f3e70bc5fc230c148413f61439af33a90a83b0
                 }
                 // $maxID = $maxID + 1;
             }

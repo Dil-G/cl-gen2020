@@ -5,9 +5,24 @@ require_once(realpath(dirname(__FILE__) . '/../config/conn.php'));
 $userType = $_SESSION['userType'];
 
 $count = "SELECT COUNT(*)  FROM newsfeed";
-$sql = "SELECT * FROM newsfeed ORDER BY newsID DESC";
+// $sql = "SELECT * FROM newsfeed ORDER BY newsID DESC";
 
-$res= mysqli_query($conn,$sql);
+
+if(isset($_GET['page'])){
+    $page = $_GET['page'];
+}else{
+    $page=1;
+}
+$num_per_page = 3;
+$start_from = ($page-1)*3;
+
+$sql = "SELECT * FROM newsfeed ORDER BY newsID DESC limit $start_from,$num_per_page";
+$res=mysqli_query($conn,$sql);
+
+$number_sql = "SELECT * FROM newsfeed ORDER BY newsID DESC";
+$number_result= mysqli_query($conn,$number_sql);
+
+// $res= mysqli_query($conn,$sql);
 $res1= mysqli_query($conn,$count);
 
 if($res){

@@ -27,7 +27,7 @@
 <link type="text/css" rel="stylesheet" href="../css/inquiry.css">
 </head>
 <body>
-<div id="nav"></div>
+<div id="nav1"></div>
 		
 		<div class="content">
 		

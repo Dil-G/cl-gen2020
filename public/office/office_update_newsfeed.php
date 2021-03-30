@@ -55,14 +55,15 @@
                 <?php echo "<textarea  name=\"news\" rows=\"10\" cols=\"50\"  required>" .$row_news['news']." </textarea> "?>
                 <br>
 
+                
                 <?php 
-            if($row['image']==TRUE){ ?>
+            if($row_news['image']==TRUE){ ?>
                 <label class="radio"> <input type="checkbox" name="delete" value="delete"> <b>Delete Image</b>
                     <span class="checkmark"></span></label>
                 <br>
                 <br>
                 <div class="image">
-                    <?php echo "<img src='../../images/".$row['image']."'>"; ?>
+                    <?php echo "<img src='../../images/".$row_news['image']."'>"; ?>
                 </div>
                 <?php } 
                         ?>

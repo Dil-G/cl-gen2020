@@ -65,9 +65,9 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                     <td><?php echo $row['Grade'] ?></td>
 
                     <?php if ($row['gradeActive'] == 0) {
-                            echo "<td><a class='btn viewbtn' href = o_addClasses.php?grade=" . $gradeID . " >Add Classes </a> </td>";
+                            echo "<td><a class='btn viewbtn' href = office_addClasses.php?grade=" . $gradeID . " >Add Classes </a> </td>";
                         } else {
-                            echo "<td><a class='btn editbtn' href = o_classes.php?Ggrades=" . $gradeID . " >View Grade </a> </td>";
+                            echo "<td><a class='btn editbtn' href = office_classes.php?Ggrades=" . $gradeID . " >View Grade </a> </td>";
                         } ?>
                 </tr>
                 <?php } ?>

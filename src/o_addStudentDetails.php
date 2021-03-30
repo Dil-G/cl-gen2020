@@ -33,14 +33,15 @@ $sql = "INSERT INTO student (admissionNo, fName, mName, lName, dob, adStreet, ad
 
 
  $update_query1 = "UPDATE user SET isActivated = '1' WHERE userID = '$admissionNo'";
- 
+ $result1 = mysqli_query($conn,$sql);
+$result2 = mysqli_query($conn,$update_query1);
 
-if ($conn->query($sql) === TRUE &&  $conn->query($update_query1)){
+if ($result1 && $result2){
     if (move_uploaded_file($_FILES['stuPhoto']['tmp_name'], $target)) {
         $message = "Image uploaded successfully";
         header('Location: ../public/office/office_addStudentDetails.php?message='.$message);
     }else{
-        header('Location: ../public/office/office_addStudentDetails.php');
+        // header('Location: ../public/office/office_addStudentDetails.php');
     }
 
     header('Location: ../public/office/office_addParentDetails.php?userID='.$admissionNo);

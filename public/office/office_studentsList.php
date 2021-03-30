@@ -125,7 +125,7 @@
                         }
                         ?></td>
                                 <?php echo "<td><a class='btn editbtn' href = office_update_student.php?userID=".$row['userID']." > Update </a> </td>"?>
-                                <?php echo "<td><a class='btn viewbtn' href = SProfile1.php?userID=".$row['userID']." > View </a> </td>"?>
+                                <?php echo "<td><a class='btn viewbtn' href = SProfile.php?userID=".$row['userID']." > View </a> </td>"?>
                             </tr>
                         </tbody>
                         <?php

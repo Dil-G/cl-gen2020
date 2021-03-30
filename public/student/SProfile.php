@@ -39,7 +39,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 		<div id="nav"></div>
 		<?php
 		require_once '../../config/conn.php';
-		
+
 
 
 		?>
@@ -72,7 +72,11 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 							<div class="card">
 								<form>
 									<div class="photo">
-										<img src="../../images/student.png" width="160px" height="160px">
+										<?php
+										if ($row['stuPhoto'] == TRUE) { ?>
+                        <div class="profile-image"><?php echo "<img src='../../images/" . $row['stuPhoto'] . "' class = 'profileimage'>"; ?></div>
+										<?php } else {
+										} ?>
 
 									</div>
 									<div class="first">
@@ -294,7 +298,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 
 						<h2><b>SPORTS</b></h2>
 						<div class="first">
-						<h2><b>Achievements</b></h2>
+							<h2><b>Achievements</b></h2>
 
 							<br>
 							<table>
@@ -348,13 +352,13 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 
 						</div>
 
-				
-					</form>
-					<hr>
 
-				<h2><b>CLUBS AND SOCIETIES</b></h2>
-				<div class="first">
-						<h2><b>Achievements</b></h2>
+						</form>
+						<hr>
+
+						<h2><b>CLUBS AND SOCIETIES</b></h2>
+						<div class="first">
+							<h2><b>Achievements</b></h2>
 
 							<table>
 								<?php
@@ -406,79 +410,77 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 
 
 						</div>
-				</form>
-			</div>
-		</div>
-
-
-		</div>
-
-		<!-- /Education Page 2 -->
-
-
-
-		<!-- Aesthetic Page 5 -->
-		<div id="page4" class="page">
-
-
-			<div class="container">
-
-
-				<h2><b>Mother's Information</b></h2>
-				<?php
-						while ($row = mysqli_fetch_assoc($result_parent)) {
-						?>
-				<hr>
-				<div class="card">
-
-					<form>
-						<div class="first">
-							<div class="row">
-								<div class="col">
-									<div class="form-group ">
-										<label class="label" for="input-username">Name</label>
-										<input type="text" id="fname" class="inputs" placeholder="First name" value="<?php echo $row['name'] ?>">
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col">
-									<div class="form-group ">
-										<label class="label" for="adNo">Occupation</label>
-										<input type="text" id="adNo" class="inputs" placeholder="Admission Number" value="<?php echo $row['occupation'] ?>">
-									</div>
-								</div>
-								<div class="col">
-									<div class="form-group ">
-										<label class="label" for="adNo">NIC</label>
-										<input type="text" id="adNo" class="inputs" placeholder="Admission Number" value="<?php echo $row['nic'] ?>">
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col">
-									<div class="form-group ">
-										<label class="label" for="adNo">Contact Number</label>
-										<input type="text" id="adNo" class="inputs" placeholder="Contact Number" value="<?php echo $row['contactNo'] ?>">
-									</div>
-								</div>
-								<div class="col">
-									<div class="form-group ">
-										<label class="label" for="adNo">Email</label>
-										<input type="text" id="email" class="inputs" placeholder="Email" value="<?php echo $row['email'] ?>">
-									</div>
-								</div>
-							</div>
-						</div>
-					</form>
-<?php } ?>
+						</form>
+					</div>
 				</div>
-		
-				
-			</div>
-			<!-- /Aesthetic Page 5 -->
-		</div>
 
+
+		
+
+			<!-- /Education Page 2 -->
+
+
+
+			<!-- Aesthetic Page 5 -->
+			<div id="page4" class="page">
+
+
+				<div class="container">
+
+
+					<h2><b>Mother's Information</b></h2>
+					<?php
+					while ($row = mysqli_fetch_assoc($result_parent)) {
+					?>
+						<hr>
+
+						<form>
+							<div class="first">
+								<div class="row">
+									<div class="col">
+										<div class="form-group ">
+											<label class="label" for="input-username">Name</label>
+											<input type="text" id="fname" class="inputs" placeholder="First name" value="<?php echo $row['name'] ?>">
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col">
+										<div class="form-group ">
+											<label class="label" for="adNo">Occupation</label>
+											<input type="text" id="adNo" class="inputs" placeholder="Admission Number" value="<?php echo $row['occupation'] ?>">
+										</div>
+									</div>
+									<div class="col">
+										<div class="form-group ">
+											<label class="label" for="adNo">NIC</label>
+											<input type="text" id="adNo" class="inputs" placeholder="Admission Number" value="<?php echo $row['nic'] ?>">
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col">
+										<div class="form-group ">
+											<label class="label" for="adNo">Contact Number</label>
+											<input type="text" id="adNo" class="inputs" placeholder="Contact Number" value="<?php echo $row['contactNo'] ?>">
+										</div>
+									</div>
+									<div class="col">
+										<div class="form-group ">
+											<label class="label" for="adNo">Email</label>
+											<input type="text" id="email" class="inputs" placeholder="Email" value="<?php echo $row['email'] ?>">
+										</div>
+									</div>
+								</div>
+							</div>
+						</form>
+					<?php } ?>
+
+
+				</div>
+				<!-- /Aesthetic Page 5 -->
+			</div>
+			</div>
 
 		</div>
 		<script>

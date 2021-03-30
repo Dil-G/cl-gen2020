@@ -44,12 +44,14 @@
                 <h1 style="color:#6a7480;">Achievement Form</h1>
                     <hr>
 
-                    <label for="name"><b>Student Admission Number</b></label>
+                    
+                    <label for="nic"><b>Category ID</b></label>
+                    <input type="text" placeholder="Enter category ID" name="cID"  value="<?php if (isset ($_GET['sportID'])){echo $_GET['sportID'];}?>">
+
+                    <label for="name"><b>Student ID</b></label>
                     <input type="text" placeholder="Enter admission number"  id="username" name="anumber"  onblur="validateUserID(username.value)"  required>
                   
                     
-                    <label for="nic"><b>Category ID</b></label>
-                    <input type="text" placeholder="Enter category ID" name="cID" required>
 
                     <label for="aDate"><b>Achievement Date</b></label>
                     <input type="date" placeholder="Enter Date of Birth" id="date" name="aDate" onblur="checkDates(date.value)" required>
@@ -68,6 +70,7 @@
                         <option value="2">2</option>
                         <option value="3">3</option>
                         <option value="patticipation">Participation</option>
+                        <option value="member">Member</option>
                         </select>
                     <br><br>
 
@@ -80,15 +83,21 @@
                     <label><input type="radio" name="Ivalue" value="3">3</label>
 
                     <br>
+                   
                     </br><br>
                     </br>
-                  
+
+                    <p>1=Global level achievements,All island achievemnts</p>
+                    </br>
+                    <p>2=Provincial and district achievements</p>
+                    <br>
+                    <p>3=Inter school achievements,participation,membership</p>
                     <br>
                 <div id="msg"></div>
                 <hr>
                 <div>
                     <button type="submit" class="registerbtn" name="add_achievement">Add</button>
-                    <a href="Tcr_ach.php" class="cancel-btn">Cancel</a>
+                    <a href="Tcr_AddAchievement.php" class="cancel-btn">Cancel</a>
               
             </div>
         </div>
@@ -98,5 +107,5 @@
 </html>
 
 <?php 
-	 }}
+     } }
 ?>

@@ -36,8 +36,7 @@
         <link type="text/css" rel="stylesheet" href="../css/class.css">
         <link rel="stylesheet" href="../css/view.css " type="text/css">
         <link type="text/css" rel="stylesheet" href="../css/pop.css">
-
-
+        <link type="text/css" rel="stylesheet" href="../css/messages.css">
         <script>
             $(document).ready(function() {
                 $("#Inputs").on("keyup", function() {
@@ -54,13 +53,16 @@
         <div id="teacherNav"></div>
         <div class="content">
             <div class="card">
+            <?php if (isset($_GET['error'])) { ?>
+                    <div id="error"><?php echo $_GET['error']; ?></div>
+                <?php } ?>
                 <?php
                 $row = mysqli_fetch_assoc($class_result); ?>
 
-                <h1 style="color:#6a7480;">Class <?php echo substr($row['classID'], 5) ?></h1>
+                <h1 style="color:#6a7480;">Class <?php echo substr($classID, 5) ?></h1>
 
 
-                <?php echo "<td><a style='margin-left:-120px;'class='btn editbtn' href = Tcr_csv_marks.php?classID=" . $row['classID'] . " >Upload Marks </a> </td>" ?>
+                <?php echo "<td><a style='margin-left:-120px;'class='btn editbtn' href = Tcr_csv_marks.php?classID=" . $classID . " >Upload Marks </a> </td>" ?>
 
 
                 <div class=l-part>

@@ -1,3 +1,26 @@
+<?php
+session_start();
+
+require_once('../../config/conn.php');
+
+if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
+    $error = "Please Login!";
+    header('Location: ../common/loginFile.php?error=' . $error);
+} elseif ($_SESSION['userType'] == 'student') {
+
+
+    $userID = $_SESSION['userID'];
+    include '../../config/conn.php';
+
+    $sql = "SELECT * FROM student WHERE `admissionNo`='$userID'";
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($result);
+
+    //   foreach($teacherType as $result) {
+    //     echo $result;
+    // }
+
+?>
 <link rel="stylesheet" href="../../images/font-awesome-4.7.0/css/font-awesome.min.css">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
@@ -11,11 +34,12 @@
 		</li>
 		<li>
 			<form name="logout" action="../../src/logout.php" method="POST">
-				<input type="submit" value="LOGOUT" name="logout" style="font-family: 'Playfair Display', serif;">
+			<input type="submit" value="LOGOUT" name="logout" style="font-family: 'Ubuntu', sans-serif;float:right;margin-left:180px;margin-right:1px;">
 			</form>
 		</li>
-
-
+		<li>
+            <h4 style="float:right; margin:13px -200px 2px 5px;color:rgb(193, 187, 187);font-family: 'Ubuntu', sans-serif;"><i class="fa fa-user-o" aria-hidden="true" style="margin-right: 3px;"></i><?php echo $row['fName'] . " " . $row['lName']; ?></h4>
+            </li>
 	</ul>
 </div>
 <div class="wrap" id="wrap">
@@ -67,3 +91,4 @@
 	}
 
 
+<?php } ?>
