@@ -109,6 +109,7 @@
                             <th>Student Name</th>
                             <th>Edit Details</th>
                             <th>View Details</th>
+                            <th>View Achievements</th>
                         </tr>
                         <?php
                         while($row=mysqli_fetch_assoc($student_result4)){
@@ -126,6 +127,8 @@
                         ?></td>
                                 <?php echo "<td><a class='btn editbtn' href = office_update_student.php?userID=".$row['userID']." > Update </a> </td>"?>
                                 <?php echo "<td><a class='btn viewbtn' href = SProfile1.php?userID=".$row['userID']." > View </a> </td>"?>
+                                <?php echo "<td><a class='btn editbtn' href = office_view_student_achievements.php?userID=".$row['userID']." > Achievements </a> </td>"?>
+
                             </tr>
                         </tbody>
                         <?php
