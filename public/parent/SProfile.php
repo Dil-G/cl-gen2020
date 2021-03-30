@@ -34,7 +34,7 @@
 <body>
 
 
-<div id="nav"></div>
+<div id="nav1"></div>
 <?php
 			require_once '../../config/conn.php';   
 			$sql = "SELECT * FROM parent where parentID='$userID' ";

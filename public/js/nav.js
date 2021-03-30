@@ -9,17 +9,15 @@ $(function(){
 });
 
 function navFunction() {
-	return "nav.html";
+	return "nav.php";
 }
 
 function navFunction3() {
 	return "nav2.php";
 }
 
-
-
 function navFunction2() {
-	return "nav1.html";
+	return "navParent.php";
 }
 function navFunction4() {
 	return "nav3.html";

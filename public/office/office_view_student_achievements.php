@@ -38,22 +38,22 @@
     <div id="officeNav"></div>
     <div class="content">
 
-        <div class="card">
+        
             <h1 style="margin-top:20px;">Achievements List</h1>
-            <form class="search">
-                <input type="text" id="Inputs" placeholder="Search.." name="search">
-                <button type="submit">Search</button>
-            </form>
+            
             <div class="btn-box" style="margin-left:5px;">
-                <button id="button2" onclick="activated()">Sports Achievements</button>
+                <button id="button2" style="margin-left: 10%;" onclick="activated()">Sports Achievements</button>
                 <button id="button1" onclick="notActivated()">Society Achievements</button>
             </div>
-        </div>
-
-        <br>
-        <br>
+        
         <div id="page2" class="page">
+        <form class="search" style="margin-right: 10%;">
+                <input type="text" id="Inputs" placeholder="Search.." name="search" >
+                <button type="submit">Search</button>
+            </form>
+            <br>
             <div class="card">
+            
                 <?php if (isset($_GET['error'])) { ?>
                 <div id="error"><?php echo $_GET['error']; ?></div>
                 <?php } ?>
@@ -62,7 +62,7 @@
                 <?php
                    
                       
-                    $studentID =intval($_GET['userID']);
+                    $studentID =$_GET['userID'];
                     $sql1 = "SELECT * FROM societies_achievements where studentID='$studentID'";
                     $result1 = mysqli_query($conn,$sql1);
                     
@@ -79,7 +79,7 @@
                             <th>Important Value</th>
                             <th>Description</th>
                             <th>Achievement Date</th>
-                            <th>Update</th>
+                            <!-- <th>Update</th> -->
 
                         </tr>
                         <?php
@@ -88,18 +88,13 @@
                         <tbody id="Table">
                             <tr>
 
-                                <td><input name="achievementID" type="text" velue="<?php echo$row['achievementID']?>">
-                                </td>
-                                <td><input name="achievementName" type="text"
-                                        velue="<?php echo$row['achievementName']?>"></td>
-                                <td><input name="position" type="text" velue="<?php echo$row['position']?>"></td>
-                                <td><input name="impValue" type="text" velue="<?php echo$row['impValue']?>"></td>
-                                <td><input name="ach_description" type="text" velue="<?php echo$row['description']?>">
-                                </td>
-                                <td><input name="achievementDate" type="text"
-                                        velue="<?php echo$row['achievementDate']?>"></td>
-                                <th> <button type="submit" class="registerbtn" style="margin-left: 5px;"
-                                        name="update_ach_sos">Update</button></th>
+                            <td><?php echo$row['achievementID']?></td>
+                            <td><?php echo$row['achievementName']?></td>
+                            <td><?php echo$row['position']?></td>
+                            <td><?php echo$row['impValue']?></td>
+                            <td><?php echo$row['description']?></td>
+                            <td><?php echo$row['achievementDate']?></td>
+
 
                             </tr>
                         </tbody>
@@ -111,6 +106,10 @@
             </div>
         </div>
         <div id="page1" class="page">
+         <form class="search" style="margin-right: 10%;">
+                <input type="text" id="Inputs" placeholder="Search.." name="search" >
+                <button type="submit">Search</button>
+            </form>
             <div class="card">
                 <?php
                     $studentID =$_GET['userID'];
@@ -128,25 +127,33 @@
                             <th>Important Value</th>
                             <th>Description</th>
                             <th>Achievement Date</th>
-                            <th>Update</th>
+                            <!-- <th>Update</th> -->
                         </tr>
                         <?php
                         while($row2=mysqli_fetch_assoc($result2)){
                         ?>
                         <tbody id="Table">
                             <tr>
-                                <td><input type="text" velue="<?php echo$row2['achievementID']?>" name="achievementID">
+
+                            <td><?php echo$row2['achievementID']?></td>
+                            <td><?php echo$row2['achievementName']?></td>
+                            <td><?php echo$row2['position']?></td>
+                            <td><?php echo$row2['impValue']?></td>
+                            <td><?php echo$row2['description']?></td>
+                            <td><?php echo$row2['achievementDate']?></td>
+                            <td></td>
+                                <!-- <td><input type="text" velue="" name="achievementID">
                                 </td>
-                                <td><input type="text" velue="<?php echo$row2['achievementName']?>"
+                                <td><input type="text" velue=""
                                         name="achievementName"></td>
-                                <td><input type="text" velue="<?php echo$row2['position']?>" name="position"></td>
-                                <td><input type="text" velue="<?php echo$row2['impValue']?>" name="impValue"></td>
-                                <td><input type="text" velue="<?php echo$row2['description']?>" name="ach_description">
+                                <td><input type="text" velue="" name="position"></td>
+                                <td><input type="text" velue="" name="impValue"></td>
+                                <td><input type="text" velue="" name="ach_description">
                                 </td>
-                                <td><input type="text" velue="<?php echo$row2['achievementDate']?>"
+                                <td><input type="text" velue=""
                                         name="achievementDate"></td>
                                 <th> <button type="submit" class="registerbtn" style="margin-left: 5px;"
-                                        name="update_ach_sop">Update</button></th>
+                                        name="update_ach_sop">Update</button></th> -->
 
                             </tr>
                         </tbody>

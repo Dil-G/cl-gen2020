@@ -8,9 +8,6 @@
       
       $teacherType = array();
       $teacherType = $_SESSION['teacherType'];
-      $userID = $_SESSION['userID'];
-
-
 
      
 	?>
@@ -36,48 +33,51 @@
 
     <div id="teacherNav"></div>
 
+    
+    <div class="content">
+        <?php if (isset($_GET['message'])){?>
+        <div id="message"><?php echo $_GET['message']; ?></div>
+        <?php } ?>
+
+        <?php if (isset($_GET['error'])){?>
+        <div id="error"><?php echo $_GET['error']; ?></div>
+        <?php } ?>
 
 
         <div class="container">
 
            
 
-            <form action="../../src/request1.php" method="POST" enctype="multipart/form-data" >
+            <form action="../../src/request1.php" method="POST" enctype="multipart/form-data">
                 <hr>
+                <h1 style="color: #6a7480;">REQUEST FORM</h1>
 
+                <label for="id">ID Number</label>
+          <input type="text" name="id" value=<?php echo  $_SESSION['userID'] ?> readonly>
 
-            
-                <h1 style="color:#6a7480;">Request Edit Form</h1>
+          <label for="request"><b>Request</b></label>
+          <textarea id="request" name="request" rows="4" placeholder="News" cols="50" required></textarea>
 
-                    <label for="id">ID Number</label>
-                    <input type="text"  name="id" value = <?php  echo  $_SESSION['userID']?> readonly>
-
-                    <label for="name">Name</label>
-                    <input type="text" name="name" placeholder="Type the name here" pattern="['a-z''A-Z' ]+$" required>
-
-                    <label for="request"><b>Request</b></label>
-                    <textarea id="request" name="request" rows="4" placeholder="News" cols="50" required></textarea>
-                
-                    
-                    <label for="image"><b>Upload a proof</b></label>
+          <label for="image"><b>Upload a proof</b></label>
           <input type="hidden" name="size" value="1000000" required>
 
           <div>
-            <input type="file" name="image" id="image" required />
+            <input type="file" name="image[]" id="image" required multiple />
           </div>
           <br>
-                
-                <button type="submit" class="registerbtn" id="add_news" name="add_request">Submit</button>
-                 <a href="Tcr_dashboard.php" class="cancel-btn">Cancel</a>
+          <button type="submit" class="registerbtn" id="add_news" name="add_request">Submit</button>
+          <a href="Tcr_dashboard.php" class="cancel-btn">Cancel</a>
 
-                
-            </form>
-         
-        </div>
+        </form>
+      </div>
+
+
+
     </div>
-</body>
 
-</html>
-<?php 
-	 }
-?>
+  </body>
+
+  </html>
+
+<?php } ?>
+              

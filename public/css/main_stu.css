@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@300&display=swap');
+
 html body{
 	background-color: #f8f9fe;
 	border:1px solid transparent;
@@ -7,7 +9,7 @@ html body{
 	background-size:100%;
 	background-position:center;
 	text-align:center;
-	font-family: "Times New Roman", Times, serif;
+	font-family: 'Mukta', sans-serif;
 	background-image: linear-gradient(to right,#cee2f7,#ead8fb);
 	
 }
@@ -381,3 +383,49 @@ ul{
 .modal{
 	width:100%;
 }
+
+  
+#pagebtn {
+	background: #1980ff;
+	height: 13px;
+	width: 50px;
+	border: none;
+	border-radius: 5px;
+	color: #eee;
+	font-size: 15px;
+		position: relative;
+	transition: 1s;
+	-webkit-tap-highlight-color: #1980ff80;
+	display: inline;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	padding: 5px 20px;
+	margin: 5px;
+  }
+  
+  #pagebtn #circle {
+	width: 50px;
+	height: 5px;
+	background: #1980ff80;
+	border-radius: 50%;
+	position: absolute;
+	top: 0;
+	left: 50%;
+	overflow: hidden;
+	transition: 500ms;
+  }
+  
+
+  
+  #pagebtn:hover {
+	background: #1980ffbb;
+  }
+  
+  #pagebtn:hover #circle {
+	height: 50px;
+	width: 150px;
+	left: 0;
+	border-radius: 0;
+	border-bottom: 2px solid #eee;
+  }

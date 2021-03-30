@@ -54,23 +54,19 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                             <hr>
                             <div class="card">
                                 <form>
-                                    <div class="photo">
-                                        <img src="../../images/student.png" width="160px" height="160px">
-
-                                    </div>
                                     <div class="first">
                                         <div class="row">
                                             <div class="col">
                                                 <div class="form-group ">
                                                     <label class="label" for="input-username">First name</label>
-                                                    <input type="text" id="fname" class="inputs" value="<?php echo $row['fName'] ?>">
+                                                    <input type="text" id="fname" class="inputs" value="<?php echo $row['fName'] ?>" readonly>
                                                 </div>
                                             </div>
                                        
                                             <div class="col">
                                                 <div class="form-group ">
                                                     <label class="label" for="input-username">Last name</label>
-                                                    <input type="text" id="lname" class="inputs" value="<?php echo $row['lName'] ?>">
+                                                    <input type="text" id="lname" class="inputs" value="<?php echo $row['lName'] ?>"readonly>
                                                 </div>
                                             </div>
                                         </div>
@@ -78,19 +74,19 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                                             <div class="col">
                                                 <div class="form-group ">
                                                     <label class="label" for="dob">Date of Birth</label>
-                                                    <input type="text" id="dob" class="inputs" placeholder="Date of Birth" value="<?php echo $row['dob'] ?>">
+                                                    <input type="text" id="dob" class="inputs" placeholder="Date of Birth" value="<?php echo $row['dob'] ?>"readonly>
                                                 </div>
                                             </div>
                                             <div class="col">
                                                 <div class="form-group">
                                                     <label class="label" for="stunic">NIC</label>
-                                                    <input id="stunic" class="inputs" placeholder="NIC" value="<?php echo $row['nic'] ?>" type="text">
+                                                    <input id="stunic" class="inputs" placeholder="NIC" value="<?php echo $row['nic'] ?>" type="text"readonly>
                                                 </div>
                                             </div>
                                             <div class="col">
                                                 <div class="form-group ">
                                                     <label class="label" for="gender">Gender</label>
-                                                    <input type="text" id="gender" class="inputs" placeholder="Gender" value="<?php echo $row['gender'] ?>">
+                                                    <input type="text" id="gender" class="inputs" placeholder="Gender" value="<?php echo $row['gender'] ?>"readonly>
                                                 </div>
                                             </div>
                                         </div>
@@ -107,7 +103,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                                                 <div class="form-group">
 
                                                     <label class="label" for="street">Address</label>
-                                                    <input id="address" class="inputs" placeholder="Home Address" value="<?php echo $row['address'] ?>" type="text">
+                                                    <input id="address" class="inputs" placeholder="Home Address" value="<?php echo $row['address'] ?>" type="text"readonly>
                                                 </div>
                                             </div>
                                            
@@ -116,13 +112,13 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                                             <div class="col">
                                                 <div class="form-group ">
                                                     <label class="label" for="ContactNumber">Contact Number</label>
-                                                    <input type="text" id="ContactNumber" class="inputs" placeholder="Contact Number" value="<?php echo $row['contactNo'] ?>">
+                                                    <input type="text" id="ContactNumber" class="inputs" placeholder="Contact Number" value="<?php echo $row['contactNo'] ?>"readonly>
                                                 </div>
                                             </div>
                                             <div class="col">
                                                 <div class="form-group ">
                                                     <label class="label" for="adNo">Email</label>
-                                                    <input type="text" id="email" class="inputs" placeholder="Email" value="<?php echo $row['email'] ?>">
+                                                    <input type="text" id="email" class="inputs" placeholder="Email" value="<?php echo $row['email'] ?>"readonly>
                                                 </div>
                                             </div>
 

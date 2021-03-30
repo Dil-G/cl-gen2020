@@ -97,7 +97,7 @@
 					<div>
                         <button type="submit" class="registerbtn" name="update_officer">Save</button>
                         
-                        <a href="o_officersList.php" class="cancel-btn">Cancel</a>
+                        <a href="office_officersList.php" class="cancel-btn">Cancel</a>
 
                     </div>
                     <?php } ?>

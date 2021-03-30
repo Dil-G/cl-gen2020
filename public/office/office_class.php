@@ -49,7 +49,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
             <hr>
             <form action="../../src/uploadClasses.php" method="POST">
                 <?php
-                        while ($row = mysqli_fetch_assoc($result)) {
+                        $row = mysqli_fetch_assoc($class_result);
                         ?>
                 <div class="l-part">
                     <label for="teacherID"><b>Class Teacher ID</b></label>
@@ -62,12 +62,13 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                 <div class="l-part">
                     <label for="name"><b>Class Teacher</b></label>
 
-                    <input type="text" placeholder="Add the class teacher" name="name" value="<?php if ($row['teacherIncharge'] == TRUE) {
-                                                                                                                echo $row['teacherIncharge'];
-                                                                                                            } ?>"
-                        readonly>
+                    <input type="text" placeholder="Add the class teacher" name="name" value="<?php if ($row['fName'] == TRUE) {
+                                                                                                                echo $row['fName']." ".$row['lName'];
+                                                                                                            } ?>" readonly>
+                        
                 </div>
 
+                
                 <div class="r-part">
                     <label for="medium"><b>Medium</b></label>
                     <select name="medium" id="medium" required>
@@ -80,8 +81,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                     <br><br>
                     <!-- <input type="text" placeholder="Add the medium" name="medium" value="<?php if ($row['name'] == TRUE) {echo $row['medium']; } ?>" required> -->
                 </div>
-                <?php } ?>
-                <button type="submit" style="margin-top:-40px;" name="uploadClass">Update</button>
+                <button type="submit" style="margin-top:-40px;margin-left:150px;" name="uploadClass">Update</button>
             </form>
         </div>
         <br>

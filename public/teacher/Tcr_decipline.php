@@ -4,10 +4,20 @@
     if(!isset($_SESSION['userType']) && !isset($_SESSION['userID'])){
         $error = "Please Login!";
         header('Location: ../common/loginFile.php?error='.$error);
-    }elseif($_SESSION['userType'] == 'teacher'){
+    }elseif($_SESSION['userType'] != 'teacher'){
+        header('Location: ../common/error.html');
+    }else{      
+        $teacherType = array();
+        $teacherType = $_SESSION['teacherType'];
+
+
+        if (!in_array("classTeacher", $teacherType)) {
+            header('Location: Tcr_dashboard.php');
+        }else{
       
-   
-      $teacherType = $_SESSION['teacherType'];
+
+    $classID = $_SESSION['classID'];
+    
 
      
 	?>
@@ -42,7 +52,7 @@
                     <hr>
 
                     <label for="name"><b>Student Admission Number</b></label>
-                    <input type="text" placeholder="Enter admission number"  id="username" name="sAd" required>
+                    <input type="text" placeholder="Enter admission number"  id="username" name="sAd" value="<?php echo $_GET['userID']; ?>"required>
                   
                   
                    
@@ -58,7 +68,7 @@
               
                 <div>
                 <button type="submit" class="registerbtn" name="regbtn" >Add</button>
-                    <a href="Tcr_dashboard.php" class="cancel-btn">Cancel</a>
+                    <a href="Tcr_classDetails.php" class="cancel-btn">Cancel</a>
               
             </div>
         </div>
@@ -68,5 +78,5 @@
 </html>
 
 <?php 
-	 }
+	 }}
 ?>

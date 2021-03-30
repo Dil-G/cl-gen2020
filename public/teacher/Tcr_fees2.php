@@ -4,10 +4,19 @@
     if(!isset($_SESSION['userType']) && !isset($_SESSION['userID'])){
         $error = "Please Login!";
         header('Location: ../common/loginFile.php?error='.$error);
-    }elseif($_SESSION['userType'] == 'teacher'){
+    }elseif($_SESSION['userType'] != 'teacher'){
+        header('Location: ../common/error.html');
+    }else{      
+        $teacherType = array();
+        $teacherType = $_SESSION['teacherType'];
+
+
+        if (!in_array("classTeacher", $teacherType)) {
+            header('Location: Tcr_dashboard.php');
+        }else{
       
-   
-      $teacherType = $_SESSION['teacherType'];
+
+    $classID = $_SESSION['classID'];
 
      
 	?>
@@ -30,6 +39,7 @@
 
 </head>
 
+
 <body name=top>
 
     <body>
@@ -41,7 +51,7 @@
             <div class="container">
                 <h2><b>Fees and Fines</b></h2>
 
-                <form action="../../src/add_fees.php" method="POST" onsubmit="return validateFees()" method="POST" enctype="multipart/form-data">
+                <form action="../../src/add_fees.php" method="POST" onsubmit="return validateteacher()" method="POST" enctype="multipart/form-data">
 
                     <hr>
 
@@ -76,10 +86,7 @@
 						<input type="text"  id="username" name="Stats"  required> -->
 
 
-                    <label><b>Status:</b></label>
-                    <br></br>
-                    <label> <input type="radio" name="Stats" value="Paid" required>Paid</label>
-                    <label> <input type="radio" name="Stats" value="Not Paid" required>Not Paid</label>
+                    
 <br>
 
 
@@ -103,4 +110,4 @@
 
 </html>
 
-<?php } ?>
+<?php }} ?>

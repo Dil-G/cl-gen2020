@@ -12,8 +12,8 @@ if (isset($_POST['regbtn'])){
     
    
 
-
-$sql="INSERT INTO `decipline`(`studentAdmission`, `decipline`, `description`) VALUES ('$studentAdmission','$decipline','$description')";
+    
+$sql="UPDATE `decipline` SET `decipline`='$decipline',`description`='$description' WHERE studentID = '$studentAdmission'";
 $result=mysqli_query($conn,$sql);
 
     if ($result) {

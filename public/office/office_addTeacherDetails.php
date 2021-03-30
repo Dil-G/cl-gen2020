@@ -47,6 +47,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 																					echo $_GET['userID'];
 																				} ?>" required>
 
+
                 <label for="fname"><b> Name</b></label>
                 <input type="text" placeholder="Enter Name" name="fname" id="fname" onblur="checkFname(fname.value)">
                 <label for="lname"><b>Last Name</b></label>
@@ -84,21 +85,12 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                 <input type="text" placeholder="Enter Contact Number" name="contactNo" id="contactNo"
                     onblur="contact(contactNo.value)">
 
-                <label><b>Teacher Type:</b></label>
-                <br>
-                <br>
-                <br>
-                <label> <input type="checkbox" name="checkbox[1]" id="t1" value="classTcr"> Class Teacher</label>
-                <br>
-                <br>
-                <label> <input type="checkbox" name="checkbox[2]" id="t2" value="TcrinCharge"> Teacher In charge</label>
-
                 <hr>
                 <div id="msg"></div>
                 <div>
                     <button type="submit" class="registerbtn" name="teacherReg">Save</button>
 
-                    <a href="o_teachersList.php" class="cancel-btn">Cancel</a>
+                    <a href="office_teachersList.php" class="cancel-btn">Cancel</a>
                 </div>
             </form>
         </div>

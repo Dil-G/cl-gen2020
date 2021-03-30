@@ -4,10 +4,19 @@
     if(!isset($_SESSION['userType']) && !isset($_SESSION['userID'])){
         $error = "Please Login!";
         header('Location: ../common/loginFile.php?error='.$error);
-    }elseif($_SESSION['userType'] == 'teacher'){
+    }elseif($_SESSION['userType'] != 'teacher'){
+        header('Location: ../common/error.html');
+    }else{      
+        $teacherType = array();
+        $teacherType = $_SESSION['teacherType'];
+
+
+        if (!in_array("classTeacher", $teacherType)) {
+            header('Location: Tcr_dashboard.php');
+        }else{
       
-   
-      $teacherType = $_SESSION['teacherType'];
+
+    $classID = $_SESSION['classID'];
       $userID = $_SESSION['userID'];
       include('../../src/view_fees.php');
      
@@ -56,19 +65,19 @@
             </form>
          
             <hr>
-
+            <div class="scroll">
             <table>
     
 
   
     <tr>
                     <th>Fees ID</th>
-                    <th>Teacher ID </th>
+                   
                     <th>Student ID</th>
                     <th>Student Name</th>
                     <th>Fee Type </th>
                     <th>Amount</th>
-                    <th>Status </th>
+                  
                     <th>Date</th>
                     <th>Time</th>
                     
@@ -82,12 +91,12 @@
  <tbody id="Table"> 
   <tr>
     <td><?php echo $row['FeesID'] ?></td>
-            <td><?php echo $row['TeacherID'] ?></td>
+           
             <td><?php echo $row['StudentID'] ?></td>
             <td><?php echo $row['StudentName'] ?></td>
             <td><?php echo $row['FeeType'] ?></td>
             <td><?php echo $row['Amount'] ?></td>
-            <td><?php echo $row['Status'] ?></td>
+           
             <td><?php echo $row['Date'] ?></td>
             <td><?php echo $row['Time'] ?></td>
            
@@ -107,5 +116,5 @@
 </body>
 </html>
 
-<?php } ?>
+<?php }} ?>
 

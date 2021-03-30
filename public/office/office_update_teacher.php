@@ -20,7 +20,6 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 ?>
 
 
-
 <!DOCTYPE html>
 <html>
 
@@ -58,7 +57,6 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                 <label for="lname"><b>Last Name</b></label>
                 <input type="text" placeholder="Enter Name" name="lname" id="lname" value="<?php echo $row['lName']?>" onblur="checkLname(lname.value)">
 
-
                 <label for="nic"><b>NIC</b></label>
                 <input type="text" placeholder="Enter NIC" id="nic" name="nic" value="<?php echo $row['nic']?>" onblur="NIC(nic.value)">
 
@@ -85,23 +83,14 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                 <input type="text" placeholder="Enter Contact Number" name="contactNo" id="contactNo"
                 value="<?php echo $row['contactNo']?>"  onblur="contact(contactNo.value)">
 
-
-                <label><b>Teacher Type:</b></label>
-                <br>
-                <br>
-                <br>
-                <label> <input type="checkbox" name="checkbox[1]" id="t1" value="classTcr" <?php if($row['teacherType'] == "classTcr" ||$row['teacherType'] == "both"){?> checked <?php } ?>> Class Teacher</label>
-                <br>
-                <br>
-                <label> <input type="checkbox" name="checkbox[2]" id="t2" value="TcrinCharge" <?php if($row['teacherType'] == "tcrinCharge" ||$row['teacherType'] == "both" ){?> checked <?php } ?>> Teacher In charge</label>
-                <br>
+   
 
                 <hr>
                 <div id="msg"></div>
                 <div>
                     <button type="submit" class="registerbtn" name="update_teacher">Save</button>
 
-                    <a href="office_teachersList.php" class="cancel-btn">Cancel</a>
+                    <a href="o_teachersList.php" class="cancel-btn">Cancel</a>
                 </div>
                 <?php } ?>
             </form>

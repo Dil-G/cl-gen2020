@@ -10,7 +10,8 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
     $dutyID = $_SESSION['dutyID'];
 
     if (in_array("d1", $dutyID)) {
-        include('../../src/office_view_users.php');
+        include '../../src/view_users.php';
+        // include '../../src/office_view_users.php';
         include_once '../../config/conn.php';
 ?>
 
@@ -20,7 +21,6 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Teachers List</title>
-    <link rel="stylesheet" href="../css/view.css " type="text/css">
     <link type="text/css" rel="stylesheet" href="../css/main.css">
     <link type="text/css" rel="stylesheet" href="../css/tabs.css">
     <link type="text/css" rel="stylesheet" href="../css/users.css">
@@ -98,11 +98,11 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                             <th>Edit Details</th>
                             <th>view Details</th>
                         </tr>
+                        <tbody id="Table">
 
                         <?php
                         while ($row = mysqli_fetch_assoc($teacher_result4)) {
                         ?>
-                        <tbody id="Table">
                             <tr>
                                 <td><?php echo $row['userID'] ?></td>
                                 <td><?php
@@ -116,10 +116,11 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                                 <?php echo "<td><a class='btn editbtn' href = office_update_teacher.php?userID=" . $row['userID'] . " > update </a> </td>" ?>
                                 <?php echo "<td><a class='btn viewbtn' href = Tcr_profile.php?userID=" . $row['userID'] . " > View </a> </td>" ?>
                             </tr>
-                        </tbody>
+                       
                         <?php
                         }
                     ?>
+                     </tbody>
                     </table>
                 </div>
             </div>

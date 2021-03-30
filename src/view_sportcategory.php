@@ -2,18 +2,23 @@
 
 require_once(realpath(dirname(__FILE__) . '/../config/conn.php'));
 
-$sql = "SELECT SportID,SportName from csports where tcrID = '$userID'";
-$sql1 = "SELECT COUNT(SportID) from csports where tcrID = '$userID'";
-$sql2 = "SELECT SocietyID,SocietyName from csocieties where tcrID = '$userID'";
-$sql3 = "SELECT COUNT(SocietyID) from csocieties where tcrID = '$userID'";
+//$sql = "SELECT * from sports_achievements where teacherID = '$userID'";
+
+/*
+$sql = "SELECT sports_achievements.*,teachertype.* from teachertype 
+LEFT JOIN sports_achievements ON sports_achievements.categoryID=teacherType.entityAssigned where teacherID = '$userID'";
+$sql1 = "SELECT COUNT(SportID) from sports_achievements where tcrID = '$userID'";
 
 $result = mysqli_query($conn,$sql);
 $result1 = mysqli_query($conn,$sql1);
-$result2 = mysqli_query($conn,$sql2);
-$result3 = mysqli_query($conn,$sql3);
+
+*/
+$sql = "SELECT * from csports where `tearcherID`= '$userID'";
+$result = mysqli_query($conn,$sql);
+
 
 if($result){
-  //echo "Sucessfull";
+ // echo "Sucessfull";
 }
 else{
   echo"failed";	
@@ -22,5 +27,4 @@ else{
 
 
 ?>
-
 

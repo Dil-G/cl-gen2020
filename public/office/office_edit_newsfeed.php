@@ -65,7 +65,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                 <br>
 
                 <button type="submit" class="registerbtn" id="add_news" name="add_news">Submit</button>
-                <a href="news_list.php" class="cancel-btn">Cancel</a>
+                <a href="office_news_list.php" class="cancel-btn">Cancel</a>
         </div>
         <hr>
         </form>

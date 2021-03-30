@@ -41,7 +41,7 @@
 		<br>
 			  <div class="card">
 			  <form>
-					<button type="submit" formaction="register_user.php">Add Admin</button>
+					<button type="submit" formaction="admin_registerUser.php">Add Admin</button>
 				</form>
 				<br>
 				<br>

@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@300&display=swap');
 
 body {background-color: #2a2b3d}
 .content {
@@ -54,7 +55,7 @@ table{
   background-color: #ffffff;
   box-shadow: 1px 2px 1px 2px#a5a7b5;
   border-radius: 5px;
-  padding: 15px;
+  /* padding: 8px; */
   overflow: hidden;
   width: 100%;
 }
@@ -65,12 +66,13 @@ table{
 }
  .box > i {
    margin-top:10px ;
-  float: left;
+  float: right;
   border-radius: 50%;
-  width: 60px;
-  height: 60px;
+  width: 80px;
+  height: 80px;
   line-height: 60px;
   font-size: 22px;
+  margin-left: 250px;
 }
  .box .info {
   float: left;
@@ -134,7 +136,7 @@ margin: 20px;
 
 .statis .box {
   position: relative;
-  padding: 15px;
+  padding: 5px;
   overflow: hidden;
   
 }
@@ -164,14 +166,13 @@ margin: 20px;
   width: 98%;
 }
  .three {
-  width:40% !important;
-  float: left;
+  width:100% !important;
   text-align: left;
 }
  .four {
-  float: right !important;;
-  width:30%!important;
+  width:100%!important;
   text-align: left;
+  margin-top: -70px;
  }
 
 /*chart*/
@@ -194,3 +195,9 @@ margin: 20px;
 .green {color: #5cb85c;}
 .blue {color: #5bc0de;}
 
+.info span{
+  font-size: 25px;
+}
+.info h3{
+  font-size: 30px;
+}

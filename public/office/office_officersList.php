@@ -13,11 +13,11 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
         header('Location: o_dashboard.php');
     } else {
         include_once '../../config/conn.php';
-        include_once '../../src/office_view_users.php';
+        include_once '../../src/view_users.php';
+        // include '../../src/office_view_users.php';
 ?>
 
         <!DOCTYPE html>
-
         <head>
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <title>Grade Scholarship Results</title>

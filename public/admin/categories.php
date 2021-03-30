@@ -38,7 +38,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 				<table>
 					<tr>
 						<td>
-							<a href="sports.php">
+							<a href="admin_sports.php">
 								<div class="container">
 									<form>
 										<button class="add" type="submit" formaction="add_sport.php">Add Sport</button>
@@ -54,7 +54,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 							</a>
 						</td>
 						<td>
-							<a href="societies.php">
+							<a href="admin_societies.php">
 								<div class="container">
 									<form>
 										<button class="add" type="submit" formaction="add_society.php">Add Society</button>

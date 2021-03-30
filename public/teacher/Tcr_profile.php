@@ -8,7 +8,7 @@
     }elseif($_SESSION['userType'] == 'teacher'){
       
    
- $teacherType = $_SESSION['teacherType'];
+//  $teacherType = $_SESSION['teacherType'];
     $userID = $_SESSION['userID'];
 
          $query1 = "SELECT * FROM teacher WHERE teacherID = '$userID' ";
@@ -23,7 +23,7 @@
          $id = $row1["teacherID"];
          $dob = $row1["dob"];
          $address = $row1["address"];
-         $type = $row1["teacherType"];
+        //  $type = $row1["teacherType"];
          $contact_number = $row1["contactNo"];
          $email = $row1["email"];
 
@@ -51,6 +51,7 @@
         <div id="teacherNav"></div>
 
 
+
         <div class="content">
             <div class="feed">
 
@@ -60,9 +61,6 @@
                     <hr>
                     <div class="card">
                         <form>
-                            <div class="photo">
-                                <img src="../../images/5.jpg" width="160px" height="160px">
-                            </div>
                             <div class="first">
                                 <div class="first">
                                     <div class="first">
@@ -128,12 +126,6 @@
                                                     <label class="label" for="ContactNumber">Residential Address</label>
                                                     <input type="text" id="ContactNumber" class="inputs"
                                                     value="<?php echo  $address; ?>" readonly>
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <div class="form-group ">
-                                                    <label class="label" for="adNo">Teacher Type</label>
-                                                    <input type="text" id="email" class="inputs"   value="<?php echo  $type; ?>" readonly>
                                                 </div>
                                             </div>
 

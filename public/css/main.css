@@ -1,4 +1,6 @@
-html body{
+
+@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@300&display=swap');html body{
+
 	background-color: #01213c21;
 	border:1px solid transparent;
 	margin:0;
@@ -7,7 +9,7 @@ html body{
 	background-size:100%;
 	background-position:center;
 	text-align:center;
-	font-family: "Times New Roman", Times, serif;
+	font-family: 'Mukta', sans-serif;
 }
 
 
@@ -23,12 +25,33 @@ html body{
 	
 	
 }
+.search{
+	float:right;
+}
+.search input[type=text] {
+  width: 250px;
+  padding: 7px;
+  margin: 5px 0 20px 0;
+  display: inline-block;
+  border: 1px solid transparent;
+  background: #f1f1f1;
+  border-radius: 12px;
+}
+input[type=text], input[type=password], input[type="date"],textarea,input[type="file"],input[type="email"] {
+	width: 100%;
+	padding: 15px;
+	margin: 5px 0 22px 0;
+	display: inline-block;
+	border: 1px solid transparent;
+	background: #f1f1f1; 
+  }
+  
 .wrap img{
 	display:inline-flex;
 	font-weight: bold;
 	color:#fff;
 	float:left;
-	margin: 30px 10px 5px 45px;
+	margin: 20px 10px 5px 45px;
 	border-bottom:solid 1px #60666b;
 }
 
@@ -36,11 +59,12 @@ html body{
 	font-size: 17px!important;
 	color: #9da6ae!important;
 	margin-top: 2px!important;
-	margin-bottom: 15px!important;
+	/* margin-bottom: 12px!important; */
 	margin-right: -10px;
 	display:inline-flex;
 	font-weight: bold;
 	margin: 0px 10px 5px 45px;
+	text-align: center!important;
 }
 
 .wrap{
@@ -59,7 +83,7 @@ html body{
 
 
 .menu{
-	margin: 160px 2px 0px -25px;
+	margin: 110px 2px 0px -25px;
 }
 .wrap ul li{
 	text-align: left;
@@ -69,7 +93,7 @@ html body{
 	overflow:hidden;
 	cursor: pointer;
 	display:block;
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 	color: #ffffff;	
 	font-size: 14px;
 	background:#24344b;
@@ -180,6 +204,7 @@ html body{
 	height: 100%;
 	z-index: 0;
 }
+
 
 .card {
   box-shadow: 0 8px 5px 0 rgb(172, 172, 172); 
@@ -397,3 +422,51 @@ form{
   .backbtn:focus {
 	outline:none;
   }
+
+  
+#pagebtn {
+	background: #1980ff;
+	height: 13px;
+	width: 50px;
+	border: none;
+	border-radius: 5px;
+	color: #eee;
+	font-size: 15px;
+		position: relative;
+	transition: 1s;
+	-webkit-tap-highlight-color: #1980ff80;
+	display: inline;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	padding: 5px 20px;
+	margin: 5px;
+  }
+  
+  #pagebtn #circle {
+	width: 50px;
+	height: 5px;
+	background: #1980ff80;
+	border-radius: 50%;
+	position: absolute;
+	top: 0;
+	left: 50%;
+	overflow: hidden;
+	transition: 500ms;
+  }
+  
+
+  
+  #pagebtn:hover {
+	background: #1980ffbb;
+  }
+  
+  #pagebtn:hover #circle {
+	height: 50px;
+	width: 150px;
+	left: 0;
+	border-radius: 0;
+	border-bottom: 2px solid #eee;
+  }
+
+ 

@@ -133,7 +133,7 @@ $userID = $_SESSION['studentID'];
         </div>
         <table id='second'>
             <tr>
-                <td style>Principal </td>
+                <td>Principal </td>
             </tr>
             <tr>
                 <td>Anonymus College </td>
@@ -184,7 +184,7 @@ $userID = $_SESSION['studentID'];
             </tr>
             <tr>
                 <td>Address</td>
-                <td><?php echo$row["adStreet"] . " " . $row["adCity"] . " " . $row["adDistrict"] ?></td>
+                <td><?php echo $row["adStreet"] . " " . $row["adCity"] . " " . $row["adDistrict"] ?></td>
             </tr>
             <tr>
                 <td>NIC</td>
@@ -229,7 +229,7 @@ $userID = $_SESSION['studentID'];
 
         <p>I recomend Ms <?php echo $row["fName"] . " " . $row["mName"] . " " . $row["lName"] ?> as a student with good
             discipline, courage and strategies to shoulder any responsibility vested upon her. I wish Ms.
-            <?php echo  $row["fName"] . " " . $row["mName"] . " " . $row["lName"] ?>  good  luck in her future
+            <?php echo  $row["fName"] . " " . $row["mName"] . " " . $row["lName"] ?> good luck in her future
             endeavours.</p>
         <br>
         <br>

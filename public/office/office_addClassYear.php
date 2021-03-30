@@ -20,9 +20,6 @@
 <html>
 
 <head>
-
-
-
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Assign Classes</title>
     <link type="text/css" rel="stylesheet" href="../css/main.css">
@@ -82,9 +79,8 @@
                         }
                         
 					?></td>
-                    <?php echo "<td><a class='btn editbtn' href = o_addClassGrades.php?Gyear=".$year." >View Grades </a> </td>"?>
+                    <?php echo "<td><a class='btn editbtn' href = office_addClassGrades.php?Gyear=".$year." >View Grades </a> </td>"?>
                   
-
                 </tr>
                 <?php }?>
 

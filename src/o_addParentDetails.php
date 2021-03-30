@@ -30,9 +30,11 @@ if (isset($_POST['parentReg'])) {
      ('$pID', '$pName', '$pNIC', '$pOcc', '$pContact', '$admissionNo', '$pEmail')";
 
         $update_query2 = "UPDATE user SET isActivated = '1' WHERE userID = '$pID'";
+        $result1 = mysqli_query($conn,$sql1);
+        $result2 = mysqli_query($conn,$update_query2);
 
 
-        if ($conn->query($sql1) === TRUE && $conn->query($update_query2)) {
+        if ($result1 && $result2) {
             echo '<script language="javascript">';
             echo 'alert("Details Added");';
             echo '</script>';
@@ -40,6 +42,7 @@ if (isset($_POST['parentReg'])) {
         } else {
             $error = "Duplicate Record";
             header('Location: ../public/office/office_studentsList.php?error=' . $error);
+            exit();
         }
     }
     /* else{

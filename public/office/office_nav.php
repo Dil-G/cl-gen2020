@@ -8,6 +8,12 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 
     $dutyID = array();
     $dutyID = $_SESSION['dutyID'];
+    $userID = $_SESSION['userID'];
+    include '../../config/conn.php';
+
+    $sql = "SELECT * FROM office WHERE `officerID`='$userID'";
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($result);
 
     //   foreach($dutyID as $result) {
     //     echo $result;
@@ -18,6 +24,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
     <link rel="stylesheet" href="../../images/font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
 
     <div>
         <button onclick="goBack()" class="backbtn" style="background-color: #1e8dd6;padding:1px;">Back</button>
@@ -26,10 +33,14 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
     <div class="navbar">
 
         <ul>
+
             <li>
                 <form name="logout" action="../../src/logout.php" method="POST">
-                    <input type="submit" value="LOGOUT" name="logout" style="font-family: 'Playfair Display', serif;">
+                    <input type="submit" value="LOGOUT" name="logout" style="font-family: 'Ubuntu', sans-serif;float:right;margin-left:180px;margin-right:1px;">
                 </form>
+            </li>
+            <li>
+                <h4 style="float:right; margin:3px -180px 2px 5px;color:rgb(193, 187, 187);font-family: 'Ubuntu', sans-serif;"><i class="fa fa-user-o" aria-hidden="true" style="margin-right: 3px;"></i><?php echo $row['fName'] . " " . $row['lName']; ?></h4>
             </li>
         </ul>
     </div>
@@ -60,6 +71,17 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                             <li><a href="office_parentsList.php">Parents</a></li>
                         </ul>
                     </div>
+                    <li class="drop">
+                        <div class="drop" id="drop7">Assign Teachers<i class="fa fa-angle-down"></i></div>
+                    </li>
+                    <div class="submenu7" id="submenu7">
+                        <ul>
+                            <li><a href="office_assignTeachers.php">Current Teacher Roles</a></li>
+                            <li><a href="office_assignNewTeachers.php">New Teacher roles</a></li>
+                        </ul>
+                    </div>
+
+                    <li><a href="../office/office_categories.php">Sport and Societies</a></li>
 
                 <?php }
                 if (in_array("d2", $dutyID)) { ?>
@@ -74,7 +96,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                             <li><a href="../office/office_add_view_AL_exams.php">G.C.E. A/L</a></li>
                         </ul>
                     </div>
-                    <?php }
+                <?php }
                 if (in_array("d2", $dutyID)) { ?>
                     <li class="drop">
                         <div class="drop" id="drop6">Manage Subjects<i class="fa fa-angle-down" aria-hidden="true"></i> </div>
@@ -114,7 +136,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                     </li>
                     <div class="submenu5" id="submenu5">
                         <ul>
-                            <li><a href="../office/office_newsfeed.php"> Newsfeed</a>
+                            <!-- <li><a href="../office/office_newsfeed.php"> Newsfeed</a> -->
                             <li><a href="../office/office_edit_newsfeed.php">Add News</a></li>
                             <li><a href="../office/office_news_list.php">News List</a></li>
                         </ul>
@@ -137,10 +159,12 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
     <script>
         <?php if (in_array("d1", $dutyID)) { ?>
             var menu = document.getElementById("drop");
+            var menu7 = document.getElementById("drop7");
         <?php }
         if (in_array("d2", $dutyID)) { ?>
             var menu2 = document.getElementById("drop2");
             var menu6 = document.getElementById("drop6");
+            var menu7 = document.getElementById("drop7");
         <?php }
         if (in_array("d3", $dutyID)) { ?>
             var menu3 = document.getElementById("drop3");
@@ -150,6 +174,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
         <?php } ?>
         <?php if (in_array("d1", $dutyID)) { ?>
             var submenu = document.getElementById("submenu");
+            var submenu7 = document.getElementById("submenu7");
         <?php }
         if (in_array("d2", $dutyID)) { ?>
             var submenu2 = document.getElementById("submenu2");
@@ -182,9 +207,17 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                     submenu.style.display = "none";
                 }
             }
+            submenu7.style.display = "none";
+            menu7.onclick = function(event) {
+                if (submenu7.style.display === "none") {
+                    submenu7.style.display = "block";
+                } else {
+                    submenu7.style.display = "none";
+                }
+            }
         <?php }
         if (in_array("d2", $dutyID)) { ?>
-            
+
             menu2.onclick = function(event) {
                 if (submenu2.style.display === "none") {
                     submenu2.style.display = "block";
@@ -192,9 +225,9 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                     submenu2.style.display = "none";
                 }
             }
-            <?php }
+        <?php }
         if (in_array("d2", $dutyID)) { ?>
-        submenu6.style.display = "none";
+            submenu6.style.display = "none";
             menu6.onclick = function(event) {
                 if (submenu6.style.display === "block") {
                     submenu6.style.display = "none";
@@ -224,6 +257,5 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 
         <?php } ?>
     </script>
-
 
 <?php } ?>

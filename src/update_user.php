@@ -37,7 +37,7 @@ if ($conn->query($sql) === TRUE){
         if($_SESSION['userType'] == 'officer'){
             header('Location: ../public/office/office_update_student.php?message='.$message);
         }else{
-            header('Location: ../public/admin/updateStudent.php?message='.$message);
+            header('Location: ../public/admin/admin_updateStudent.php?message='.$message);
         }
     }else{
         echo "nso";
@@ -45,13 +45,13 @@ if ($conn->query($sql) === TRUE){
             
             header('Location: ../public/office/office_studentsList.php');
         }else{
-            header('Location: ../public/admin/student.php');
+            header('Location: ../public/admin/admin_student.php');
         }
     }
     if($_SESSION['userType'] == 'officer'){
         header('Location: ../public/office/office_studentsList.php');
     }else{
-        header('Location: ../public/admin/student.php');
+        header('Location: ../public/admin/admin_student.php');
     }
 
     }else{
@@ -60,7 +60,7 @@ if ($conn->query($sql) === TRUE){
         if($_SESSION['userType'] == 'officer'){
                header('Location: ../public/office/office_studentsList.php?error='.$error);
         }else{
-            header('Location: ../public/admin/student.php?error='.$error);
+            header('Location: ../public/admin/admin_student.php?error='.$error);
         }
    }
 
@@ -69,7 +69,7 @@ if ($conn->query($sql) === TRUE){
     if($_SESSION['userType'] == 'officer'){
         header('Location: ../public/office/office_studentsList.php?error='.$error);
     }else{
-        header('Location: ../public/admin/student.php?error='.$error);
+        header('Location: ../public/admin/admin_student.php?error='.$error);
     }
 }
 
@@ -102,7 +102,7 @@ if (isset($_POST['update_officer'])) {
             header('Location: ../public/office/office_officersList.php?error='.$error);
             exit();
         }else{
-            header('Location: ../public/admin/staff.php?error='.$error);
+            header('Location: ../public/admin/admin_staff.php?error='.$error);
             exit();
         }
     }
@@ -110,7 +110,7 @@ else{
     if($_SESSION['userType'] == 'officer'){
         header('Location: ../public/office/office_officersList.php');
     }else{
-        header('Location: ../public/admin/staff.php');
+        header('Location: ../public/admin/admin_staff.php');
 
     }
     }
@@ -133,21 +133,46 @@ if (isset($_POST['update_teacher'])) {
     $address = $_POST['stuAddress'];
     $contactNo = $_POST['contactNo'];
 
-    $checked_arr = $_POST['checkbox'];
-    $count = count($checked_arr);
-    echo "There are ".$count." checkboxe(s) are checked";
 
-    if($count == '2'){
-        $type="both";
-    }else{
-        foreach ($checked_arr as $checked_arr){ 
-            $type = $checked_arr;
-        }
-    }
+    echo $userID;
+
+    $sql = "DELETE FROM teacherType WHERE teacherID ='$teacherID'" ;
+
+    $result1= mysqli_query($conn,$sql);
+
     
+    if($result1 == FALSE){
+   $error="ERROR";
+       header('Location: ../public/admin/admin_updateTeacher.php?error='.$error);
+    }
+
+    $duties = $_POST['checkbox'];
+    $count = count($duties);
+
+    $duty = "";  
+
+    foreach ($duties as $dut){ 
+        $duty = $dut;
+        $sql2 = "INSERT INTO teacherType (teacherID, teacherType) VALUES('$teacherID', '$duty')";
+         echo $duty;
+         echo $userID;
+ 
+         $result = $conn->query($sql2);
+         if($result == False){
+            $error = "Duty already Assigned";
+            if($_SESSION['userType'] == 'officer'){
+                header('Location: ../public/office/o_teachersList.php?error='.$error);
+                exit();
+             }else{
+                header('Location: ../public/admin/admin_teachers.php?error='.$error);
+                exit();
+             }
+         }
+    }
+
 
     $sql = "UPDATE teacher
-    SET  fName='$fName', lName='$lname', dob='$dob', address='$address', email='$email', contactNo='$contactNo', gender='$gender', nic='$nic',teacherType='$type'
+    SET  fName='$fName', lName='$lname', dob='$dob', address='$address', email='$email', contactNo='$contactNo', gender='$gender', nic='$nic'
       WHERE teacherID='$teacherID'";
  
 
@@ -158,7 +183,7 @@ if (isset($_POST['update_teacher'])) {
         header('Location: ../public/office/office_teachersList.php?error='.$error);
         exit();
      }else{
-        header('Location: ../public/admin/teachers.php?error='.$error);
+        header('Location: ../public/admin/admin_teachers.php?error='.$error);
         exit();
      }
  }
@@ -166,7 +191,7 @@ else{
     if($_SESSION['userType'] == 'officer'){
         header('Location: ../public/office/office_teachersList.php');
     }else{
-        header('Location: ../public/admin/teachers.php');
+        header('Location: ../public/admin/admin_teachers.php');
 
     }
  }
@@ -201,7 +226,7 @@ if ($result == false){
         header('Location: ../public/office/office_parentsList.php?error='.$error);
         exit();
     }else{
-        header('Location: ../public/admin/parent.php?error='.$error);
+        header('Location: ../public/admin/admin_parent.php?error='.$error);
         exit();
     }
 }
@@ -209,7 +234,7 @@ else{
     if($_SESSION['userType'] == 'officer'){
         header('Location: ../public/office/office_parentsList.php');
     }else{
-        header('Location: ../public/admin/parent.php');
+        header('Location: ../public/admin/admin_parent.php');
 
     }
 }

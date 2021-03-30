@@ -1,5 +1,5 @@
 <?php
-include ('../public/admin/add_society.php');
+include ('../public/admin/admin_addSociety.php');
 //require_once('cl_gen.php');
 include_once '../config/conn.php';
 /*
@@ -49,7 +49,7 @@ echo $societyID;
 if (isset($_POST['regbtn'])) {
 
     //$societyID = $_POST['Stid'];
-    $societyName = $_POST['Soname'];
+    $societyName = $_POST['societyName'];
     $tcrID = $_POST['TID'];
 
 $sql = "INSERT INTO csocieties (SocietyID,SocietyName, tcrID) VALUES
@@ -61,7 +61,7 @@ if ($conn->query($sql) === TRUE) {
 	//echo 'window.location.href="../driver.php";';
     echo '</script>';
     echo "Succesfully Added Record";
-    header('Location: ../public/admin/societies.php');
+    header('Location: ../public/admin/admin_societies.php');
 
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;

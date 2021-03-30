@@ -985,8 +985,53 @@ function checkDate(date) {
     }
 }
 
-function checkStuDate(date) {
 
+function checkDates(date) {
+
+    var date = document.getElementById("date").value;
+    var now = new Date();
+    var year = new Date(date);
+            
+    var thisYear = now.getFullYear();
+    var dobYear = year.getFullYear();
+            
+    var max = 65;
+    var min = 18;
+            
+    var dif = thisYear - dobYear;
+    var reg = /^(\d{4})\-(\d{1,2})\-(\d{1,2})$/;
+               // var { d1, g1 } = dates();
+            
+    if (date != '') {
+        if (regs = date.match(reg)) {
+            if (thisYear < dobYear) {
+                document.getElementById("date").style.background = "#FFE5E4";
+                document.getElementById("date").style.borderColor = "red";
+                return false;
+
+            } else {
+                document.getElementById("date").style.background = "#f1f1f1";
+                document.getElementById("date").style.borderColor = "transparent";
+            }
+        } else {
+            document.getElementById("date").style.background = "#FFE5E4";
+            document.getElementById("date").style.borderColor = "red";
+            return false;
+        }
+    } else {
+        document.getElementById("date").style.background = "#FFE5E4";
+        document.getElementById("date").style.borderColor = "red";
+        return false;
+    }
+
+    function dates() {
+        var d1 = new Date('Jul 12 1920');
+        var g1 = new Date();
+        return { d1, g1 };
+    }
+}
+
+function checkStuDate(date) {
      
     var date = document.getElementById("date").value;
     var now = new Date();
@@ -1010,7 +1055,7 @@ function checkStuDate(date) {
                 document.getElementById("showNIC").style.display = "none";
                 return false;
 
-            } else if( dif >= 15) {
+            } else if( dif >= 17) {
                 document.getElementById("date").style.background = "#f1f1f1";
                 document.getElementById("date").style.borderColor = "transparent";
                 document.getElementById("showNIC").style.display = "block";

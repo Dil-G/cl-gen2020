@@ -19,7 +19,6 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
         <html>
 
         <head>
-
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <title> Classes</title>
             <link rel="stylesheet" href="../css/view.css " type="text/css">
@@ -31,6 +30,9 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
             <script src="../js/jquery-1.9.1.min.js"></script>
             <script src="../js/pop.js"></script>
             <script src="../js/nav.js"></script>
+            <script src="../js/confirm.js"></script>
+            <script src="../js/search.js"></script>
+
         </head>
 
         <body>
@@ -41,12 +43,14 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                 <div class="card">
                     <h1 style="color:#6a7480;">Grade <?php echo substr($_GET['Ggrades'], 5) ?> Classes</h1>
                     <hr>
-                    <form action="../../src/addClass.php" method="POST" style="float:left;margin-right:50px;">
+                    <form action="../../src/addClass.php" method="POST" style="float:left;margin-right:50px;" onclick="return confirmation()">
                         <input type="hidden" name="thisGrade" value="<?php echo $_GET['Ggrades'] ?>" required>
                         <button type="submit" class='btn viewbtn' name="addNewClass">Add a class</button>
                     </form>
-                    <form class="search" action="register_stu.html">
-                        <input type="text" placeholder="Search.." name="search">
+
+
+                    <form class="search">
+                        <input type="text" ID="Inputs" placeholder="Search.." name="search">
                         <button type="submit">Search</button>
                     </form>
                 </div>
@@ -58,16 +62,13 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                         <div id="error"><?php echo $_GET['error']; ?></div>
                     <?php } ?>
 
+                    <h3>Upload student list</h3>
+                    <hr>
                     <form action="../../src/uploadClasses.php" method="post" name="upload_excel" enctype="multipart/form-data">
 
-
-
-                        <h3>Upload student list</h3>
-                        <hr>
                         <div class="le-part">
                             <label>Enter Number of Students</label>
                             <input type="text" name="NoOfStudents" id="NoOfStudents" required>
-
                         </div>
                         <div class="ri-part">
                             <label for="Import">Import data</label>
@@ -78,31 +79,31 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                         <br>
                         <br>
                         <br> <br>
-
                         <button type="submit" id="submit" name="Import" class="editbtn" data-loading-text="Loading...">Import</button>
-
                     </form>
                     <hr>
                     <div class="scroll">
                         <table>
                             <tr>
+                                <thead>
                                 <th>Class ID </th>
                                 <th>Class</th>
                                 <th>View classes</th>
-
                             </tr>
-
+                    </thead>
                             <?php
                             while ($row = mysqli_fetch_assoc($class_result)) {
                             ?>
+                            <tbody id="Table">
                                 <tr>
 
                                     <td><?php echo $row['classID'] ?></td>
                                     <td><?php echo $row['name'] ?></td>
 
-                                    <?php echo "<td><a class='btn editbtn' href = o_class.php?class=" . $row['classID'] . " >View Class </a> </td>" ?>
+                                    <?php echo "<td><a class='btn editbtn' href = office_class.php?class=" . $row['classID'] . " >View Class </a> </td>" ?>
 
                                 </tr>
+                            </tbody>
                             <?php } ?>
 
                         </table>

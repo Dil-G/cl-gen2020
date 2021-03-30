@@ -92,7 +92,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                                         <td><?php echo $row['userID'] ?></td>
                                         <td><?php echo $row['username'] ?></td>
                                         <td><?php echo $row['userType'] ?></td>
-                                        <?php echo "<td><a class='btn editbtn' href = addOfficerDetails.php?userID=" . $row['userID'] . " > Add </a> </td>" ?>
+                                        <?php echo "<td><a class='btn editbtn' href = admin_addOfficerDetails.php?userID=" . $row['userID'] . " > Add </a> </td>" ?>
                                     </tr>
                                 <?php
                                 }
@@ -152,17 +152,6 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                 button1.style.color = "#008080";
                 button2.style.color = "#000";
 
-            } else if (url == "http://localhost/CL-GEN/public/admin/duty.php?error=Error%20in%20entering%20data") {
-                page1.style.display = "block";
-                page2.style.display = "none";
-                button1.style.color = "#008080";
-                button2.style.color = "#000";
-
-            } else if (url == "http://localhost/CL-GEN/public/admin/duty.php?error=Duty%20already%20Assigned") {
-                page1.style.display = "block";
-                page2.style.display = "none";
-                button1.style.color = "#008080";
-                button2.style.color = "#000";
             }
 
             function activated() {

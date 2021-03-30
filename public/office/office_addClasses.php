@@ -13,6 +13,8 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 
         include_once '../../config/conn.php';
         include_once '../../src/addClass.php';
+        $grade=$_GET['grade'];
+        $year = substr($grade,0,4);
 ?>
 
 <!DOCTYPE html>
@@ -49,7 +51,8 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                 <hr>
 
                 <button type="submit" class="registerbtn" name="addclasses">Save</button>
-                <a href="o_addClassGrades.php" class="cancel-btn">Cancel</a>
+
+                <?php echo" <a class='cancel-btn' href=office_addClassGrades.php?Gyear=".$year.">Cancel</a>"?>
 
             </form>
 

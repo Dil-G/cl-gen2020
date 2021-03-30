@@ -22,17 +22,21 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
             <script src="../js/jquery-1.9.1.min.js"></script>
             <script src="../js/pop.js"></script>
             <script src="../js/nav.js"></script>
+            <script src="../js/confirm.js"></script>
             <link rel="stylesheet" href="../css/register.css " type="text/css">
             <link type="text/css" rel="stylesheet" href="../css/main.css">
             <link type="text/css" rel="stylesheet" href="../css/tabs.css">
             <link type="text/css" rel="stylesheet" href="../css/profile.css">
             <link type="text/css" rel="stylesheet" href="../css/view.css">
             <link type="text/css" rel="stylesheet" href="../css/pop.css">
+            <link type="text/css" rel="stylesheet" href="../css/messages.css">
+
         </head>
 
         <body>
             <div id="officeNav"></div>
             <div class="content">
+                
                 <h1>Character Certificates</h1>
 
                 <div class="btn-box" style="margin-top:10px!important;">
@@ -43,8 +47,10 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                 </div>
                 <div id="page1" class="page">
                     <div class="card" style="margin-left:4%;width:95%;">
+                    <?php if (isset($_GET['error'])) { ?>
+                        <div id="error"><?php echo $_GET['error']; ?></div>
+                    <?php } ?>
                         <h2>Requests</h2>
-                        <br>
                         <hr>
                         <table>
                             <tr>
@@ -78,10 +84,14 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                                         ?>
 
                                     </td>
+
                                     <td>
-                                        <?php $_SESSION['studentID'] = 'ST2000001';
-                                        echo "<a class='btn editbtn' href = '../../src/notifications.php?character=" . $row['userID'] . "'>Generate </a> " ?>
+                                        <form action='../../src/notifications.php' method="GET" onclick="return confirmation()">
+                                            <input type="hidden" name="character" value="<?php echo $row['userID'] ?>" />
+                                            <button class='btn editbtn' input type="submit" name="generate" value="generate">Generate</button>
+                                        </form>
                                     </td>
+
                                     <td><button class="btn dltbtn" type="button">Reject</button></td>
                                 <?php } ?>
                             </tr>
@@ -116,7 +126,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                     </div>
                 </div>
                 <!--Page1 end-->
-            <!--Page 2-->
+                <!--Page 2-->
                 <div id="page2" class="page">
                     <div class="card" style="margin-left:4%;width:95%;">
                         <h2>Issues</h2>
@@ -149,12 +159,14 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                                         ?>
                                     </td>
 
-                                    <td><?php  echo "<a class='btn editbtn' href = '../common/character_certificate_view.php?userID=" . $rows['admissionNo'] . "' >View </a> " ?>
+                                    <td><?php echo "<a class='btn editbtn' href = '../common/character_certificate_view.php?userID=" . $rows['admissionNo'] . "' >View </a> " ?>
                                     </td>
 
                                     <td>
-                                        <?php 
-                                        echo "<a class='btn editbtn' href = '../../src/notifications.php?character=" . $rows['userID'] . "'>Regenerate </a> " ?>
+                                        <form action='../../src/notifications.php' method="GET" onclick="return confirmation()">
+                                            <input type="hidden" name="character" value="<?php echo $rows['userID'] ?>" />
+                                            <button class='btn editbtn' input type="submit" name="generate" value="generate">Re-Generate</button>
+                                        </form>
                                     </td>
                             </tr>
                         <?php } ?>
@@ -182,10 +194,11 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                                     <td><?php echo $rows['fName'] . " " . $rows['lName'] ?></td>
 
 
-
                                     <td>
-                                        <?php 
-                                        echo "<a class='btn editbtn' href = 'office_character.php?userID=" . $rows['admissionNo'] . "'>Download </a> " ?>
+                                        <form action='character.php' method="GET" onclick="return confirmation()">
+                                            <input type="hidden" name="userID" value="<?php echo $rows['admissionNo'] ?>" />
+                                            <button class='btn editbtn' input type="submit" name="generate" value="generate">Download</button>
+                                        </form>
                                     </td>
                             </tr>
                         <?php } ?>

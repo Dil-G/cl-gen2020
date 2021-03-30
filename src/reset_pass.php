@@ -126,7 +126,8 @@ if (isset($_POST['reset_pass'])){
                     $message = "Email has sent to your email address with the Reset link";
                     header('Location: ../public/common/resetPass.php?message='.$message);
                 }else{
-                    $error = "Email Sending Fail";
+                    
+                    $error = "Email Sending Failed";
                     header('Location: ../public/common/resetPass.php?error='.$error);
                 }
             }else{

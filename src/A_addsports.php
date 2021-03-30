@@ -1,5 +1,5 @@
 <?php
-include ('../public/admin/add_sport.php');
+include ('../public/admin/admin_addSport.php');
 //require_once('cl_gen.php');
 include_once '../config/conn.php';
 /*
@@ -60,7 +60,7 @@ if ($conn->query($sql) === TRUE) {
 	//echo 'window.location.href="../driver.php";';
     echo '</script>';
     echo "Succesfully Added Record";
-    header('Location: ../public/admin/sports.php');
+    header('Location: ../public/admin/admin_sports.php');
 
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
