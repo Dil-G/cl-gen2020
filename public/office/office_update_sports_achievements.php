@@ -64,13 +64,14 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                             ?>
 
                         <label for="stuID"><b>Student ID</b></label>
-                        <input type="text" placeholder="Enter ID" value="<?php if (isset($_GET['studentID'])) {
-                                                                                        echo $_GET['studentID'];
-                                                                                    } ?>" name="stuID" required>
+                        <input type="text" placeholder="Enter ID" value="<?php echo $row['studentID'] ?>" name="stuID" required>
+
+                      
+
 
                         <label for="stufName"><b>Student Name</b></label>
                         <input type="text" placeholder="Enter First Name" name="stufName" id="fname"
-                            value="<?php echo $row['fName'].$row['lName'] ?>">
+                            value="<?php echo $_GET['name'] ?>">
 
                         <label for="achievementID "><b>Achievement ID </b></label> <br>
                         <input type="text" placeholder="" name="achievementID" id="achievementID"

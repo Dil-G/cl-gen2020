@@ -1,7 +1,7 @@
 <?php
 
 require_once(realpath(dirname(__FILE__) . '/../config/conn.php'));
-echo $_GET['achievementID'];
+
 //sports
 $sql_select_sports = "SELECT * FROM sports_achievements WHERE achievementID = '".$_GET['achievementID']."'";
 $results_select_sports = mysqli_query($conn,$sql_select_sports);

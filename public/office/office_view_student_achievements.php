@@ -95,8 +95,8 @@
                         $res = mysqli_query($conn,$name);
 
                         while($fname = mysqli_fetch_assoc($res)){
-                            echo $fname['fName'] . " ";
-                            echo $fname['lName'];
+                           $fullName =  $fname['fName'] . " ". $fname['lName'];
+                           echo $fullName;
                         }
                         ?></td>
                         <td><?php echo$row2['achievementName']?></td>
@@ -105,20 +105,8 @@
                         <td><?php echo$row2['description']?></td>
                         <td><?php echo$row2['achievementDate']?></td>
                         
-                        <td><?php echo "<a href=office_update_sports_achievements.php?achievementID=".$achievementID_sports." class='button editbtn'>Update</a>" ?></td>
+                        <td><?php echo "<a href=office_update_sports_achievements.php?achievementID=".$achievementID_sports."&name=".$fullName." class='button editbtn'>Update</a>" ?></td>
 
-                        <!-- <td><input type="text" velue="" name="achievementID">
-                        </td>
-                        <td><input type="text" velue=""
-                                name="achievementName"></td>
-                        <td><input type="text" velue="" name="position"></td>
-                        <td><input type="text" velue="" name="impValue"></td>
-                        <td><input type="text" velue="" name="ach_description">
-                        </td>
-                        <td><input type="text" velue=""
-                                name="achievementDate"></td>
-                        <th> <button type="submit" class="registerbtn" style="margin-left: 5px;"
-                                name="update_ach_sop">Update</button></th> -->
 
                     </tr>
                 </tbody>
@@ -181,15 +169,16 @@
                         ?>
                         <tbody id="Table">
                             <tr>
-                            <?php $achievementID = $row['achievementID'];
-                                echo $achievementID; ?>
+                            <?php $achievementID = $row['achievementID']; ?>
                                 <td><?php echo$achievementID?></td>
-                                <td><?php
-                        $name = "SELECT * FROM student where admissionNo='$row[studentID]'";
-                        $res = mysqli_query($conn,$name);
 
-                        while($fname = mysqli_fetch_assoc($res)){
-                            echo $fname['fName'] . " ". $fname['lName'];
+                                <td><?php
+                        $name2 = "SELECT * FROM student where admissionNo='$row[studentID]'";
+                        $res2 = mysqli_query($conn,$name2);
+
+                        while($fname = mysqli_fetch_assoc($res2)){
+                            $fullName2 =  $fname['fName'] . " ". $fname['lName'];
+                           
                         }
                         ?></td>
                                 <td><?php echo$row['achievementName']?></td>
@@ -198,7 +187,7 @@
                                 <td><?php echo$row['description']?></td>
                                 <td><?php echo$row['achievementDate']?></td>
                                 
-                                <td><?php echo "<a href=office_update_society_achievements.php?achievementID=".$achievementID." class='button editbtn'>Update</a>" ?></td>
+                                <td><?php echo "<a href=office_update_society_achievements.php?achievementID=".$achievementID."&name2=".$fullName2." class='button editbtn'>Update</a>" ?></td>
 
 
                             </tr>
