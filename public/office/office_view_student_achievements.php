@@ -71,6 +71,7 @@
             <table>
                 <tr>
                     <th>Achievement ID</th>
+                    <th>Student Name</th>
                     <th>Achievement Name</th>
                     <th>Position </th>
                     <th>Important Value</th>
@@ -84,7 +85,20 @@
                 <tbody id="Table">
                     <tr>
                     <?php $achievementID_sports = $row2['achievementID'];?>
+                        
+                    
+                       
+
                         <td><?php echo$achievementID_sports?></td>
+                        <td><?php
+                        $name = "SELECT * FROM student where admissionNo='$row2[studentID]'";
+                        $res = mysqli_query($conn,$name);
+
+                        while($fname = mysqli_fetch_assoc($res)){
+                            echo $fname['fName'] . " ";
+                            echo $fname['lName'];
+                        }
+                        ?></td>
                         <td><?php echo$row2['achievementName']?></td>
                         <td><?php echo$row2['position']?></td>
                         <td><?php echo$row2['impValue']?></td>
@@ -115,6 +129,8 @@
         </div>
     </div>
 </div>
+
+<!-- ------------------------------------------------------ -->
 
 <!-- societies -->
         <div id="page2" class="page">
@@ -151,6 +167,7 @@
                     <table>
                         <tr>
                             <th>Achievement ID</th>
+                            <th>Student Name</th>
                             <th>Achievement Name</th>
                             <th>Position </th>
                             <th>Important Value</th>
@@ -167,13 +184,21 @@
                             <?php $achievementID = $row['achievementID'];
                                 echo $achievementID; ?>
                                 <td><?php echo$achievementID?></td>
+                                <td><?php
+                        $name = "SELECT * FROM student where admissionNo='$row[studentID]'";
+                        $res = mysqli_query($conn,$name);
+
+                        while($fname = mysqli_fetch_assoc($res)){
+                            echo $fname['fName'] . " ". $fname['lName'];
+                        }
+                        ?></td>
                                 <td><?php echo$row['achievementName']?></td>
                                 <td><?php echo$row['position']?></td>
                                 <td><?php echo$row['impValue']?></td>
                                 <td><?php echo$row['description']?></td>
                                 <td><?php echo$row['achievementDate']?></td>
                                 
-                                <td><?php echo "<a href='office_update_achievements.php?achievementID='".$achievementID." class='button editbtn'>Update</a>" ?></td>
+                                <td><?php echo "<a href=office_update_society_achievements.php?achievementID=".$achievementID." class='button editbtn'>Update</a>" ?></td>
 
 
                             </tr>

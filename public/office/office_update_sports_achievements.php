@@ -55,7 +55,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
             <div id="page1" class="page">
                 <div class="container" style="margin-left:250px;">
                     <form action="../../src/office_update_achievements.php" method="POST" enctype="multipart/form-data">
-                        <h1>Update Student Achievements</h1>
+                        <h1>Update Student Achievements - Sports</h1>
 
 
                         <hr>
@@ -64,8 +64,8 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
                             ?>
 
                         <label for="stuID"><b>Student ID</b></label>
-                        <input type="text" placeholder="Enter ID" value="<?php if (isset($_GET['userID'])) {
-                                                                                        echo $_GET['userID'];
+                        <input type="text" placeholder="Enter ID" value="<?php if (isset($_GET['studentID'])) {
+                                                                                        echo $_GET['studentID'];
                                                                                     } ?>" name="stuID" required>
 
                         <label for="stufName"><b>Student Name</b></label>

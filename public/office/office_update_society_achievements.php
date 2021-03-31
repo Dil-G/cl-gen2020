@@ -15,7 +15,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
         header('Location: office_dashboard.php');
     }
     if (in_array("d1", $dutyID)) {
-        $_SESSION['studentID'] = $_GET['userID'];
+      //  $_SESSION['studentID'] = $_GET['userID'];
        include '../../src/office_update_achievements.php';
 
 
@@ -56,17 +56,17 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 
             <div class="container" style="margin-left:250px;">
                     <form action="../../src/office_update_achievements.php" method="POST" enctype="multipart/form-data">
-                        <h1>Update Student Achievements</h1>
+                        <h1>Update Student Achievements - Society</h1>
 
 
                         <hr>
                         <?php
-                            while ($row = mysqli_fetch_array($reuslt_societies)) {
+                            while ($row = mysqli_fetch_array($results_select_society)) {
                             ?>
 
                         <label for="stuID"><b>Student ID</b></label>
-                        <input type="text" placeholder="Enter ID" value="<?php if (isset($_GET['userID'])) {
-                                                                                        echo $_GET['userID'];
+                        <input type="text" placeholder="" value="<?php if (isset($_GET['studentID'])) {
+                                                                                        echo $_GET['studentID'];
                                                                                     } ?>" name="stuID" required>
 
                         <label for="stufName"><b>Student Name</b></label>

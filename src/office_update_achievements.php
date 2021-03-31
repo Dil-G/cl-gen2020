@@ -10,7 +10,7 @@ if (isset($_POST['update_sports'])) {
     echo ("ss");
 
 
-    $stuID = $_POST['userID'];
+    $stuID = $_POST['studentID'];
     $fName = $_POST['fname'];
     $lname = $_POST['lname'];
     $achievementID = $_POST['achievementID'];
@@ -25,7 +25,7 @@ if (isset($_POST['update_sports'])) {
      SET  fName='$fName', lName='$lname', achievementID='$achievementID', achievementName='$achievementName', position='$position', impValue='$impValue', description='$description', achievementDate='$achievementDate'
        WHERE officerid='$officerid'";
 
-    $reuslt_sports = $conn->query($sql_sports);
+    $reuslt_sports = mysqli_query($conn,$sql_sports);
     if ($reuslt_sports == false){
         $error = "Error in entering data";
     }else{
@@ -35,15 +35,15 @@ if (isset($_POST['update_sports'])) {
  
 }
 
-$sql_select_sports = "SELECT * FROM societies_achievements WHERE achievementID = '".$_GET['achievementID']."'";
-$results_select_sports = mysqli_query($conn,$sql_select_sports);
+$sql_select_society = "SELECT * FROM societies_achievements WHERE achievementID = '".$_GET['achievementID']."'";
+$results_select_society = mysqli_query($conn,$sql_select_society);
 
 //societies
 if (isset($_POST['update_societies'])) {
     echo ("ss");
 
 
-    $stuID = $_POST['userID'];
+    $stuID = $_POST['studentID'];
     $fName = $_POST['fname'];
     $lname = $_POST['lname'];
     $achievementID = $_POST['achievementID'];
@@ -59,7 +59,7 @@ if (isset($_POST['update_societies'])) {
      SET  fName='$fName', lName='$lname', achievementID='$achievementID', achievementName='$achievementName', position='$position', impValue='$impValue', description='$description', achievementDate='$achievementDate'
        WHERE officerid='$officerid'";
 
-    $reuslt_societies = $conn->query($sql_societies);
+    $reuslt_societies = mysqli_query($conn,$sql_societies);
     if ($reuslt_societies == false){
         $error = "Error in entering data";
     }else{
