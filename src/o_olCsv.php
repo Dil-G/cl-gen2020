@@ -66,7 +66,7 @@ if (isset($_POST["olResults"])) {
                 if (mysqli_num_rows($marks_result) > 0) {
                     $query = "UPDATE ol_results SET `grade` = '$item4',`examID` = '$examID' WHERE markID='$MID'";
                 }else{
-                    $query = "INSERT into ol_results(markID,studentID, subjectID,grade,examID) 
+                    $query = "INSERT into ol_results(markID,studentID,subjectID,grade,examID) 
                     
                 values('$MID','$item2','$item3','$item4','$examID')";
                 }

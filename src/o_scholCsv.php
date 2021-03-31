@@ -1,51 +1,118 @@
- <?php
-require_once(realpath(dirname(__FILE__) . '/../config/conn.php'));
+<?php
 
-if(isset($_POST['submit'])){
+require_once '../config/conn.php';
 
-  if($_FILES['file']['name'])
-  {
-   $filename = explode(".", $_FILES['file']['name']);
-   if($filename[1] == 'csv')
-   {
-    if($_FILES["file"]["size"] > 0){
-      $csvFile = file($_FILES['file']['tmp_name']);
-      //security feature - save to a folder
-      move_uploaded_file($_FILES['file']['tmp_name'],'../public/tmp/'.$_FILES['file']['name']);
-      $data = [];
-      //read & store each line in $data
-      foreach ($csvFile as $line) {
-          $data = str_getcsv($line);
-          print_r($data);
-      }
-      //get each line in $data and  drived the relevent values
-      $count=5;
-      while ($count < count($data)){
-         $last=explode("\r",$data[$count-1]);
-         $item1 = mysqli_real_escape_string($conn, $last[1] );
-         $item2 = mysqli_real_escape_string($conn, $data[$count+0]);  
-         $item3 = mysqli_real_escape_string($conn, $data[$count+1]);
-         $item4 = mysqli_real_escape_string($conn, $data[$count+2]);
-         $last=explode("\r",$data[$count+3]);
-         $item5 = mysqli_real_escape_string($conn, $last[0]);
-         
-         $sql = "INSERT into schol_rsheet(examID, admissionNo, studentIndex, studentName,examMarks) values('$item1','$item2','" .$item3. "','" . $item4. "',$item5)";
-         mysqli_query($conn, $sql);
-        
-        $count=$count+4;
-      }
-   
-      
-    echo "<script>alert('Import done');</script>";
-    header('Location: ../public/office/office_add_view_scholarship_exams.php');
-     }
+
+if (isset($_POST["submit"])) {
+
+    $examID=$_POST["examID"];
+    $IDarray = array();
+
+    $count = 0;
+    if ($_FILES['file']['name']) {
+        $filenames = explode(".", $_FILES['file']['name']);
+        if ($filenames[1] == 'csv') {
+            $handles = fopen($_FILES['file']['tmp_name'], "r");
+            while ($datas = fgetcsv($handles)) {
+
+                $count++;
+                
+                if ($count == 1) { continue; }
+                
+                $items2 = mysqli_real_escape_string($conn, $datas[0]);
+                $items3 = mysqli_real_escape_string($conn, $datas[1]);
+                $items4 = mysqli_real_escape_string($conn, $datas[2]);
+                
+                
+                $MIDs = substr($items2,2) . substr($items3,3);
+                
+                if(in_array($MIDs,$IDarray))
+                {
+                    $error = "Duplicate records in CSV file";
+                    
+                    echo $error;
+                   header('Location: ../public/office/office_add_scholarshipExamCsv.php.php?examID=' . $examID . '&error=' . $error);
+                    exit();
+                   
+                    
+                }else{
+                    array_push($IDarray,$MIDs);
+                }
+            }
+        }
     }
-  }
-}else{
-  $error = "Cannot add the record";
-  header('Location: ../public/office/office_add_view_scholarship_exams.php?error='.$error);
+    fclose($handles);
+
+    $c = 0;
+    if ($_FILES['file']['name']) {
+        $filename = explode(".", $_FILES['file']['name']);
+        if ($filename[1] == 'csv') {
+            $handle = fopen($_FILES['file']['tmp_name'], "r");
+            while ($data = fgetcsv($handle)) {
+              
+                $c++;
+                print_r($c);
+                if ($c == 1) { continue; }
+
+                $item2 = mysqli_real_escape_string($conn, $data[0]);
+                $item3 = mysqli_real_escape_string($conn, $data[1]);
+                $item4 = mysqli_real_escape_string($conn, $data[2]);
+                
+
+                $MID = substr($item2,2) . substr($item3,3);
+                $retrieve = "SELECT * FROM scholarship_results WHERE markID='$MID'";
+                $marks_result =  mysqli_query($conn, $retrieve);
+
+                if (mysqli_num_rows($marks_result) > 0) {
+                    $query = "UPDATE scholarship_results SET `marks` = '$item4',`examID` = '$examID' WHERE markID='$MID'";
+                }else{
+                    $query = "INSERT into scholarship_results(markID,studentID,studentIndex,marks,examID) ;
+                    
+                values('$MID','$item2','$item3','$item4','$examID')";
+                }
+
+                $import_result = mysqli_query($conn, $query);
+                if ($import_result) {
+                } else {
+                    $error = "Error in uploading";
+                  //  header('Location: ../public/office/office_add_view_scholarship_exams.php?Ggrades=' . $error);
+                }
+                // $maxID = $maxID + 1;
+            }
+            fclose($handle);
+            echo "<script>alert('Import done');</script>";
+          // header('Location: ../public/office/office_add_view_scholarship_exams.php?examID='.$examID);
+        }
+    }
 }
 
 
-    $conn->close();
-?>
+
+
+    // $mark = "M";
+
+    // echo "yes";
+
+    // //    $userID = $_POST['id'];
+
+    // $retrieve = "SELECT * FROM alresults";
+    // $marks_result =  mysqli_query($conn, $retrieve);
+
+    // $c = 0;
+    // $maxID = 0;
+
+    // while ($row = mysqli_fetch_array($marks_result)) {
+
+    //     $lastId = $row['markID'];
+    //     $charID = substr($lastId, 1);
+
+    //     $intID = intval($charID);
+    //     echo "kk" . $intID;
+
+    //     if ($intID > $maxID) {
+    //         echo "bpp ";
+    //         $maxID = $intID;
+    //     }
+    // }
+    // echo "max" . $maxID;
+    // $charID = substr($maxID, 1);

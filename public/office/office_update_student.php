@@ -138,7 +138,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 
 
                                     <button type="submit" class="registerbtn" style="margin-left: 5px;" name="update_student">Save</button>
-                                    <a href="o_studentsList.php" class="cancel-btn">Cancel</a>
+                                    <a href="office_studentsList.php" class="cancel-btn">Cancel</a>
 
 
                                 </div>

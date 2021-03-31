@@ -67,7 +67,7 @@ include_once '../../config/conn.php';
             <hr>
             <?php
              
-             $sql2 = "SELECT * FROM schol_rsheet WHERE examID = '".$_GET['examID']."'";
+             $sql2 = "SELECT * FROM scholarship_results WHERE examID = '".$_GET['examID']."'";
              $result2 = mysqli_query($conn,$sql2);
              $row=mysqli_fetch_assoc($result2);
 

@@ -49,13 +49,13 @@
 ?>
     <div class="content">
         <div class="container" style="margin-left:250px;">
-            <form method="POST" enctype="multipart/form-data" action="../../src/office_add_scholarshipExamCsv.php">
+            <form method="POST" enctype="multipart/form-data" action="../../src/o_scholCsv.php">
                 
                 <h1><?php echo $row['examName']?></h1>
                 <hr>
 
                 <label for="examID" ><b>Exam ID</b></label>
-                <input type="text" value= "<?php echo $row['examID']?>" required>
+                <input type="text" name="examID" value= "<?php echo $row['examID']?>" required>
                 
                 <label name="file"><b>Enter CSV File</b></label>
                 <input type="file" id="myFile" name="file" class="nextpgbtn" required></br>

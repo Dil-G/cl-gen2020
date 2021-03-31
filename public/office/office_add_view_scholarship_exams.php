@@ -85,6 +85,7 @@ include_once '../../config/conn.php';
                         <th>Exam ID</th>
                         <th>Year</th>
                         <th>Name of the Examination</th>
+                        <th>Pass Mark</th>
                         <th>Add CSV</th>
                         <th>View Details</th>
 
@@ -99,6 +100,7 @@ include_once '../../config/conn.php';
                         <td><?php echo $row['examID']?></td>
                         <td><?php echo $row['examYear']?></td>
                         <td><?php echo $row['examName']?></td>
+                        <td><?php echo $row['pass_mark']?></td>
                         <?php echo "<td><a id='addcsv' class='btn editbtn' href = office_add_scholarshipExamCsv.php?examID=".$row['examID']." > Add Results </a></td>"
                     ?>
 
