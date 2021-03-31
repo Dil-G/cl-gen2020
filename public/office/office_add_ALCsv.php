@@ -54,7 +54,7 @@ echo"failed";
     </div>
     <div class="content">
         <div class="container">
-            <form enctype="multipart/form-data" action="../../src/office_add_alresults.php" method="POST">
+            <form enctype="multipart/form-data" action="../../src/add_alresults.php" method="POST">
                 <h1><?php echo $row['examName']?></h1>
                 <hr>
                 <?php if (isset($_GET['error'])) { ?>

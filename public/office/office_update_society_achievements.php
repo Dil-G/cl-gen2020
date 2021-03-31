@@ -69,7 +69,7 @@ if (!isset($_SESSION['userType']) && !isset($_SESSION['userID'])) {
 
                         <label for="stufName"><b>Student Name</b></label>
                         <input type="text" placeholder="Enter First Name" name="stufName" id="fname"
-                            value="<?php echo $row['name2'] ?>">
+                            value="<?php echo $_GET['name2'] ?>">
 
                         <label for="achievementID "><b>Achievement ID </b></label> <br>
                         <input type="text" placeholder="" name="achievementID" id="achievementID"

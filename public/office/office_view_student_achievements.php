@@ -105,7 +105,7 @@
                         <td><?php echo$row2['description']?></td>
                         <td><?php echo$row2['achievementDate']?></td>
                         
-                        <td><?php echo "<a href=office_update_sports_achievements.php?achievementID=".$achievementID_sports."&name=".$fullName." class='button editbtn'>Update</a>" ?></td>
+                        <td><?php echo "<a href=office_update_sports_achievements.php?achievementID=".$achievementID_sports."&name=".urlencode($fullName)." class='button editbtn'>Update</a>" ?></td>
 
 
                     </tr>
@@ -170,14 +170,15 @@
                         <tbody id="Table">
                             <tr>
                             <?php $achievementID = $row['achievementID']; ?>
-                                <td><?php echo$achievementID?></td>
+                                <td><?php echo $achievementID?></td>
 
                                 <td><?php
                         $name2 = "SELECT * FROM student where admissionNo='$row[studentID]'";
                         $res2 = mysqli_query($conn,$name2);
 
-                        while($fname = mysqli_fetch_assoc($res2)){
-                            $fullName2 =  $fname['fName'] . " ". $fname['lName'];
+                        while($fname2 = mysqli_fetch_assoc($res2)){
+                            $fullName2 =  $fname2['fName'] . " ". $fname2['lName'];
+                            echo $fullName2;
                            
                         }
                         ?></td>
@@ -187,7 +188,7 @@
                                 <td><?php echo$row['description']?></td>
                                 <td><?php echo$row['achievementDate']?></td>
                                 
-                                <td><?php echo "<a href=office_update_society_achievements.php?achievementID=".$achievementID."&name2=".$fullName2." class='button editbtn'>Update</a>" ?></td>
+                                <td><?php echo "<a href=office_update_society_achievements.php?achievementID=".$achievementID."&name2=".urlencode($fullName2)." class='button editbtn'>Update</a>" ?></td>
 
 
                             </tr>

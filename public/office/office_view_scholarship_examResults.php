@@ -93,11 +93,17 @@ include_once '../../config/conn.php';
                    
                 ?>
                     <tr>
-                        <td><?php echo $row["admissionNo"]; ?></td>
+                        
+                        <td><?php echo $row["studentID"]; ?></td>
                         <td><?php echo $row["studentIndex"]; ?></td>
-                        <td><?php echo $row["studentName"]; ?></td>
-                        <td><?php echo $row["examMarks"]; ?></td>
-                        <td><?php echo ($row["examMarks"] >= $marks_row["pass_mark"] ? "Pass" : "Fail"); ?></td>
+                        <?php
+                        $sql4 = "SELECT fName,lName FROM student WHERE admissionNo  = '".$row['studentID']."'";
+                        $results4 = mysqli_query($conn,$sql4);
+                        $name =mysqli_fetch_assoc($results4);
+                        ?>
+                        <td><?php echo $name["fName"]." ".$name["lName"]; ?></td>
+                        <td><?php echo $row["marks"]; ?></td>
+                        <td><?php echo ($row["marks"] >= $marks_row["pass_mark"] ? "Pass" : "Fail"); ?></td>
                         <?php
                    }
                ?>

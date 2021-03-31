@@ -22,16 +22,17 @@ if (isset($_POST["submit"])) {
                 $items2 = mysqli_real_escape_string($conn, $datas[0]);
                 $items3 = mysqli_real_escape_string($conn, $datas[1]);
                 $items4 = mysqli_real_escape_string($conn, $datas[2]);
+                $items5 = mysqli_real_escape_string($conn, $datas[3]);
                 
                 
-                $MIDs = substr($items2,2) . substr($items3,3);
-                
+                $MIDs = substr($items5,0,4) . substr($items2, 2) ;
+                echo $MIDs;
                 if(in_array($MIDs,$IDarray))
                 {
                     $error = "Duplicate records in CSV file";
                     
                     echo $error;
-                   header('Location: ../public/office/office_add_scholarshipExamCsv.php.php?examID=' . $examID . '&error=' . $error);
+                   header('Location: ../public/office/office_add_view_scholarship_exams.php?examID=' . $examID . '&error=' . $error);
                     exit();
                    
                     
@@ -39,80 +40,55 @@ if (isset($_POST["submit"])) {
                     array_push($IDarray,$MIDs);
                 }
             }
+            fclose($handles);
+
         }
     }
-    fclose($handles);
 
-    $c = 0;
+$c = 0;
+// print_r($c);
     if ($_FILES['file']['name']) {
         $filename = explode(".", $_FILES['file']['name']);
         if ($filename[1] == 'csv') {
+
             $handle = fopen($_FILES['file']['tmp_name'], "r");
             while ($data = fgetcsv($handle)) {
-              
+
                 $c++;
-                print_r($c);
-                if ($c == 1) { continue; }
+                if ($c == 1) {
+                    continue;
+                }
 
                 $item2 = mysqli_real_escape_string($conn, $data[0]);
                 $item3 = mysqli_real_escape_string($conn, $data[1]);
                 $item4 = mysqli_real_escape_string($conn, $data[2]);
-                
+                $item5 = mysqli_real_escape_string($conn, $data[3]);
 
-                $MID = substr($item2,2) . substr($item3,3);
+                $MID = substr($item5,0,4) . substr($item2, 2) ;
+
                 $retrieve = "SELECT * FROM scholarship_results WHERE markID='$MID'";
                 $marks_result =  mysqli_query($conn, $retrieve);
 
                 if (mysqli_num_rows($marks_result) > 0) {
-                    $query = "UPDATE scholarship_results SET `marks` = '$item4',`examID` = '$examID' WHERE markID='$MID'";
-                }else{
-                    $query = "INSERT into scholarship_results(markID,studentID,studentIndex,marks,examID) ;
-                    
-                values('$MID','$item2','$item3','$item4','$examID')";
-                }
-
+                    $query = "UPDATE scholarship_results SET `studentID` = '$item2',`studentIndex` = '$item3', `marks` = '$item4',`examID` = '$item5' WHERE markID='$MID'";
+                } else {
+                    $query = "INSERT into scholarship_results(markID,studentID,studentIndex,marks,examID) 
+                    values('$MID','$item2','$item3','$item4','$item5')";
+                    }
                 $import_result = mysqli_query($conn, $query);
                 if ($import_result) {
                 } else {
                     $error = "Error in uploading";
-                  //  header('Location: ../public/office/office_add_view_scholarship_exams.php?Ggrades=' . $error);
+                   header('Location: ../public/office/office_view_scholarship_examResults.php?Ggrades=' . $error);
                 }
                 // $maxID = $maxID + 1;
             }
             fclose($handle);
             echo "<script>alert('Import done');</script>";
-          // header('Location: ../public/office/office_add_view_scholarship_exams.php?examID='.$examID);
+             header('Location: ../public/office/office_view_scholarship_examResults.php?examID='.$examID);
         }
     }
 }
 
 
 
-
-    // $mark = "M";
-
-    // echo "yes";
-
-    // //    $userID = $_POST['id'];
-
-    // $retrieve = "SELECT * FROM alresults";
-    // $marks_result =  mysqli_query($conn, $retrieve);
-
-    // $c = 0;
-    // $maxID = 0;
-
-    // while ($row = mysqli_fetch_array($marks_result)) {
-
-    //     $lastId = $row['markID'];
-    //     $charID = substr($lastId, 1);
-
-    //     $intID = intval($charID);
-    //     echo "kk" . $intID;
-
-    //     if ($intID > $maxID) {
-    //         echo "bpp ";
-    //         $maxID = $intID;
-    //     }
-    // }
-    // echo "max" . $maxID;
-    // $charID = substr($maxID, 1);
